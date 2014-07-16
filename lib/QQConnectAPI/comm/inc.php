@@ -1,0 +1,1 @@
+{"appid":"100518336","appkey":"28f1b52aa1687aec81fac4f84e1f7a6f","callback":"http://www.eccbuy.net/","scope":"get_user_info,add_t","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

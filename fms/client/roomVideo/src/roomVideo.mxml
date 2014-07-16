@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="470" height="330" minWidth="470" minHeight="330" backgroundColor="#62E8E0"
+			   initialize="initApp();">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.core.FlexGlobals;
+			
+			import my.*;
+			
+			private var nc: NetConnection;
+			private var ns: NetStream;
+			private var video: Video;
+			private var so: SharedObject;
+			
+			private var cam: Camera;
+			private var mic: Microphone;
+			
+			private var vparam: VideoItemParameter;
+			private var vstate: int = 0; // 0-空闲  1-播放中  2-直播发布中  3-上传文件发布中
+			
+			private var cam_timer: uint;
+			private var cam_counter: uint = 0;
+			
+			private function initApp(): void{
+				FlexGlobals.topLevelApplication.addEventListener(MouseEvent.ROLL_OUT, setSRF);
+				
+				vparam = readParameters();
+				initUI();				
+				initFuncs();
+				doConnect();
+			}
+			
+			public function doConnect(): void{
+				nc = new NetConnection();
+				nc.client = new NCClientObject(this);
+				nc.objectEncoding = ObjectEncoding.AMF3;
+				nc.addEventListener(NetStatusEvent.NET_STATUS, nc_OnStatus);
+				nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR, nc_OnAsyncError);
+				nc.connect(vparam.getAppURL(), vparam.sid, vparam.uid, vparam.rid);
+				debug("connect:" + vparam.getAppURL() + " sid:" + vparam.sid + " uid:" + vparam.uid + " rid:" + vparam.rid);
+			}
+			
+			public function doDisconnect(): void {
+				doStop();
+				if(nc && nc.connected){
+					nc.close();
+				}
+				nc = null;
+			}
+			
+			private function doPublish(): void {
+				if(!nc.connected){
+					Alert.show('尚未连接');
+					return;
+				}
+				if(vstate != 0) return; // 当前正在发布和播放
+				
+				// 检查摄像头
+				cam = Camera.getCamera();
+				if(cam == null){
+					Alert.show('没有检测到摄像头');
+					return;
+				}
+				
+				ns = new NetStream(nc);
+				cam.setMode(470, 330, 20);
+				cam.setQuality(60*1000, 85); // 60K
+				cam.addEventListener(StatusEvent.STATUS, cam_onStatus);
+				//cam.addEventListener(ActivityEvent.ACTIVITY, cam_activity);
+				ns.attachCamera(cam);
+				
+				mic = Microphone.getMicrophone();
+				if(mic != null){
+					
+					mic.setUseEchoSuppression(false);
+					ns.attachAudio(mic);
+				}
+				else{
+					Alert.show('没有检测到麦克风');
+				}
+				
+				var streamName: String = vparam.getStreamName();
+				ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
+				ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
+				ns.publish(streamName, "live");
+				video.attachCamera(cam);
+				video.visible = true;
+				
+				vstate = 2;
+				
+				var obj:Object = {videoName : streamName};
+				so.setProperty('video', obj);
+				
+				ExternalInterface.call("onVideoPublish");
+			}
+			
+			private function doView(streamName: String): void{ // 自动调用，无须判断当前状态
+				setTimeout(function(): void{
+					debug("doView:" + streamName);
+					ns = new NetStream(nc);
+					// 非直播时，缓冲
+					ns.bufferTime = streamName != vparam.getStreamName() ? 1 : 0;
+					ns.client = new NSClientObject();
+					ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
+					ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
+					ns.play(streamName);
+					video.attachNetStream(ns);
+					video.visible = true;
+					
+					vstate = 1;
+					ExternalInterface.call("onVideoPublish");
+				}, 500); // 延迟1秒播放，避免看到以前的图片
+			}
+			
+			private function doPublishView(streamName: String): void{
+				if(!nc.connected){
+					Alert.show('尚未连接');
+					return;
+				}
+				if(vstate != 0) return; // 当前正在发布和播放
+				
+				ns = new NetStream(nc);
+				// 非直播时，缓冲
+				ns.bufferTime = 1;
+				ns.client = new NSClientObject();
+				ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
+				ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
+				ns.play(streamName, 0);
+				video.attachNetStream(ns);
+				video.visible = true;
+				
+				vstate = 3;
+				
+				var obj:Object = {videoName : streamName};
+				so.setProperty('video', obj);
+								
+				ExternalInterface.call("onVideoPublish");
+			}
+			
+			private function doStop(): void{
+				if(vstate == 0) return;
+				
+				debug("doStop");
+				
+				if(ns){
+					if(vstate == 2){
+						ns.attachCamera(null);
+						ns.attachAudio(null);
+					}
+					else if(vstate == 3){ // 播放需要主动修改
+						so.setProperty('video', null);
+					}
+					ns.close();	
+				}
+				video.attachNetStream(null);
+				video.visible = false;
+				
+				vstate = 0;
+				ExternalInterface.call("onVideoUnpublish");
+			}
+			
+			public function doSendMsg(msgData :Object): void {
+				nc.call("sendMsg", null, msgData);
+			}
+			
+			public function doSendGift(propid: int, count: int, to: String): void {
+				nc.call("sendGift", null, propid, count, to);
+			}
+			
+			public function doBan(uid: String): void{
+				nc.call("ban", null, uid);
+			}
+			
+			
+			public function initPublicBar(show:Boolean): void {
+				debug("showPublishBar:" + show);
+				if(show) {
+					this.addEventListener(MouseEvent.ROLL_OVER, function(): void{
+						panl.visible = true;
+					});
+					this.addEventListener(MouseEvent.ROLL_OUT, function(): void{
+						panl.visible = false;
+					})
+				}				
+			}
+			////////////////// event
+						
+			private function doConnectSuccess(): void{
+				
+				so = SharedObject.getRemote("so", nc.uri, false);
+				so.addEventListener(SyncEvent.SYNC, so_OnSync);
+				so.connect(nc);
+				ExternalInterface.call("onConnectSuccess");
+				
+				/* 带宽检测
+				if(vparam.vid == 1){
+				nc.call("checkBandwidth", null);
+				}
+				*/
+			}
+			
+			private function doConnectFailed(): void{
+				ExternalInterface.call("onConnectFailed");
+			}
+			
+			private function doConnectRejected(resp: Object): void{
+				var msg: String = "";
+				switch(resp.errno){
+					case 100:
+						msg = "重复登录";
+						break;
+					case 101:
+						msg = "服务器超出最大用户数";
+						break;
+					case 102:
+						msg = "禁止进入";
+						break;
+					case 103:
+						msg = "系统错误";
+						break;
+				}
+				ExternalInterface.call("onConnectRejected", msg);
+			}
+			
+			private function doConnectClosed(): void{
+				ExternalInterface.call("onConnectClosed");
+			}
+			
+			private function nc_OnStatus(evt: NetStatusEvent): void{
+				switch(evt.info.code){
+					case "NetConnection.Connect.Success":
+						doConnectSuccess();
+						break;
+					case "NetConnection.Connect.Rejected":
+						var msg: String = evt.info.application.message;
+						doConnectRejected(msg);
+						break;
+					case "NetConnection.Connect.Failed":
+						doConnectFailed();
+						break;
+					case "NetConnection.Connect.Closed":
+						doConnectClosed();
+						break;
+					case "NetConnection.Connect.AppShutDown":
+						break;
+				}
+			}
+			
+			private function nc_OnAsyncError(evt: AsyncErrorEvent): void {
+			}
+			
+			private function ns_onStatus(evt: NetStatusEvent): void{
+				// 循环播放：如果碰到播放结束，并且不是直播时，跳回到第一帧
+				if(evt.info.code == "NetStream.Play.Stop"){
+					if(vstate != 0){
+						ns.seek(0);
+					}
+				}
+				//debug('ns_onStatus: ' + evt.info.code + ' vid: ' + vparam.vid);
+				/*
+				var streamName: String = vparam.getStreamName();
+				switch(evt.info.code){
+				// publisher
+				case "NetStream.Publish.Start":
+				ExternalInterface.call('doAddMsg', 'NetStream.Publish.Start ' + so.data[streamName]);						
+				video.attachCamera(cam);
+				video.visible = true;
+				break;
+				case "NetStream.Unpublish.Success":
+				video.attachNetStream(null);
+				video.visible = false;
+				break;
+				case "NetStream.Publish.BadName":
+				video.attachNetStream(null);
+				video.visible = false;
+				break;
+				// viewer
+				case "NetStream.Play.Start":
+				video.attachNetStream(ns);
+				video.visible = true;
+				break;
+				case "NetStream.Play.Stop":
+				//video.attachNetStream(null);
+				//video.visible = false;
+				break;
+				case "NetStream.Play.UnpublishNotify":
+				//video.attachNetStream(null);
+				//video.visible = false;
+				break;
+				}
+				*/
+			}
+			
+			private function ns_onSyncErr(evt: AsyncErrorEvent): void {
+			}
+			
+			private function so_OnSync(evt: SyncEvent): void{
+				var hasVideoInfo: Boolean = !(so.data['video'] == null);
+				
+				debug("so data sync hasVideoInfo:" + hasVideoInfo);
+				
+				if(vstate == 0){ // 空闲中，可能自动播放，但不可能自动发布
+					if(hasVideoInfo){
+						var videoName: String = so.data['video'].videoName;
+						doView(videoName);
+					}
+				}
+				else if(vstate == 1){ // 播放中，收到停止消息后，自动停止
+					if(!hasVideoInfo){
+						doStop();
+					}
+					
+				}
+				else if(vstate == 2){ // 发布中，不会自动停的
+					
+				}
+				else if(vstate == 3){ // 发布播放中
+					
+				}
+			}
+						
+			private function cam_onStatus(evt: StatusEvent): void {
+				if(evt.code == "Camera.Muted"){
+					//trace("cam not be allowed");
+					doStop();
+				}
+				else if(evt.code == "Camera.Unmuted"){
+					//trace("cam allowed");
+					// 如果摄像头被占用，调用doStop
+					cam_counter = 0;
+					cam_timer = setInterval(checkCamCallBack, 100);
+				}
+			}
+			
+			private function cam_activity(evt: ActivityEvent): void {
+				//trace(evt);
+			}
+			
+			private function checkCamCallBack(): void {
+				cam_counter++;
+				if(cam.currentFPS > 0){
+					clearInterval(cam_timer);
+				}
+				else{
+					if(cam_counter >= 20){
+						clearInterval(cam_timer);
+						doStop();
+					}
+				}
+			}
+			
+			
+			private function readParameters(): VideoItemParameter {
+				var ret: VideoItemParameter = new VideoItemParameter();
+				var params: Object = FlexGlobals.topLevelApplication.parameters;
+				ret.sid = params.sid;
+				ret.appname = params.appname;
+				ret.sip = params.sip;
+				ret.uid = params.uid;
+				ret.rid = params.rid;
+				return ret;
+			}
+						
+			private function initUI(): void{
+				// initUI
+				video = new Video();
+				video.smoothing = true;
+				video.visible = false;
+				video.width = 470;
+				video.height = 330;
+				container.addChild(video);				
+			}
+			
+			private function initFuncs(): void{
+				ExternalInterface.addCallback("doConnect", doConnect);
+				ExternalInterface.addCallback("doDisconnect", doDisconnect);
+				ExternalInterface.addCallback("doSendMsg", doSendMsg);
+				ExternalInterface.addCallback("doSendGift", doSendGift);
+				ExternalInterface.addCallback("doBan", doBan);
+			}
+						
+			private function setSRF(event:MouseEvent):void {
+				if(Capabilities.hasIME){
+					try{
+						if(!IME.enabled){
+							IME.enabled=true;
+						}
+						IME.conversionMode = IMEConversionMode.CHINESE;
+					}
+					catch(error:Error){
+					}
+				}
+				
+			}
+			
+			private function debug(msg: String):void {
+				ExternalInterface.call("debug", msg);
+			}			
+
+			/////////////////////////
+			
+			protected function btnPublish_clickHandler(event:MouseEvent):void
+			{
+				if(vstate == 0){
+					doPublish();
+				}
+			}
+			
+			protected function btnStop_clickHandler(event:MouseEvent):void
+			{
+				if(vstate == 2 || vstate == 3){
+					doStop();
+				}
+			}
+			
+			protected function btnPlay_clickHandler(event:MouseEvent):void
+			{
+				if(vstate == 0){
+					doPublishView("intro");
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:SpriteVisualElement id="container" x="0" y="0" width="470" height="330"></s:SpriteVisualElement>
+	<s:Panel id="panl" visible="false" left="0" top="0" width="470" height="22"
+			 backgroundAlpha="0.0" borderVisible="true" dropShadowVisible="false" enabled="true"
+			 skinClass="spark.skins.spark.SkinnableContainerSkin">
+		<s:Button id="btnPublish" x="0" y="0" width="60" label="发布" click="btnPublish_clickHandler(event)"/>
+		<s:Button id="btnStop" x="60" width="60" label="停止" click="btnStop_clickHandler(event)"/>
+		<s:Button id="btnPlay" x="120" width="60" label="播放" click="btnPlay_clickHandler(event)"/>
+	</s:Panel>
+</s:Application>

@@ -1,0 +1,248 @@
+﻿@charset "utf-8";
+/* ::http://www.ieic.cn /:: */
+/* CSS Frameworks "webmag" Created by anylee(flash8_any@163.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
+
+/* --------------------------------------------------------------
+
+   Reset.css-Extended from blueprint
+   * Resets default browser CSS.
+
+-------------------------------------------------------------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, dialog, figure, footer, header, hgroup, nav, section {display:block;}
+body {line-height: 1.5;}
+
+/* remember to define focus styles! */
+:focus {outline:0;}
+
+/* 为<q>,<blockquote>删除引号("). */
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+
+/* 清除带连接图片的边框. */
+a img { border: none; }
+
+
+/* --------------------------------------------------------------
+
+   Core.css-Create By Anylee
+   * Webmag CSS Core.
+
+-------------------------------------------------------------- */
+
+/** Font **/
+.clr0,.clr0A a,.clr0H a:hover {color:#000;}
+.clrF,.clrFA a,.clrFH a:hover {color:#FFF;}
+.clrC,.clrCA a,.clrCH a:hover {color:#CCC;}
+.clr9,.clr9A a,.clr9H a:hover {color:#999;}
+.clr6,.clr6A a,.clr6H a:hover {color:#666;}
+.clr3,.clr3A a,.clr3H a:hover {color:#333;}
+.clrC00,.clrC00H a:hover {color:#C00;}
+.clrF00,.clrF00H a:hover {color:#F00;}
+.clr069,.clr069H a:hover {color:#069;}
+.clr09F {color:#09F;}
+
+.ffM,.ffMA a {font-family:Microsoft Yahei,"黑体","宋体";}
+.ffA,.ffAA a {font-family:Arial, Helvetica, sans-serif;}
+.ffT,.ffTA a {font-family:Tahoma, Geneva, sans-serif;}
+.fs10,.fs10A a {font-size:10px;}
+.fs12,.fs12A a {font-size:12px;}
+.fs14,.fs14A a {font-size:14px;}
+.fs16,.fs16A a {font-size:16px;}
+.fs18,.fs18A a {font-size:18px;}
+.fs20,.fs20A a {font-size:20px;}
+.fsN,.fsNA a {font-style:normal;}
+.fsI,.fsIA a {font-style:italic;}
+.fsO,.fsOA a {font-style:oblique;}
+.fwB,.fwBA a {font-weight:bold;}
+/*Tips:.div {text-decoration:underline overline;}*/
+.tdN,.tdNA a:hover {text-decoration:none;}
+.tdB {text-decoration:blink;}
+.tdU,.tdUA a {text-decoration:underline;}
+.tdL {text-decoration:line-through;}
+.tdO {text-decoration:overline;}
+.ts999-2 {text-shadow:#999 2px 2px 2px;}
+.ts999-3 {text-shadow:#999 3px 3px 3px;}
+.ts666-2 {text-shadow:#666 2px 2px 2px;}
+.ts666-3 {text-shadow:#666 3px 3px 3px;}
+.fvN {font-variant:normal;}
+.fvS {font-variant:small-caps;}
+.ttC {text-transform:capitalize;}
+.ttU {text-transform:uppercase;}
+.ttL {text-transform:lowercase;}
+.ptb3A a {padding:3px 0;}
+.ptb5A a {padding:5px 0;}
+.lh18,.lh18 a {line-height:18px;}
+.lh20,.lh20 a {line-height:20px;}
+.lh21,.lh21 a {line-height:21px;}
+.lh24,.lh24 a {line-height:24px;}
+.lh25,.lh25 a {line-height:25px;}
+.lh27,.lh27 a {line-height:27px;}
+.lh30,.lh30 a {line-height:30px;}
+.lh35,.lh35 a {line-height:35px;}
+.ls-1 {letter-spacing:1px;}
+.ls-2 {letter-spacing:2px;}
+.ws-2 {word-spacing:2px;}
+.ws=5 {word-spacing:5px;}
+
+/** Text **/
+.ti10,.ti10A a { text-indent:10px; }
+.ti20,.ti20A a { text-indent:20px; }
+.ti30,.ti30A a { text-indent:30px; }
+.vaSub {vertical-align:sub;}
+.vaSuper {vertical-align:super;}
+/*Notice:you must change the container "align" attr to "table-cell" */
+.vaBase {vertical-align:baseline;}
+.vaT {vertical-align:top;}
+.vaM {vertical-align:middle;}
+.vaB {vertical-align:bottom;}
+.vaTt {vertical-align:text-top;}
+.vaTb {vertical-align:text-bottom;}
+.taL {text-align:left;}
+.taC {text-align:center;}
+.taR {text-align:right;}
+.taJ {text-align:justify;}
+.wsP {white-space:pre;}
+.wsN {white-space:nowrap;}
+
+/** Background **/
+.bgAS {background-attachment:scroll;}
+.bgAF {background-attachment:fixed;}
+.bgF {background-color:#FFF;}
+.bgF5 {background-color:#F5F5F5;}
+.bgE {background-color:#EEE;}
+.brN,.brNA a {background-repeat:no-repeat;}
+.brX,.brXA a {background-repeat:repeat-x;}
+.brY,.brYA a {background-repeat:repeat-y;}
+
+/** Position **/
+.posA,.posA-h1 h1,.posA-a a {position:absolute;}
+.posR,.posR-h1 h1,.posR-a a {position:relative;}
+.posF {position:fixed;}
+
+/** Layout **/
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;}
+.clearfix{*zoom:1;/*IE/7/6*/}
+
+.clrL {clear:left;}
+.clrR {clear:right;}
+.fl,.flUl ul,.flLi li,.flDL dl,.flDL dd,.flDL dt,.flDl dl,.flDd dd,.flDt dt,.flDiv div,.flSpan span,.flA a {float:left;}
+.fr,.frA a {float:right;}
+.ofH,.ofHA a {overflow:hidden;}
+.ofS {overflow:scroll;}
+.ofV {overflow:visible;}
+.dispN {display:none;}
+.dispB,.dispBA a,.dispImg img,h1,h2,h3,h4,h5,h6,dl,dd,dt,ul,ol,li,em,p {display:block;}
+.di {display:inline;}
+.dib {display:inline-block;}
+.dt {display:table;}
+.dtb {display:inline-table;}
+.dtc {display:table-cell;}
+.vv {visibility:visible;}
+.vh {visibility:hidden;}
+
+/** Margins **/
+.mar,.marDL dl,.marUL ul,.marLi li,.marA a,.marImg img {margin:0 auto;}
+.mt5 {margin-top:5px;}
+.mr5 {margin-right:5px;}
+.mb5 {margin-bottom:5px;}
+.ml5 {margin-left:5px;}
+.mt10 {margin-top:10px;}
+.mr10 {margin-right:10px;}
+.mb10 {margin-bottom:10px;}
+.ml10 {margin-left:10px;}
+.mt20 {margin-top:20px;}
+.mr20 {margin-right:20px;}
+.mb20 {margin-bottom:20px;}
+.ml20 {margin-left:20px;}
+.mlr5,.mlr5A a {margin:0 5px;}
+.mtb5,.mtb5A a {margin:5px 0;}
+.mlr10,.mlr10A a {margin:0 10px;}
+.mtb10,.mtb10A a {margin:10px 0;}
+
+/** Paddings **/
+.pad5 {padding:5px;}
+.pad10 {padding:10px;}
+.pad20 {padding:20px;}
+.pt5 {padding-top:5px;}
+.pr5 {padding-right:5px;}
+.pb5 {padding-bottom:5px;}
+.pl5 {padding-left:5px;}
+.pt10 {padding-top:10px;}
+.pr10 {padding-right:10px;}
+.pb10 {padding-bottom:10px;}
+.pl10 {padding-left:10px;}
+.plr5 {padding:0 5px;}
+.ptb5 {padding:5px 0;}
+.plr10 {padding:0 10px;}
+.ptb10 {padding:10px 0;}
+
+/** Outlines **/
+/*Notice:add the outline-width to container outer*/
+
+/** border **/
+/*Notice:add the border-width to container inner*/
+.borS {border:1px solid #ccc;}
+.borST {border-top:1px solid #ccc;}
+.borSR {border-right:1px solid #ccc;}
+.borSB {border-bottom:1px solid #ccc;}
+.borSL {border-left:1px solid #ccc;}
+.borD {border:1px dashed #ccc;}
+.borDT {border-top:1px dashed #ccc;}
+.borDR {border-right:1px dashed #ccc;}
+.borDB {border-bottom:1px dashed #ccc;}
+.borDL {border-left:1px dashed #ccc;}
+
+/******************************/
+/*        Css Standard        */
+/******************************/
+
+/*layout and typograpy*/
+.column {float:left;margin-right:10px;padding:0;}
+/*use these classes to set how wide a column should be.*/ 
+.div30 {width:30px;}
+.div70 {width:70px;}
+.div110 {width:110px;}
+.div150 {width:150px;}
+.div190 {width:190px;}
+.div200 {width:200px;}
+.div230 {width:230px;}
+.div270 {width:270px;}
+.div310 {width:310px;}
+.div350 {width:350px;}
+.div390 {width:390px;}
+.div430 {width:430px;}
+.div470 {width:470px;}
+.div510 {width:510px;}
+.div550 {width:550px;}
+.div590 {width:590px;}
+.div630 {width:630px;}
+.div670 {width:670px;}
+.div710 {width:710px;}
+.div910 {width:910px;margin:0;}
+.div950 {width:950px;margin:0;}
+.div1150 {width:1150px;margin:0;}
+
+/*The last element in a multi-column block needs this class.*/ 
+.last {margin-right:0;}
+.clear {clear:both;}
+.clear3px {margin-right:-3px;}

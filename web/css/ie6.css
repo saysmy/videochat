@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* ::http://www.ieic.cn /:: */
+/* CSS Document Created by anylee(flash8_any@163.com) 2009.09.25 */
+
+/******************************/
+/*         Css Hacker         */
+/******************************/
+
+/**just for win IE6 css hacker**/
+.menu ul {background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,src=css/img/menu.png,sizingMethod=scale);}
+.menu li a {cursor:pointer;position:relative;}
