@@ -6,11 +6,11 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="css/default.css" rel="stylesheet" type="text/css" />
+<link href="css/default.css?v=0.2" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='js/jquery.min.js'></script>
 <script type='text/javascript' src='js/swfobject.js'></script>
 <script type='text/javascript' src='js/popCheckbox.js?v=0.3'></script>
-<script src="js/custom.js?v=0.10"></script>
+<script src="js/custom.js?v=0.18"></script>
 <!--[if IE 6]>
 <script src="scripts/DD_belatedPNG_0.0.8a.js"></script>
 <script>
@@ -34,7 +34,50 @@
               <span class="view">458</span>
               <span class="time">120分钟</span>
               <span class="click">174/70</span>
-              <span class="share2 ml20"><a href="#"><img src="css/share-qq.gif" width="50" height="16"></a> <a href="#"><img src="css/share-qzone.gif" width="50" height="16"></a></span>
+              <script type="text/javascript">
+              (function(){
+              var p = {
+              url:location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
+              desc:'主播好帅主播好帅主播好帅', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
+              title:'主播好帅', /*分享标题(可选)*/
+              summary:'', /*分享摘要(可选)*/
+              pics:'', /*分享图片(可选)*/
+              flash: '', /*视频地址(可选)*/
+              site:'', /*分享来源(可选) 如：QQ分享*/
+              style:'103',
+              width:50,
+              height:16
+              };
+              var s = [];
+              for(var i in p){
+              s.push(i + '=' + encodeURIComponent(p[i]||''));
+              }
+              document.write(['<a class="qcShareQQDiv" href="http://connect.qq.com/widget/shareqq/index.html?',s.join('&'),'" target="_blank">分享到QQ</a>'].join(''));
+              })();
+              </script>
+              <script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
+              <script type="text/javascript">
+              (function(){
+              var p = {
+              url:location.href,
+              showcount:'0',/*是否显示分享总数,显示：'1'，不显示：'0' */
+              desc:'主播好帅主播好帅主播好帅',/*默认分享理由(可选)*/
+              summary:'',/*分享摘要(可选)*/
+              title:'主播好帅',/*分享标题(可选)*/
+              site:'',/*分享来源 如：腾讯网(可选)*/
+              pics:'', /*分享图片的路径(可选)*/
+              style:'103',
+              width:135,
+              height:16
+              };
+              var s = [];
+              for(var i in p){
+              s.push(i + '=' + encodeURIComponent(p[i]||''));
+              }
+              document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
+              })();
+              </script>
+              <script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
             </div>
           </dd>
         </dl>

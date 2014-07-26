@@ -104,6 +104,7 @@ class Oauth{
         parse_str($response, $params);
 
         $this->recorder->write("access_token", $params["access_token"]);
+        $this->keysArr['access_token'] = $params["access_token"];
         return $params;
 
     }
@@ -133,6 +134,7 @@ class Oauth{
 
         //------记录openid
         $this->recorder->write("openid", $user->openid);
+        $this->keysArr['openid'] = $user->openid;
         return $user->openid;
 
     }

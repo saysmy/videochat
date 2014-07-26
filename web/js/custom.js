@@ -42,6 +42,22 @@ $(document).ready(function(){
 		$("#propNum").text(item);
 	})
 
+	$("#panelArrow").click(function() {
+		if($(this).hasClass('arrow_up')) {
+			$(this).removeClass('arrow_up');
+			$(this).addClass('arrow_down');
+			$('#publicChatPanel').height("0px");
+			$('#privateChatPanel').height('405px');
+		}
+		else {
+			$(this).removeClass('arrow_down');
+			$(this).addClass('arrow_up');
+			$('#publicChatPanel').height("320px");
+			$('#privateChatPanel').height('85px');
+		}
+		return false;
+	})
+
 });
 
 var userList = {};
@@ -50,8 +66,23 @@ function onConnectSuccess() {
 	addPublicRoomMsg('视频连接成功', 1);
 }
 
-function onConnectRejected() {
-	addPublicRoomMsg('视频连接失败', 1);
+function onConnectRejected(resp) {
+	var msg = '';
+	switch(resp.errno){
+		case 100:
+			msg = "重复登录";
+			break;
+		case 101:
+			msg = "服务器超出最大用户数";
+			break;
+		case 102:
+			msg = "禁止进入";
+			break;
+		case 103:
+			msg = "系统错误";
+			break;
+	}
+	addPublicRoomMsg('视频连接失败:' + msg, 1);
 }
 
 function onConnectClosed() {
@@ -90,6 +121,8 @@ function onInitRoom(list) {
 	updateUserNum();
 }
 
+var user0Flag = false;
+var user1Flag = false;
 function addUser(user, showPublicMsg) {
 	if (showPublicMsg) {	
 		addPublicRoomMsg(user, 3);
@@ -98,18 +131,24 @@ function addUser(user, showPublicMsg) {
 	if (user.uid == app.mid) {
 		return;
 	};
+	var style = '';
 	if (user.role == 3) {
 		var area = "roomUserItem0";
+		if (user0Flag) {style='background-color: rgb(244, 244, 244)'};
+		user0Flag = !user0Flag;
 	}
 	else {
 		var area = "roomUserItem1";
 		$("#c_1").text(++c_1);
+		if (user1Flag) {style='background-color: rgb(244, 244, 244)'};
+		user1Flag = !user1Flag;
 	}
-	$("#" + area + " ul").append($("<li id='user_" + user.uid + "'><a href='javascript:changeReceiver(" + user.uid + ")'>" + user.nickname + "</a><i></i></li>"));
+	$("#" + area + " ul").append($("<li id='user_" + user.uid + "' style='" + style + "'><a href='javascript:changeReceiver(" + user.uid + ")'>" + user.nickname + "</a><i></i></li>"));
 }
 
 function removeUser(user) {
 	addPublicRoomMsg(user.nickname + "退出聊天室", 1);
+	$('#user_' + user.uid).remove();
 	delete userList[user.uid];
 }
 
@@ -134,22 +173,25 @@ function createSWF(swf, placehoder, flashvars, attributes){
 	attributes.id = placehoder;
 	attributes.name = placehoder;
 	attributes.align = "middle";
-	swfobject.embedSWF('swf/' + swf+".swf?v=0.17", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
+	swfobject.embedSWF('swf/' + swf+".swf?v=0.18", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
 }
 
-
+var publicRoomFlag = false;
 function addPublicRoomMsg(msgData, type) {
 	var table = $("#publicChatPanel table");
+	var style = '';
+	if (publicRoomFlag) {style="background-color:rgb(244,244,244)"};
+	publicRoomFlag = !publicRoomFlag;
 	if (type == 1) {
 		table.append("<tr><td colspan=2>" + msgData + "</td></tr>");
 	}
 	else if(type == 2) {
 		var date = new Date();
 		date.setTime(msgData.timestamp);
-		table.append('<tr><th>' + date.getHours() + ':'  + date.getMinutes() + '</th><td><a href="javascript:changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a>' + (msgData.to == 0 ? '' : '对<a href="javascript:changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a>') + '说：' + msgData.msg + '</td></tr>');
+		table.append('<tr style="' + style + '"><th>' + date.getHours() + ':'  + date.getMinutes() + '</th><td><a href="javascript:changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a>' + (msgData.to == 0 ? '' : '对<a href="javascript:changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a>') + '说：' + msgData.msg + '</td></tr>');
 	}
 	else {
-		table.append("<tr><td colspan=2><a href='javascript:changeReceiver(" + msgData.uid + ")'>" + msgData.nickname + "</a>加入聊天室</td></tr>");
+		table.append("<tr style='" + style + "'><td colspan=2><a href='javascript:changeReceiver(" + msgData.uid + ")'>" + msgData.nickname + "</a>加入聊天室</td></tr>");
 	}
 	$("#publicChatPanel").scrollTop($("#publicChatPanel")[0].scrollHeight - $("#publicChatPanel").height());
 }
@@ -236,7 +278,6 @@ function fillFace(msg) {
 	};
 	return msg;
 }
-
 
 
 

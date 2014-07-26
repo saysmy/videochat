@@ -33,20 +33,18 @@ class UserController extends Controller
 		$qc = new QC();
 		$access_token = $qc->qq_callback();
 		$open_id = $qc->get_openid();
-		unset($qc);
 
-		$qc = new QC();
-		$userInfo = $qc->get_user_info();
 		Yii::log(json_encode($access_token), CLogger::LEVEL_INFO);
 
 		$user = User::model()->find('qq_openid=:open_id', array(':open_id' => $open_id));
 		if($user === null) {//新用户
 			$user = new User();
+			$userInfo = $qc->get_user_info();
+			$user->nickname = $userInfo['nickname'] ? $userInfo['nickname'] : 'QQ用户';
+			$user->sex = $userInfo['gender'] == '女' ? 2 : 1;
+			$user->head_pic_1 = $userInfo['figureurl_qq_1'];
 		}
 		$user->setScenario('login');
-		$user->nickname = $userInfo['nickname'] ? $userInfo['nickname'] : 'QQ用户';
-		$user->sex = $userInfo['gender'] == '女' ? 2 : 1;
-		$user->head_pic_1 = $userInfo['figureurl_qq_1'];
 		$user->qq_openid = $open_id;
 		$user->qq_accesstoken = $access_token['access_token'];
 		$user->qq_accessexpire = $access_token['expires_in'] + time();

@@ -1,5 +1,5 @@
   <script>
-  var app = {'rid' : <?=$rid?>, sid : "<?=$sid?>", uid : <?=$uid?>, appname : "<?=$appname?>", sip : "<?=$sip?>", mid : <?=$mid?>}
+  var app = {rid : <?=$rid?>, sid : "<?=$sid?>", uid : <?=$uid?>, appname : "<?=$appname?>", sip : "<?=$sip?>", mid : <?=$mid?>}
   var prop = <?php echo json_encode($prop);?>
   </script>
   <div id="roombody" class="mt10">
@@ -44,7 +44,7 @@
                 </tr>
               </table>
             </div>
-            <div class="roomPannel"><a href="#"></a></div>
+            <div class="roomPannel"><a href="#" id="panelArrow" class="arrow_up"></a></div>
             <div class="roomChat2" style="height:85px;" id="privateChatPanel">
               <span style="color:#f00;">【公告】TopStage正式上线欢迎各位名媛</span>
               <ul>

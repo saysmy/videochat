@@ -25,7 +25,7 @@ class RoomController extends CController
 		$this->moderatorUserInfo = CUser::getInfoByUid($this->room['mid']);
 		$prop = $this->getProperty();
 
-		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => $_COOKIE['uid'], 'mid' => $this->room['mid'], 'appname' => 'moderatorRoom_' . $rid, 'sip' => '192.168.120.131', 'prop' => $prop));
+		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => $_COOKIE['uid'], 'mid' => $this->room['mid'], 'appname' => 'moderatorRoom_' . $rid, 'sip' => '10.211.55.4', 'prop' => $prop));
 	}
 
 	private function getProperty() {

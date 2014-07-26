@@ -6,6 +6,7 @@
 			   initialize="initApp();">
 	<fx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.core.FlexGlobals;
 			
@@ -26,6 +27,7 @@
 			private var cam_counter: uint = 0;
 			
 			private function initApp(): void{
+
 				FlexGlobals.topLevelApplication.addEventListener(MouseEvent.ROLL_OUT, setSRF);
 				
 				vparam = readParameters();
@@ -52,7 +54,7 @@
 				nc = null;
 			}
 			
-			private function doPublish(): void {
+			private function doPublish(cameraName : String, microphoneIndex : int): void {
 				if(!nc.connected){
 					Alert.show('尚未连接');
 					return;
@@ -60,29 +62,24 @@
 				if(vstate != 0) return; // 当前正在发布和播放
 				
 				// 检查摄像头
-				cam = Camera.getCamera();
+				cam = Camera.getCamera(cameraName);
 				if(cam == null){
-					Alert.show('没有检测到摄像头');
+					Alert.show('获取摄像头失败:' + cameraName);
 					return;
 				}
-				
+				mic = Microphone.getMicrophone(microphoneIndex);
+				if (mic == null) {
+					Alert.show('获取麦克风失败:' + microphoneIndex);
+					return;					
+				}
+				mic.setUseEchoSuppression(false);				
 				ns = new NetStream(nc);
 				cam.setMode(470, 330, 20);
 				cam.setQuality(60*1000, 85); // 60K
 				cam.addEventListener(StatusEvent.STATUS, cam_onStatus);
-				//cam.addEventListener(ActivityEvent.ACTIVITY, cam_activity);
 				ns.attachCamera(cam);
-				
-				mic = Microphone.getMicrophone();
-				if(mic != null){
+				ns.attachAudio(mic);
 					
-					mic.setUseEchoSuppression(false);
-					ns.attachAudio(mic);
-				}
-				else{
-					Alert.show('没有检测到麦克风');
-				}
-				
 				var streamName: String = vparam.getStreamName();
 				ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
 				ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
@@ -97,8 +94,8 @@
 				
 				ExternalInterface.call("onVideoPublish");
 			}
-			
-			private function doView(streamName: String): void{ // 自动调用，无须判断当前状态
+			//直播
+			private function doView(streamName: String): void{
 				setTimeout(function(): void{
 					debug("doView:" + streamName);
 					ns = new NetStream(nc);
@@ -115,7 +112,7 @@
 					ExternalInterface.call("onVideoPublish");
 				}, 500); // 延迟1秒播放，避免看到以前的图片
 			}
-			
+			//播放文件流媒体
 			private function doPublishView(streamName: String): void{
 				if(!nc.connected){
 					Alert.show('尚未连接');
@@ -151,7 +148,7 @@
 						ns.attachCamera(null);
 						ns.attachAudio(null);
 					}
-					else if(vstate == 3){ // 播放需要主动修改
+					else if(vstate == 3){ // 播放需要主动修改??
 						so.setProperty('video', null);
 					}
 					ns.close();	
@@ -163,6 +160,7 @@
 				ExternalInterface.call("onVideoUnpublish");
 			}
 			
+			//JS调用
 			public function doSendMsg(msgData :Object): void {
 				nc.call("sendMsg", null, msgData);
 			}
@@ -174,7 +172,7 @@
 			public function doBan(uid: String): void{
 				nc.call("ban", null, uid);
 			}
-			
+			//
 			
 			public function initPublicBar(show:Boolean): void {
 				debug("showPublishBar:" + show);
@@ -187,8 +185,8 @@
 					})
 				}				
 			}
-			////////////////// event
-						
+			
+			////////////////// event		
 			private function doConnectSuccess(): void{
 				
 				so = SharedObject.getRemote("so", nc.uri, false);
@@ -197,9 +195,7 @@
 				ExternalInterface.call("onConnectSuccess");
 				
 				/* 带宽检测
-				if(vparam.vid == 1){
 				nc.call("checkBandwidth", null);
-				}
 				*/
 			}
 			
@@ -209,21 +205,7 @@
 			
 			private function doConnectRejected(resp: Object): void{
 				var msg: String = "";
-				switch(resp.errno){
-					case 100:
-						msg = "重复登录";
-						break;
-					case 101:
-						msg = "服务器超出最大用户数";
-						break;
-					case 102:
-						msg = "禁止进入";
-						break;
-					case 103:
-						msg = "系统错误";
-						break;
-				}
-				ExternalInterface.call("onConnectRejected", msg);
+				ExternalInterface.call("onConnectRejected", resp);
 			}
 			
 			private function doConnectClosed(): void{
@@ -231,13 +213,13 @@
 			}
 			
 			private function nc_OnStatus(evt: NetStatusEvent): void{
+				debug(evt.info.code);
 				switch(evt.info.code){
 					case "NetConnection.Connect.Success":
 						doConnectSuccess();
 						break;
 					case "NetConnection.Connect.Rejected":
-						var msg: String = evt.info.application.message;
-						doConnectRejected(msg);
+						doConnectRejected(evt.info.application);
 						break;
 					case "NetConnection.Connect.Failed":
 						doConnectFailed();
@@ -260,39 +242,6 @@
 						ns.seek(0);
 					}
 				}
-				//debug('ns_onStatus: ' + evt.info.code + ' vid: ' + vparam.vid);
-				/*
-				var streamName: String = vparam.getStreamName();
-				switch(evt.info.code){
-				// publisher
-				case "NetStream.Publish.Start":
-				ExternalInterface.call('doAddMsg', 'NetStream.Publish.Start ' + so.data[streamName]);						
-				video.attachCamera(cam);
-				video.visible = true;
-				break;
-				case "NetStream.Unpublish.Success":
-				video.attachNetStream(null);
-				video.visible = false;
-				break;
-				case "NetStream.Publish.BadName":
-				video.attachNetStream(null);
-				video.visible = false;
-				break;
-				// viewer
-				case "NetStream.Play.Start":
-				video.attachNetStream(ns);
-				video.visible = true;
-				break;
-				case "NetStream.Play.Stop":
-				//video.attachNetStream(null);
-				//video.visible = false;
-				break;
-				case "NetStream.Play.UnpublishNotify":
-				//video.attachNetStream(null);
-				//video.visible = false;
-				break;
-				}
-				*/
 			}
 			
 			private function ns_onSyncErr(evt: AsyncErrorEvent): void {
@@ -325,19 +274,13 @@
 						
 			private function cam_onStatus(evt: StatusEvent): void {
 				if(evt.code == "Camera.Muted"){
-					//trace("cam not be allowed");
 					doStop();
 				}
 				else if(evt.code == "Camera.Unmuted"){
-					//trace("cam allowed");
 					// 如果摄像头被占用，调用doStop
 					cam_counter = 0;
 					cam_timer = setInterval(checkCamCallBack, 100);
 				}
-			}
-			
-			private function cam_activity(evt: ActivityEvent): void {
-				//trace(evt);
 			}
 			
 			private function checkCamCallBack(): void {
@@ -405,9 +348,41 @@
 			
 			protected function btnPublish_clickHandler(event:MouseEvent):void
 			{
-				if(vstate == 0){
-					doPublish();
+				if (Camera.names.length == 0) {
+					Alert.show("未检测到摄像头");
+					return;
 				}
+				if (Microphone.names.length == 0) {
+					Alert.show("未检测到麦克风");
+					return;
+				}
+				
+//				if (Camera.names.length == 1 && Microphone.names.length == 0) {
+//					doPublish("0", 0);
+//					return;
+//				}
+				
+				var cameras:Array = new Array();
+				for (var i:String in Camera.names) {
+					cameras.push({label : Camera.names[i], data : i});
+				} 
+				videoList.dataProvider = new ArrayCollection(cameras);
+				videoList.selectedIndex = 0;
+				
+				var audios:Array = new Array();;
+				for (i in Microphone.names) {
+					audios.push({label : Microphone.names[i], data : i});
+				}
+				audioList.dataProvider = new ArrayCollection(audios);
+				audioList.selectedIndex = 0;
+				
+				deviceChoosePanel.visible = true;
+			}
+			
+			protected function btnConfirm_clickHandler(event:MouseEvent):void
+			{
+				doPublish(videoList.dataProvider.getItemAt(videoList.selectedIndex).data, audioList.dataProvider.getItemAt(audioList.selectedIndex).data);
+				deviceChoosePanel.visible = false;
 			}
 			
 			protected function btnStop_clickHandler(event:MouseEvent):void
@@ -435,6 +410,13 @@
 			 skinClass="spark.skins.spark.SkinnableContainerSkin">
 		<s:Button id="btnPublish" x="0" y="0" width="60" label="发布" click="btnPublish_clickHandler(event)"/>
 		<s:Button id="btnStop" x="60" width="60" label="停止" click="btnStop_clickHandler(event)"/>
-		<s:Button id="btnPlay" x="120" width="60" label="播放" click="btnPlay_clickHandler(event)"/>
+		<!--<s:Button id="btnPlay" x="120" width="60" label="播放" click="btnPlay_clickHandler(event)"/>-->
+	</s:Panel>
+	<s:Panel x="88" y="72" width="303" height="200" title="请选择合适的设备" id="deviceChoosePanel" visible="false">
+		<s:DropDownList x="16" y="65" id="videoList"></s:DropDownList>
+		<s:DropDownList x="170" y="65" id="audioList"></s:DropDownList>
+		<s:Label x="53" y="40" text="视频"/>
+		<s:Label x="212" y="44" text="音频"/>
+		<s:Button x="115" y="136" label="确定" id="deviceChooseBtn" click="btnConfirm_clickHandler(event)"/>
 	</s:Panel>
 </s:Application>

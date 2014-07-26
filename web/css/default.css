@@ -241,7 +241,9 @@ dl.gifts dd span {padding-right:5px;height:20px;line-height:20px;background:url(
 .roomChat td a {color:#09C;}
 .roomChat td a,img {vertical-align:middle;}
 .roomPannel {position:relative;}
-.roomPannel a {width:11px;height:5px;font-size:0;background:url(d2.jpg) center center no-repeat;display:block;position:absolute;left:167px;top:-5px;z-index:99;cursor:pointer;}
+.roomPannel a {width:11px;height:5px;font-size:0;display:block;position:absolute;left:167px;top:-5px;z-index:99;cursor:pointer;}
+.roomPannel a.arrow_up {background:url(d2.jpg) center center no-repeat}
+.roomPannel a.arrow_down {background:url(d3.jpg) center center no-repeat;}
 .roomChat2 {padding:5px;background:#f4f4f4;border-top:#fff 1px solid;border-bottom:#fff 1px solid;overflow-y:scroll;}
 .roomChat2 li {padding:2px 0;}
 .roomChat2 li a {color:#09c;}
