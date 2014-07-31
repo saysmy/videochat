@@ -5,7 +5,7 @@ class IndexController extends CController
 
 	public $layout='//layouts/index';
 
-	public $url;
+	public $loginUrl;
 
 	public $qqLoginDisplay;
 
@@ -47,7 +47,7 @@ class IndexController extends CController
 			$qqLoginDisplay = '';
 			$uInfoDisplay = 'hidden';
 		}
-		$this->url =  'http://' . Yii::app()->params['domain'] . '/';
+		$this->loginUrl =  'http://' . Yii::app()->params['domain'] . '/?r=user/qqLogin&callback=' . urlencode('http://' . Yii::app()->params['domain'] . '/');
 		$this->qqLoginDisplay = $qqLoginDisplay;
 		$this->uInfoDisplay = $uInfoDisplay;
 

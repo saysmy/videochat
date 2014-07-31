@@ -24,6 +24,19 @@ class ChatService {
 		return array('errno' => 0, 'msg' => '', 'data' => $userInfo);
 	}
 
+	public function getRoomInfo($rid) {
+		Yii::log('getRoomInfo rid:' . $rid);
+		$room = Room::model()->findByPk($rid);
+		if (!$room) {
+			return array('errno' => 300, 'msg' => 'room not exits rid:' . $rid);
+		}
+		$ret = array();
+		foreach($room->attributeLabels() as $col => $v) {
+			$ret[$col] = $room->$col;
+		}
+		return array('errno' => 0, 'msg' => '', 'data' => $ret);
+	}
+
 	public function sendGift($sid, $uid, $to, $propId, $count) {
 		if(CUser::checkLogin($sid, $uid)) {
 			return array('errno' => 201, 'msg' => 'not login');

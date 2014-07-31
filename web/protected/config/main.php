@@ -8,7 +8,7 @@
 return array(
 	'id' => 'videochat',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'video chat',
+	'name'=>'肥皂网-宽容似海，不提伤害',
 
 	'defaultController' => 'index',
 
@@ -95,6 +95,6 @@ return array(
 		'domain' => 'www.eccbuy.net',
 		'adminEmail'=>'webmaster@example.com',
 		'cookieExpire' => '86400',
-
+		'fmsServer' => '10.211.55.4',
 	),
 );

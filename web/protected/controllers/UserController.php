@@ -21,12 +21,12 @@ class UserController extends Controller
 		);
 	}
 
-	public function actionQQLogin($url) {
+	public function actionQQLogin($callback) {
 		$qc = new QC();
 
-		$qc->set_callback_argv(array('r' => 'user/QQCallback', 'redirect_url' => $url));
-	
-		$qc->qq_login();
+		$qc->set_callback_argv(array('r' => 'user/QQCallback', 'redirect_url' => $callback));
+
+		header('Location: ' . $qc->get_login_url());
 	}
 
 	public function actionQQCallback($redirect_url) {
@@ -55,8 +55,7 @@ class UserController extends Controller
 			$_SESSION['nickname'] = $user->nickname;
 			$_SESSION['sex'] = $user->sex;
 			setcookie('uid', $user->id, time() + Yii::app()->params['cookieExpire'], '/', Yii::app()->params['domain']);
-			header('Location:' . $redirect_url);
-			exit;
+			$this->render('redirect', array('redirect_url' => str_replace('&amp;', '&', CHtml::encode($redirect_url))));
 		}
 		else {
 			$this->render('error', array('code' => 100, 'msg' => json_encode($user->getErrors())));

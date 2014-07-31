@@ -1,14 +1,5 @@
 var faces = [{img : 'img/face/5.png', data : '[猪]'},{img : 'img/face/8.png', data : '[西瓜]'},{img : 'img/face/e1.png', data : '[爱]'},{img : 'img/face/e3.png', data : '[蛋糕]'},{img : 'img/face/e4.png', data : '[色]'},{img : 'img/face/e6.png', data : '[屎]'},{img : 'img/face/e7.png', data : '[花]'},{img : 'img/face/e8.png', data : '[笑]'}];
-$(document).ready(function(){
-	
-	$(".vlist > li:child(1))").css({"margin-bottom":"10px"});
-	$(".vlist > li:nth-child(2n)").css({"margin-left":"10px"});
-	
-	$(".vlist2 > dl:nth-child(4n)").css({"margin-right":"0"})
-	
-	$(".roomHot li:lt(3) em").css({"background":"#4598da"});
-	$(".roomHot li:lt(3) a").css({"font-weight":"bold"});
-	
+$(document).ready(function(){	
 	$(".roomChat tr:odd").css({"background":"#F4F4F4"});
 	$(".roomUserItem li:odd").css({"background":"#F4F4F4"});
 	
@@ -241,8 +232,9 @@ function sendGift() {
 }
 
 function onChatMsg(errno, msg, msgData) {
+	var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言'};
 	if (errno != 0) {
-		addPrivateRoomMsg(msg, 1);
+		addPrivateRoomMsg(errors[errno], 1);
 		return;
 	};
 	msgData.msg = fillFace(msgData.msg);

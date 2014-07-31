@@ -40,7 +40,7 @@ class Oauth{
 		$this->callback_argv = $t;
 	}
 
-    public function qq_login(){
+    public function get_login_url(){
         $appid = $this->recorder->readInc("appid");
         $callback = $this->recorder->readInc("callback");
         $scope = $this->recorder->readInc("scope");
@@ -64,7 +64,7 @@ class Oauth{
 
         $login_url =  $this->urlUtils->combineURL(self::GET_AUTH_CODE_URL, $keysArr);
 
-        header("Location:$login_url");
+        return $login_url;
     }
 
     public function qq_callback(){

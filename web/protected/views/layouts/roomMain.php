@@ -2,15 +2,15 @@
 <html>
 <head>
 <meta charset=utf-8>
-<title></title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="css/default.css?v=0.2" rel="stylesheet" type="text/css" />
-<script type='text/javascript' src='js/jquery.min.js'></script>
-<script type='text/javascript' src='js/swfobject.js'></script>
-<script type='text/javascript' src='js/popCheckbox.js?v=0.3'></script>
-<script src="js/custom.js?v=0.18"></script>
+<title>肥皂网-宽容似海，不提伤害</title>
+<meta content="京东JD.COM-专业的综合网上购物商城，在线销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品、在线旅游等数万个品牌千万种优质商品。便捷、诚信的服务，为您提供愉悦的网上商城购物体验! " name="description">
+<meta content="帅哥,靓仔,校草,直男,玉男,男人,男色,小鲜肉,肌肉,GAY,王力宏,视频主播,视频秀,主播,配件,手表,交友,泡草网" name="Keywords">
+<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/default.css?v=0.2" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js'></script>
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/swfobject.js'></script>
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/popCheckbox.js?v=0.3'></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js?v=0.19"></script>
 <!--[if IE 6]>
 <script src="scripts/DD_belatedPNG_0.0.8a.js"></script>
 <script>

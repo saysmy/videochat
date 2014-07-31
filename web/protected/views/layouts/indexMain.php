@@ -3,13 +3,14 @@
 <html>
 <head>
 <meta charset=utf-8>
-<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+<title>肥皂网-宽容似海，不提伤害</title>
+<meta content="京东JD.COM-专业的综合网上购物商城，在线销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品、在线旅游等数万个品牌千万种优质商品。便捷、诚信的服务，为您提供愉悦的网上商城购物体验! " name="description">
+<meta content="帅哥,靓仔,校草,直男,玉男,男人,男色,小鲜肉,肌肉,GAY,王力宏,视频主播,视频秀,主播,配件,手表,交友,泡草网" name="Keywords">
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/default.css" rel="stylesheet" type="text/css" />
-<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js'></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom.js"></script>
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js?v=1.9.1'></script>
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/layer/layer.min.js'></script>
+<script type='text/javascript' src='<?php echo Yii::app()->request->baseUrl; ?>/js/common.js'></script>
 <!--[if IE 6]>
 <script src="scripts/DD_belatedPNG_0.0.8a.js"></script>
 <script>
@@ -17,7 +18,20 @@
 </script>
 <![endif]-->
 </head>
-
+<script>
+    $(document.body).ready(function() {
+        $('#goQQLogin').click(function() {
+            qqLogin('<?=$this->loginUrl?>');
+        })
+        $(".vlist > li:eq(1)").css({"margin-bottom":"10px"});
+        $(".vlist > li:nth-child(2n)").css({"margin-left":"10px"});
+        
+        $(".vlist2 > dl:nth-child(4n)").css({"margin-right":"0"})
+        
+        $(".roomHot li:lt(3) em").css({"background":"#4598da"});
+        $(".roomHot li:lt(3) a").css({"font-weight":"bold"});
+    })
+</script>
 <body>
 <div id="container" class="mar"> 
   <!--header-->
@@ -25,7 +39,7 @@
     <div class="top-column1">
       <div class="wrap topbar">
         <ul>
-          <li class="qqlogin <?=$this->qqLoginDisplay?>"><a href="?r=user/qqLogin&url=<?=$this->url?>"><img src="http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png"></a></li>
+          <li class="qqlogin <?=$this->qqLoginDisplay?>"><a href="#" id="goQQLogin"><img src="http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png"></a></li>
           <li class="mail <?=$this->uInfoDisplay?>"><a href="#"></a></li>
           <li class="setting  <?=$this->uInfoDisplay?>"><a href="#"></a></li>
           <li class="msg posR  <?=$this->uInfoDisplay?>"><i>10</i><a href="#"></a></li>
