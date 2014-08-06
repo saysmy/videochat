@@ -92,7 +92,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'domain' => 'www.eccbuy.net',
+		'domain' => 'www.feizao001.com',
 		'adminEmail'=>'webmaster@example.com',
 		'cookieExpire' => '86400',
 		'fmsServer' => '10.211.55.4',

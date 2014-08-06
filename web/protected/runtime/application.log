@@ -1,343 +1,94 @@
-2014/07/30 15:05:37 [info] [application] getRoomInfo rid:1
+2014/08/02 22:46:04 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 22:49:44 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 22:54:55 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (29)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 22:55:59 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 22:56:40 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 22:58:09 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:00:20 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:01:59 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:02:18 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:02:49 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:04:18 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:04:38 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:04:39 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:05:13 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:05:34 [info] [application] getUserInfo
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (4)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/08/02 23:14:05 [info] [application] getRoomInfo rid:1
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:07:49 [info] [application] getRoomInfo rid:1
+2014/08/02 23:24:41 [info] [application] {"access_token":"43F18D232F12F26E9AD876B222B48772","expires_in":"7776000","refresh_token":"0EC46124864301AB3560F5A793CB2533"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/08/02 23:24:43 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:07:57 [info] [application] getRoomInfo rid:1
+2014/08/02 23:26:52 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:08:55 [info] [application] getRoomInfo rid:1
+2014/08/02 23:29:23 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:09:22 [info] [application] getRoomInfo rid:1
+2014/08/02 23:30:21 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:11:32 [info] [application] getRoomInfo rid:1
+2014/08/02 23:30:42 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:12:53 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 15:13:59 [info] [application] {"access_token":"0A3002614E82DE4AFFB2D6BAEE8E3F96","expires_in":"7776000","refresh_token":"E035F967A72D2D60EAF8CA587E172D9F"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 15:14:02 [info] [application] getRoomInfo rid:2
+2014/08/02 23:32:05 [info] [application] getRoomInfo rid:2
 in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
 in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
 in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 15:28:54 [info] [application] getRoomInfo rid:1
-in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
-in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
-in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 21:30:35 [error] [php] Undefined variable: loginUrl (/Library/WebServer/Documents/videochat/web/protected/views/layouts/indexMain.php:21)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(76): IndexController->renderFile()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(300): IndexController->endWidget()
-#5 /Library/WebServer/Documents/videochat/web/protected/views/layouts/index.php(6): IndexController->endContent()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): IndexController->renderInternal()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(784): IndexController->renderFile()
-#9 /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php(59): IndexController->render()
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): IndexController->actionIndex()
-#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): IndexController->runAction()
-#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputCache.php(151): CFilterChain->run()
-#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): COutputCache->filter()
-#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): IndexController->runActionWithFilters()
-#17 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): IndexController->run()
-#18 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#19 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#20 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/
-in /Library/WebServer/Documents/videochat/web/protected/views/layouts/indexMain.php (21)
-in /Library/WebServer/Documents/videochat/web/protected/views/layouts/index.php (6)
-in /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php (59)
-2014/07/30 21:35:33 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
+2014/08/04 10:59:11 [info] [application] {"access_token":"24466F95973F78DFF4725C4243DC9C12","expires_in":"7776000","refresh_token":"7934287B7DEB6D33734BD4A025D3B481"}
 in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
 in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 21:37:56 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 21:41:50 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 21:42:44 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 21:49:39 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 21:56:56 [error] [php] Object of class QC could not be converted to string (/Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php:29)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): UserController->run()
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#11 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#12 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/?r=user/qqLogin&callback=http%3A%2F%2Fwww.eccbuy.net%2F
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (29)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 22:31:45 [error] [php] substr() expects parameter 3 to be long, string given (/Library/WebServer/Documents/videochat/web/protected/views/user/login.php:3)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): UserController->renderInternal()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(869): UserController->renderFile()
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): UserController->renderPartial()
-#3 /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php(29): UserController->render()
-#4 unknown(0): UserController->actionQQLogin()
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
-#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
-#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
-#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
-#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): UserController->run()
-#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#17 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#18 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/?r=user/qqLogin&callback=http%3A%2F%2Fwww.eccbuy.net%2F
-in /Library/WebServer/Documents/videochat/web/protected/views/user/login.php (3)
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (29)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 22:32:13 [error] [php] Undefined variable: login (/Library/WebServer/Documents/videochat/web/protected/views/user/login.php:4)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(869): UserController->renderFile()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): UserController->renderPartial()
-#2 /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php(29): UserController->render()
-#3 unknown(0): UserController->actionQQLogin()
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
-#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
-#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
-#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): UserController->run()
-#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#16 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#17 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/?r=user/qqLogin&callback=http%3A%2F%2Fwww.eccbuy.net%2F
-in /Library/WebServer/Documents/videochat/web/protected/views/user/login.php (4)
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (29)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 22:39:40 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:04:29 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:06:57 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:10:22 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:10:34 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('QQLogin')
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/QQLogin')
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#11 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
-#12 {main}
-REQUEST_URI=/?r=user/QQLogin&url=http%3A%2F%2Fwww.eccbuy.net%2F%3Fr%3Droom%26rid%3D1
-HTTP_REFERER=http://www.eccbuy.net/
----
-2014/07/30 23:12:56 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('QQLogin')
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/QQLogin')
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#11 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
-#12 {main}
-REQUEST_URI=/?r=user/QQLogin&url=http%3A%2F%2Fwww.eccbuy.net%2F%3Fr%3Droom%26rid%3D1
----
-2014/07/30 23:24:10 [error] [php] Undefined variable: loginUrl (/Library/WebServer/Documents/videochat/web/protected/views/layouts/indexMain.php:24)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(76): IndexController->renderFile()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(300): IndexController->endWidget()
-#5 /Library/WebServer/Documents/videochat/web/protected/views/layouts/index.php(6): IndexController->endContent()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): IndexController->renderInternal()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(784): IndexController->renderFile()
-#9 /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php(59): IndexController->render()
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): IndexController->actionIndex()
-#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): IndexController->runAction()
-#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputCache.php(151): CFilterChain->run()
-#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): COutputCache->filter()
-#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): IndexController->runActionWithFilters()
-#17 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): IndexController->run()
-#18 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#19 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#20 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/
-in /Library/WebServer/Documents/videochat/web/protected/views/layouts/indexMain.php (24)
-in /Library/WebServer/Documents/videochat/web/protected/views/layouts/index.php (6)
-in /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php (59)
-2014/07/30 23:25:16 [error] [php] Undefined index: uid (/Library/WebServer/Documents/videochat/web/protected/controllers/RoomController.php:28)
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): RoomController->runAction()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): LoginFilter->filter()
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RoomController->runActionWithFilters()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RoomController->run()
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#10 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
-REQUEST_URI=/?r=room&rid=1
-in /Library/WebServer/Documents/videochat/web/protected/controllers/RoomController.php (28)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:26:26 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('QQLogin')
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/QQLogin')
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#11 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
-#12 {main}
-REQUEST_URI=/?r=user/QQLogin&url=http%3A%2F%2Fwww.eccbuy.net%2F%3Fr%3Droom%26rid%3D1
----
-2014/07/30 23:26:35 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('QQLogin')
-#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/QQLogin')
-#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#11 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
-#12 {main}
-REQUEST_URI=/?r=user/QQLogin&url=http%3A%2F%2Fwww.eccbuy.net%2F%3Fr%3Droom%26rid%3D1
-HTTP_REFERER=http://www.eccbuy.net/
----
-2014/07/30 23:30:25 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:31:12 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:31:12 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
-#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
-#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('')
-#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('room')
-#8 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#9 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
-#10 {main}
-REQUEST_URI=/?r=room&amp;rid=1
-HTTP_REFERER=http://www.eccbuy.net/?r=user%2FQQCallback&redirect_url=http%3A%2F%2Fwww.eccbuy.net%2F%3Fr%3Droom%26rid%3D1&code=018DC12B304617A511D1AFDD6D7FDC50&state=d3f7989ef89f44064493e89b7819af33
----
-2014/07/30 23:37:05 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:45:27 [info] [application] getRoomInfo rid:1
-in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
-in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
-in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/30 23:49:03 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/30 23:49:42 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 17:25:42 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 17:25:59 [info] [application] getRoomInfo rid:1
-in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
-in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
-in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/31 17:37:12 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 17:42:47 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 17:44:53 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 20:56:40 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 20:57:09 [info] [application] getRoomInfo rid:1
-in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
-in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
-in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
-2014/07/31 21:03:15 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 21:19:27 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 21:20:40 [info] [application] {"access_token":"5F4DE8871C29249B1D24F09A4697BDF2","expires_in":"7776000","refresh_token":"4C320EBBE8A9D386DAC0B574BA4F2F41"}
-in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (37)
-in /Library/WebServer/Documents/videochat/web/index.php (13)
-2014/07/31 21:25:27 [info] [application] getRoomInfo rid:5
-in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
-in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
-in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)

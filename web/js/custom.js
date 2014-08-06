@@ -71,7 +71,9 @@ function onConnectRejected(resp) {
 			break;
 		case 103:
 			msg = "系统错误";
-			break;
+		case 104:
+			msg = "系统错误";
+			debug(resp.msg);
 	}
 	addPublicRoomMsg('视频连接失败:' + msg, 1);
 }
@@ -103,38 +105,37 @@ function onLogout(user) {
 }
 
 function onInitRoom(list) {
-	console.log(list);
-	var c_0 = 0;
-	var c_1 = 0;
+	debug(list);
 	for (var i in list) {
 		addUser(list[i], false);
 	};
 	updateUserNum();
 }
 
-var user0Flag = false;
-var user1Flag = false;
 function addUser(user, showPublicMsg) {
+	if (userList[user.uid]) {
+		debug('addUser:' + user.uid + ' already in room');
+		return;
+	}
 	if (showPublicMsg) {	
 		addPublicRoomMsg(user, 3);
 	};
+	if (user.uid == app.mid) {user.nickname='主播'};
 	userList[user.uid] = user;
-	if (user.uid == app.mid) {
-		return;
-	};
 	var style = '';
-	if (user.role == 3) {
+	if (user.role == 3 || user.uid == app.mid) {
 		var area = "roomUserItem0";
-		if (user0Flag) {style='background-color: rgb(244, 244, 244)'};
-		user0Flag = !user0Flag;
 	}
 	else {
 		var area = "roomUserItem1";
-		$("#c_1").text(++c_1);
-		if (user1Flag) {style='background-color: rgb(244, 244, 244)'};
-		user1Flag = !user1Flag;
 	}
-	$("#" + area + " ul").append($("<li id='user_" + user.uid + "' style='" + style + "'><a href='javascript:changeReceiver(" + user.uid + ")'>" + user.nickname + "</a><i></i></li>"));
+	$("#" + area + " ul").append($("<li id='user_" + user.uid + "'><a href='javascript:changeReceiver(" + user.uid + ")'>" + user.nickname + "</a><i></i></li>"));
+	userAreaBg(area);
+}
+
+function userAreaBg(id) {
+	$('#' + id + ' li:odd').css({backgroundColor : 'rgb(244,244,244)'});
+	$('#' + id + ' li:even').css({backgroundColor: 'white'});
 }
 
 function removeUser(user) {
@@ -146,8 +147,8 @@ function removeUser(user) {
 function updateUserNum() {
 	var c_0 = 0, c_1 = 0;
 	for (var uid in userList) {
-		if (userList[uid].role == 3) {c_0 ++;};
-		if (userList[uid].role == 1) {c_1 ++;};
+		if (userList[uid].role == 3  || uid == app.mid) {c_0 ++;}
+		else {c_1 ++;};
 	}
 	$("#c_0").text(c_0);
 	$("#c_1").text(c_1);
@@ -164,7 +165,7 @@ function createSWF(swf, placehoder, flashvars, attributes){
 	attributes.id = placehoder;
 	attributes.name = placehoder;
 	attributes.align = "middle";
-	swfobject.embedSWF('swf/' + swf+".swf?v=0.18", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
+	swfobject.embedSWF('swf/' + swf+".swf?v=0.19", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
 }
 
 var publicRoomFlag = false;
@@ -220,7 +221,7 @@ function jq_tabs(str) {
 }
 
 function sendMsg() {
-	swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : $("#msgArea").val().trim(), "to" : $("#msgReceiver").val(), "private" : $("#privateMsg").attr("checked")});
+	swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : $("#msgArea").val().trim(), "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
 	$("#msgArea").val('');
 }
 
