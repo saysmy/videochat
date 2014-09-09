@@ -107,9 +107,37 @@ class UserController extends Controller
 		ToolUtils::ajaxOut(0, '', $userInfo);
 	}
 
+	public function actionGetPublicKey() {
+		@session_start();
+		if (isset($_SESSION['pubKey'])) {
+			return ToolUtils::ajaxOut(0, '', $_SESSION['pubKey']);
+		}
+		$config = array(
+		    "digest_alg" => "sha512",
+		    "private_key_bits" => 4096,
+		    "private_key_type" => OPENSSL_KEYTYPE_RSA,
+		);
+		    
+		$res = openssl_pkey_new($config);
+
+		openssl_pkey_export($res, $privKey);
+
+		$pubKey = openssl_pkey_get_details($res);
+
+		$_SESSION['privKey'] = $privKey;
+		$_SESSION['pubKey'] = $pubKey['key'];
+
+		ToolUtils::ajaxOut(0, '', $pubKey['key']);	
+	}
+
 	public function actionRegister() {
+		@session_start();
 		$form = new RegisterForm;
 		$form->attributes = $_POST;
+		openssl_private_decrypt(base64_decode($form->password), $password, $_SESSION['privKey']);
+		openssl_private_decrypt(base64_decode($form->passwordRepeat), $passwordRepeat, $_SESSION['privKey']);
+		$form->password = $password;
+		$form->passwordRepeat = $passwordRepeat;
 		if (!$form->validate()) {
 		 	return ToolUtils::ajaxOut(300, '', $form->getErrors());			
 		}
@@ -152,8 +180,12 @@ class UserController extends Controller
 	}
 
 	public function actionLogin() {
+		@session_start();
 		$form = new LoginForm;
 		$form->attributes = $_POST;
+		openssl_private_decrypt(base64_decode($form->password), $password, $_SESSION['privKey']);
+		$form->password = $password;
+
 		if (!$form->validate()) {
 			return ToolUtils::ajaxOut(400, '', $form->getErrors());
 		}

@@ -7907,3 +7907,75 @@ HTTP_REFERER=http://www.feizao001.com/room/1
 2014/09/09 16:37:07 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
 in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
 in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 21:54:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/09 21:58:12 [info] [chatService] room:1 return dead user:["3","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (99)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/09 21:58:16 [info] [chatService] room:1 return dead user:["3","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47"]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (99)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/09 22:31:15 [error] [php] A session had already been started - ignoring session_start() (/Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php:111)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): UserController->run()
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/user/getPublicKey?r=0.34297504276037216
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (111)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 22:31:23 [error] [php] A session had already been started - ignoring session_start() (/Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php:111)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): UserController->runAction()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): UserController->filterAccessControl()
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): UserController->runActionWithFilters()
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): UserController->run()
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/user/getPublicKey?r=0.34297504276037216
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (111)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:07:32 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:07:50 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:08:55 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:09:34 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:10:07 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/09 23:11:35 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/10 00:48:11 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
