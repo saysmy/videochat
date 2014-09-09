@@ -4,9 +4,14 @@
  * This is the model class for table "user".
  *
  * The followings are the available columns in table 'user':
- * @property integer $id
+ * @property string $id
+ * @property string $username
+ * @property string $password
  * @property string $nickname
  * @property integer $sex
+ * @property string $height
+ * @property string $weight
+ * @property string $age
  * @property string $head_pic_1
  * @property string $email
  * @property integer $email_validated
@@ -17,6 +22,7 @@
  * @property string $qq_accessexpire
  * @property string $coin
  * @property integer $type
+ * @property integer $source
  * @property string $register_time
  * @property string $last_login_time
  */
@@ -48,11 +54,15 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'login'),
-			array('sex, email_validated, mobile_validated, type', 'numerical', 'integerOnly'=>true),
-			array('nickname, head_pic_1, email, qq_openid, qq_accesstoken', 'length', 'max'=>255),
+			array('nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'qqLogin'),
+			array('username, password, height, weight, age', 'required', 'on' => 'register'),
+            array('username', 'unique', 'message' => '用户名已存在'),
+			array('sex, email_validated, mobile_validated, type, dead_user_status, source, height, weight, age, qq_accessexpire, coin', 'numerical', 'integerOnly'=>true),
+			array('username, password, nickname, head_pic_1, email, qq_openid, qq_accesstoken', 'length', 'max'=>255),
 			array('mobile', 'length', 'max'=>11),
-			array('qq_accessexpire, coin', 'length', 'max'=>10),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('id, username, password, nickname, sex, height, weight, age, head_pic_1, email, email_validated, mobile, mobile_validated, qq_openid, qq_accesstoken, qq_accessexpire, coin, type, dead_user_status, source, register_time, last_login_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,8 +84,13 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'username' => 'Username',
+			'password' => 'Password',
 			'nickname' => 'Nickname',
 			'sex' => 'Sex',
+			'height' => 'Height',
+			'weight' => 'Weight',
+			'age' => 'Age',
 			'head_pic_1' => 'Head Pic 1',
 			'email' => 'Email',
 			'email_validated' => 'Email Validated',
@@ -86,6 +101,7 @@ class User extends CActiveRecord
 			'qq_accessexpire' => 'Qq Accessexpire',
 			'coin' => 'Coin',
 			'type' => 'Type',
+			'source' => 'Source',
 			'register_time' => 'Register Time',
 			'last_login_time' => 'Last Login Time',
 		);
@@ -102,9 +118,14 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('password',$this->password,true);
 		$criteria->compare('nickname',$this->nickname,true);
 		$criteria->compare('sex',$this->sex);
+		$criteria->compare('height',$this->height,true);
+		$criteria->compare('weight',$this->weight,true);
+		$criteria->compare('age',$this->age,true);
 		$criteria->compare('head_pic_1',$this->head_pic_1,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('email_validated',$this->email_validated);
@@ -115,6 +136,7 @@ class User extends CActiveRecord
 		$criteria->compare('qq_accessexpire',$this->qq_accessexpire,true);
 		$criteria->compare('coin',$this->coin,true);
 		$criteria->compare('type',$this->type);
+		$criteria->compare('source',$this->source);
 		$criteria->compare('register_time',$this->register_time,true);
 		$criteria->compare('last_login_time',$this->last_login_time,true);
 

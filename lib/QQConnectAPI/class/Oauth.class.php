@@ -21,6 +21,8 @@ class Oauth{
     protected $error;
 
 	private $callback_argv;
+
+    private $callback;
     
 
     function __construct(){
@@ -29,7 +31,8 @@ class Oauth{
         $this->error = new ErrorCase();
     }
 
-	public function set_callback_argv($argvs) {
+	public function set_callback_argv($callback, $argvs) {
+        $this->callback = $callback;
 		$t = '';
 		foreach($argvs as $k => $v) {
 			$t .= $k . '=' . urlencode($v) . '&';
@@ -42,7 +45,7 @@ class Oauth{
 
     public function get_login_url(){
         $appid = $this->recorder->readInc("appid");
-        $callback = $this->recorder->readInc("callback");
+        $callback = $this->callback ? $this->callback : $this->recorder->readInc("callback");
         $scope = $this->recorder->readInc("scope");
 
 		if(!empty($this->callback_argv)) {

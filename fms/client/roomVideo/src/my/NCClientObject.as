@@ -31,27 +31,27 @@ package my
 		
 		public function onInitRoom(showPublicBar:Boolean, userList: Object): void {
 			app.initPublicBar(showPublicBar);
-			ExternalInterface.call("onInitRoom", userList);
+			ExternalInterface.call("room.onInitRoom", userList);
 		}
 		
 		public function onLogin(userInfo: Object): void{
-			ExternalInterface.call("onLogin", userInfo);
+			ExternalInterface.call("room.onLogin", userInfo);
 		}
 		
 		public function onLogout(userInfo: Object): void{
-			ExternalInterface.call("onLogout", userInfo);
+			ExternalInterface.call("room.onLogout", userInfo);
 		}
 		
 		public function onChatMsg(errno: int, msg: String, data: Object): void{
-			ExternalInterface.call("onChatMsg", errno , msg , data);
+			ExternalInterface.call("room.onChatMsg", errno , msg , data);
 		}
 		
 		public function onGiftMsg(errno: int, msg: String, data: Object): void{
-			ExternalInterface.call("onGiftMsg", errno, msg, data);
+			ExternalInterface.call("room.onGiftMsg", errno, msg, data);
 		}
 		
 		public function onBanMsg(errno: int, msg: String, data: Object) :void{
-			ExternalInterface.call("onBanMsg", errno, msg, data);			
+			ExternalInterface.call("room.onBanMsg", errno, msg, data);			
 		}
 		
 		/*

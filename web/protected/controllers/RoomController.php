@@ -12,27 +12,36 @@ class RoomController extends CController
 	public function filters()
 	{
 		// return the filter configuration for this controller, e.g.:
-		return array(
-			array(
-				'application.filters.LoginFilter',
-			),
-		);
+		// return array(
+		// 	array(
+		// 		'application.filters.LoginFilter',
+		// 	),
+		// );
 	}
 
 	public function actionIndex($rid)
 	{
+		session_start();
 		$this->room = Room::model()->findByPk($rid);
 		$this->moderatorUserInfo = CUser::getInfoByUid($this->room['mid']);
 		$prop = $this->getProperty();
 
-		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => $_COOKIE['uid'], 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop));
+		$maxPropInfo = CRoom::getSendMaxPricePropInfo($rid);
+		if ($maxPropInfo) {
+			$fromUser = CUser::getInfoByUid($maxPropInfo['from']);
+			$toUser = CUser::getInfoByUid($maxPropInfo['to']);
+			$maxPropInfo['fromNickname'] = $fromUser['nickname'];
+			$maxPropInfo['toNickname'] = $toUser['nickname'];
+		}
+
+		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
 	}
 
 	private function getProperty() {
 		$propRecords = Property::model()->findAll(array('order' => 'price'));
 		$prop = array();
 		foreach($propRecords as $propRecord) {
-			$prop[] = array('propId' => $propRecord['id'], 'img' => $propRecord['img'], 'desc' => $propRecord['name']);
+			$prop[] = array('id' => $propRecord['id'], 'img' => $propRecord['img'], 'name' => $propRecord['name'], 'price' => $propRecord['price']);
 		}	
 		return $prop;
 	}

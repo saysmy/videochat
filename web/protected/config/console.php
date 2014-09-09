@@ -2,6 +2,7 @@
 
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
+include dirname(__FILE__) . '/define.php';
 return array(
 	'id' => 'videochat',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',

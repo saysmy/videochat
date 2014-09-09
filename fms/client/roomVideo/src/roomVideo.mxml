@@ -95,7 +95,7 @@
 				var obj:Object = {videoName : streamName};
 				so.setProperty('video', obj);
 				
-				ExternalInterface.call("onVideoPublish");
+				ExternalInterface.call("room.onVideoPublish");
 			}
 			//直播
 			private function doView(streamName: String): void{
@@ -112,7 +112,7 @@
 					video.visible = true;
 					
 					vstate = 1;
-					ExternalInterface.call("onVideoPublish");
+					ExternalInterface.call("room.onVideoPublish");
 				}, 500); // 延迟1秒播放，避免看到以前的图片
 			}
 			//播放文件流媒体
@@ -138,7 +138,7 @@
 				var obj:Object = {videoName : streamName};
 				so.setProperty('video', obj);
 								
-				ExternalInterface.call("onVideoPublish");
+				ExternalInterface.call("room.onVideoPublish");
 			}
 			
 			private function doStop(): void{
@@ -160,7 +160,7 @@
 				video.visible = false;
 				
 				vstate = 0;
-				ExternalInterface.call("onVideoUnpublish");
+				ExternalInterface.call("room.onVideoUnpublish");
 			}
 			
 			//JS调用
@@ -195,7 +195,7 @@
 				so = SharedObject.getRemote("so", nc.uri, false);
 				so.addEventListener(SyncEvent.SYNC, so_OnSync);
 				so.connect(nc);
-				ExternalInterface.call("onConnectSuccess");
+				ExternalInterface.call("room.onConnectSuccess");
 				
 				/* 带宽检测
 				nc.call("checkBandwidth", null);
@@ -203,16 +203,16 @@
 			}
 			
 			private function doConnectFailed(): void{
-				ExternalInterface.call("onConnectFailed");
+				ExternalInterface.call("room.onConnectFailed");
 			}
 			
 			private function doConnectRejected(resp: Object): void{
 				var msg: String = "";
-				ExternalInterface.call("onConnectRejected", resp);
+				ExternalInterface.call("room.onConnectRejected", resp);
 			}
 			
 			private function doConnectClosed(): void{
-				ExternalInterface.call("onConnectClosed");
+				ExternalInterface.call("room.onConnectClosed");
 				doStop();
 			}
 			
@@ -345,7 +345,7 @@
 			}
 			
 			private function debug(msg: String):void {
-				ExternalInterface.call("debug", msg);
+				ExternalInterface.call("room.debug", msg);
 			}			
 
 			/////////////////////////

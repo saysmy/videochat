@@ -5,6 +5,7 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+include dirname(__FILE__) . '/define.php';
 return array(
 	'id' => 'videochat',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
@@ -44,20 +45,7 @@ return array(
 				array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
 			),
 		),
-		// uncomment the following to enable URLs in path-format
-		/*
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
-		*/
-		// 'db'=>array(
-			// 'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		// ),
+
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
@@ -67,6 +55,14 @@ return array(
 			'password' => 'letmego',
 			'charset' => 'utf8',
 		),
+
+		'urlManager'=>array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            'rules' => array(
+            	'room/<rid:\d+>' => 'room/index',
+            ),
+        ),
 		
 		'errorHandler'=>array(
 			// 'errorAction'=>'error/error',
@@ -93,8 +89,8 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'domain' => 'www.feizao001.com',
-		'adminEmail'=>'webmaster@example.com',
 		'cookieExpire' => '86400',
 		'fmsServer' => '10.211.55.4',
+		'unLoginUid' => -1,
 	),
 );

@@ -41,6 +41,10 @@ class CUser {
 		return true;		
 	}
 
+	static public function getQQLoginUrl() {
+		return 'http://' . DOMAIN . '/user/qqLogin/?callback=' . urlencode('http://' . DOMAIN . $_SERVER['PHP_SELF']);
+	}
+
 	static private function getBaseInfoByRecord($record) {
 		$ret = array();
 		foreach($record->attributeLabels() as $col => $v) {

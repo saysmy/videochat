@@ -51,5 +51,16 @@ $.fn.extend({
 		}	
 	}
 })
+$(document.body).ready(function() {
+	$(document.body).click(function(e) {
+		var src = e.target ? e.target : e.srcElement;
+		if ($(src).hasClass('popCheckbox')) {
+			return true;
+		}
+		$('.popCheckbox').hide();
+		return true;
+	})	
+})
+
 
 })(jQuery)

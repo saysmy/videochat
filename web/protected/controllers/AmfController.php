@@ -12,11 +12,23 @@ class AmfController extends Controller
 		echo $response;
 	}
 
-	public function actionGetUserInfo($rid) {
+	public function actionTestGetUserInfo($rid) {
 		@session_start();
 		$service = new ChatService;
 		$ret = $service->getUserInfo(session_id(), $_SESSION['uid'], $rid);
 		var_export($ret);
 	}
 
+
+	public function actionTestDispatchDeadUser() {
+		$service = new ChatService;
+		$users = $service->dispatchDeadUser();
+		var_export($users);
+	}
+
+	public function actionTestSendGift($rid) {
+		$service = new ChatService;
+		$service->sendGift(1, '', 1, 1,1,1);
+		// CRoom::getSendMaxPricePropInfo($rid);
+	}
 }
