@@ -1,6 +1,6 @@
 <?php
     define('DOMAIN', 'www.feizao001.com');
-    define('DEFAULT_HEAD_PIC', '/img/16_s1.jpg');
+    define('DEFAULT_HEAD_PIC', 'http://www.feizao001.com/img/16_s1.jpg');
     define('ALIPAY_LIB_PATH', dirname(__FILE__) . '/../../../lib/alipay/');
     define('ALIPAY_RETURN_URL', 'http://www.feizao001.com/recharge/alipayReturn');
     define('ALIPAY_NOTIRY_URL', 'http://www.feizao001.com/recharge/alipayNotify');

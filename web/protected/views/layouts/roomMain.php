@@ -11,8 +11,8 @@
 <script type='text/javascript' src='/js/popCheckbox.js?v=0.3'></script>
 <script type='text/javascript' src='/js/layer/layer.min.js'></script>
 <script type='text/javascript' src='/js/raphael-min.js'></script>
-<script src="/js/sea.js"></script>
-<script src="/js/room.js?v=0.22"></script>
+<script type='text/javascript' src="/js/sea.js"></script>
+<script type='text/javascript' src="/js/room.js?v=0.22"></script>
 <!--[if IE 6]>
 <script src="scripts/DD_belatedPNG_0.0.8a.js"></script>
 <script>

@@ -82,6 +82,12 @@ return array(
 				*/
 			),
 		),
+		'clientScript' => array(
+            'scriptMap' => array(
+            	'jquery.js' => false,
+            	'jquery.min.js' => false,
+            ),
+        ),		
 	),
 
 	// application-level parameters that can be accessed

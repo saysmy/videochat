@@ -5,10 +5,12 @@
           <li class="sliderItem1" index="1" style="display:none"></li>
           <li class="sliderItem2" index="2" style="display:none"></li>
         </ul>
-        <div class="sliderPanel posA" id="sliderPanel">
+        <div style="text-align:center">
+        <div class="posA sliderPanel" id="sliderPanel" style="display:inline-block">
           <span class="on" index="0"></span>
           <span index="1"></span>
           <span index="2"></span>
+        </div>
         </div>
       </div>
     </div>
@@ -30,6 +32,9 @@
 
   <script>
   $(document.body).ready(function() {
+
+      $(".mainBig > dl:nth-child(3)").css({"margin-right":"0"});
+
       $('#sliderPanel span').click(function() {
           doSlide($(this).index());
       })

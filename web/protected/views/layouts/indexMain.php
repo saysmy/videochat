@@ -1,4 +1,3 @@
-<?php /* @var $this Controller */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,8 @@
 <link href="/css/default_v4.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js?v=1.9.1'></script>
 <script type='text/javascript' src='/js/layer/layer.min.js'></script>
-<script type='text/javascript' src='/js/sea.js'></script>
+<script type='text/javascript' src="/js/sea.js"></script>
+
 <!--[if IE 6]>
 <script src="/js/DD_belatedPNG_0.0.8a.js"></script>
 <script>
@@ -20,14 +20,6 @@
 
 <script>
 
-$(document.body).ready(function() {
-    $(".mainBig > dl:nth-child(3)").css({"margin-right":"0"});
-    
-    var docWidth = $(document).width();
-    $(".sliderPanel").css({
-      'left':((docWidth)-60)/2
-    });
-})
 seajs.use(['user', 'registerLogin'], function(user, registerLogin) {
     $(document.body).ready(function() {
         user.getUserInfo(function(resp) {

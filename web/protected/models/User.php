@@ -20,7 +20,7 @@
  * @property string $qq_openid
  * @property string $qq_accesstoken
  * @property string $qq_accessexpire
- * @property string $coin
+ * @property double $coin
  * @property integer $type
  * @property integer $source
  * @property string $register_time
@@ -57,7 +57,8 @@ class User extends CActiveRecord
 			array('nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'qqLogin'),
 			array('username, password, height, weight, age', 'required', 'on' => 'register'),
             array('username', 'unique', 'message' => '用户名已存在'),
-			array('sex, email_validated, mobile_validated, type, dead_user_status, source, height, weight, age, qq_accessexpire, coin', 'numerical', 'integerOnly'=>true),
+			array('sex, email_validated, mobile_validated, type, dead_user_status, source, height, weight, age, qq_accessexpire', 'numerical', 'integerOnly'=>true),
+			array('coin', 'numerical'),
 			array('username, password, nickname, head_pic_1, email, qq_openid, qq_accesstoken', 'length', 'max'=>255),
 			array('mobile', 'length', 'max'=>11),
 			// The following rule is used by search().

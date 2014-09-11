@@ -39,7 +39,7 @@ class ChatService {
 
 	public function sendGift($rid, $sid, $uid, $to, $propId, $count) {
 		if(CUser::checkLogin($sid, $uid)) {
-			// return array('errno' => 201, 'msg' => 'not login');
+			return array('errno' => 201, 'msg' => 'not login');
 		}
 		$userInfo = CUser::getInfoByUid($uid);
 		if($userInfo === false) {
@@ -66,6 +66,18 @@ class ChatService {
 			);
 			$showProp = true;
 		}
+		$consume = new Consume;
+		$consume->attributes = array(
+			'uid' => $uid,
+			'mid' => $to,
+			'pid' => $propId,
+			'pnum' => $count,
+			'cost' => $prop['price'] * $count,
+			'time' => date('Y-m-d H:i:s'),
+		);
+		if (!$consume->save()) {
+			return array('errno' => 204, 'msg' => json_encode($consume->getErrors()));
+		}
 		User::model()->updateByPk($userInfo['id'], array('coin' => $rest));
 		return array('errno' => 0, 'msg' => '', 'data' => array('propId' => $propId, 'propName' => $prop['name'], 'propPic' => $prop['img'], 'count' => $count, 'showProp' => $showProp, 'time' => time()));
 	}
@@ -75,7 +87,7 @@ class ChatService {
 		$users = Yii::app()->db->createCommand('select * from user where type=' . DEAD_USER . ' and dead_user_status=' . DEAD_USER_FREE . ' limit ' . rand(40, 50) . ' for update')->queryAll();
 		if (!$users) {
 			Yii::app()->db->createCommand("commit")->execute();
-			return array('errno' => 300, 'msg' => '', 'data' => array());
+			return array('errno' => 0, 'msg' => '', 'data' => array());
 		}
 		foreach ($users as &$user) {
 			$user_ids[] = $user['id'];

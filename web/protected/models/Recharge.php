@@ -43,8 +43,9 @@ class Recharge extends CActiveRecord
 		return array(
 			array('uid, money, coin, pay_type, time, ali_trade_no, status', 'required'),
 			array('pay_type, status', 'numerical', 'integerOnly'=>true),
-			array('money, coin', 'numerical', 'min' => 0.1),
-			array('uid, ali_trade_no', 'length', 'max'=>10),
+			array('money, coin', 'numerical', 'min' => 0.01),
+			array('uid', 'length', 'max'=>10),
+			array('ali_trade_no', 'length', 'max' => 255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, uid, money, coin, pay_type, time, ali_trade_no, status', 'safe', 'on'=>'search'),

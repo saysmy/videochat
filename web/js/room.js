@@ -283,7 +283,10 @@ define('room', function(require, exports, module) {
 	}
 
 	function sendGift() {
-		if (!$("#chooseProp").attr('propId')) {return;}
+		if (!$("#chooseProp").attr('propId')) {
+			addPropMsg('请选择礼物', 1);
+			return;
+		}
 		var num = parseInt($("#propNum").text());
 		if (!num) {return};
 		swfobject.getObjectById("roomPlayer").doSendGift($("#chooseProp").attr('propId'), num, $("#propTo").attr("to"));

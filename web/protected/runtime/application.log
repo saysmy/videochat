@@ -7979,3 +7979,345 @@ in /Library/WebServer/Documents/videochat/web/index.php (13)
 2014/09/10 00:48:11 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
 in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
 in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/10 11:26:36 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:26:36 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:07 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/10 11:27:11 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:11 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:21 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:21 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:26 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:27:26 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:28:01 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:28:01 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:29:41 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 11:31:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "undefined".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('undefined')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('undefined')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('room/undefined')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/room/undefined
+HTTP_REFERER=http://www.feizao001.com/room/1
+---
+2014/09/10 11:35:56 [error] [exception.CException] exception 'CException' with message 'Property "Consume.property" is not defined.' in /Library/WebServer/Documents/videochat/lib/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/db/ar/CActiveRecord.php(143): CComponent->__get('property')
+#1 /Library/WebServer/Documents/videochat/web/protected/views/user/ucenter.php(60): CActiveRecord->__get('property')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(869): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): CController->renderPartial('ucenter', Array, true)
+#6 /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php(214): CController->render('ucenter', Array)
+#7 [internal function]: UserController->actionCenter(1)
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('center')
+#19 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/center')
+#20 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/user/center
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 11:40:15 [error] [exception.CDbException] exception 'CDbException' with message 'Active record "Consume" has an invalid configuration for relation "property". It must specify the relation type, the related active record class and the foreign key.' in /Library/WebServer/Documents/videochat/lib/yii/framework/db/ar/CActiveRecord.php:2358
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/db/ar/CActiveRecord.php(2337): CActiveRecordMetaData->addRelation('property', Array)
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Consume))
+#2 /Library/WebServer/Documents/videochat/web/protected/models/Consume.php(24): CActiveRecord::model('Consume')
+#3 /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php(211): Consume::model()
+#4 [internal function]: UserController->actionCenter(1)
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(UserController), Array)
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(UserController), Object(ReflectionMethod), Array)
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('center')
+#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/center')
+#17 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#18 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/user/center
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 15:02:10 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 15:02:11 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 16:20:31 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/Library/WebServer/Documents/videochat/web/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/Library/WebSer...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CClientScript.php(462): CAssetManager->publish('/Library/WebSer...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CClientScript.php(499): CClientScript->getCoreScriptUrl()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CClientScript.php(315): CClientScript->getPackageBaseUrl('jquery')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html>...')
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html>...')
+#8 /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php(31): CController->render('indexContent', Array)
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): IndexController->actionIndex()
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputCache.php(151): CFilterChain->run()
+#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): COutputCache->filter(Object(CFilterChain))
+#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('')
+#17 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#18 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#19 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.feizao001.com/room/1
+---
+2014/09/10 16:44:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "1".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('1')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/1
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 16:45:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "1".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('1')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/1
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 16:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/21a1a0c8/user.js".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/21a1a0c8...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/21a1a0c8/user.js
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 16:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/21a1a0c8/registerLogin.js".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/21a1a0c8...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/21a1a0c8/registerLogin.js
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 16:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "init/jquery.js".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('init/jquery.js')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/init/jquery.js
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 17:05:14 [error] [exception.CException] exception 'CException' with message 'Property "CClientScript.hasScripts" is not defined.' in /Library/WebServer/Documents/videochat/lib/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/YiiBase.php(220): CComponent->__set('hasScripts', false)
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CModule.php(103): CModule->getComponent('clientScript')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/captcha/CCaptcha.php(109): CModule->__get('clientScript')
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/captcha/CCaptcha.php(85): CCaptcha->registerClientScript()
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(173): CCaptcha->run()
+#6 /Library/WebServer/Documents/videochat/web/protected/widgets/views/registerLogin.php(50): CBaseController->widget('CCaptcha', Array)
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(130): require('/Library/WebSer...')
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', NULL, false)
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CWidget.php(243): CBaseController->renderFile('/Library/WebSer...', NULL, false)
+#10 /Library/WebServer/Documents/videochat/web/protected/widgets/RegisterLogin.php(8): CWidget->render('registerLogin')
+#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(206): RegisterLogin->run()
+#12 /Library/WebServer/Documents/videochat/web/protected/views/layouts/indexMain.php(73): CBaseController->endWidget()
+#13 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#14 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#15 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(76): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#16 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#17 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#18 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(206): COutputProcessor->run()
+#19 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#20 /Library/WebServer/Documents/videochat/web/protected/views/layouts/index.php(6): CBaseController->endContent()
+#21 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#22 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', Array, true)
+#23 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(784): CBaseController->renderFile('/Library/WebSer...', Array, true)
+#24 /Library/WebServer/Documents/videochat/web/protected/controllers/IndexController.php(31): CController->render('indexContent', Array)
+#25 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): IndexController->actionIndex()
+#26 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#27 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#28 /Library/WebServer/Documents/videochat/lib/yii/framework/web/widgets/COutputCache.php(151): CFilterChain->run()
+#29 /Library/WebServer/Documents/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): COutputCache->filter(Object(CFilterChain))
+#30 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#31 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#32 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('')
+#33 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#34 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#35 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#36 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://www.feizao001.com/room/1
+---
+2014/09/10 17:05:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/layer/jquery.min.js".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('js/layer/jquery...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/js/layer/jquery.min.js
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 17:06:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/layer/jquery.min.js".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('js/layer/jquery...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/js/layer/jquery.min.js
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/10 17:14:23 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 17:39:30 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/10 17:39:31 [info] [chatService] room:1 return dead user:[]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (111)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/11 14:34:56 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:46:14 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:101)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (101)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:47:02 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:102)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (102)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:47:03 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:102)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (102)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:47:03 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:102)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (102)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:47:06 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:102)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (102)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:48:09 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:103)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (103)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/11 17:48:11 [error] [php] Undefined index: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:103)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayNotify
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (103)
+in /Library/WebServer/Documents/videochat/web/index.php (13)

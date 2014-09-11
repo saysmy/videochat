@@ -14,7 +14,6 @@ class InitDeadUserCommand extends CConsoleCommand
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, 'cat_id=0');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_PROXY, 'proxy.tencent.com:8080');
         $json = json_decode(curl_exec($ch), true);
         if ($json) {
             $name = array();

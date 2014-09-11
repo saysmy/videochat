@@ -98,8 +98,20 @@ class RechargeController extends CController {
     }
 
     public function actionAlipayNotify() {
+        $a = 1;
+        $a['uid'];
+        $tradeInfo = 'out_trade_no:' . $_POST['out_trade_no'] . ' trade_no:' . $_POST['trade_no'] . ' trade_status:' . $_POST['trade_status'];
+        Yii::log($tradeInfo, CLogger::LEVEL_INFO, 'alipay');
         require_once(ALIPAY_LIB_PATH . "alipay_notify.class.php");
-        $alipayNotify = new AlipayNotify($alipay_config);
+        $alipayNotify = new AlipayNotify(array(
+                'partner' => ALIPAY_PARTNER,
+                'key' => ALIPAY_KEY,
+                'sign_type' => 'MD5',
+                'input_charset' => 'utf-8',
+                'cacert' => ALIPAY_CERT,
+                'transport' => 'http',
+            )
+        );
         $verify_result = $alipayNotify->verifyNotify();
 
         if($verify_result) {//验证成功
@@ -109,13 +121,35 @@ class RechargeController extends CController {
             //交易状态
             $trade_status = $_POST['trade_status'];
 
-            Yii::log('out_trade_no:' . $out_trade_no . ' trade_no:' . $trade_no . ' trade_status:' . $trade_status, CLogger::LEVEL_INFO, 'alipay');
+            Yii::log('验证成功 ' . $tradeInfo, CLogger::LEVEL_INFO, 'alipay');
 
             
             if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
-                $record = Recharge::model()->findByPk($out_trade_no);
-                $record->status = RECHARGE_COMPLETE;
-                $record->save();
+                $record = Recharge::model()->findByPk($out_trade_no - PAY_NUMBER_BASE);
+                if (!$record) {
+                    Yii::log('订单未找到 out_trade_no:' . $_POST['out_trade_no'] . ' trade_no:' . $_POST['trade_no'] . ' trade_status:' . $_POST['trade_status'], CLogger::LEVEL_ERROR, 'alipay');
+                }
+                else {
+                    $record->status = RECHARGE_COMPLETE;
+                    $record->ali_trade_no = $trade_no;
+                    if (!$record->save()) {
+                        Yii::log('update recharge record error:' . json_encode($record->getErrors()) . ' ' . $tradeInfo, CLogger::LEVEL_ERROR, 'alipay');
+                    }
+                    else {
+                        Yii::app()->db->createCommand("begin")->execute();
+                        $userInfo = Yii::app()->db->createCommand('select * from user where id=' . $record['uid'] . ' for update')->queryRow();
+                        if ($userInfo) {
+                            $user = User::model();
+                            if(!$user->updateByPk($userInfo['id'], array('coin' => $userInfo['coin'] + $record['coin']))) {
+                                Yii::log('save user coin error uid:' . $record['uid'] . ' error:' . json_encode($user->getErrors()) . ' ' . $tradeInfo, CLogger::LEVEL_ERROR, 'alipay');
+                            }
+                        }
+                        else {
+                            Yii::log('get user info error uid:' . $record['uid'] . ' ' . $tradeInfo, CLogger::LEVEL_ERROR, 'alipay');
+                        }
+                        Yii::app()->db->createCommand("commit")->execute();
+                    }
+                }
             }
 
                 
@@ -125,6 +159,7 @@ class RechargeController extends CController {
         }
         else {
             //验证失败
+            Yii::log('验证失败 ' . $tradeInfo, CLogger::LEVEL_ERROR, 'alipay');
             echo "fail";
 
         }
