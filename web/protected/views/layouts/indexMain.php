@@ -26,7 +26,7 @@ seajs.use(['user', 'registerLogin'], function(user, registerLogin) {
             if (resp.errno) {return;};
             $('.coin b').text(resp.data.coin);
             $('.uinfo.logined img').attr('src', resp.data['head_pic_1']);
-            $('.uinfo.logined a').text(resp.data['nickname']);
+            $('.uinfo.logined a.nickname').text(resp.data['nickname']);
             $('.logined').show();
             $('.unlogined').hide();
         })
@@ -82,7 +82,7 @@ function addFavorite(sURL, sTitle)
           <li class="chong ml5 logined" style="display:none;"><a href="/recharge/center">充值</a></li>
           <li class="coin ml5 logined" style="display:none;"><b>10.2</b> 金币</li>
           <li class="uinfo mr10 unlogined"><a href="#" id="user-reg">注册</a> | <a href="#" id="user-login">登录</a></li>
-          <li class="uinfo mr10 logined" style="display:none;"><img src="/img/1_s1.jpg" width="25" height="25"> <a href="#">妖精baby（860876）</a></li>
+          <li class="uinfo mr10 logined" style="display:none;"><img src="/img/1_s1.jpg" width="25" height="25"> <a href="/user/center" class="nickname">妖精baby（860876）</a>&nbsp;&nbsp;<a href="/user/logout">退出</a></li>
         </ul>
       </div>
     </div>

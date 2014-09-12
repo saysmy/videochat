@@ -3,7 +3,7 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
     var user = require('user');
     var rsa = new (require('rsa').RSA);
     var me = this;
-    getPublicKey();
+    // getPublicKey();
 
     $('.goQQLogin').click(function() {
         user.qqLogin(me.qqLoginUrl);
@@ -14,10 +14,6 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
         if (isRegistering) {
             return;
         };
-        this.value = '注册中';
-        isRegistering = true;
-        $(this).css('cursor', 'default');
-
         for (var i in tips_ids) {
             $("#xubox_layer" + tips_ids[i]).hide();
         }
@@ -32,6 +28,11 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
             }));
             return;
         };
+
+        this.value = '注册中...';
+        isRegistering = true;
+        $(this).css('cursor', 'default');
+
         var me = this;
         getPublicKey(function() {
             var data = {};
@@ -83,7 +84,7 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
         if (isLogining) {
             return;
         };
-        this.value = '登录中';
+        this.value = '登录中...';
         isLogining = true;
         $(this).css('cursor', 'default');
         var me = this;
@@ -171,6 +172,9 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
     });
 
     $(".close").click(function(){
+        for (var i in tips_ids) {
+            $("#xubox_layer" + tips_ids[i]).hide();
+        }
         $("#overlay-mask").fadeOut();
         $("#overlay-cont").fadeOut(); 
     })

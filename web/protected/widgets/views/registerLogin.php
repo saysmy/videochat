@@ -19,22 +19,22 @@ seajs.use('registerLogin', function(registerLogin) {
           <td>
           <label>年龄
             <select name="age" size="1">
-            <?php for($i = 21; $i <= 50; $i ++ ):?>
-            <option><?=$i?></option>
+            <?php for($i = 18; $i <= 50; $i ++ ):?>
+            <option <?=$i==21?'selected':''?>><?=$i?></option>
             <?php endfor?>
             </select>
           </label>
           <label>身高
             <select name="height" size="1">
             <?php for($i = 155; $i <= 190; $i ++ ):?>
-            <option><?=$i?></option>
+            <option value="<?=$i?>" <?=$i==178?'selected':''?>><?=$i?>cm</option>
             <?php endfor?>            
             </select>
           </label>
           <label>体重
             <select name="weight" size="1">
             <?php for($i = 40; $i <= 100; $i ++ ):?>
-            <option><?=$i?></option>
+            <option value="<?=$i?>" <?=$i==63?'selected':''?>><?=$i?>kg</option>
             <?php endfor?>  
             </select>
           </label>
