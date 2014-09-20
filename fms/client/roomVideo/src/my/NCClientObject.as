@@ -29,9 +29,12 @@ package my
 		
 		// events
 		
-		public function onInitRoom(showPublicBar:Boolean, userList: Object): void {
-			app.initPublicBar(showPublicBar);
+		public function onInitRoom(userList: Object): void {
 			ExternalInterface.call("room.onInitRoom", userList);
+		}
+		
+		public function onShowPublicBar(): void {
+			app.initPublicBar(true);
 		}
 		
 		public function onLogin(userInfo: Object): void{

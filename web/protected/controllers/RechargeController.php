@@ -1,6 +1,6 @@
 <?php
 class RechargeController extends CController {
-    public $layout='//layouts/index';
+    public $layout='//layouts/common';
 
     public function actionCenter() {
         if (!CUser::checkLogin()) {
@@ -166,7 +166,9 @@ class RechargeController extends CController {
        
     }
 
-
+    public function actionReturn() {
+        $this->render('return');
+    }
 }
 
 

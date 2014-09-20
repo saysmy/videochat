@@ -3,7 +3,7 @@
 class IndexController extends CController
 {
 
-	public $layout='//layouts/index';
+	public $layout='//layouts/common';
 
 	public $loginUrl;
 

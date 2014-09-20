@@ -207,11 +207,6 @@
 			}
 			
 			private function doConnectRejected(resp: Object): void{
-				if (resp.errno == 105) { // 服务器未初始化完成，重连
-					debug("server not ready,reconnect...");
-					setTimeout(doConnect, 1000);
-					return;
-				}
 				var msg: String = "";
 				ExternalInterface.call("room.onConnectRejected", resp);
 			}
