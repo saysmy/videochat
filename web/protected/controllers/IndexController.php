@@ -31,5 +31,4 @@ class IndexController extends CController
 		$this->render('indexContent', array('rooms' => $rooms, 'moderators' => $moderators));
 	}
 
-
 }

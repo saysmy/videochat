@@ -8599,3 +8599,939 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
+2014/09/20 23:02:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://www.feizao001.com/
+---
+2014/09/22 17:22:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/banner_01.jpg)".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('img/banner_01.j...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/img/banner_01.jpg)
+---
+2014/09/22 17:22:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/banner_01.jpg)".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('img/banner_01.j...')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/img/banner_01.jpg)
+---
+2014/09/22 18:01:40 [error] [php] Undefined variable: out_trade_no (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:96)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayReturn
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (96)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/22 18:04:10 [error] [exception.CException] exception 'CException' with message 'RechargeController cannot find the requested view "error".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:878
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): CController->renderPartial('error', NULL, true)
+#1 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(69): CController->render('error')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/22 18:05:27 [error] [exception.CException] exception 'CException' with message 'RechargeController cannot find the requested view "system/error".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:878
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): CController->renderPartial('system/error', NULL, true)
+#1 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(69): CController->render('system/error')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/22 18:05:28 [error] [exception.CException] exception 'CException' with message 'RechargeController cannot find the requested view "system/error".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:878
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): CController->renderPartial('system/error', NULL, true)
+#1 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(69): CController->render('system/error')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/22 18:05:34 [error] [exception.CException] exception 'CException' with message 'Property "RechargeController._error" is not defined.' in /Library/WebServer/Documents/videochat/lib/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CErrorHandler.php(150): CComponent->__get('_error')
+#1 /Library/WebServer/Documents/videochat/web/protected/views/system/error.php(2): CErrorHandler->getError()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(126): require('/Library/WebSer...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Library/WebSer...', NULL, true)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(869): CBaseController->renderFile('/Library/WebSer...', NULL, true)
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(782): CController->renderPartial('/system/error', NULL, true)
+#6 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(69): CController->render('/system/error')
+#7 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#8 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#12 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#13 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:49:41 [error] [php] Undefined variable: message (/Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): RechargeController->runAction()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): RechargeController->runActionWithFilters()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): RechargeController->run()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayReturn
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (69)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 16:49:51 [error] [exception.CHttpException.403] exception 'CHttpException' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:50:12 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:50:56 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:51:13 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:51:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/de...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/default_v4.css
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "scripts".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('scripts')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('scripts')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/script...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/scripts/jquery.min.js
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "scripts".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('scripts')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('scripts')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/script...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/scripts/custom.js
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/we...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/webmag-1.2.css
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn-qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/1_...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/1_s1.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "scripts".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('scripts')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('scripts')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/script...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/scripts/jquery.min.js
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/we...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/webmag-1.2.css
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/de...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/default_v4.css
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "scripts".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('scripts')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('scripts')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/script...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/scripts/custom.js
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/1_...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/1_s1.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:51:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn-qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:52:00 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:52:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn-qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:52:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:52:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/1_...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/1_s1.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:56:55 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:56:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 16:57:12 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 16:57:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:03:24 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (/Library/WebServer/Documents/videochat/lib/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(2): spl_autoload_call()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(354): require()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayReturn
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (2)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 17:03:56 [error] [php] include(BaseController.php): failed to open stream: No such file or directory (/Library/WebServer/Documents/videochat/lib/yii/framework/YiiBase.php:421)
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php(2): spl_autoload_call()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(354): require()
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#5 /Library/WebServer/Documents/videochat/web/index.php(13): CWebApplication->run()
+REQUEST_URI=/recharge/alipayReturn
+in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php (2)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 17:04:42 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:04:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:05:02 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:05:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:05:03 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:05:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:08:37 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:08:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:09:47 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:09:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:10:03 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:10:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:10:21 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:10:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:10:32 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:10:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('img')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/img/bt...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/img/btn_qq.jpg
+HTTP_REFERER=http://www.feizao001.com/recharge/alipayReturn
+---
+2014/09/23 17:11:25 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:11:34 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:11:34 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn
+---
+2014/09/23 17:11:37 [error] [exception.CHttpException.500] exception 'CHttpException' with message '参数缺失' in /Library/WebServer/Documents/videochat/web/protected/controllers/RechargeController.php:69
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/actions/CInlineAction.php(49): RechargeController->actionAlipayReturn()
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('alipayReturn')
+#5 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/alipay...')
+#6 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/recharge/alipayReturn/xxx
+---
+2014/09/23 17:17:14 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 17:30:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dffdf".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('dffdf')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('dffdf')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/dffdf')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/dffdf
+---
+2014/09/23 17:32:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dffdf".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('dffdf')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('dffdf')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/dffdf')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/dffdf
+---
+2014/09/23 21:28:46 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 21:38:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:38:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:39:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:39:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:40:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:43:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:43:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:43:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:46:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:48:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:48:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:49:16 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (51)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 21:49:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:50:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 21:50:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "css".' in /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CController.php(270): CController->missingAction('css')
+#1 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('css')
+#2 /Library/WebServer/Documents/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recharge/css/lo...')
+#3 /Library/WebServer/Documents/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Library/WebServer/Documents/videochat/web/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/recharge/css/loading.gif
+HTTP_REFERER=http://www.feizao001.com/recharge/center
+---
+2014/09/23 22:21:00 [info] [application] getRoomInfo rid:1
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (28)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/23 22:21:00 [info] [chatService] room:1 dispatchDeadUser:["3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26"]
+in /Library/WebServer/Documents/videochat/web/protected/components/ChatService.php (105)
+in /Library/WebServer/Documents/videochat/lib/Zend/Server/Reflection/Function/Abstract.php (380)
+in /Library/WebServer/Documents/videochat/lib/Zend/Amf/Server.php (368)
+2014/09/23 22:32:58 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:32:59 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:00 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:00 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:03 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:03 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:04 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:08 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:33:20 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)
+2014/09/23 22:37:01 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
+in /Library/WebServer/Documents/videochat/web/protected/controllers/UserController.php (136)
+in /Library/WebServer/Documents/videochat/web/index.php (13)

@@ -29,11 +29,24 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
             return;
         };
 
-        this.value = '注册中...';
+        this.value = '注册中';
+        var me = this;
+        var t = 1;
+        var fd = setInterval(function() {
+            me.value = '注册中';
+            for (var i = 0; i < t; i++) {
+                me.value += ".";
+            };
+            if (t == 3) {
+                t = 1;
+            }
+            else {
+                t ++;
+            }
+        }, 500)
         isRegistering = true;
         $(this).css('cursor', 'default');
 
-        var me = this;
         getPublicKey(function() {
             var data = {};
             $("#register-area input[name]").each(function() {
@@ -54,6 +67,7 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
                 type : 'post',
                 dataType : 'json',
                 success : function(ret) {
+                    clearInterval(fd);
                     me.value = '同意注册';
                     isRegistering = false;
                     $(me).css('cursor', 'pointer');
@@ -84,10 +98,23 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
         if (isLogining) {
             return;
         };
-        this.value = '登录中...';
+        this.value = '登录中';
+        var me = this;
+        var t = 1;
+        var fd = setInterval(function() {
+            me.value = '登录中';
+            for (var i = 0; i < t; i++) {
+                me.value += ".";
+            };
+            if (t == 3) {
+                t = 1;
+            }
+            else {
+                t ++;
+            }
+        }, 500)
         isLogining = true;
         $(this).css('cursor', 'default');
-        var me = this;
 
         for (var i in tips_ids) {
             $("#xubox_layer" + tips_ids[i]).hide();
@@ -101,6 +128,7 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
                 data : data,
                 dataType : 'json',
                 success : function(ret) {
+                    clearInterval(fd);
                     me.value = '立即登录';
                     isLogining = false;
                     $(me).css('cursor', 'pointer');

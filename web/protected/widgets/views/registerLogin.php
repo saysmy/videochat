@@ -50,7 +50,7 @@ seajs.use('registerLogin', function(registerLogin) {
           <td><input name="captcha" type="text" placeholder="验证码" class="fi-txt medium"><?php $this->widget('CCaptcha',array('captchaAction' => 'user/captcha', 'showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer;float:right;margin-right:80px', 'id' => 'register-captcha'))); ?></td>
         </tr>
         <tr>
-          <td id="agree-td"><label><input type="checkbox" id="register-agree"> 我已阅读并同意</label><a href="#">《网站协议》</a></td>
+          <td id="agree-td"><label><input type="checkbox" id="register-agree" checked> 我已阅读并同意</label><a href="#">《网站协议》</a></td>
         </tr>
         <tr>
           <td><input type="submit" class="btns btn-1" value="同意注册"></td>

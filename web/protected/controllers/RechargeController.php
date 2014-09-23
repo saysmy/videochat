@@ -64,6 +64,11 @@ class RechargeController extends CController {
 
     public function actionAlipayReturn() {
         require_once(ALIPAY_LIB_PATH . 'alipay_notify.class.php');
+
+        if (!isset($_GET['out_trade_no']) || !isset($_GET['trade_no']) || !isset($_GET['trade_status'])) {
+            throw new CHttpException(500,'参数缺失');
+        }
+
         $alipayNotify = new AlipayNotify(array(
                 'partner' => ALIPAY_PARTNER,
                 'key' => ALIPAY_KEY,
@@ -83,18 +88,26 @@ class RechargeController extends CController {
 
             if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
                 //支付成功
-                $msg = '支付成功';
+                $success = true;
             }
             else {
-                $msg = 'trade_status=' . $_GET['trade_status'];
+                $success = false;
             }
         }
         else {
-            $msg = '验证失败';
+            $success = false;
         }
 
-        $this->render('return', array('msg' => $msg));
+        $record = Recharge::model()->findByPk($out_trade_no - PAY_NUMBER_BASE);
 
+        $this->render('return', array('alipayTradeNo' => $trade_no,
+                                      'TradeNo' => $out_trade_no,
+                                      'payTime' => date('Y-m-d H:i:s'),
+                                      'uid' => $record->uid,
+                                      'coin' => $record->coin,
+                                      'success' => $success,
+                                )
+                    );
     }
 
     public function actionAlipayNotify() {

@@ -66,7 +66,7 @@ return array(
         ),
 		
 		'errorHandler'=>array(
-			// 'errorAction'=>'error/error',
+			'errorAction'=>'error/error',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',

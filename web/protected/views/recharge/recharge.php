@@ -41,8 +41,39 @@
           return false;
       })
 
+    //支付弹窗
+    $("#overlay-pay").css({
+        'left':(($(document).width())-500)/2,
+        'top':(($(window).height())-280)/2
+    });
+    $("#btnPay").click(function(){
+        $("#overlay-mask").height($(document).height());
+        $("#overlay-mask").fadeIn();
+        $("#overlay-pay").fadeIn();
+    })
+    $(".close2").click(function(){
+        $("#overlay-mask").fadeOut();
+        $("#overlay-pay").fadeOut();  
+    })
+
+    $(".btns").click(function(){
+        $("#overlay-mask").fadeOut();
+        $("#overlay-pay").fadeOut();        
+    })
+
   })
   </script>
+
+<!--overlay-pay-->
+<div id="overlay-pay" style="height:220px">
+  <div class="overlay-payTitle posR">付款中<a href="#" class="close2">x</a></div>
+  <div class="overlay-payContent">
+    <span>请根据你的情况点击以下按钮。</span>
+    <span><input type="button" value="已完成付款，继续充值" class="btns btn-1"> &nbsp;&nbsp; <input type="button" value="遇到问题，再次尝试" class="btns btn-2"></span>
+  </div>
+</div>
+<!--/-->
+
   <!--mainbody-->
   <div id="mainbody_new">
     <div class="pageNav wrap">您当前的位置：<b>充值中心</b> &gt; 泡泡币</div>
@@ -65,7 +96,7 @@
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <th width="20%">当前登录帐号：</th>
-                <td><b><?=$userInfo['username']?></b></td>
+                <td><b><?=$userInfo['nickname']?></b></td>
             </tr>
             <tr>
                 <th>当前充值方式：</th>
@@ -158,7 +189,7 @@
               <p class="clear"></p>
             </ul>
           </div>
-          <div class="payBtn ptb10"><a href="#" target=_blank id="do-recharge"><input type="submit" class="btns btn-1" value="立即支付"></a></div>
+          <div class="payBtn ptb10"><a href="#" target=_blank id="do-recharge"><input type="submit" class="btns btn-1" value="立即支付" id="btnPay"></a></div>
         </div>
       </div>
       <p class="clear"></p>
