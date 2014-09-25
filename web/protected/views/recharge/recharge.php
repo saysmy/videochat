@@ -56,7 +56,7 @@
         $("#overlay-pay").fadeOut();  
     })
 
-    $(".btns").click(function(){
+    $("#overlay-pay .btns").click(function(){
         $("#overlay-mask").fadeOut();
         $("#overlay-pay").fadeOut();        
     })

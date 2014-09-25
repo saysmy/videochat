@@ -100,10 +100,13 @@ class RechargeController extends CController {
 
         $record = Recharge::model()->findByPk($out_trade_no - PAY_NUMBER_BASE);
 
+        $user = CUser::getInfoByUid($record->uid);
+
         $this->render('return', array('alipayTradeNo' => $trade_no,
                                       'TradeNo' => $out_trade_no,
                                       'payTime' => date('Y-m-d H:i:s'),
                                       'uid' => $record->uid,
+                                      'nickname' => $user['nickname'],
                                       'coin' => $record->coin,
                                       'success' => $success,
                                 )
