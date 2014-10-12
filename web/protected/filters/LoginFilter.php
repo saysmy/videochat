@@ -3,12 +3,9 @@ class LoginFilter extends CFilter
 {
 	public function preFilter($filterChain)
 	{
-		if(CUser::checkLogin()) {
-			return true;
+		if(!CUser::checkLogin()) {
+			throw new CHttpException(200, '需要登录', -100);
 		}
-		else {
-			header('Location:http://' . Yii::app()->params['domain'] . '/?r=user/QQLogin&callback=' . urlencode('http://' . Yii::app()->params['domain'] . $_SERVER["REQUEST_URI"]));
-			exit;
-		}
+		return true;
 	}
 }

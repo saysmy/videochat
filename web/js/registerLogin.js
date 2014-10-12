@@ -1,9 +1,11 @@
-define('registerLogin',['user', 'rsa'], function(require, exports, module) {
+define('registerLogin',['user', 'rsa', 'layer', 'common'], function(require, exports, module) {
     var tips_ids = [];
     var user = require('user');
     var rsa = new (require('rsa').RSA);
     var me = this;
-    // getPublicKey();
+    var layer = require('layer');
+    var common = require('common');
+    // common.getPublicKey(function(key){rsa.setPublicKey});
 
     $('.goQQLogin').click(function() {
         user.qqLogin(me.qqLoginUrl);
@@ -29,25 +31,13 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
             return;
         };
 
-        this.value = '注册中';
         var me = this;
-        var t = 1;
-        var fd = setInterval(function() {
-            me.value = '注册中';
-            for (var i = 0; i < t; i++) {
-                me.value += ".";
-            };
-            if (t == 3) {
-                t = 1;
-            }
-            else {
-                t ++;
-            }
-        }, 500)
+        common.buttonTextLoading(me, '注册中');
         isRegistering = true;
         $(this).css('cursor', 'default');
 
-        getPublicKey(function() {
+        common.getPublicKey(function(key) {
+            rsa.setPublicKey(key);
             var data = {};
             $("#register-area input[name]").each(function() {
                 if (this.name == 'password' || this.name == 'passwordRepeat') {
@@ -67,10 +57,8 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
                 type : 'post',
                 dataType : 'json',
                 success : function(ret) {
-                    clearInterval(fd);
-                    me.value = '同意注册';
+                    common.stopButtonTextLoading(me, '立即注册');
                     isRegistering = false;
-                    $(me).css('cursor', 'pointer');
 
                     if (ret.errno == 0) {
                         layer.msg('注册成功,自动登录中...', 2 ,{type : 9});
@@ -98,29 +86,18 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
         if (isLogining) {
             return;
         };
-        this.value = '登录中';
+
         var me = this;
-        var t = 1;
-        var fd = setInterval(function() {
-            me.value = '登录中';
-            for (var i = 0; i < t; i++) {
-                me.value += ".";
-            };
-            if (t == 3) {
-                t = 1;
-            }
-            else {
-                t ++;
-            }
-        }, 500)
+        common.buttonTextLoading(me, '登录中');
+
         isLogining = true;
-        $(this).css('cursor', 'default');
 
         for (var i in tips_ids) {
             $("#xubox_layer" + tips_ids[i]).hide();
         }
         tips_ids = [];
-        getPublicKey(function() {
+        common.getPublicKey(function(key) {
+            rsa.setPublicKey(key);
             var data = {username : $('#login-area input[name=username]').val(), 'password' : rsa.encrypt($('#login-area input[name=password]').val()), remember : $('#login-remember')[0].checked};
             $.ajax({
                 url : '/user/login',
@@ -128,10 +105,8 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
                 data : data,
                 dataType : 'json',
                 success : function(ret) {
-                    clearInterval(fd);
-                    me.value = '立即登录';
+                    common.stopButtonTextLoading(me, '立即登录');
                     isLogining = false;
-                    $(me).css('cursor', 'pointer');
 
                     if (ret.errno == 0) {
                         layer.msg('登录成功', 2 ,{type : 9});
@@ -157,35 +132,36 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
         return false;
     })    
     //注册弹窗
-    exports.showRegisterPanel = function(){
-        var docHeight = $(document).height();
-        var docWidth = $(document).width();
-        var winHeight = $(window).height();
-        $("#overlay-mask").height(docHeight);
-        $("#overlay-cont").css({
-            'left':((docWidth)-675)/2,
-            'top':((winHeight)-465)/2
+    exports.showRegisterPanel = function() {
+        var layer_id = $.layer({
+                type : 1,
+                title : false,
+                closeBtn: [0],
+                area : ['675px','465px'],
+                page : {dom : '#overlay-cont'},
+                border: [0]
         });
+        $('#overlay-cont').attr('layer_id', layer_id);
+
         $("#overlay-reg").css({"display":"block"});
         $("#overlay-login").css({"display":"none"});
-        $("#overlay-mask").fadeIn();
-        $("#overlay-cont").fadeIn();  
+ 
         return false;
     }
     exports.showLoginPanel = function(){
-        var docHeight = $(document).height();
-        var docWidth = $(document).width();
-        var winHeight = $(window).height();
-        $("#overlay-mask").height(docHeight);
-        $("#overlay-cont").css({
-            'left':((docWidth)-675)/2,
-            'top':((winHeight)-465)/2
+        var layer_id = $.layer({
+                type : 1,
+                title : false,
+                closeBtn: [0],
+                area : ['675px','465px'],
+                page : {dom : '#overlay-cont'},
+                border: [0]
         });
+
+        $('#overlay-cont').attr('layer_id', layer_id);
 
         $("#overlay-login").css({"display":"block"});
         $("#overlay-reg").css({"display":"none"});
-        $("#overlay-mask").fadeIn();
-        $("#overlay-cont").fadeIn();
         return false; 
     }
     $(".overlay-loginBtn").click(function(){
@@ -201,27 +177,10 @@ define('registerLogin',['user', 'rsa'], function(require, exports, module) {
 
     $(".close").click(function(){
         for (var i in tips_ids) {
-            $("#xubox_layer" + tips_ids[i]).hide();
+            layer.close(tips_ids[i]);
         }
-        $("#overlay-mask").fadeOut();
-        $("#overlay-cont").fadeOut(); 
+        layer.close($('#overlay-cont').attr('layer_id'))
     })
-
-    //获取公钥
-    function getPublicKey(callback) {
-        $.ajax({
-            url : '/user/getPublicKey?r=' + Math.random(),
-            dataType : 'json',
-            success : function(resp) {
-                if (resp.errno) {
-                    return;
-                }
-                rsa.setPublicKey(resp.data);
-                callback && callback();
-                
-            }
-        })
-    }
 
 })
 

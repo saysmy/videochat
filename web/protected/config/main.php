@@ -95,9 +95,8 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'domain' => 'www.feizao001.com',
 		'cookieExpire' => '86400',
-		'fmsServer' => '10.211.55.4',
+		'fmsServer' => defined('YII_DEBUG') ? '10.211.55.4' : '211.155.86.148',
 		'unLoginUid' => -1,
 	),
 );

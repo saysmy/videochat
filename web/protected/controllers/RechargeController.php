@@ -66,7 +66,7 @@ class RechargeController extends CController {
         require_once(ALIPAY_LIB_PATH . 'alipay_notify.class.php');
 
         if (!isset($_GET['out_trade_no']) || !isset($_GET['trade_no']) || !isset($_GET['trade_status'])) {
-            throw new CHttpException(500,'参数缺失');
+            throw new CHttpException(200,'参数缺失', 201);
         }
 
         $alipayNotify = new AlipayNotify(array(

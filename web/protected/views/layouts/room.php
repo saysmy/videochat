@@ -8,17 +8,27 @@
 <link href="/css/default.css?v=0.2" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js?v=1.9.1'></script>
 <script type='text/javascript' src='/js/swfobject.js'></script>
-<script type='text/javascript' src='/js/popCheckbox.js?v=0.3'></script>
-<script type='text/javascript' src='/js/layer/layer.min.js'></script>
 <script type='text/javascript' src='/js/raphael-min.js'></script>
-<script type='text/javascript' src="/js/sea.js"></script>
-<script type='text/javascript' src="/js/room.js?v=0.22"></script>
+<script type='text/javascript' src="/js/sea.min.js"></script>
 <!--[if IE 6]>
 <script src="scripts/DD_belatedPNG_0.0.8a.js"></script>
 <script>
   DD_belatedPNG.fix('.rommlogo');
 </script>
 <![endif]-->
+<script>
+seajs.config({
+  base: "/js/",
+  alias: {
+      'layer' : 'layer/layer.min.js',
+      'plupload' : 'plupload/plupload.full.min.js',
+      'jcrop'    : 'jquery.Jcrop.min.js',
+      'validate' : 'jquery.validate.min.js',
+  }
+})
+
+seajs.use('room');
+</script>
 </head>
 
 <body>

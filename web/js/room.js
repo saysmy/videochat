@@ -1,7 +1,8 @@
-define('room', function(require, exports, module) {
+define('room',['popCheckbox', 'registerLogin'], function(require, exports, module) {
 	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e7.png', data : '{花}'},{img : '/img/face/e8.png', data : '{笑}'}];
 	var flower = {img : '/css/i33.jpg', data : '{花}'}
 	var registerLogin = require('registerLogin');
+	require('popCheckbox');
 	$(document).ready(function(){	
 		$(".roomChat tr:odd").css({"background":"#F4F4F4"});
 		$(".roomUserItem li:odd").css({"background":"#F4F4F4"});

@@ -1,14 +1,16 @@
 <?php
-    define('DOMAIN', 'www.feizao001.com');
-    define('DEFAULT_HEAD_PIC', 'http://www.feizao001.com/img/default.jpg');
+    define('WEB_ROOT', realpath(dirname(__FILE__) . '/../../') . '/');
+    define('DOMAIN', 'www.efeizao.com');
+    define('MAIN_DOMAIN', 'efeizao.com');
+    define('DEFAULT_HEAD_PIC', 'http://www.efeizao.com/img/default.jpg');
     define('ALIPAY_LIB_PATH', dirname(__FILE__) . '/../../../lib/alipay/');
-    define('ALIPAY_RETURN_URL', 'http://www.feizao001.com/recharge/alipayReturn');
-    define('ALIPAY_NOTIRY_URL', 'http://www.feizao001.com/recharge/alipayNotify');
+    define('ALIPAY_RETURN_URL', 'http://www.efeizao.com/recharge/alipayReturn');
+    define('ALIPAY_NOTIRY_URL', 'http://www.efeizao.com/recharge/alipayNotify');
     define('ALIPAY_ACCOUNT', 'pay@7po.com');
     define('ALIPAY_PARTNER', '2088901945336871');
     define('ALIPAY_KEY', 'xw0z7xr4ab0jmf72u04xdxo1jifpxj6q');
     define('ALIPAY_CERT', ALIPAY_LIB_PATH . 'cacert.pem');
-    define('RECHARGE_SHOW_URL', 'http://www.feizao001.com/recharge/show');
+    define('RECHARGE_SHOW_URL', 'http://www.efeizao.com/recharge/show');
     
     define('COMMON_USER', 1);
     define('MODERATOR_USER', 2);

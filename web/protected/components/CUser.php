@@ -38,7 +38,7 @@ class CUser {
 		if(!isset($_SESSION['uid']) || $_SESSION['uid'] != $uid) {
 			return false;
 		}
-		return true;		
+		return $uid;		
 	}
 
 	static public function getQQLoginUrl() {

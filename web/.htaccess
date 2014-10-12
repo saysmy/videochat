@@ -1,10 +1,9 @@
-Options +FollowSymLinks
-IndexIgnore */*
-RewriteEngine on
+Options +FollowSymlinks
+RewriteEngine On
 
-# if a directory or a file exists, use it directly
+RewriteRule ^/?(.*)/thumbnail/\d+x\d+ /$1 [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 
-# otherwise forward it to index.php
-RewriteRule . index.php
