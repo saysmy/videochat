@@ -26,7 +26,8 @@ class UserController extends Controller
 
 		$qc = new QC();
 
-		$qc->set_callback_argv('http://' . DOMAIN . '/user/QQCallback/', array('redirect_url' => $callback));
+		//QQ回调老域名，新域名在QQ开发平台设置了，但是不生效
+		$qc->set_callback_argv('http://' . 'www.feizao001.com' . '/user/QQCallback/', array('redirect_url' => $callback));
 		header('Location: ' . $qc->get_login_url());
 	}
 

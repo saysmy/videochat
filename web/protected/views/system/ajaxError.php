@@ -1,0 +1,1 @@
+{"errno" : <?=$error['errorCode']?>, "msg" : "", "data" : <?=json_encode($error)?>}
