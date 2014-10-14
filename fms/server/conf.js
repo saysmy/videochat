@@ -1,2 +1,2 @@
-var ServerURL = 'http://www.feizao001.com/amf/';
+var ServerURL = 'http://www.efeizao.com/amf/';
 var mid = null;//主播ID
