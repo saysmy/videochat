@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset=utf-8>
-<title>肥皂网-宽容似海，不提伤害</title>
-<meta content="帅哥,靓仔,校草,直男,玉男,男人,男色,小鲜肉,肌肉,GAY,王力宏,视频主播,视频秀,主播,配件,手表,交友,泡草网" name="Keywords">
+<title>肥皂|中国最大的华裔美少年偶像の社区</title>
+<meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <meta property="qc:admins" content="7261517777656512176375" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
 <link href="/css/default_v4.css?v=20141011" rel="stylesheet" type="text/css" />
@@ -107,11 +107,11 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
     </div>
     <div class="menuOuter">
       <div class="menuList wrap">
-        <a href="/">网站首页</a>
-        <a href="/user/center">个人中心</a>
-        <a href="/rank">排行榜</a>
-        <a href="/recharge/center">充值中心</a>
-        <a href="/help/about">帮助中心</a>
+        <a href="/">首&nbsp;&nbsp;页</a>
+        <!--<a href="/rank">排行榜</a>-->
+        <a href="/recharge/center">充&nbsp;&nbsp;值</a>
+        <a href="http://bbs.efeizao.com">论&nbsp;&nbsp;坛</a>
+        <a href="/help/about">关于肥皂</a>        
       </div>
     </div>
   </div>
@@ -209,9 +209,9 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
   <div id="footer" class="mt20">
     <div class="wrap footer">
       <span>&copy;肥皂网络科技</span>
-      <span class="footerLink"><a href="/help/about">关于爱美</a> | <a href="/help/employ">高薪诚聘</a> | <a href="/help/link">友情链接</a> | <a href="/help/map">网站地图</a></span>
-      <span>京ICP证060797 京ICP备09082681-1 网络视听许可证0108268 京公安备1101082014405 <a href="#">经营性网站备案信息</a> <a href="#">不良信息举报中心</a></span>
-      <span><a href="#">网警110服务</a> 京网文【2010】0489058节目制作许可证 京字第666号 营业性演出许可证京市演1169号</span>
+      <span class="footerLink"><a href="/help/about">关于肥皂</a> | <a href="/help/employ">高薪诚聘</a> | <a href="/help/link">友情链接</a> | <a href="/help/map">网站地图</a></span>
+      <span>粤ICP证060797 粤ICP备09082681-1 网络视听许可证0108268 粤公安备1101082014405 <a href="http://www.hd315.gov.cn/">经营性网站备案信息</a> <a href="http://net.china.com.cn/index.htm">不良信息举报中心</a></span>
+      <span><a href="http://www.szga.gov.cn/">网警110服务</a> 粤网文【2010】0489058节目制作许可证 粤字第666号 营业性演出许可证京市演1169号</span>
     </div>
   </div>
   <!--/-->
