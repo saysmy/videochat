@@ -13,7 +13,7 @@ registerLogin.qqLoginUrl = '<?=CUser::getQQLoginUrl();?>';
       <form id="register-form">
       <table cellpadding="0" cellspacing="0" width="100%" border="0" id="register-area">
         <tr>
-          <td><input name="username" type="text" placeholder="用户名/手机/邮箱" class="fi-txt"></td>
+          <td><input name="username" type="text" placeholder="用户名/手机/邮箱" class="fi-txt" autocomplete="off"></td>
         </tr>
         <tr>
           <td>
@@ -41,7 +41,7 @@ registerLogin.qqLoginUrl = '<?=CUser::getQQLoginUrl();?>';
           </td>
         </tr>
         <tr>
-          <td><input name="password" type="password" placeholder="密码" class="fi-txt"></td>
+          <td><input name="password" type="password" placeholder="密码" class="fi-txt" autocomplete="off"></td>
         </tr>
         <tr>
           <td><input name="passwordRepeat" type="password" placeholder="确认密码" class="fi-txt"></td>
@@ -53,7 +53,7 @@ registerLogin.qqLoginUrl = '<?=CUser::getQQLoginUrl();?>';
           <td id="agree-td"><label><input type="checkbox" id="register-agree" checked name="agree"> 我已阅读并同意</label><a href="#">《网站协议》</a></td>
         </tr>
         <tr>
-          <td><input type="submit" class="btns btn-1" value="同意注册"></td>
+          <td><input type="submit" class="btns btn-1" value="立即注册"></td>
         </tr>
       </table>
       </form>

@@ -847,3 +847,162 @@ in /Library/WebServer/www/videochat/web/index.php (14)
 2014/10/14 22:47:38 [warning] [application] Failed to set unsafe attribute "agree" of "RegisterForm".
 in /Library/WebServer/www/videochat/web/protected/controllers/UserController.php (128)
 in /Library/WebServer/www/videochat/web/index.php (14)
+2014/10/17 14:12:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recruiment/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruiment/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recruiment/step1
+HTTP_REFERER=http://www.efeizao.com/
+---
+2014/10/17 14:13:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recriument/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recriument/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recriument/step1
+---
+2014/10/17 14:13:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recriument/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recriument/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recriument/step1
+---
+2014/10/17 14:13:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recriument/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recriument/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recriument/step1
+---
+2014/10/17 14:13:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recruiment/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruiment/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recruiment/step1
+---
+2014/10/17 14:13:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "recruiment/step1".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruiment/step...')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/recruiment/step1
+---
+2014/10/17 14:14:05 [error] [exception.CHttpException.200] exception 'CHttpException' with message '需要登录' in /Library/WebServer/www/videochat/web/protected/filters/LoginFilter.php:7
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilter.php(38): LoginFilter->preFilter(Object(CFilterChain))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('postStep')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruitment/pos...')
+#6 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#8 {main}
+REQUEST_URI=/recruitment/postStep/step/1
+HTTP_REFERER=http://www.efeizao.com/recruitment/step1
+---
+2014/10/17 14:37:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/10/17 14:37:59 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/www/videochat/web/protected/controllers/UserController.php (43)
+in /Library/WebServer/www/videochat/web/index.php (14)
+2014/10/17 14:44:47 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('logout')
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/logout')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/user/logout
+---
+2014/10/17 14:45:01 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/www/videochat/web/protected/controllers/UserController.php (43)
+in /Library/WebServer/www/videochat/web/index.php (14)
+2014/10/17 14:45:01 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('logout')
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/logout')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/user/logout
+HTTP_REFERER=http://www.efeizao.com/user/logout
+---
+2014/10/17 14:45:52 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('logout')
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/logout')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/user/logout
+HTTP_REFERER=http://www.efeizao.com/user/logout
+---
+2014/10/17 14:46:13 [info] [application] {"access_token":"979BA027F4E585C66DE3D1504C2EF211","expires_in":"7776000","refresh_token":"FFB19CA8F2115A40905E6627F11A8A08"}
+in /Library/WebServer/www/videochat/web/protected/controllers/UserController.php (43)
+in /Library/WebServer/www/videochat/web/index.php (14)
+2014/10/17 14:46:13 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('logout')
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/logout')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#6 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/user/logout
+HTTP_REFERER=http://www.efeizao.com/user/logout
+---
+2014/10/17 15:24:48 [error] [exception.CHttpException.200] exception 'CHttpException' with message '需要登录' in /Library/WebServer/www/videochat/web/protected/filters/LoginFilter.php:7
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilter.php(38): LoginFilter->preFilter(Object(CFilterChain))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('postStep')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruitment/pos...')
+#6 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#8 {main}
+REQUEST_URI=/recruitment/postStep/step/1
+HTTP_REFERER=http://www.efeizao.com/recruitment/step1
+---
+2014/10/17 15:28:23 [error] [exception.CHttpException.200] exception 'CHttpException' with message '需要登录' in /Library/WebServer/www/videochat/web/protected/filters/LoginFilter.php:7
+Stack trace:
+#0 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilter.php(38): LoginFilter->preFilter(Object(CFilterChain))
+#1 /Library/WebServer/www/videochat/lib/yii/framework/web/filters/CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#2 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(291): CFilterChain->run()
+#3 /Library/WebServer/www/videochat/lib/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(282): CController->run('postStep')
+#5 /Library/WebServer/www/videochat/lib/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('recruitment/pos...')
+#6 /Library/WebServer/www/videochat/lib/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#7 /Library/WebServer/www/videochat/web/index.php(14): CApplication->run()
+#8 {main}
+REQUEST_URI=/recruitment/postStep/step/1
+HTTP_REFERER=http://www.efeizao.com/recruitment/step1
+---

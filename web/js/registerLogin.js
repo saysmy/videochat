@@ -179,6 +179,9 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
 
     //注册弹窗
     exports.showRegisterPanel = function() {
+
+        _clear_auto_complete();
+
         var layer_id = $.layer({
                 type : 1,
                 title : false,
@@ -213,11 +216,29 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
     $(".overlay-loginBtn").click(function(){
         $("#overlay-login").css({"display":"block"});
         $("#overlay-reg").css({"display":"none"});
+
+        //表单错误tips处理
+        for (var k in register_tips_ids) {
+            layer.close(register_tips_ids[k]);
+            delete register_tips_ids[k];
+        };
+
+
         return false; 
     });
     $(".overlay-regBtn").click(function(){
+
+        _clear_auto_complete();
+
         $("#overlay-reg").css({"display":"block"});
-        $("#overlay-login").css({"display":"none"});  
+        $("#overlay-login").css({"display":"none"});
+
+        //表单错误tips处理
+        for (var k in login_tips_ids) {
+            layer.close(login_tips_ids[k]);
+            delete login_tips_ids[k];
+        };
+
         return false;
     });
 
@@ -230,7 +251,13 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
             layer.close(login_tips_ids[i]);
             delete login_tips_ids[i];
         }
-        layer.close($('#overlay-cont').attr('layer_id'))
+        layer.close($('#overlay-cont').attr('layer_id'));
+        //清空
+        $('#register-form input').val('');
+        $('#register-form select[name=age]').val(21);
+        $('#register-form select[name=height]').val(178);
+        $('#register-form select[name=weight]').val(63);
+        $('#login-form input').val('');
     })
 
     function _show_error_tips(message, dom, tips_ids) {
@@ -256,5 +283,14 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
         delete tips_ids[name];
     }
 
+    function _clear_auto_complete() {
+        if (
+            $('#register-form input[name=username]').val() == $('#login-form input[name=username]').val() &&
+            $('#register-form input[name=password]').val() == $('#login-form input[name=password]').val()
+        ) {
+            $('#register-form input[name=username]').val('');
+            $('#register-form input[name=password]').val('');
+        }
+    }
 })
 

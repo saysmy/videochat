@@ -6,7 +6,7 @@
 <meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <meta property="qc:admins" content="7261517777656512176375" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="/css/default_v4.css?v=20141011" rel="stylesheet" type="text/css" />
+<link href="/css/default_v4.css?v=20141017" rel="stylesheet" type="text/css" />
 <link href="/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
@@ -90,6 +90,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
                 <span>修改昵称： <input type="text" class="fi-nickname" id="newNickname"></span>
                 <span class="editBtn"><input type="button" class="btns btn-confirm" id="doEditNickname" value="确定">  <input type="button" class="btns btn-cancel" id="cancelEditNickname" value="取消"></span>
               </div>
+              <div class="editNotice">注：修改后，原昵称有可能被抢注</div>
             </div>
           </li>
          <li class="chong ml5 logined" style="display:none;"><a href="/recharge/center">充值</a></li>
@@ -102,6 +103,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
     <div class="top-column2">
       <div class="wrap posR">
         <a href="/" class="logo posA"></a>
+        <a href="/recruitment/step1" class="topJoin posA" title="我要当练习生"></a>
         <div class="topTime posA"></div>
       </div>
     </div>

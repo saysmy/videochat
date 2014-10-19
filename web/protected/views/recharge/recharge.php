@@ -1,11 +1,8 @@
   <script>
   $(document.body).ready(function() {
+      var logined = true;
       <?php if(!$userInfo):?>
-
-      seajs.use('registerLogin', function(r) {
-          r.showLoginPanel();
-      })
-
+        logined = false;
       <?php endif?>  
 
       $('#other-amount').focus(function() {
@@ -13,6 +10,13 @@
       })
 
       $('#do-recharge').click(function() {
+          if (!logined) {
+              seajs.use('registerLogin', function(r) {
+                r.showLoginPanel();
+              })
+              return false;
+          }
+
           if ($('input[name=amount]:checked').val() == 'certain') {
               var money = $('#certain-amount').val();
           }
@@ -24,6 +28,11 @@
               layer.msg('充值金额非法');
               return false;
           }
+
+          $("#overlay-mask").height($(document).height());
+          $("#overlay-mask").fadeIn();
+          $("#overlay-pay").fadeIn();
+
           $(this).attr('href', '/recharge/alipay/money/' + money);
           return true;
       })
@@ -46,11 +55,6 @@
         'left':(($(document).width())-500)/2,
         'top':(($(window).height())-280)/2
     });
-    $("#btnPay").click(function(){
-        $("#overlay-mask").height($(document).height());
-        $("#overlay-mask").fadeIn();
-        $("#overlay-pay").fadeIn();
-    })
     $(".close2").click(function(){
         $("#overlay-mask").fadeOut();
         $("#overlay-pay").fadeOut();  

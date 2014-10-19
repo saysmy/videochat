@@ -42,8 +42,10 @@ class UserController extends Controller
 
 		Yii::log(json_encode($access_token), CLogger::LEVEL_INFO);
 
+		$new = false;
 		$user = User::model()->find('qq_openid=:open_id', array(':open_id' => $open_id));
 		if($user === null) {//新用户
+			$new = true;
 			$user = new User();
 			$userInfo = $qc->get_user_info();
 			$user->username = QQ_LOGIN_PRE . $open_id;
@@ -72,6 +74,10 @@ class UserController extends Controller
 		$user->last_login_time = Date('Y-m-d H:i:s');
 		$user->setScenario('qqLogin');
 		if($user->save()) {
+			if ($new) {//新用户更新昵称防止重复
+				$user->nickname = $user->nickname . $user->id;
+				$user->save();
+			}
 			$_SESSION['uid'] = $user->id;
 			$_SESSION['nickname'] = $user->nickname;
 			$_SESSION['sex'] = $user->sex;
@@ -210,7 +216,7 @@ class UserController extends Controller
 		$this->render('ucenter', array('userInfo' => $userInfo));
 	}
 
-	public function actionLogout($callback) {
+	public function actionLogout($callback = '/') {
 		@session_start();
 		session_destroy();
 		setcookie('uid', 0, time() - 1, '/', DOMAIN);
@@ -346,6 +352,10 @@ class UserController extends Controller
 		}
 		if ($scene == 'nickname') {
 			$data['nickname'] = $form->nickname;
+			//查询昵称是否存在
+			if (User::model()->find('nickname=:nickname', array(':nickname' => $form->nickname))) {
+				return ToolUtils::ajaxOut(804, '该昵称已经存在');
+			}
 		}
 		else if ($scene == 'password'){
 			$data['password'] = $form->password;

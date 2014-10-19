@@ -96,12 +96,13 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 .topbar li.edit {width:39px;cursor:pointer;position:relative;z-index:99;}
 .topbar li.edit em {background:url(i4.gif) center center no-repeat;position:absolute;z-index:99;}
 .topbar li.edit span.editBg {width:39px;height:34px;background:url(editBg.gif) left bottom no-repeat;display:none;position:absolute;z-index:99;}
-.topbar li.edit .editCont {padding:10px 0;width:260px;border:#ddd 1px solid;background:#fff;position:absolute;top:33px;right:0;_right:-1px;z-index:98;display:none;}
+.topbar li.edit .editCont {padding:10px 0 0 0;width:260px;border:#ddd 1px solid;background:#fff;position:absolute;top:33px;right:0;_right:-1px;z-index:98;display:none;}
 .topbar li.edit .editInner {width:220px;}
 .topbar li.edit .editInner span {padding:10px 0;color:#999;display:block;}
 .topbar li.edit .editInner span b {font-size:16px;color:#4096c5;}
 .topbar li.edit .editInner span input.fi-nickname {padding:2px 5px;height:22px;line-height:22px;border:#e2e2e2 1px solid;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}
 .topbar li.edit .editInner span.editBtn {margin-top:9px;padding:15px 0;border-top:#E2E2E2 1px solid;text-align:center;}
+.editNotice {padding:10px;font-weight:bold;font-size:14px;color:#E42D31;text-align:center;background:#f5f5f5;border-top:#ddd 1px solid;}
 .btn-confirm,.btn-cancel {margin:0 11px;width:68px;height:31px;}
 .btn-confirm {background:url(btn-confirm.gif);}
 .btn-cancel {background:url(btn-cancel.gif);}
@@ -134,6 +135,7 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 .top-column2 {height:90px;}
 .logo {width:250px;height:80px;background:url(main.jpg);display:block;top:5px;left:0;}
 .topTime {width:180px;height:40px;background:url(main.jpg) 0 -80px;top:25px;right:10px;}
+.topJoin {width:144px;height:40px;background:url(main.jpg) -190px -80px;top:25px;right:240px;}
 .menuOuter {height:40px;background:#23B6E2;border-top:#23b6e2 2px solid;border-bottom:#5ca7dc 2px solid;}
 .menuList a {float:left;padding:0 20px;height:40px;font-size:16px;color:#fff;line-height:40px;display:block;}
 .menuList a.cur,.menuList a:hover {font-weight:bold;background:#86CEE6;text-decoration:none;}

@@ -53,12 +53,12 @@ class Recruitment extends CActiveRecord
 			array('images', 'required', 'on' => 'step3'),
 
 			array('step', 'numerical', 'integerOnly'=>true),
-			array('height, weight, age, id_card, mobile, qq', 'numerical', 'message' => '{attribute}不合法'),
+			array('height, weight, age, mobile, qq', 'numerical', 'message' => '{attribute}不合法'),
 			array('uid, age', 'length', 'max'=>10, 'message' => '{attribute}超长'),
 			array('name, qq, email', 'length', 'max'=>255, 'message' => '{attribute}超长'),
 			array('id_card', 'length', 'is'=>18, 'message' => '{attribute}必须为18位'),
 			array('mobile', 'length', 'is'=>11, 'message' => '{attribute}必须位11位'),
-			array('email', 'email'),
+			array('email', 'email', 'message' => '邮箱格式不正确'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, uid, name, age, height, weight, id_card, qq, email, mobile, images, step, create_time, update_time', 'safe', 'on'=>'search'),

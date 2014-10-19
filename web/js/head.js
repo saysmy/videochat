@@ -165,7 +165,7 @@ define(['user', 'registerLogin', 'plupload', 'jcrop'], function(require) {
                     setTimeout(function() {location.reload();}, 3000);
                 }                    
                 else {
-                    layer.alert('头像设置失败');
+                    layer.alert(resp.msg);
                 }
                
             }
@@ -185,7 +185,7 @@ define(['user', 'registerLogin', 'plupload', 'jcrop'], function(require) {
             data : {nickname : nickname},
             success : function(resp) {
                 if (resp.errno) {
-                    layer.alert('更新昵称失败');
+                    layer.alert(resp.msg);
                     return;
                 };
                 layer.msg('昵称更新成功', 3, 1);

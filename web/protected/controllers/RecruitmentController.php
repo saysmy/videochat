@@ -68,7 +68,7 @@ class RecruitmentController extends Controller {
             $rec->step = max($rec->step, 2);
             $rec->update_time = date('Y-m-d H:i:s');
              if (!$rec->save()) {
-                ToolUtils::ajaxOut(102, '', $rec->getErrors());
+                return ToolUtils::ajaxOut(102, current($rec->getErrors()), $rec->getErrors());
             }
         }
         else if ($step == 3) {

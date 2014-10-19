@@ -31,8 +31,7 @@ define(['layer', 'validate', 'registerLogin'], function(require) {
             height : 'required',
             id_card : {
                 required : true,
-                rangelength : [18,18],
-                number : true
+                rangelength : [18,18]
             },
             qq : {
                 required : true,
@@ -56,8 +55,7 @@ define(['layer', 'validate', 'registerLogin'], function(require) {
             height : '身高不能为空',
             id_card : {
                 required : '身份证号码不能为空',
-                rangelength : '身份证号码必须为18位',
-                number : '身份证号码不正确'
+                rangelength : '身份证号码必须为18位'
             },
             qq : {
                 required : 'QQ号码不能为空',
