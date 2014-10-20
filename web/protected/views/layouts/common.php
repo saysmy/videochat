@@ -31,6 +31,7 @@ seajs.config({
       'plupload' : 'plupload/plupload.full.min.js',
       'jcrop'    : 'jquery.Jcrop.min.js',
       'validate' : 'jquery.validate.min.js',
+      'registerLogin' : 'registerLogin.js?v=20141020'
   }
 })
 

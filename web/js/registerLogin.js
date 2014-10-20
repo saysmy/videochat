@@ -253,11 +253,18 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
         }
         layer.close($('#overlay-cont').attr('layer_id'));
         //清空
-        $('#register-form input').val('');
+        $('#register-form input[name=username]').val('');
+        $('#register-form input[name=password]').val('');
+        $('#register-form input[name=passwordRepeat]').val('');
+        $('#register-form input[name=captcha]').val('');
+        $('#register-form input[name=agree]')[0].checked = true;
         $('#register-form select[name=age]').val(21);
         $('#register-form select[name=height]').val(178);
         $('#register-form select[name=weight]').val(63);
-        $('#login-form input').val('');
+
+        $('#login-form input[name=username]').val('');
+        $('#login-form input[name=password]').val('');
+        $('#login-form #login-remember')[0].checked = true;
     })
 
     function _show_error_tips(message, dom, tips_ids) {
