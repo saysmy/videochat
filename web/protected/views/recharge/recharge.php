@@ -11,7 +11,7 @@
 
       $('#do-recharge').click(function() {
           if (!logined) {
-              seajs.use('registerLogin', function(r) {
+              seajs.use('user', function(r) {
                 r.showLoginPanel();
               })
               return false;

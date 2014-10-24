@@ -17,24 +17,24 @@
 </script>
 <![endif]-->
 <script>
+document.domain = '<?=MAIN_DOMAIN?>';
+<?php global $seaFiles;?>
 seajs.config({
   base: "/js/",
   alias: {
-      'layer' : 'layer/layer.min.js',
-      'plupload' : 'plupload/plupload.full.min.js',
-      'jcrop'    : 'jquery.Jcrop.min.js',
-      'validate' : 'jquery.validate.min.js',
-      'registerLogin' : 'registerLogin.js?v=20141020'
+    <?php foreach($seaFiles as $key => $file):?>
+    '<?=$key?>' : '<?=$file?>',
+    <?php endforeach;?>
+    '' : ''
   }
 })
+
 
 seajs.use('room');
 </script>
 </head>
 
 <body>
-<?php $this->beginWidget('application.widgets.RegisterLogin'); ?>
-<?php $this->endWidget(); ?>
 
 <div id="container"> 
   <!--roomHeader-->

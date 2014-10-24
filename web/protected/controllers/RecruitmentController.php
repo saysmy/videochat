@@ -75,6 +75,9 @@ class RecruitmentController extends Controller {
             $rec = Recruitment::model()->find('uid=:uid', array(':uid' => $uid));
             $rec->setScenario('step3');
             $images = $_POST['images'];
+            if (count($images) < 2) {
+                return ToolUtils::ajaxOut(103, '至少上传两张照片');
+            }
             foreach($images as $key => &$url) {
                 $path = ToolUtils::getPathFromUrl($url);
                 $newPath = str_replace('_tmp', '_recruit' . $key, $path);
@@ -85,7 +88,7 @@ class RecruitmentController extends Controller {
             $rec->step = max($rec->step ,3);
             $rec->update_time = date('Y-m-d H:i:s');
              if (!$rec->save()) {
-                return ToolUtils::ajaxOut(102, current($rec->getErrors()), $rec->getErrors());
+                return ToolUtils::ajaxOut(104, current($rec->getErrors()), $rec->getErrors());
             }
 
         }

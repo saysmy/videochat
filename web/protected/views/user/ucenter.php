@@ -12,12 +12,14 @@
     <div class="pageNav wrap">您当前的位置：<b>个人中心</b> &gt; 我的帐户</div>
     <div class="pageCont borA">
       <div class="pageSidebar">
-        <div class="userBox">
+        <div class="userBox mar">
           <dl>
             <dt><a href="#"><img src="<?=$userInfo['head_pic_1']?$userInfo['head_pic_1']:'/img/1_s1.jpg'?>" width="45" height="45"></a></dt>
             <dd>
               <b><?=$userInfo['nickname']?></b>
-              <span>(<?=$userInfo['age']?$userInfo['age']:'-'?>/<?=$userInfo['height']?$userInfo['height']:'-'?>/<?=$userInfo['weight']?$userInfo['weight']:'-'?>)</span>
+              <?php if($userInfo['age']):?>
+              <span>(<?=$userInfo['age']?>/<?=$userInfo['height']?>/<?=$userInfo['weight']?>)</span>
+              <?php endif?>
             </dd>
             <p class="clear"></p>
           </dl>
@@ -26,8 +28,8 @@
         </div>
         <div class="payService">
           <h2>客服帮助：</h2>
-          <span>联系客服：<a href="#"><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
-          <span>联系客服：<a href="#"><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
+          <span>联系客服：<a href="http://wpa.qq.com/msgrd?v=3&uin=3131657171&site=肥皂网络&menu=yes" target=_blank><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
+          <span>联系客服：<a href="http://wpa.qq.com/msgrd?v=3&uin=2627466908&site=肥皂网络&menu=yes" target=_blank><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
         </div>
       </div>
       <div class="pageContent">

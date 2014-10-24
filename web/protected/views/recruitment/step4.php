@@ -60,5 +60,11 @@
     </div>
   </div>
   <!--/mainbody-->
+<div class="overlay-info" id="overlay-passwordModify">
+  <div class="overlay-infoTitle posR">操作提示<a href="#" class="close2">x</a></div>
+  <div class="overlay-infoContent"> <span class="success">恭喜你，提交资料成功</span> <span>肥皂的工作人员将会在24小时内以电话和邮件的形式通知你的
+审核结果，并会沟通后续事宜，请注意保持电话的畅通。</span> <span>
+    <a href="#"><input type="button" value="确 定" class="btns btn-1 confirm"></a>    </span> </div>
+</div>
 
   <script>seajs.use('step')</script>

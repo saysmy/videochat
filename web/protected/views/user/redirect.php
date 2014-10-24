@@ -1,9 +1,5 @@
 <script>
-if (window.opener) {
-    window.opener.location.reload();
-    window.close();
-}
-else {
-    location.href = '<?=$redirect_url?>';
-}
+document.domain = '<?=MAIN_DOMAIN?>';
+window.opener.top.location.reload();
+window.close();
 </script>

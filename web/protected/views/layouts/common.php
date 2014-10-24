@@ -24,14 +24,15 @@
 <![endif]-->
 </head>
 <script>
+document.domain = '<?=MAIN_DOMAIN?>';
+<?php global $seaFiles;?>
 seajs.config({
   base: "/js/",
   alias: {
-      'layer' : 'layer/layer.min.js',
-      'plupload' : 'plupload/plupload.full.min.js',
-      'jcrop'    : 'jquery.Jcrop.min.js',
-      'validate' : 'jquery.validate.min.js',
-      'registerLogin' : 'registerLogin.js?v=20141020'
+    <?php foreach($seaFiles as $key => $file):?>
+    '<?=$key?>' : '<?=$file?>',
+    <?php endforeach;?>
+    '' : ''
   }
 })
 
@@ -43,8 +44,6 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 
 
 <body>
-<?php $this->beginWidget('application.widgets.RegisterLogin'); ?>
-<?php $this->endWidget(); ?>
 <div id="overlay-mask"></div>
 <div id="container" class="mar"> 
   <!--header-->
@@ -72,7 +71,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
                   <dt>管理中心</dt>
                   <dd>
                     <a href="/user/password" class="mPassword">修改密码</a>
-                    <a href="javascript:void(0)" class="liveRoom">直播房间</a>
+                    <a href="/recruitment/step1" class="liveRoom">直播房间</a>
                     <a href="/user/center" class="ucenter">个人中心</a>
                     <a href="/recharge/center" class="store">充值商城</a>
                     <p class="clear"></p>
@@ -132,7 +131,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <div style="display:none" id="item0Step2">
           <div class="upBoxLocal-left fl">
             <dl style="width:auto">
-              <dt style="width:auto;"><img src="/img/face225x265.jpg" id="uploadImage" style="max-height:265px;max-width:350px;min-height:200px;min-width:200px;"></dt>
+              <dt style="width:auto;"><img id="uploadImage" style="max-height:265px;max-width:350px;min-height:200px;min-width:200px;"></dt>
               <dd><input type="submit" class="btns btn-1" style="width:75px;height:32px;line-height:32px;" value="上 传" id="uploadHeadPic"> <input type="button" class="btns btn-2" style="width:75px;height:32px;line-height:32px;" value="重 选" id="pickAgain"></dd>
             </dl>
           </div>

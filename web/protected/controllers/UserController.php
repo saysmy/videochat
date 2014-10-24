@@ -144,7 +144,7 @@ class UserController extends Controller
 		$user->username = $form->username;
 		$user->password = $form->password;
 		$user->age = $form->age;
-		$user->height = $form->age;
+		$user->height = $form->height;
 		$user->weight = $form->weight;
 		//以下为默认值
 		$user->nickname = $form->username;
@@ -397,7 +397,7 @@ class UserController extends Controller
 		$form->newPassword = $newPassword;
 		$form->newPasswordRepeat = $newPasswordRepeat;
 		if (!$form->validate()) {
-			return ToolUtils::ajaxOut(901, '参数不合法', $form->getErrors());
+			return ToolUtils::ajaxOut(901, current($form->getErrors()));
 		}
 
 		$userIdentity = new UserIdentity(null, $form->password);
@@ -408,6 +408,14 @@ class UserController extends Controller
 		User::model()->updateByPk($uid, array('password' => $newPassword));
 
 		ToolUtils::ajaxOut(0);
+	}
+
+	public function actionShowRegister() {
+		$this->renderPartial('registerLogin', array('type' => 1));
+	}
+
+	public function actionShowLogin() {
+		$this->renderPartial('registerLogin', array('type' => 2));
 	}
 }
 

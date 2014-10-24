@@ -1,6 +1,5 @@
-define(['user', 'registerLogin', 'plupload', 'jcrop'], function(require) {
+define(['user', 'plupload', 'jcrop'], function(require) {
     var user = require('user');
-    var registerLogin = require('registerLogin');
     var headTmpUrl = null;
     var cropSize = null;
     user.getUserInfo(function(resp) {
@@ -16,8 +15,8 @@ define(['user', 'registerLogin', 'plupload', 'jcrop'], function(require) {
             $('.liveRoom').attr('href', resp.data.rUrl);
         }
     })
-    $("#user-reg").click(registerLogin.showRegisterPanel);
-    $("#user-login").click(registerLogin.showLoginPanel);
+    $("#user-reg").click(user.showRegisterPanel);
+    $("#user-login").click(user.showLoginPanel);
     //编辑昵称
     $("li.edit").hover(function(){
         $(".editBg").css({"display":"block"});

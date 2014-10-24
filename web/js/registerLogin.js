@@ -1,10 +1,10 @@
-define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(require, exports, module) {
+define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function(require, exports, module) {
     var register_tips_ids = {};
     var login_tips_ids = {};
     var user = require('user');
     var rsa = new (require('rsa').RSA);
-    var layer = require('layer');
     var common = require('common');
+    var layer = require('layer');
     // common.getPublicKey(function(key){rsa.setPublicKey});
 
     $('.goQQLogin').click(function() {
@@ -14,6 +14,7 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
 
     var isRegistering = false;
     $('#register-form').validate({
+        errorClass : 'validate-error',
         rules : {
             username : 'required',
             password : {
@@ -34,7 +35,7 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
             username : '用户名不能为空',
             password : {
                 required : '密码不能为空',
-                minlength : '密码至少为6字符'
+                minlength : '密码至少为6个字符'
             },
             passwordRepeat : {
                 required : '确认密码不能为空',
@@ -46,20 +47,8 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
             captcha : '验证码不能为空',
             agree : '请勾选协议'
         },
-        showErrors: function(map, list) {
-            if (this.currentElements.length == 1) {
-                if (list.length) {
-                    _show_error_tips(list[0].message, list[0].element, register_tips_ids);
-                }
-                else {
-                    _close_error_tips(this.currentElements[0], register_tips_ids);
-                }
-            }
-            else {
-                for (var i in list) {
-                    _show_error_tips(list[i].message, list[i].element, register_tips_ids);
-                }
-            }
+        showErrors : function(map, list) {
+            $('#register-error').text(list.length ? list[0].message : '');
         },
         submitHandler : function() {
             if (isRegistering) {
@@ -95,13 +84,12 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
 
                         if (ret.errno == 0) {
                             layer.msg('注册成功,自动登录中...', 2 ,{type : 9});
-                            setTimeout(function(){location.reload()}, 2000);
+                            setTimeout(function(){top.location.reload()}, 2000);
                         }
                         else {
                             $('#register-captcha').click();
                             for (var name in ret.data) {
-                                var dom = $("#register-area input[name=" + name + "]").length ? $("#register-area input[name=" + name + "]") : $("#register-area select[name=" + name + "]")
-                                _show_error_tips(ret.data[name], dom[0], register_tips_ids);
+                                layer.alert(ret.data[name]);break;
                             }
                         };
                     }
@@ -113,6 +101,7 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
 
     var isLogining = false;
     $('#login-form').validate({
+        errorClass : 'validate-error',
         rules : {
             username : 'required',
             password : 'required'
@@ -121,21 +110,7 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
             username : '用户名不能为空',
             password : '密码不能为空'
         },
-        showErrors: function(map, list) {
-            if (this.currentElements.length == 1) {
-                if (list.length) {
-                    _show_error_tips(list[0].message, list[0].element, login_tips_ids);
-                }
-                else {
-                    _close_error_tips(this.currentElements[0], login_tips_ids);
-                }
-            }
-            else {
-                for (var i in list) {
-                    _show_error_tips(list[i].message, list[i].element, login_tips_ids);
-                }
-            }
-        },
+        showErrors : function() {},
         submitHandler : function() {
             if (isLogining) {
                 return;
@@ -159,12 +134,11 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
 
                         if (ret.errno == 0) {
                             layer.msg('登录成功', 2 ,{type : 9});
-                            setTimeout(function(){location.reload()}, 2000);
+                            setTimeout(function(){top.location.reload()}, 2000);
                         }
                         else if (ret.errno == 400){
                             for (var name in ret.data) {
-                                var dom = $("#login-area input[name=" + name + "]");
-                                _show_error_tips(ret.data[name], dom[0], login_tips_ids);
+                                layer.alert(ret.data[name]);break;
                             }
                         }
                         else {
@@ -177,52 +151,9 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
        
     })
 
-    //注册弹窗
-    exports.showRegisterPanel = function() {
-
-        _clear_auto_complete();
-
-        var layer_id = $.layer({
-                type : 1,
-                title : false,
-                closeBtn: [0],
-                area : ['675px','465px'],
-                page : {dom : '#overlay-cont'},
-                border: [0]
-        });
-        $('#overlay-cont').attr('layer_id', layer_id);
-
-        $("#overlay-reg").css({"display":"block"});
-        $("#overlay-login").css({"display":"none"});
- 
-        return false;
-    }
-    exports.showLoginPanel = function(){
-        var layer_id = $.layer({
-                type : 1,
-                title : false,
-                closeBtn: [0],
-                area : ['675px','465px'],
-                page : {dom : '#overlay-cont'},
-                border: [0]
-        });
-
-        $('#overlay-cont').attr('layer_id', layer_id);
-
-        $("#overlay-login").css({"display":"block"});
-        $("#overlay-reg").css({"display":"none"});
-        return false; 
-    }
     $(".overlay-loginBtn").click(function(){
         $("#overlay-login").css({"display":"block"});
         $("#overlay-reg").css({"display":"none"});
-
-        //表单错误tips处理
-        for (var k in register_tips_ids) {
-            layer.close(register_tips_ids[k]);
-            delete register_tips_ids[k];
-        };
-
 
         return false; 
     });
@@ -233,62 +164,13 @@ define('registerLogin',['user', 'rsa', 'layer', 'common', 'validate'], function(
         $("#overlay-reg").css({"display":"block"});
         $("#overlay-login").css({"display":"none"});
 
-        //表单错误tips处理
-        for (var k in login_tips_ids) {
-            layer.close(login_tips_ids[k]);
-            delete login_tips_ids[k];
-        };
-
         return false;
     });
 
-    $(".close").click(function(){
-        for (var i in register_tips_ids) {
-            layer.close(register_tips_ids[i]);
-            delete register_tips_ids[i];
-        }
-        for (var i in login_tips_ids) {
-            layer.close(login_tips_ids[i]);
-            delete login_tips_ids[i];
-        }
-        layer.close($('#overlay-cont').attr('layer_id'));
-        //清空
-        $('#register-form input[name=username]').val('');
-        $('#register-form input[name=password]').val('');
-        $('#register-form input[name=passwordRepeat]').val('');
-        $('#register-form input[name=captcha]').val('');
-        $('#register-form input[name=agree]')[0].checked = true;
-        $('#register-form select[name=age]').val(21);
-        $('#register-form select[name=height]').val(178);
-        $('#register-form select[name=weight]').val(63);
-
-        $('#login-form input[name=username]').val('');
-        $('#login-form input[name=password]').val('');
-        $('#login-form #login-remember')[0].checked = true;
+    $(".close").click(function() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
     })
-
-    function _show_error_tips(message, dom, tips_ids) {
-        var name = dom.getAttribute('name');
-        if (tips_ids[name]) {
-            return;
-        }
-        var layer_id = layer.tips(message, name == 'agree' ? $('#agree-td') : dom, {
-            style: ['background-color:RGB(0, 191, 245); color:white', 'RGB(0, 191, 245)'],
-            guide : 3,
-            more : true,
-            fix : true
-        });
-        tips_ids[name] = layer_id;
-    }
-
-    function _close_error_tips(dom, tips_ids) {
-        var name = dom.getAttribute('name');
-        if (!tips_ids[name]) {
-            return;
-        }
-        layer.close(tips_ids[name]);
-        delete tips_ids[name];
-    }
 
     function _clear_auto_complete() {
         if (

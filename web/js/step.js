@@ -1,4 +1,4 @@
-define(['layer', 'validate', 'registerLogin'], function(require) {
+define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
     //step1
     var registerLogin = require('registerLogin');
 
@@ -211,7 +211,26 @@ define(['layer', 'validate', 'registerLogin'], function(require) {
                     layer.alert(resp.msg);
                 }
                 else {
-                    location.href = '/';
+                    var layer_id = $.layer({
+                            type : 1,
+                            title : false,
+                            closeBtn: [0],
+                            area : ['500px','280px'],
+                            page : {dom : '#overlay-passwordModify'},
+                            border: [0]
+                    });
+                    $('#overlay-passwordModify .close2').unbind('click');
+                    $('#overlay-passwordModify .close2').click(function() {
+                        layer.close(layer_id);
+                        return false;
+                    })
+                    $('#overlay-passwordModify .confirm').unbind('click');
+                    $('#overlay-passwordModify .confirm').click(function() {
+                        layer.close(layer_id);
+                        return false;
+                    })
+
+
                 }
             }
         })       

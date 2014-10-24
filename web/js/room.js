@@ -1,7 +1,7 @@
-define('room',['popCheckbox', 'registerLogin'], function(require, exports, module) {
+define('room',['popCheckbox', 'user'], function(require, exports, module) {
 	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e7.png', data : '{花}'},{img : '/img/face/e8.png', data : '{笑}'}];
 	var flower = {img : '/css/i33.jpg', data : '{花}'}
-	var registerLogin = require('registerLogin');
+	var user = require('user');
 	require('popCheckbox');
 	$(document).ready(function(){	
 		$(".roomChat tr:odd").css({"background":"#F4F4F4"});
@@ -279,7 +279,7 @@ define('room',['popCheckbox', 'registerLogin'], function(require, exports, modul
 	}
 
 	function sendMsg() {
-		swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : $("#msgArea").val().trim(), "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
+		swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : $.trim($("#msgArea").val()), "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
 		$("#msgArea").val('');
 	}
 
@@ -296,7 +296,7 @@ define('room',['popCheckbox', 'registerLogin'], function(require, exports, modul
 	exports.onChatMsg = function(errno, msg, msgData) {
 		var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言', 104 : '未登录'};
 		if (errno == 104) {
-			registerLogin.showLoginPanel();
+			user.showLoginPanel();
 			return;
 		};
 		if (errno != 0) {
@@ -328,7 +328,7 @@ define('room',['popCheckbox', 'registerLogin'], function(require, exports, modul
 	exports.onGiftMsg = function(errno, msg, data) {
 		var errors = {200 : '该用户不在聊天室', 201 : '验证登录失败，请重新登录', 202 : '获取用户数据失败', 203 : '货币不足，请充值'};
 		if (errno == 201) {
-			registerLogin.showLoginPanel();
+			user.showLoginPanel();
 		};
 		if (errno != 0) {addPropMsg(errors[errno], 1);return;};
 		var count = data.count;

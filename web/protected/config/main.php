@@ -7,6 +7,19 @@
 // CWebApplication properties can be configured here.
 include dirname(__FILE__) . '/define.php';
 
+global $seaFiles;
+
+$seaFiles = array(
+      'layer' => 'layer/layer.min.js',
+      'plupload' => 'plupload/plupload.full.min.js',
+      'jcrop'    => 'jquery.Jcrop.min.js',
+      'validate' => 'jquery.validate.min.js',
+      'registerLogin' => 'registerLogin.js?v=20141021',
+      'step'     => 'step.js?v=20141021',
+      'user'     => 'user.js?v=20141022',
+      'room'	 => 'room.js?v=20140223',
+);
+
 return array(
 	'id' => 'videochat',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',

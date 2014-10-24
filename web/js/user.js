@@ -1,4 +1,5 @@
-define(function(require, exports, module) {
+define(['layer'], function(require, exports, module) {
+    var layer = require('layer');
     exports.qqLogin = function(loginUrl) {
         var width = 700;
         var height = 500;
@@ -17,5 +18,33 @@ define(function(require, exports, module) {
                 callback(resp);
             }
         })
+    }
+
+    exports.showRegisterPanel = function() {
+        var layer_id = $.layer({
+            type: 2,
+            shadeClose: true,
+            title: false,
+            closeBtn: [0, false],
+            shade: [0.8, '#000'],
+            border: [0],
+            area: ['675px', '465px'],
+            iframe: {src: '/user/showRegister'}
+        });
+        return false;
+    }
+
+    exports.showLoginPanel = function() {
+        var layer_id = $.layer({
+            type: 2,
+            shadeClose: true,
+            title: false,
+            closeBtn: [0, false],
+            shade: [0.6, '#000'],
+            border: [0],
+            area: ['675px', '465px'],
+            iframe: {src: '/user/showLogin'}
+        }); 
+        return false;
     }
 })
