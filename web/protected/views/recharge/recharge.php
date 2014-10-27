@@ -109,9 +109,23 @@
             <tr>
                 <th>选择充值金额：</th>
               <td><input type="radio" checked name="amount" value="certain"> <select name="select2" id="certain-amount">
-                <option>100</option>
-                <option>200</option>
-              </select> 
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">3000</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="20000">20000</option>
+                <option value="50000">50000</option>
+                </select> 
                 元&nbsp;&nbsp;
                 <input type="radio" name="amount" value="other"> 
                 其他金额

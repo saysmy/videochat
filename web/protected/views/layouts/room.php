@@ -5,7 +5,7 @@
 <title>肥皂|中国最大的华裔美少年偶像の社区</title>
 <meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="/css/default.css?v=0.2" rel="stylesheet" type="text/css" />
+<link href="/css/default.css?v=20141027" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js?v=1.9.1'></script>
 <script type='text/javascript' src='/js/swfobject.js'></script>
 <script type='text/javascript' src='/js/raphael-min.js'></script>

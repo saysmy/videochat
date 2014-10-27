@@ -1,8 +1,8 @@
 define(function(require) {
 (function($) {
 	$.fn.extend({
-		popCheckbox : function(width, items, itemGenerator, chooseHandler) {
-			var view = $('<div class="popCheckbox" style="width:' + width + 'px;border:1px solid rgb(211,211,211);background-color:white;zoom:1;overflow:auto;display:none;"></div>');
+		popCheckbox : function(attr, items, itemGenerator, chooseHandler) {
+			var view = $('<div class="popCheckbox" style="width:' + attr.width + 'px;border:1px solid rgb(211,211,211);background-color:white;zoom:1;overflow:auto;display:none;"></div>');
 			this.click(function() {
 				view.css('display') == 'none' ? view.show() : view.hide();
 				return false;
@@ -11,6 +11,7 @@ define(function(require) {
 			for (var i in items) {
 				var item = items[i];
 				var itemView = itemGenerator(item, i);
+				itemView.attr('index', i);
 				itemView.click(function(){
 					chooseHandler.call(me, me.items[this.getAttribute('index')]);
 					me.view.hide();
@@ -23,8 +24,12 @@ define(function(require) {
 			//layout
 			this.parent().append(view);
 			this.parent().css('position', 'relative');
-			var x = this.position().left + this.width()/2 - this.view.width()/2;
-			var y = this.position().top - this.view.height();
+			var x = this.position().left + this.outerWidth(true)/2 - this.view.outerWidth(true)/2;
+			var y = this.position().top - this.view.outerHeight(true);
+			if (attr.offset) {
+				x += attr.offset[0];
+				y += attr.offset[1];
+			}
 			this.view.css({position : 'absolute', left : x + 'px', top : y + 'px'});
 		},
 		checkboxFill : function(data) {

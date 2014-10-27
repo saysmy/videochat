@@ -19,7 +19,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			if (e.which == 13) {sendMsg()};
 		})
 
-		$("#face").popCheckbox(200, faces, function(item, index) {
+		$("#face").popCheckbox({width : 200}, faces, function(item, index) {
 			return $('<div style="dispaly:inline-block;text-align:center;float:left;cursor:pointer;margin:2px" index="' + index + '""><img src="' + item.img + '" style="width:24px;height:24px;"/></div>');
 		}, function(item) {
 			$("#msgArea").checkboxFill(item['data']);
@@ -30,18 +30,18 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			return false;
 		})
 
-		$("#chooseProp").popCheckbox(200, prop, function(item, index) {
-			return $('<div title="' + item.price + '泡泡币" style="dispaly:inline-block;text-align:center;float:left;cursor:pointer;margin:2px" index="' + index + '""><img src="' + item.img + '" style="width:60px;height:60px;"/><br/><div style="display:inline-block;">' + item.name + '</div></div>');
+		$("#chooseProp").popCheckbox({width : 468, offset : [155, -25]}, prop, function(item, index) {
+			return $('<div title="' + item.price + '泡泡" style="' + (index%7 == 0 ? 'margin:10px 14px 10px 14px;' : 'margin:10px 8px;') + 'dispaly:inline-block;text-align:center;float:left;cursor:pointer;" index="' + index + '""><img src="' + item.imgPreview + '" style="width:48px;height:48px;"/><br/><div style="display:inline-block;">' + item.name + '</div></div>');
 		}, function(item) {
 			$("#chooseProp").text(item.name);
 			$("#chooseProp").attr('propId', item.id);
-			$("#choosePropImg")[0].src = item.img;
+			$("#choosePropImg")[0].src = item.imgPreview;
 		});
 
-		$("#propNum").parent().popCheckbox(60, [1,2,3,4,5,6,7,8,9,10], function(item, index) {
-			return $('<div index="' + index + '" style="text-align:center;cursor:pointer;">' + item + '</div>');
+		$("#propNum").parent().popCheckbox({width : 100}, [[1,1],[10, '10(十全十美)'],[30, '30(想你...)'],[66, '66(一切顺利)'],[188, '188(要抱抱)'],[520, '520(我爱你)'],[1314, '1314(一生一世)']], function(item, index) {
+			return $('<div style="cursor:pointer;height : 25px;padding-left:4px">' + item[1] + '</div>');
 		}, function(item) {
-			$("#propNum").text(item);
+			$("#propNum").text(item[0]);
 		})
 
 		$("#panelArrow").click(function() {
@@ -260,7 +260,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			$('#giftMsgPanel ul').append($('<li>' + msgData + '</li>'));
 		}
 		else {
-			$('#giftMsgPanel ul').append($('<li><a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '" width="60" height="60"> <b>x' + msgData.count + '</b></li>'));	
+			$('#giftMsgPanel ul').append($('<li><a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '"> <b>x' + msgData.count + '</b></li>'));	
 		}
 		$("#giftMsgPanel").scrollTop($("#giftMsgPanel")[0].scrollHeight - $("#giftMsgPanel").height());
 

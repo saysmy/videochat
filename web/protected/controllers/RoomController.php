@@ -41,7 +41,7 @@ class RoomController extends CController
 		$propRecords = Property::model()->findAll(array('order' => 'price'));
 		$prop = array();
 		foreach($propRecords as $propRecord) {
-			$prop[] = array('id' => $propRecord['id'], 'img' => $propRecord['img'], 'name' => $propRecord['name'], 'price' => $propRecord['price']);
+			$prop[] = array('id' => $propRecord['id'], 'imgPreview' => $propRecord['imgPreview'], 'img' => $propRecord['img'], 'name' => $propRecord['name'], 'price' => $propRecord['price']);
 		}	
 		return $prop;
 	}

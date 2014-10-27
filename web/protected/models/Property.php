@@ -6,7 +6,8 @@
  * The followings are the available columns in table 'property':
  * @property integer $id
  * @property string $name
- * @property string $price
+ * @property double $price
+ * @property string $imgPreview
  * @property string $img
  */
 class Property extends CActiveRecord
@@ -37,12 +38,12 @@ class Property extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, img', 'required'),
-			array('name, img', 'length', 'max'=>255),
-			array('price', 'length', 'max'=>10),
+			array('name, price, imgPreview, img', 'required'),
+			array('price', 'numerical'),
+			array('name, imgPreview, img', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, price, img', 'safe', 'on'=>'search'),
+			array('id, name, price, imgPreview, img', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +67,7 @@ class Property extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'price' => 'Price',
+			'imgPreview' => 'Img Preview',
 			'img' => 'Img',
 		);
 	}
@@ -83,7 +85,8 @@ class Property extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('price',$this->price,true);
+		$criteria->compare('price',$this->price);
+		$criteria->compare('imgPreview',$this->imgPreview,true);
 		$criteria->compare('img',$this->img,true);
 
 		return new CActiveDataProvider($this, array(

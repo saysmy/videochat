@@ -245,7 +245,7 @@ dl.gifts dd span {padding-right:5px;height:20px;line-height:20px;background:url(
 .roomAct li {float:left;padding:0 2px;height:28px;line-height:28px;}
 .roomAct li span {height:26px;border:#909090 1px solid;display:block;}
 .roomAct li span i {float:left;height:26px;line-height:26px;text-align:center;display:block;overflow:hidden}
-.roomAct li span em {float:right;width:16px;height:26px;background:url(main.jpg) -260px -50px;cursor:pointer}
+.roomAct li span em {float:right;width:16px;height:26px;background:url(main.jpg) -318px -50px;cursor:pointer}
 .roomAct li.giftsNum {width:60px;}
 .roomAct li.giftsNum span i {width:40px;}
 .roomAct li.giftsName {width:110px;}
