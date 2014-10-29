@@ -1,6 +1,6 @@
-define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
+define(['layer', 'validate', 'user', 'plupload'], function(require) {
     //step1
-    var registerLogin = require('registerLogin');
+    var user = require('user');
 
     $('#step1Next').click(function() {
         $.ajax({
@@ -10,7 +10,7 @@ define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
-                        return registerLogin.showLoginPanel();
+                        return user.showLoginPanel();
                     };
                     layer.alert(resp.msg);
                 }
@@ -88,7 +88,7 @@ define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
                 success : function(resp) {
                     if (resp.errno) {
                         if (resp.errno == -100) {
-                            return registerLogin.showLoginPanel();
+                            return user.showLoginPanel();
                         };
                         layer.alert(resp.msg);
                     }
@@ -186,7 +186,7 @@ define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
-                        return registerLogin.showLoginPanel();
+                        return user.showLoginPanel();
                     };
                     layer.alert(resp.msg);
                 }
@@ -206,7 +206,7 @@ define(['layer', 'validate', 'registerLogin', 'plupload'], function(require) {
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
-                        return registerLogin.showLoginPanel();
+                        return user.showLoginPanel();
                     };
                     layer.alert(resp.msg);
                 }

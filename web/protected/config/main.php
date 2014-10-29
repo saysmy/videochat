@@ -15,7 +15,7 @@ $seaFiles = array(
       'jcrop'    => 'jquery.Jcrop.min.js',
       'validate' => 'jquery.validate.min.js',
       'registerLogin' => 'registerLogin.js?v=20141021',
-      'step'     => 'step.js?v=20141021',
+      'step'     => 'step.js?v=20141029',
       'user'     => 'user.js?v=20141022',
       'room'	 => 'room.js?v=20141027',
       'popCheckbox' => 'popCheckbox.js?v=20141027',
