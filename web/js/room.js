@@ -1,6 +1,6 @@
 define('room',['popCheckbox', 'user'], function(require, exports, module) {
-	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e7.png', data : '{花}'},{img : '/img/face/e8.png', data : '{笑}'}];
-	var flower = {img : '/css/i33.jpg', data : '{花}'}
+	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e8.png', data : '{笑}'}];
+	var flower = {img : '/img/face/e7.png', data : '{花}'}
 	var user = require('user');
 	require('popCheckbox');
 	$(document).ready(function(){	
@@ -19,7 +19,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			if (e.which == 13) {sendMsg()};
 		})
 
-		$("#face").popCheckbox({width : 200}, faces, function(item, index) {
+		$("#face").popCheckbox({width : 200, offset : [0, -5]}, faces, function(item, index) {
 			return $('<div style="dispaly:inline-block;text-align:center;float:left;cursor:pointer;margin:2px" index="' + index + '""><img src="' + item.img + '" style="width:24px;height:24px;"/></div>');
 		}, function(item) {
 			$("#msgArea").checkboxFill(item['data']);
@@ -38,10 +38,10 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			$("#choosePropImg")[0].src = item.imgPreview;
 		});
 
-		$("#propNum").parent().popCheckbox({width : 100}, [[1,1],[10, '10(十全十美)'],[30, '30(想你...)'],[66, '66(一切顺利)'],[188, '188(要抱抱)'],[520, '520(我爱你)'],[1314, '1314(一生一世)']], function(item, index) {
+		$("#propNum").parent().parent().find('em').popCheckbox({width : 100}, [[1,1],[10, '10(十全十美)'],[30, '30(想你...)'],[66, '66(一切顺利)'],[188, '188(要抱抱)'],[520, '520(我爱你)'],[1314, '1314(一生一世)']], function(item, index) {
 			return $('<div style="cursor:pointer;height : 25px;padding-left:4px">' + item[1] + '</div>');
 		}, function(item) {
-			$("#propNum").text(item[0]);
+			$("#propNum").val(item[0]);
 		})
 
 		$("#panelArrow").click(function() {
@@ -67,7 +67,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			};
 			is_flower_loading = true;
 			var me = this;
-			loading_circle(12, 10000, 'flower-loading', function() {
+			loading_circle(12, 45000, 'flower-loading', function() {
 				is_flower_loading = false;
 				$(me).css('cursor', 'pointer');
 			});
@@ -260,7 +260,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			$('#giftMsgPanel ul').append($('<li>' + msgData + '</li>'));
 		}
 		else {
-			$('#giftMsgPanel ul').append($('<li><a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '"> <b>x' + msgData.count + '</b></li>'));	
+			$('#giftMsgPanel ul').append($('<li><a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '" width=48 height=48> <b>x' + msgData.loop + '</b></li>'));	
 		}
 		$("#giftMsgPanel").scrollTop($("#giftMsgPanel")[0].scrollHeight - $("#giftMsgPanel").height());
 
@@ -279,7 +279,12 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 	}
 
 	function sendMsg() {
-		swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : $.trim($("#msgArea").val()), "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
+		var msg = $.trim($("#msgArea").val());
+		if (msg.length > 50) {
+			addPrivateRoomMsg("每次发送文本不能超过50个字符", 1);
+			return;
+		}
+		swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : msg, "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
 		$("#msgArea").val('');
 	}
 
@@ -288,7 +293,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			addPropMsg('请选择礼物', 1);
 			return;
 		}
-		var num = parseInt($("#propNum").text());
+		var num = parseInt($("#propNum").val());
 		if (!num) {return};
 		swfobject.getObjectById("roomPlayer").doSendGift($("#chooseProp").attr('propId'), num, $("#propTo").attr("to"));
 	}
@@ -331,14 +336,19 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			user.showLoginPanel();
 		};
 		if (errno != 0) {addPropMsg(errors[errno], 1);return;};
-		var count = data.count;
-		data.count = 1;
-		for (var i = 0; i < count; i++) {
-			addPropMsg(data, 2);
-		}
+		sendGiftDelay(data, 0);
 		if (data.showProp) {
 			updatePropMaxinfo(data);
 		};
+	}
+
+	function sendGiftDelay(data, loop) {
+		if (data.count == loop) {
+			return;
+		}
+		data.loop = ++loop;
+		addPropMsg(data, 2);
+		setTimeout(function() {sendGiftDelay(data, loop);}, 5);
 	}
 
 	exports.changeReceiver = function(uid) {
@@ -374,7 +384,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
         };
         var a1 = 270 + 1;
         var a2 = 270 + 360;
-        var interval = 100;
+        var interval = 200;
         var step = Math.floor(360 / Math.floor(t / interval));
         var path = paper.path().attr({segment: [r, r, r, a1, a2], opacity : .2});
         var t = setInterval(function() {

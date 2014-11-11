@@ -20,7 +20,7 @@
           </dl>
           <ul>
             <li>数量</li>
-            <li class="giftsNum"><span style="width:60px;"><i id="propNum">1</i><em></em></span></li>
+            <li class="giftsNum"><span style="width:60px;"><i><input id="propNum" value=1 style="border:0px;text-align:center;width:40px;padding:0px"></input></i><em></em></span></li>
             <li>&nbsp;给&nbsp;</li>
             <li class=""><span><i id="propTo" to='<?=$mid?>' style="width:110px;overflow:hidden;text-align:center"><?=$this->moderatorUserInfo['nickname']?></i></span></li>
             <li class="giftsBtns"><a href="javascript:void(0)" class="btns btn-a" id="sendGiftBtn">赠送</a><a href="/recharge/center" class="btns btn-b" target="_blank">充值</a></li>
@@ -47,7 +47,7 @@
             </div>
             <div class="roomPannel"><a href="#" id="panelArrow" class="arrow_up"></a></div>
             <div class="roomChat2" style="height:85px;" id="privateChatPanel">
-              <span style="color:#f00;">【公告】TopStage正式上线欢迎各位名媛</span>
+              <span style="color:#f00;">【千万情意，唯独为你】肥皂—中国最大的华裔美少年の社区</span>
               <ul>
               </ul>
             </div>

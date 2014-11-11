@@ -63,7 +63,7 @@ class User extends CActiveRecord
 			array('mobile', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password, nickname, sex, height, weight, age, head_pic_1, email, email_validated, mobile, mobile_validated, qq_openid, qq_accesstoken, qq_accessexpire, coin, type, dead_user_status, source, register_time, last_login_time', 'safe', 'on'=>'search'),
+			array('id, username, password, nickname, true_name, sex, height, weight, age, head_pic_1, email, email_validated, mobile, mobile_validated, qq_openid, qq_accesstoken, qq_accessexpire, coin, type, dead_user_status, source, register_time, last_login_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -123,6 +123,7 @@ class User extends CActiveRecord
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('nickname',$this->nickname,true);
+		$criteria->compare('true_name',$this->nickname,true);
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('height',$this->height,true);
 		$criteria->compare('weight',$this->weight,true);

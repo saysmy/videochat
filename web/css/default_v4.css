@@ -141,6 +141,7 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 .menuList a.cur,.menuList a:hover {font-weight:bold;background:#86CEE6;text-decoration:none;}
 .sliderOuter {height:382px;}
 .sliderCont {height:382px;overflow:hidden;}
+#sliderItem a {display:block;}
 .sliderItem0 {height:382px;background:url(../img/banner_01.jpg) center 0 no-repeat;}
 .sliderItem1 {height:382px;background:url(../img/banner-0.jpg) center 0 no-repeat;}
 .sliderItem2 {height:382px;background:url(../img/banner_01.jpg) center -382px no-repeat;}

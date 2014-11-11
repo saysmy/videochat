@@ -46,7 +46,7 @@ class Room extends CActiveRecord
 			array('max_user, mid, score', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, announcement, logo, description, max_user, mid, moderator_sign, score', 'safe', 'on'=>'search'),
+			array('id, name, announcement, logo, description, max_user, mid, moderator_sign, moderator_desc, score', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +75,7 @@ class Room extends CActiveRecord
 			'max_user' => 'Max User',
 			'mid' => 'Mid',
 			'moderator_sign' => 'Moderator Sign',
+			'moderator_desc' => 'Moderator Desc',
 			'score' => 'Score',
 		);
 	}
@@ -98,6 +99,7 @@ class Room extends CActiveRecord
 		$criteria->compare('max_user',$this->max_user,true);
 		$criteria->compare('mid',$this->mid,true);
 		$criteria->compare('moderator_sign',$this->moderator_sign,true);
+		$criteria->compare('moderator_desc',$this->moderator_sign,true);
 		$criteria->compare('score',$this->score,true);
 
 		return new CActiveDataProvider($this, array(

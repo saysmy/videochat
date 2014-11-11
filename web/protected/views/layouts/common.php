@@ -6,7 +6,7 @@
 <meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <meta property="qc:admins" content="7261517777656512176375" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="/css/default_v4.css?v=20141017" rel="stylesheet" type="text/css" />
+<link href="/css/default_v4.css?v=20141103" rel="stylesheet" type="text/css" />
 <link href="/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
@@ -63,7 +63,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
               <div class="settingLeft fl">
                 <dl>
                   <dt><img src="/img/default.jpg" width="80" height="80"></dt>
-                  <dd><a href="#" class="upface">上传头像</a></dd>
+                  <dd><a href="javascript:void(0)" class="upface">上传头像</a></dd>
                 </dl>
               </div>
               <div class="settingRight fl">

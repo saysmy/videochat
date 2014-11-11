@@ -36,6 +36,7 @@ define(['user', 'plupload', 'jcrop'], function(require) {
     });
 
     //上传头像弹窗
+    var jcrop_api;
     var loadingId = 0;
     var uploader = new plupload.Uploader({
         runtimes : 'html5,flash,silverlight,html4',
@@ -77,10 +78,13 @@ define(['user', 'plupload', 'jcrop'], function(require) {
                 $('.addPic').hide();
                 $('#item0Step2').show();
                 $('#uploadImage').attr('src', url);
+                $('#uploadImage').css({width : 'auto', height : 'auto'});
                 $('#uploadImage').Jcrop({
                     setSelect : [0, 0, 200, 200],
                     allowResize : false,
                     onChange: updatePreview
+                }, function() {
+                    jcrop_api = this;
                 })
                 $('#uploadImage').load(function() {
                     $('#headPreview').attr({
@@ -142,6 +146,7 @@ define(['user', 'plupload', 'jcrop'], function(require) {
     $('#pickAgain').click(function() {
         $('.addPic').show();
         $('#item0Step2').hide();
+        jcrop_api.destroy();
     })
 
     var reIndex = null;

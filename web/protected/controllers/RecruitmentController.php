@@ -123,4 +123,20 @@ class RecruitmentController extends Controller {
         return $rec;
     }
 
+    //remote http call
+    public function actionCheckStep($step) {
+        $uid = CUser::checkLogin();
+        $rec = Recruitment::model()->find('uid=:uid', array(':uid' => $uid));
+        if (!$rec) {
+            $db_step = 0;
+        }
+        else {
+            $db_step = $rec->step;
+        }
+        if ($db_step + 1 < $step) {
+            return Tools::ajaxOut(0, '', array('redirect' => $db_step + 1))
+        }
+        return Tools::ajaxOut(0, '', array('rec' => $rec));
+    }
+
 }

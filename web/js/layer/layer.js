@@ -12,7 +12,7 @@
 ;!function(window, undefined){        
 "use strict";
 
-var path = '/js/layer/', //组件存放目录，为空表示自动获取(不用填写host，相对站点的根目录即可)。
+var path = 'http://www.efeizao.com/js/layer/', //组件存放目录，为空表示自动获取(不用填写host，相对站点的根目录即可)。
 
 $, win, ready = {
     getPath: function(){

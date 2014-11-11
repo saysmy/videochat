@@ -53,6 +53,7 @@ class UserController extends Controller
 			$user->sex = $userInfo['gender'] == '女' ? 2 : 1;
 			$user->head_pic_1 = $userInfo['figureurl_qq_1'];
 			//以下为默认值
+			$user->true_name = '';
 			$user->password = '';
 			$user->height = 0;
 			$user->weight = 0;
@@ -148,6 +149,7 @@ class UserController extends Controller
 		$user->weight = $form->weight;
 		//以下为默认值
 		$user->nickname = $form->username;
+		$user->true_name = '';
 		$user->sex = 0;
 		$user->head_pic_1 = DEFAULT_HEAD_PIC;
 		$user->email = '';
@@ -416,6 +418,17 @@ class UserController extends Controller
 
 	public function actionShowLogin() {
 		$this->renderPartial('registerLogin', array('type' => 2));
+	}
+
+	//remote http call
+	public function actionCGetUserInfo($uid, $session) {
+		$uid = CUser::checkLogin($uid, $session);
+		if ($uid === false) {
+			return ToolUtils::ajaxOut(100, 'not login');
+		}
+		$user = CUser::getInfoByUid($uid);
+
+		ToolUtils::ajaxOut(0, '', $user);
 	}
 }
 

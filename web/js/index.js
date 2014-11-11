@@ -15,8 +15,8 @@ define('index', function(require) {
           var current = $('#sliderPanel span.on');
           current.removeClass('on');
           toIcon.addClass('on');
-          $('#sliderItem .sliderItem' + current.attr('index')).fadeOut(200, function() {
-              $('#sliderItem .sliderItem' + index).fadeIn(200);
+          $('#sliderItem .sliderItem' + current.attr('index')).parent().fadeOut(200, function() {
+              $('#sliderItem .sliderItem' + index).parent().fadeIn(200);
           })         
       }
 
