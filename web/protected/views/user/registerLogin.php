@@ -5,7 +5,11 @@
 <title>肥皂|中国最大的华裔美少年偶像の社区</title>
 <meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
+<?php if ($scene == 'star'):?>
+<link href="http://<?=MEDIA_SITE_DOMAIN?>/css/default.css" rel="stylesheet" type="text/css">
+<?php else:?>
 <link href="/css/default_v4.css?v=20141017" rel="stylesheet" type="text/css">
+<?php endif?>
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
 <script>
@@ -27,7 +31,9 @@ document.domain = "<?=MAIN_DOMAIN?>";
 <div id="overlay-cont" style="display:block">
   <!--overlay-reg-->
   <div class="overlay-inner posR" id="overlay-reg" style="<?=$type == 1 ? 'display:block' : ''?>">
+    <?php if ($scene === null):?>
     <span class="close">x</span>
+    <?php endif?>
     <div class="overlay-fm posA">
       <h1>立即注册，就可以跟 <b>帅哥</b> 互动聊天~</h1>
       <form id="register-form">
@@ -81,13 +87,15 @@ document.domain = "<?=MAIN_DOMAIN?>";
     </div>
     <div class="overlay-login posA">
       <h1>已有肥皂帐号 <a href="#" class="overlay-loginBtn">马上登录</a></h1>
-      <div class="overlay-quick mtb10"><a href="#"><img src="/img/btn-qq.jpg" width="151" height="36" class="goQQLogin"></a></div>
+      <div class="overlay-quick mtb10"><a href="#"><img src="<?php if ($scene === 'star'){echo 'http://' . MEDIA_SITE_DOMAIN;}?>/img/btn-qq.jpg" width="151" height="36" class="goQQLogin"></a></div>
     </div>
   </div>
   <!--/-->
   <!--overlay-login-->
   <div class="overlay-inner posR" id="overlay-login" style="<?=$type == 2 ? 'display:block' : ''?>">
+    <?php if ($scene === null):?>
     <span class="close">x</span>
+    <?php endif?>
     <div class="overlay-fm posA">
       <h1>立即注册，就可以跟 <b>帅哥</b> 互动聊天~</h1>
       <form id="login-form">
@@ -109,7 +117,7 @@ document.domain = "<?=MAIN_DOMAIN?>";
     </div>
     <div class="overlay-login posA">
       <h1>没有肥皂帐号 <a href="#" class="overlay-regBtn">立即注册</a></h1>
-      <div class="overlay-quick mtb10"><a href="#"><img src="/img/btn-qq.jpg" width="151" height="36" class="goQQLogin"></a></div>
+      <div class="overlay-quick mtb10"><a href="#"><img src="<?php if ($scene === 'star'){echo 'http://' . MEDIA_SITE_DOMAIN;}?>/img/btn-qq.jpg" width="151" height="36" class="goQQLogin"></a></div>
     </div>
   </div>
   <!--/-->
@@ -117,9 +125,10 @@ document.domain = "<?=MAIN_DOMAIN?>";
 <!--/-->
 </body>
 </html>
-
 <script>
-var registerLogin = seajs.use('registerLogin');
-registerLogin.qqLoginUrl = '<?=CUser::getQQLoginUrl();?>';
+seajs.use('registerLogin', function(registerLogin) {
+    registerLogin.qqLoginUrl = '<?=CUser::getQQLoginUrl($callback);?>';
+    registerLogin.callback = "<?=$callback?>";
+});
 </script>
 

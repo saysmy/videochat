@@ -5,6 +5,7 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
     var rsa = new (require('rsa').RSA);
     var common = require('common');
     var layer = require('layer');
+    var registerLogin = require('registerLogin');
     // common.getPublicKey(function(key){rsa.setPublicKey});
 
     $('.goQQLogin').click(function() {
@@ -59,7 +60,9 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
             isRegistering = true;
             var me = this;
 
-            common.getPublicKey(function(key) {
+            common.getPublicKey(function(keyData) {
+                var key = keyData['key'];
+                var session_id = keyData['session_id'];
                 rsa.setPublicKey(key);
                 var data = {};
                 $("#register-area input[name]").each(function() {
@@ -74,7 +77,7 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
                     data[this.name] = this.value;
                 })
                 $.ajax({
-                    url : '/user/register',
+                    url : '/user/register/session_id/' + session_id,
                     data : data, 
                     type : 'post',
                     dataType : 'json',
@@ -84,7 +87,7 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
 
                         if (ret.errno == 0) {
                             layer.msg('注册成功,自动登录中...', 2 ,{type : 9});
-                            setTimeout(function(){top.location.reload()}, 2000);
+                            setTimeout(function(){registerLogin.callback ? location.href = common.appendArgv(registerLogin.callback, {session : ret['data'].session_id, uid : ret['data'].uid}) : top.location.reload()}, 2000);
                         }
                         else {
                             $('#register-captcha').click();
@@ -120,11 +123,13 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
             isLogining = true;
             var me = this;
 
-            common.getPublicKey(function(key) {
+            common.getPublicKey(function(keyData) {
+                var key = keyData['key'];
+                var session_id = keyData['session_id'];
                 rsa.setPublicKey(key);
                 var data = {username : $('#login-area input[name=username]').val(), 'password' : rsa.encrypt($('#login-area input[name=password]').val()), remember : $('#login-remember')[0].checked};
                 $.ajax({
-                    url : '/user/login',
+                    url : '/user/login/session_id/' + session_id,
                     type : 'post',
                     data : data,
                     dataType : 'json',
@@ -134,7 +139,7 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
 
                         if (ret.errno == 0) {
                             layer.msg('登录成功', 2 ,{type : 9});
-                            setTimeout(function(){top.location.reload()}, 2000);
+                            setTimeout(function(){registerLogin.callback ? location.href = common.appendArgv(registerLogin.callback, {session : ret['data'].session_id, uid : ret['data'].uid}) : top.location.reload()}, 2000);
                         }
                         else if (ret.errno == 400){
                             for (var name in ret.data) {
@@ -171,6 +176,8 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
         var index = parent.layer.getFrameIndex(window.name);
         parent.layer.close(index);
     })
+
+    jQuery(document).on('click', '#register-captcha', function(){ jQuery.ajax({ url: "\/user\/captcha\/refresh\/1", dataType: 'json', cache: false, success: function(data) { jQuery('#register-captcha').attr('src', data['url']); jQuery('body').data('user/captcha.hash', [data['hash1'], data['hash2']]); } }); return false; });
 
     function _clear_auto_complete() {
         if (

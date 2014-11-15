@@ -25,10 +25,10 @@ class CUser {
 	}
 
 	static public function checkLogin($uid = null, $sid = null) {
-		@session_start();
 		if ($sid) {
 			session_id($sid);
 		}
+		@session_start();
 		if (!$uid) {
 			if (!isset($_COOKIE['uid'])) {
 				return false;
@@ -41,8 +41,8 @@ class CUser {
 		return $uid;		
 	}
 
-	static public function getQQLoginUrl() {
-		return 'http://' . DOMAIN . '/user/qqLogin/?callback=' . urlencode('http://' . DOMAIN . $_SERVER['PHP_SELF']);
+	static public function getQQLoginUrl($callback = '') {
+		return 'http://' . DOMAIN . '/user/qqLogin/?callback=' . urlencode($callback);
 	}
 
 	static private function getBaseInfoByRecord($record) {

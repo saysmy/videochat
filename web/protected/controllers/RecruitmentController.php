@@ -6,7 +6,7 @@ class RecruitmentController extends Controller {
     public function filters() {
         return array(
             array(
-                'application.filters.LoginFilter - step1',
+                'application.filters.LoginFilter - step1,cCheckStep',
             ),
         );
     }
@@ -64,7 +64,7 @@ class RecruitmentController extends Controller {
         else if ($step == 2) {
             $rec = Recruitment::model()->find('uid=:uid', array(':uid' => $uid));
             $rec->setScenario('step2');
-            $rec->attributes = $_POST;
+            $rec->attributes = $_REQUEST;
             $rec->step = max($rec->step, 2);
             $rec->update_time = date('Y-m-d H:i:s');
              if (!$rec->save()) {
@@ -74,7 +74,7 @@ class RecruitmentController extends Controller {
         else if ($step == 3) {
             $rec = Recruitment::model()->find('uid=:uid', array(':uid' => $uid));
             $rec->setScenario('step3');
-            $images = $_POST['images'];
+            $images = $_REQUEST['images'];
             if (count($images) < 2) {
                 return ToolUtils::ajaxOut(103, '至少上传两张照片');
             }
@@ -124,8 +124,8 @@ class RecruitmentController extends Controller {
     }
 
     //remote http call
-    public function actionCheckStep($step) {
-        $uid = CUser::checkLogin();
+    public function actionCCheckStep($step, $uid, $session) {
+        $uid = CUser::checkLogin($uid, $session);
         $rec = Recruitment::model()->find('uid=:uid', array(':uid' => $uid));
         if (!$rec) {
             $db_step = 0;
@@ -134,9 +134,12 @@ class RecruitmentController extends Controller {
             $db_step = $rec->step;
         }
         if ($db_step + 1 < $step) {
-            return Tools::ajaxOut(0, '', array('redirect' => $db_step + 1))
+            return ToolUtils::ajaxOut(0, '', array('redirect' => $db_step + 1));
         }
-        return Tools::ajaxOut(0, '', array('rec' => $rec));
+        if ($rec) {
+            $rec = $rec->toArray();
+        }
+        return ToolUtils::ajaxOut(0, '', array('rec' => $rec));
     }
 
 }

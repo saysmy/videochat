@@ -1,4 +1,6 @@
 <?php
+//解决跨域iframe 设置cookie无效的问题
+header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
 
 class UserController extends Controller
 {
@@ -26,12 +28,12 @@ class UserController extends Controller
 
 		$qc = new QC();
 
-		//QQ回调老域名，新域名在QQ开发平台设置了，但是不生效
-		$qc->set_callback_argv('http://' . 'www.feizao001.com' . '/user/QQCallback/', array('redirect_url' => $callback));
+		$qc->set_callback_argv('http://' . DOMAIN . '/user/QQCallback', array('redirect_url' => $callback));
 		header('Location: ' . $qc->get_login_url());
 	}
 
 	public function actionQQCallback($redirect_url) {
+		$redirect_url = urldecode($redirect_url);
 		@session_start();
 
 		include dirname(__FILE__) . '/../../../lib/QQConnectAPI/qqConnectAPI.php';
@@ -84,7 +86,12 @@ class UserController extends Controller
 			$_SESSION['sex'] = $user->sex;
 			setcookie('uid', $user->id, 0, '/', DOMAIN);
 			setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
-			$this->renderPartial('redirect', array('redirect_url' => str_replace('&amp;', '&', CHtml::encode($redirect_url))));
+			if ($redirect_url) {
+				header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $user->id)));
+			}
+			else {
+				$this->renderPartial('redirect');
+			}
 		}
 		else {
 			$this->renderPartial('error', array('code' => 100, 'msg' => json_encode($user->getErrors())));
@@ -106,10 +113,11 @@ class UserController extends Controller
 		ToolUtils::ajaxOut(0, '', $userInfo);
 	}
 
+	//不同域名的iframe 种不了cookie 所以把session_id传出去
 	public function actionGetPublicKey() {
 		@session_start();
 		if (isset($_SESSION['pubKey'])) {
-			return ToolUtils::ajaxOut(0, '', $_SESSION['pubKey']);
+			return ToolUtils::ajaxOut(0, '', array('key' => $_SESSION['pubKey'], 'session_id' => session_id()));
 		}
 		$config = array(
 		    "digest_alg" => "sha512",
@@ -126,10 +134,13 @@ class UserController extends Controller
 		$_SESSION['privKey'] = $privKey;
 		$_SESSION['pubKey'] = $pubKey['key'];
 
-		ToolUtils::ajaxOut(0, '', $pubKey['key']);	
+			return ToolUtils::ajaxOut(0, '', array('key' => $pubKey['key'], 'session_id' => session_id()));
 	}
 
-	public function actionRegister() {
+	public function actionRegister($session_id = '') {
+		if ($session_id) {
+			session_id($session_id);
+		}
 		@session_start();
 		$form = new RegisterForm;
 		$form->attributes = $_POST;
@@ -172,14 +183,17 @@ class UserController extends Controller
 			$_SESSION['sex'] = $user->sex;
 			setcookie('uid', $user->id, 0, '/', DOMAIN);
 			setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
-			return ToolUtils::ajaxOut(0);	
+			return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));	
 		}
 		else {
 			return ToolUtils::ajaxOut(301, '', $user->getErrors());
 		}
 	}
 
-	public function actionLogin() {
+	public function actionLogin($session_id = '') {
+		if ($session_id) {
+			session_id($session_id);
+		}
 		@session_start();
 		$form = new LoginForm;
 		$form->attributes = $_POST;
@@ -200,7 +214,7 @@ class UserController extends Controller
 		$_SESSION['sex'] = $user->sex;
 		setcookie('uid', $user->id, $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', DOMAIN);
 		setcookie('shared_session', session_id(), $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', MAIN_DOMAIN);
-		return ToolUtils::ajaxOut(0);			
+		return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));			
 
 	}
 
@@ -238,7 +252,7 @@ class UserController extends Controller
 
 	public function actionUploadPic() {
 		if (!($uid = CUser::checkLogin())) {
-			return ToolUtils::ajaxOut(600);
+			return ToolUtils::ajaxOut(600, 'not login');
 		}
 		$file = CUploadedFile::getInstanceByName('file');
 		if ($file) {
@@ -412,19 +426,19 @@ class UserController extends Controller
 		ToolUtils::ajaxOut(0);
 	}
 
-	public function actionShowRegister() {
-		$this->renderPartial('registerLogin', array('type' => 1));
+	public function actionShowRegister($scene = null, $callback = null) {
+		$this->renderPartial('registerLogin', array('type' => 1, 'scene' => $scene, 'callback' => $callback));
 	}
 
-	public function actionShowLogin() {
-		$this->renderPartial('registerLogin', array('type' => 2));
+	public function actionShowLogin($scene = null, $callback = null) {
+		$this->renderPartial('registerLogin', array('type' => 2, 'scene' => $scene, 'callback' => $callback));
 	}
 
 	//remote http call
 	public function actionCGetUserInfo($uid, $session) {
 		$uid = CUser::checkLogin($uid, $session);
 		if ($uid === false) {
-			return ToolUtils::ajaxOut(100, 'not login');
+			return ToolUtils::ajaxOut(-100, 'not login');
 		}
 		$user = CUser::getInfoByUid($uid);
 

@@ -2,7 +2,12 @@
 Class ToolUtils {
     
     static public function ajaxOut($errno, $msg = '', $data = array()) {
-        echo json_encode(array('errno' => $errno, 'msg' => $msg, 'data' => $data));
+        if (isset($_GET['jQueryCallback'])) {
+            echo $_GET['jQueryCallback'] . '(' . json_encode(array('errno' => $errno, 'msg' => $msg, 'data' => $data)) . ')';
+        }
+        else {
+            echo json_encode(array('errno' => $errno, 'msg' => $msg, 'data' => $data));
+        }
     }
 
     static public function getFileExt($file) {
@@ -22,5 +27,24 @@ Class ToolUtils {
 
     static public function getCurrentUrl() {
         return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    }
+
+    static public function appendArgv($url, $argv) {
+        if (!is_array($argv) || count($argv) == 0) {
+            return $url;
+        }
+        if (strpos($url, '?') !== false) {
+            foreach($argv as $k => $v) {
+                $url .= '&' . $k . '=' . urlencode($v);
+            }
+        }
+        else {
+            $url .= '?';
+            foreach($argv as $k => $v) {
+                $url .= $k . '=' . urlencode($v) . '&';
+            }
+            substr($url, 0, -1);
+        }
+        return $url;
     }
 }

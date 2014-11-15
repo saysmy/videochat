@@ -37,6 +37,7 @@ seajs.config({
 })
 
 seajs.use('head');
+var common = seajs.use('common');
 
 with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 
@@ -56,7 +57,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
             <a class="bds_more" data-cmd="more" style="line-height:34px;float:none;color:rgb(0, 153, 204)">分享</a>
           </div>
           </li>          
-          <li class="fav"><a href="javascript:addFavorite(location.href,'肥皂网-宽容似海，不提伤害')">收藏</a></li>
+          <li class="fav"><a href="javascript:void(0)" id="addFav">收藏</a></li>
           <li class="setting logined" style="display:none;"><a href="#"></a>
             <span class="settingBg"></span><em></em>
             <div class="settingCont">

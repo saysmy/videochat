@@ -129,4 +129,12 @@ class Recruitment extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function toArray() {
+		$ret = array();
+		foreach($this->attributeLabels() as $name => $v) {
+			$ret[$name] = $this->$name;
+		}
+		return $ret;
+	}
 }

@@ -222,7 +222,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 		attributes.id = placehoder;
 		attributes.name = placehoder;
 		attributes.align = "middle";
-		swfobject.embedSWF('/swf/' + swf+".swf?v=0.20", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
+		swfobject.embedSWF('/swf/' + swf+".swf?v=0.23", placehoder, attributes.width, attributes.height, swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
 	}
 
 	var publicRoomFlag = false;

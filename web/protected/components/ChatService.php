@@ -1,7 +1,7 @@
 <?php
 class ChatService {
 	public function getUserInfo($sid, $uid, $rid) {
-		if(CUser::checkLogin($sid, $uid)) {
+		if(!CUser::checkLogin($uid, $sid)) {
 			return array('errno' => 100, 'msg' => 'not login');
 		}
 
@@ -38,7 +38,7 @@ class ChatService {
 	}
 
 	public function sendGift($rid, $sid, $uid, $to, $propId, $count) {
-		if(CUser::checkLogin($sid, $uid)) {
+		if(!CUser::checkLogin($uid, $sid)) {
 			return array('errno' => 201, 'msg' => 'not login');
 		}
 		$userInfo = CUser::getInfoByUid($uid);

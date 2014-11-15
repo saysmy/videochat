@@ -1,12 +1,15 @@
-define(['layer', 'validate', 'user', 'plupload'], function(require) {
+define(['layer', 'validate', 'user', 'plupload', 'common'], function(require) {
     //step1
     var user = require('user');
+    var common = require('common');
+    var domain = 'http://' + common.domain;
 
     $('#step1Next').click(function() {
         $.ajax({
-            url : '/recruitment/postStep/step/1',
+            url : domain + '/recruitment/postStep/step/1',
             type : 'post',
-            dataType : 'json',
+            dataType : 'jsonp',
+            jsonp : 'jQueryCallback',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
@@ -81,10 +84,11 @@ define(['layer', 'validate', 'user', 'plupload'], function(require) {
                 data[this.name] = $.trim(this.value)
             })
             $.ajax({
-                url : '/recruitment/postStep/step/2',
+                url : domain + '/recruitment/postStep/step/2',
                 data : data,
                 type : 'post',
-                dataType : 'json',
+                dataType : 'jsonp',
+                jsonp : 'jQueryCallback',
                 success : function(resp) {
                     if (resp.errno) {
                         if (resp.errno == -100) {
@@ -106,7 +110,7 @@ define(['layer', 'validate', 'user', 'plupload'], function(require) {
         runtimes : 'html5,flash,silverlight,html4',
         browse_button : 'addRecPic', // you can pass in id...
         // container: document.getElementById('addPic'), // ... or DOM Element itself
-        url : '/user/uploadPic',
+        url : '/user/uploadPic/ajax/1',
         flash_swf_url : '/js/plupload/Moxie.swf',
         silverlight_xap_url : '/js/plupload/Moxie.xap',
         
@@ -134,7 +138,7 @@ define(['layer', 'validate', 'user', 'plupload'], function(require) {
                 layer.close(loadingId);
                 resp = eval('(' + resp.response + ')');
                 if (resp.errno) {
-                    layer.alert('上传文件出错：' + errno.msg, 8);
+                    layer.alert('上传文件出错：' + resp.errno + '|' + resp.msg, 8);
                     return;
                 };
                 var url = resp.data.url;
@@ -179,10 +183,11 @@ define(['layer', 'validate', 'user', 'plupload'], function(require) {
             return layer.alert("请上传照片");
         };
         $.ajax({
-            url : '/recruitment/postStep/step/3',
+            url : domain + '/recruitment/postStep/step/3',
             data : {images : images},
             type : 'post',
-            dataType : 'json',
+            dataType : 'jsonp',
+            jsonp : 'jQueryCallback',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
@@ -200,9 +205,10 @@ define(['layer', 'validate', 'user', 'plupload'], function(require) {
     //step4
     $('#step4Next').click(function() {
          $.ajax({
-            url : '/recruitment/postStep/step/4',
+            url : domain + '/recruitment/postStep/step/4',
             type : 'post',
-            dataType : 'json',
+            dataType : 'jsonp',
+            jsonp : 'jQueryCallback',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {

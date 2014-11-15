@@ -31,3 +31,5 @@
     define('RECHARGE_COMPLETE', 1);
 
     define('PROP_SHOW_MIN_PRICE', 50);
+
+    define('MEDIA_SITE_DOMAIN', 'www.eestarmedia.com');

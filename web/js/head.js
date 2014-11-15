@@ -1,7 +1,8 @@
-define(['user', 'plupload', 'jcrop'], function(require) {
+define(['user', 'plupload', 'jcrop', 'common'], function(require) {
     var user = require('user');
     var headTmpUrl = null;
     var cropSize = null;
+    var common = require('common');
     user.getUserInfo(function(resp) {
         if (resp.errno) {return;};
         $('.coin b').text(resp.data.coin);
@@ -225,23 +226,8 @@ define(['user', 'plupload', 'jcrop'], function(require) {
 
 
 
-    function addFavorite(sURL, sTitle)
-    {
-        try
-        {
-            window.external.addFavorite(sURL, sTitle);
-        }
-        catch (e)
-        {
-            try
-            {
-                window.sidebar.addPanel(sTitle, sURL, "");
-            }
-            catch (e)
-            {
-                alert("请使用Ctrl+D进行添加(mac用户使用Command+D)");
-            }
-        }
-    }
-
+    $('#addFav').click(function() {
+        common.addFavorite(location.href,'肥皂网-宽容似海，不提伤害');
+        return false;
+    })
 })

@@ -37,4 +37,42 @@ define(function(require, exports) {
         clearInterval(input.fd);
         input.value = text;
     }
+
+    exports.addFavorite =function(sURL, sTitle)
+    {
+        try
+        {
+            window.external.addFavorite(sURL, sTitle);
+        }
+        catch (e)
+        {
+            try
+            {
+                window.sidebar.addPanel(sTitle, sURL, "");
+            }
+            catch (e)
+            {
+                alert("加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+
+    exports.appendArgv = function(url, argvs) {
+        if (url.indexOf('?') != -1) {
+            for (var name in argvs) {
+                url += '&' + name + '=' + encodeURIComponent(argvs[name]);
+            }
+        }
+        else {
+            url += '?';
+            for (var name in argvs) {
+                url += name + '=' + encodeURIComponent(argvs[name]) + '&';
+            }
+            url = url.substring(0, url.length -1);
+        }
+        return url;
+
+    }
+    
+    exports.domain = 'www.efeizao.com';
 })
