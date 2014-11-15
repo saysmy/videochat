@@ -1,4 +1,4 @@
-define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function(require, exports, module) {
+define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate', 'cookie'], function(require, exports, module) {
     var register_tips_ids = {};
     var login_tips_ids = {};
     var user = require('user');
@@ -6,6 +6,9 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function
     var common = require('common');
     var layer = require('layer');
     var registerLogin = require('registerLogin');
+    
+    //iframe里手动设置cookie
+    $.cookies.set('PHPSESSID', session_id);
     // common.getPublicKey(function(key){rsa.setPublicKey});
 
     $('.goQQLogin').click(function() {

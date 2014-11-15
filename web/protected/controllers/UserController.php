@@ -1,6 +1,6 @@
 <?php
 //解决跨域iframe 设置cookie无效的问题
-header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
+// header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
 
 class UserController extends Controller
 {

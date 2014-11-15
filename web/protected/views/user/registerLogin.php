@@ -13,6 +13,8 @@
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
 <script>
+<?php @session_start();?>
+var session_id = "<?=session_id()?>";
 <?php global $seaFiles;?>
 seajs.config({
   base: "/js/",
