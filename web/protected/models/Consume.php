@@ -57,7 +57,7 @@ class Consume extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'property' => array(self::BELONGS_TO, 'property', 'pid'),
+			'property' => array(self::BELONGS_TO, 'Property', 'pid'),
 		);
 	}
 

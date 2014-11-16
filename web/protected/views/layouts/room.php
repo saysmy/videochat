@@ -45,7 +45,7 @@ seajs.use('room');
         <dl>
           <dt><a href="#"><img src="<?=$this->moderatorUserInfo['head_pic_1']?>" width="45" height="45"></a></dt>
           <dd>
-            <a href="#">爱的感言：<?=$this->room['moderator_sign']?></a>
+            <a href="#"><?=$this->moderatorUserInfo['true_name']?>：<?=$this->room['moderator_desc']?></a>
             <div class="vinfo">
               <span class="view">458</span>
               <span class="time">120分钟</span>

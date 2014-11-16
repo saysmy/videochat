@@ -88,6 +88,7 @@ class User extends CActiveRecord
 			'username' => 'Username',
 			'password' => 'Password',
 			'nickname' => 'Nickname',
+			'true_name' => 'Truename',
 			'sex' => 'Sex',
 			'height' => 'Height',
 			'weight' => 'Weight',
