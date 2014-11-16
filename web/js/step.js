@@ -2,14 +2,12 @@ define(['layer', 'validate', 'user', 'plupload', 'common'], function(require) {
     //step1
     var user = require('user');
     var common = require('common');
-    var domain = 'http://' + common.domain;
 
     $('#step1Next').click(function() {
         $.ajax({
-            url : domain + '/recruitment/postStep/step/1',
+            url : '/recruitment/postStep/step/1',
             type : 'post',
-            dataType : 'jsonp',
-            jsonp : 'jQueryCallback',
+            dataType : 'json',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
@@ -84,11 +82,10 @@ define(['layer', 'validate', 'user', 'plupload', 'common'], function(require) {
                 data[this.name] = $.trim(this.value)
             })
             $.ajax({
-                url : domain + '/recruitment/postStep/step/2',
+                url : '/recruitment/postStep/step/2',
                 data : data,
                 type : 'post',
-                dataType : 'jsonp',
-                jsonp : 'jQueryCallback',
+                dataType : 'json',
                 success : function(resp) {
                     if (resp.errno) {
                         if (resp.errno == -100) {
@@ -183,11 +180,10 @@ define(['layer', 'validate', 'user', 'plupload', 'common'], function(require) {
             return layer.alert("请上传照片");
         };
         $.ajax({
-            url : domain + '/recruitment/postStep/step/3',
+            url : '/recruitment/postStep/step/3',
             data : {images : images},
             type : 'post',
-            dataType : 'jsonp',
-            jsonp : 'jQueryCallback',
+            dataType : 'json',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {
@@ -205,10 +201,9 @@ define(['layer', 'validate', 'user', 'plupload', 'common'], function(require) {
     //step4
     $('#step4Next').click(function() {
          $.ajax({
-            url : domain + '/recruitment/postStep/step/4',
+            url : '/recruitment/postStep/step/4',
             type : 'post',
-            dataType : 'jsonp',
-            jsonp : 'jQueryCallback',
+            dataType : 'json',
             success : function(resp) {
                 if (resp.errno) {
                     if (resp.errno == -100) {

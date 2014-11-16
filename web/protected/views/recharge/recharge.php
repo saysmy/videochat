@@ -90,8 +90,8 @@
         </div>
         <div class="payService">
           <h2>客服帮助：</h2>
-          <span>联系客服：<a href="#"><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
-          <span>联系客服：<a href="#"><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
+          <span>联系客服：<a href="http://wpa.qq.com/msgrd?v=3&uin=3131657171&site=肥皂网络&menu=yes" target=_blank><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
+          <span>联系客服：<a href="http://wpa.qq.com/msgrd?v=3&uin=2627466908&site=肥皂网络&menu=yes" target=_blank><img src="/img/btn_qq.jpg" width="83" height="23"></a></span>
         </div>
       </div>
       <div class="pageContent">
@@ -109,11 +109,11 @@
             <tr>
                 <th>选择充值金额：</th>
               <td><input type="radio" checked name="amount" value="certain"> <select name="select2" id="certain-amount">
-                <option value="5">5</option>
+                <option value="5" selected>5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
-                <option value="50" selected>50</option>
+                <option value="50">50</option>
                 <option value="100">100</option>
                 <option value="200">200</option>
                 <option value="300">300</option>

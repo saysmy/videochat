@@ -1,8 +1,12 @@
 define(function(require, exports) {
     //获取公钥
     exports.getPublicKey = function(callback) {
+        var url = '/user/getPublicKey';
+        if ($('body').data('session_id')) {
+            url += '/session_id/' + $('body').data('session_id');
+        }
         $.ajax({
-            url : '/user/getPublicKey?r=' + Math.random(),
+            url : url + '?r=' + Math.random(),
             dataType : 'json',
             success : function(resp) {
                 if (resp.errno) {

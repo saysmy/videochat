@@ -1,4 +1,4 @@
-define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate', 'cookie'], function(require, exports, module) {
+define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate'], function(require, exports, module) {
     var register_tips_ids = {};
     var login_tips_ids = {};
     var user = require('user');
@@ -7,8 +7,6 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate', 'cookie']
     var layer = require('layer');
     var registerLogin = require('registerLogin');
     
-    //iframe里手动设置cookie
-    $.cookies.set('PHPSESSID', session_id);
     // common.getPublicKey(function(key){rsa.setPublicKey});
 
     $('.goQQLogin').click(function() {
@@ -180,7 +178,22 @@ define('registerLogin', ['user', 'rsa', 'layer', 'common', 'validate', 'cookie']
         parent.layer.close(index);
     })
 
-    jQuery(document).on('click', '#register-captcha', function(){ jQuery.ajax({ url: "\/user\/captcha\/refresh\/1", dataType: 'json', cache: false, success: function(data) { jQuery('#register-captcha').attr('src', data['url']); jQuery('body').data('user/captcha.hash', [data['hash1'], data['hash2']]); } }); return false; });
+    jQuery(document).on('click', '#register-captcha', function(){ 
+        jQuery.ajax({ 
+            url: "/user/captcha/refresh/1/session_id/" + session_id, 
+            dataType: 'json', 
+            cache: false, 
+            success: function(data) { 
+                jQuery('#register-captcha').attr('src', data['url']); 
+                jQuery('body').data('user/captcha.hash', [data['hash1'], data['hash2']]); 
+            } 
+        }); 
+        return false; 
+    });
+
+    var url = jQuery('#register-captcha').attr('src');
+    var session_id = url.substring(url.indexOf('session_id') + 11);
+    $('body').data('session_id', session_id);
 
     function _clear_auto_complete() {
         if (

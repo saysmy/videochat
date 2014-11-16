@@ -238,7 +238,7 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 .userConsume td {padding:7px 0;color:#999;text-align:center;border-bottom:#ddd 1px solid;}
 .userConsume td b {font-weight:normal;color:#16b1dd;}
 .page a {padding:2px 7px;border:#ddd 1px solid;}
-.page a:hover,.page a.on {color:#FFF;background:#4FBFF1;border:#3295f2 1px solid;text-decoration:none;}
+.page a:hover,.page a.on,.page.selected a {color:#FFF;background:#4FBFF1;border:#3295f2 1px solid;text-decoration:none;}
 
 /* @404.html
 -------------------------------------------------------------- */

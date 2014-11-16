@@ -7,6 +7,10 @@
   })
   </script>
   <?php endif?>
+  <style>
+  .yiiPager {text-align:right;margin-top:4px;}
+  .yiiPager li {display:inline;}
+  </style>
   <!--mainbody-->
   <div id="mainbody_new">
     <div class="pageNav wrap">您当前的位置：<b>个人中心</b> &gt; 我的帐户</div>

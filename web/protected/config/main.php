@@ -14,14 +14,14 @@ $seaFiles = array(
       'plupload' => 'plupload/plupload.full.min.js',
       'jcrop'    => 'jquery.Jcrop.min.js',
       'validate' => 'jquery.validate.min.js',
-      'registerLogin' => 'registerLogin.js?v=20141114',
-      'step'     => 'step.js?v=20141115',
+      'registerLogin' => 'registerLogin.js?v=20141116',
+      'step'     => 'step.js?v=20141116',
       'user'     => 'user.js?v=20141022',
       'room'	 => 'room.js?v=20141115',
       'popCheckbox' => 'popCheckbox.js?v=20141027',
       'index'    => 'index.js?v=20141103',
       'head'     => 'head.js?v=20141115',
-      'common'   => 'common.js?v=20141115',
+      'common'   => 'common.js?v=20141116',
       'cookie'   => 'jquery.cookies.js',
 );
 
@@ -39,6 +39,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.widgets.*'
 	),
 
 	'modules'=>array(

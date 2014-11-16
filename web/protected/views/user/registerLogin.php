@@ -13,8 +13,6 @@
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
 <script>
-<?php @session_start();?>
-var session_id = "<?=session_id()?>";
 <?php global $seaFiles;?>
 seajs.config({
   base: "/js/",
@@ -75,7 +73,7 @@ document.domain = "<?=MAIN_DOMAIN?>";
           <td><input name="passwordRepeat" type="password" placeholder="确认密码" class="fi-txt"></td>
         </tr>
         <tr>
-          <td><input name="captcha" type="text" placeholder="验证码" class="fi-txt medium"><?php $this->widget('CCaptcha',array('captchaAction' => 'user/captcha', 'showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer;float:right;margin-right:80px', 'id' => 'register-captcha'))); ?></td>
+          <td><input name="captcha" type="text" placeholder="验证码" class="fi-txt medium"><?php $this->widget('MyCCaptcha',array('captchaAction' => 'user/captcha', 'showRefreshButton'=>false,'clickableImage'=>true,'imageOptions'=>array('alt'=>'点击换图','title'=>'点击换图','style'=>'cursor:pointer;float:right;margin-right:80px', 'id' => 'register-captcha'))); ?></td>
         </tr>
         <tr>
           <td id="agree-td"><label><input type="checkbox" id="register-agree" checked name="agree"> 我已阅读并同意</label><a href="#">《网站协议》</a></td>

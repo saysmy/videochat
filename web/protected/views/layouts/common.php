@@ -6,7 +6,7 @@
 <meta content="帅哥,靓仔,校草,演艺圈,经纪公司,演艺经纪,互联网,O2O" name="Keywords" />
 <meta property="qc:admins" content="7261517777656512176375" />
 <link href="/css/webmag-1.2.css" rel="stylesheet" type="text/css" />
-<link href="/css/default_v4.css?v=20141103" rel="stylesheet" type="text/css" />
+<link href="/css/default_v4.css?v=20141116" rel="stylesheet" type="text/css" />
 <link href="/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='/js/jquery.min.js'></script>
 <script type='text/javascript' src="/js/sea.min.js"></script>
@@ -95,7 +95,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
             </div>
           </li>
          <li class="chong ml5 logined" style="display:none;"><a href="/recharge/center">充值</a></li>
-          <li class="coin ml5 logined" style="display:none;"><b>10.2</b> 金币</li>
+          <li class="coin ml5 logined" style="display:none;"><b>10.2</b> 泡泡</li>
           <li class="uinfo mr10 unlogined"><a href="#" id="user-reg">注册</a> | <a href="#" id="user-login">登录</a></li>
           <li class="uinfo mr10 logined" style="display:none;"><img src="/img/1_s1.jpg" width="25" height="25"> <a href="/user/center" class="nickname">妖精baby（860876）</a>&nbsp;&nbsp;<a href="/user/logout/?callback=<?=urlencode(ToolUtils::getCurrentUrl())?>">退出</a></li>
         </ul>

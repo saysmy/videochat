@@ -1,6 +1,6 @@
 <?php
 //解决跨域iframe 设置cookie无效的问题
-// header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTR STP IND DEM"');
+header('P3P: CP="CAO PSA OUR"');
 
 class UserController extends Controller
 {
@@ -12,7 +12,7 @@ class UserController extends Controller
             return array( 
                 // captcha action renders the CAPTCHA image displayed on the contact page
                 'captcha'=>array(
-                        'class'=>'CCaptchaAction',
+                        'class'=>'MyCCaptchaAction',
                         'backColor'=>0xFFFFFF, 
                         'maxLength'=>'4',       // 最多生成几个字符
                         'minLength'=>'4',       // 最少生成几个字符
@@ -114,7 +114,10 @@ class UserController extends Controller
 	}
 
 	//不同域名的iframe 种不了cookie 所以把session_id传出去
-	public function actionGetPublicKey() {
+	public function actionGetPublicKey($session_id = '') {
+		if ($session_id) {
+			session_id($session_id);
+		}
 		@session_start();
 		if (isset($_SESSION['pubKey'])) {
 			return ToolUtils::ajaxOut(0, '', array('key' => $_SESSION['pubKey'], 'session_id' => session_id()));
