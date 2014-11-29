@@ -23,16 +23,19 @@ class IndexController extends CController
 
 		$this->loginUrl =  CUser::getQQLoginUrl();
 
+		$roomArr = array();
 		$rooms = Room::model()->findAllByPk($this->roomIds);
-		foreach($rooms as &$room) {
+		foreach($rooms as $room) {
 			$moderators[$room->id] = User::model()->findByPk($room->mid);
+			$roomArr[$room->id] = $room;
 		}
+
 
 		$moderators[$room->id]['age'] = $moderators[$room->id]['age'] == 0 ? '??' : $moderators[$room->id]['age'];
 		$moderators[$room->id]['weight'] = $moderators[$room->id]['weight'] == 0 ? '??' : $moderators[$room->id]['weight'];
 		$moderators[$room->id]['height'] = $moderators[$room->id]['height'] == 0 ? '??' : $moderators[$room->id]['height'];
 
-		$this->render('indexContent', array('rooms' => $rooms, 'moderators' => $moderators));
+		$this->render('indexContent', array('rooms' => $roomArr, 'moderators' => $moderators, 'roomIds' => $this->roomIds));
 	}
 
 }

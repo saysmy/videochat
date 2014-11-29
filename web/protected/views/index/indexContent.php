@@ -15,7 +15,8 @@
  
   <div id="mainbody_new">
     <div class="mainBig">
-      <?php foreach($rooms as $room):?>
+      <?php foreach($roomIds as $rid):?>
+      <?php $room = $rooms[$rid];?>
       <dl>
         <dt class="new"><a target=_blank href="<?php echo $this->createUrl('/room/index', array('rid' => $room->id));?>"><img src="<?=$room->logo?>" width="345" height="185"><div class="mask"></div><div class="start"></div></a></dt>
         <dd>
