@@ -7,7 +7,7 @@ class IndexController extends CController
 
 	public $loginUrl;
 
-	private $roomIds = array(1, 2, 3);
+	private $roomIds = array(5, 2, 6);
 
 	public function filters() {
 		return array(
@@ -27,6 +27,10 @@ class IndexController extends CController
 		foreach($rooms as &$room) {
 			$moderators[$room->id] = User::model()->findByPk($room->mid);
 		}
+
+		$moderators[$room->id]['age'] = $moderators[$room->id]['age'] == 0 ? '??' : $moderators[$room->id]['age'];
+		$moderators[$room->id]['weight'] = $moderators[$room->id]['weight'] == 0 ? '??' : $moderators[$room->id]['weight'];
+		$moderators[$room->id]['height'] = $moderators[$room->id]['height'] == 0 ? '??' : $moderators[$room->id]['height'];
 
 		$this->render('indexContent', array('rooms' => $rooms, 'moderators' => $moderators));
 	}

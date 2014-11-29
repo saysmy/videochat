@@ -33,3 +33,5 @@
     define('PROP_SHOW_MIN_PRICE', 50);
 
     define('MEDIA_SITE_DOMAIN', 'www.eestarmedia.com');
+
+    define('NEW_USER_COIN', 5);

@@ -19,7 +19,7 @@ $seaFiles = array(
       'user'     => 'user.js?v=20141022',
       'room'	 => 'room.js?v=20141115',
       'popCheckbox' => 'popCheckbox.js?v=20141027',
-      'index'    => 'index.js?v=20141103',
+      'index'    => 'index.js?v=20141129',
       'head'     => 'head.js?v=20141115',
       'common'   => 'common.js?v=20141116',
       'cookie'   => 'jquery.cookies.js',

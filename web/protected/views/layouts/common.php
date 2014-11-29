@@ -221,3 +221,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F865d58598d9617e82f15d449bb7b98bb' type='text/javascript'%3E%3C/script%3E"));
+</script>

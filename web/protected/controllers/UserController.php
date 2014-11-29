@@ -1,7 +1,4 @@
 <?php
-//解决跨域iframe 设置cookie无效的问题
-header('P3P: CP="CAO PSA OUR"');
-
 class UserController extends Controller
 {
 	public $layout='//layouts/common';
@@ -66,7 +63,7 @@ class UserController extends Controller
 			$user->mobile_validated = 0;
 			$user->type = COMMON_USER;
 			$user->dead_user_status = DEAD_USER_FREE;
-			$user->coin = 0;
+			$user->coin = NEW_USER_COIN;
 			$user->source = SOURCE_FROM_QQ;
 			$user->register_time = Date('Y-m-d H:i:s');
 		}
@@ -176,7 +173,7 @@ class UserController extends Controller
 		$user->mobile_validated = 0;
 		$user->type = COMMON_USER;
 		$user->dead_user_status = DEAD_USER_FREE;
-		$user->coin = 0;
+		$user->coin = NEW_USER_COIN;
 		$user->last_login_time = Date('Y-m-d H:i:s', time(0));
 		$user->register_time = Date('Y-m-d H:i:s');
 
@@ -319,6 +316,7 @@ class UserController extends Controller
 		$json = $curl->post('http://bbs.' . MAIN_DOMAIN . '/usercenter/config/syncUserInfo', array('headPic' => $url));
 		$ret = json_decode($json, true);
 		if (!($ret && $ret['status'] == 1)) {
+			Yii::log($json, CLogger::LEVEL_ERROR, 'user');
 			return ToolUtils::ajaxOut(701, '同步数据出错', $json);
 		}
 
@@ -346,6 +344,7 @@ class UserController extends Controller
 		$json = $curl->post('http://bbs.' . MAIN_DOMAIN . '/usercenter/config/syncUserInfo', array('headPic' => $url));
 		$ret = json_decode($json, true);
 		if (!($ret && $ret['status'] == 1)) {
+			Yii::log($json, CLogger::LEVEL_ERROR, 'user');
 			return ToolUtils::ajaxOut(701, '同步数据出错', $json);
 		}
 
@@ -390,6 +389,7 @@ class UserController extends Controller
 			$json = $curl->post('http://bbs.' . MAIN_DOMAIN . '/usercenter/config/syncUserInfo', array('nickname' => $form->nickname));
 			$ret = json_decode($json, true);
 			if (!($ret && $ret['status'] == 1)) {
+				Yii::log($json, CLogger::LEVEL_ERROR, 'user');
 				return ToolUtils::ajaxOut(803, '同步数据出错', $json);
 			}
 		}
