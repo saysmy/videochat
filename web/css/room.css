@@ -1,0 +1,140 @@
+﻿@charset "utf-8";
+/* ::http://www.ieic.cn /:: */
+/* CSS Frameworks "webmag" Created by anylee(flash8_any@163.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
+
+/* --------------------------------------------------------------
+
+ 项目名称：TopStage
+ URL:http://www.ieic.cn
+ * Design by anylee
+ * 建立时间2014.6.26
+ * 版权所有(c)2011
+
+-------------------------------------------------------------- */
+
+/******************************/
+/*           一般样式          */
+/******************************/
+/* 主体样式 
+---------------------------------------------------------------*/
+body,div,span,h1,h2,h3,h4,h5,h6,dl,dd,dt,ul,li,img,p,b,textarea,input,select,form,a,table,tr,th,td,fieldset,legend {
+margin:0;padding:0;list-style:none;font-family:arial;font-size:12px;font-family:"\5fae\8f6f\96c5\9ed1","Microsoft YaHei";color:#333;line-height:1.5;z-index:inherit;}
+body {background:#fff url("") center top no-repeat;}giftsBtns
+input,select,textarea {padding:2px 5px;border:#ccc 1px solid;}
+
+/* 连接样式-顺序是(连接伪类):link,:visited,(动态伪类):hover,:focus,:active
+---------------------------------------------------------------*/
+a {color:#333;text-decoration:none;}
+a:hover {color:#09c;text-decoration:underline;}
+
+b,i {font-style:normal;}
+b {color:#F00;}
+em {display:block;}
+
+/******************************/
+/*           页面结构          */
+/******************************/
+/* 布局
+---------------------------------------------------------------*/
+
+/*room*/
+#roomHeader {height:65px;}
+.roomHeader {padding:10px 0;height:45px;}
+.roomLogo {width:192px;height:40px;background:url(roomlogo.gif);display:block;top:13px;right:10px;}
+.roomOwner,.roomOwner dl {width:500px;height:45px;}
+.roomOwner dt {float:left;width:45px;height:45px;}
+.roomOwner dd {float:left;margin-left:10px;width:445px;height:45px;}
+.roomOwner dd a {height:20px;font-weight:bold;font-size:14px;color:#0178b0;line-height:20px;}
+.roomOwner .vinfo {padding:0;width:auto;height:25px;}
+.roomLeft {width:470px;}
+.roomMid {margin-left:12px;width:345px;}
+.roomRight {width:162px;}
+.roomPlayer {width:470px;height:330px;}
+.roomNotice {padding:0 10px;height:30px;line-height:30px;background:#E6E6E6;}
+.roomNotice a {color:#069;}
+.roomGifts {padding:10px;height:183px;border:#ddd 1px solid;overflow-y:scroll;}
+.roomGifts .time {color:#999;}
+/*.roomGifts a {float:left;margin:2px 8px;width:52px;height:57px;line-height:15px;border:#fff 1px solid;text-align:center;display:block;position:relative;}
+.roomGifts a:hover {border:#ccc 1px solid;text-decoration:none;}
+.roomGifts a.on {border:#0CF 1px solid;}
+.roomGifts a em {margin:0 auto;width:42px;height:42px;overflow:hidden;vertical-align:middle;}
+.roomGifts a em.gf {background-image:url(gb_v1.png);}
+.roomGifts a em.gf001 {background-position:0 0;}
+.roomGifts a em.gf002 {background-position:-42px 0;}
+.roomGifts a em.gf003 {background-position:-84px 0;}
+.roomGifts a em.gf004 {background-position:-126px 0;}
+.roomGifts a em.gf005 {background-position:-168px 0;}
+.roomGifts a em.gf006 {background-position:-210px 0;}
+.roomGifts a em.gf007 {background-position:-252px 0;}
+.roomGifts a em.gf008 {background-position:-294px 0;}
+.roomGifts a em.gf009 {background-position:-336px 0;}
+.roomGifts a em.gf010 {background-position:-378px 0;}
+.roomGifts a em.gf011 {background-position:-42px -42px;}
+.roomGifts a em.gf012 {background-position:-84px -42px;}
+.roomGifts a em.gf013 {background-position:-126px -42px;}
+.roomGifts a em.gf014 {background-position:-168px -42px;}
+*/
+.giftItem {border:#fff 1px solid;}
+.giftItem:hover {border:#ccc 1px solid;text-decoration:none;}
+
+.roomAct {height:42px;}
+dl.gifts {width:110px;height:42px;}
+dl.gifts dt {float:left;width:42px;height:42px;background:url(i31.gif);}
+dl.gifts dd {float:left;margin-left:8px;padding:15px 0 7px 0;width:60px;height:20px;}
+dl.gifts dd span {padding-right:5px;height:20px;line-height:20px;background:url(d1.jpg) right center no-repeat;display:block;cursor:pointer}
+.roomAct ul {float:left;margin-left:10px;padding-top:12px;width:350px;height:28px;}
+.roomAct li {float:left;padding:0 2px;height:28px;line-height:28px;}
+.roomAct li span {height:26px;border:#909090 1px solid;display:block;}
+.roomAct li span i {float:left;height:26px;line-height:26px;text-align:center;display:block;overflow:hidden}
+.roomAct li span em {float:right;width:16px;height:26px;background:url(main.jpg) -318px -50px;cursor:pointer}
+.roomAct li.giftsNum {width:60px;}
+.roomAct li.giftsNum span i {width:40px;}
+.roomAct li.giftsName {}
+.roomAct li.giftsName span i {width:90px;}
+.roomAct li.giftsBtns {}
+.roomAct li.giftsBtns a {float:left;margin:0 2px;width:50px;height:28px;color:#fff;line-height:28px;text-align:center;display:block;vertical-align:middle;}
+.btn-a {background:#E42C34;}
+.btn-b {background:#B1B1B1;}
+.roomTab {width:345px;height:33px;}
+.roomTab a {float:left;margin:0 2px;height:30px;font-weight:bold;font-size:14px;line-height:30px;border-bottom:#fff 3px solid;display:block;}
+.roomTab a.on {color:#0078ad;border-bottom:#4dc7f0 3px solid;text-decoration:none;}
+.roomTab a.room {padding-left:25px;width:70px;background:url(i27.gif) left center no-repeat;}
+.roomTab a.mic {padding-left:20px;width:40px;background:url(i28.gif) left center no-repeat;}
+.roomTab a.ucenter {padding-left:20px;width:70px;background:url(i29.gif) left center no-repeat;}
+.roomTab span {float:left;margin:0 10px;height:30px;font-size:14px;color:#999;line-height:30px;display:block;}
+.roomItem {display:none;}
+.roomPub {padding:5px 0;color:#999;}
+.roomContent {width:345px;height:420px;}
+.roomChat {border-top:#ddd 1px solid;border-bottom:#ddd 1px solid;overflow-y:scroll;}
+.roomChat th {padding:3px 0;width:40px;color:#999;}
+.roomChat td {padding:2px 0;}
+.roomChat td a {color:#09C;}
+.roomChat td a,img {vertical-align:middle;}
+.roomPannel {position:relative;}
+.roomPannel a {width:11px;height:5px;font-size:0;display:block;position:absolute;left:167px;top:-5px;z-index:99;cursor:pointer;}
+.roomPannel a.arrow_up {background:url(d2.jpg) center center no-repeat}
+.roomPannel a.arrow_down {background:url(d3.jpg) center center no-repeat;}
+.roomChat2 {padding:5px;background:#f4f4f4;border-top:#fff 1px solid;border-bottom:#fff 1px solid;overflow-y:scroll;}
+.roomChat2 li {padding:2px 0;}
+.roomChat2 li a {color:#09c;}
+.roomChatAct {padding:10px 0;height:25px;border-top:#DDD 1px solid;}
+.roomChatAct img,.roomChatAct input {vertical-align:middle;}
+.roomChatFm {width:343px;height:26px;border:#4598da 1px solid;}
+.roomChatFm .fi-txt {float:left;width:280px;height:20px;line-height:20px;border:none;background:none;}
+.roomChatFm .btn-c {float:left;padding:0;width:53px;height:26px;color:#fff;line-height:26px;text-align:center;background:#4598da;}
+.roomUserTab {height:29px;}
+.roomUserTab a {float:left;width:80px;height:29px;background:#B1B1B1;color:#fff;line-height:29px;text-align:center;}
+.roomUserTab a.on {color:#666;background:url(bgx.jpg) 0 -180px repeat-x;text-decoration:none;}
+.roomUserTab a span {color:white;}
+.roomUserTab a.on span {color:#666;}
+.roomUserItem {width:160px;height:590px;display:none;overflow-y:scroll;}
+.roomUserItem li {width:138px;height:25px;position:relative;}
+.roomUserItem li a {width:100px;height:25px;line-height:25px;overflow:hidden;}
+.roomUserItem li i {width:38px;height:25px;color:#09c;line-height:25px;display:block;position:absolute;top:0;right:0;}
+
+.vinfo span,.vinfo a {display:inline-block;}
+.vinfo .like {margin-right:5px;padding-left:20px;height:25px;font-size:12px;font-weight:normal;line-height:25px;background:url(i47.png) left center no-repeat;}
+.vinfo .liked {margin-right:5px;padding-left:20px;height:25px;font-size:12px;font-weight:normal;line-height:25px;background:url(i47a.png) left center no-repeat;}
+.vinfo .star {width:20px;height:17px;background:url(i49.png) left center no-repeat;}
+
+.roomOwner .share2 iframe {vertical-align:middle;}

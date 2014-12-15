@@ -5,25 +5,23 @@ class RoomController extends CController
 
 	public $layout='//layouts/room';
 
-	public $moderatorUserInfo;
-
 	public $room;
+
+	public $loveRooms;
 
 	public function filters()
 	{
-		// return the filter configuration for this controller, e.g.:
-		// return array(
-		// 	array(
-		// 		'application.filters.LoginFilter',
-		// 	),
-		// );
-	}
+        return array(
+            array(
+                'application.filters.LoginFilter + love',
+            ),
+        );	
+    }
 
 	public function actionIndex($rid)
 	{
 		session_start();
 		$this->room = Room::model()->findByPk($rid);
-		$this->moderatorUserInfo = CUser::getInfoByUid($this->room['mid']);
 		$prop = $this->getProperty();
 
 		$maxPropInfo = CRoom::getSendMaxPricePropInfo($rid);
@@ -34,7 +32,54 @@ class RoomController extends CController
 			$maxPropInfo['toNickname'] = $toUser['nickname'];
 		}
 
+		$uid = CUser::checkLogin();
+
+		$this->loveRooms = array();
+		if ($uid) {
+			$records = LoveRoom::model()->findAll('uid=' . $uid);
+			foreach($records as $record) {
+				$this->loveRooms[] = $record->rid;
+			}
+		}
+
 		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
+	}
+
+	public function actionLove($rid) {
+
+		if (!ToolUtils::frequencyCheck('loveRoom', 0.5)) {
+			return ToolUtils::ajaxOut(-200, '操作过于频繁');
+		}
+
+		$uid = CUser::checkLogin();
+
+		$room = Room::model()->findByPk($rid);
+		if (!$room) {
+			return ToolUtils::ajaxOut(200, '房间不存在');
+		}
+
+		$record = LoveRoom::model()->find('uid=' . $uid . ' and rid=' . $rid);
+
+		if (!$record) {
+			$record = new LoveRoom;
+			$record->uid = $uid;
+			$record->rid = $rid;
+			$record->add_time = Date('Y-m-d H:i:s');
+			if ($record->save()) {
+				$room->love_num ++;
+				$room->update();
+				return ToolUtils::ajaxOut(0, '关注成功', array('action' => 'love'));
+			}
+			else {
+				return ToolUtils::ajaxOut(100, '关注失败');
+			}
+		}
+		else {
+			$record->delete();
+			$room->love_num --;
+			$room->update();
+			return ToolUtils::ajaxOut(0, '取消关注成功', array('action' => 'cancel'));
+		}
 	}
 
 	private function getProperty() {
@@ -45,19 +90,4 @@ class RoomController extends CController
 		}	
 		return $prop;
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

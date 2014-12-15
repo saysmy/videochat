@@ -9,14 +9,14 @@
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.core.FlexGlobals;
+			import spark.events.IndexChangeEvent;
 			
 			import my.*;
 			
 			private var nc: NetConnection;
 			private var ns: NetStream;
 			private var video: Video;
-			private var so: SharedObject;
-			
+
 			private var cam: Camera;
 			private var mic: Microphone;
 			
@@ -25,6 +25,28 @@
 			
 			private var cam_timer: uint;
 			private var cam_counter: uint = 0;
+			
+			public var myAudioRate : ArrayCollection = new ArrayCollection([
+				{label : '44,100 Hz', data : 44}, 
+				{label : '22,050 Hz', data : 22}, 
+				{label : '11,025 Hz', data : 11}, 
+				{label : '8,000 Hz', data : 8}, 
+				{label : '5,512 Hz', data : 5}
+			]);
+			
+			public var myAudioQuality : ArrayCollection = new ArrayCollection([
+				{label : '3.95KB/s', data : 0}, {label : '5.75KB/s', data : 1}, 
+				{label : '7.75KB/s', data : 2}, {label : '9.80KB/s', data : 3}, 
+				{label : '12.8KB/s', data : 4}, {label : '16.8KB/s', data : 5}, 
+				{label : '20.6KB/s', data : 6}, {label : '23.8KB/s', data : 7}, 
+				{label : '27.8KB/s', data : 8}, {label : '34.2KB/s', data : 9}, 
+				{label : '42.2KB/s', data : 10}
+			]);
+			
+			public var myAudioCodec : ArrayCollection = new ArrayCollection([
+				{label : 'Nellymoser', data : 'Nellymoser'},
+				{label : 'Speex', data : 'Speex'}
+			]);
 			
 			private function initApp(): void{
 
@@ -53,9 +75,80 @@
 				}
 				nc = null;
 			}
+					
+			public function doPlay() : void {
+				if (vstate != 0) return;
+				debug("doPlay");
+				
+				doView(this.vparam.getStreamName());
+			}
 			
-			private function doPublish(cameraName : String, microphoneIndex : int, videoQuality : int, audioQuality : int): void {
-				debug("video:" + videoQuality + " audio:" + audioQuality);
+			public function doStop(): void{
+				if(vstate == 0) return;
+				
+				debug("doStop");
+				
+				if(ns){
+					if(vstate == 2){
+						ns.attachCamera(null);
+						ns.attachAudio(null);
+					}
+					ns.close();	
+				}
+				video.attachNetStream(null);
+				video.visible = false;
+				
+				vstate = 0;
+				ExternalInterface.call("room.onVideoUnpublish");
+			}
+			
+			//JS调用
+			public function doSendMsg(msgData :Object): void {
+				nc.call("sendMsg", null, msgData);
+			}
+			
+			public function doSendGift(propid: int, count: int, to: String): void {
+				nc.call("sendGift", null, propid, count, to);
+			}
+			
+			public function doBan(uid: String): void{
+				nc.call("ban", null, uid);
+			}
+			//
+			
+			public function initPublicBar(show:Boolean): void {
+				debug("showPublishBar:" + show);
+				if(show) {
+					this.addEventListener(MouseEvent.ROLL_OVER, function(): void{
+						panl.visible = true;
+					});
+					this.addEventListener(MouseEvent.ROLL_OUT, function(): void{
+						panl.visible = false;
+					})
+				}				
+			}
+			
+			private function doPublish(cameraName : String, 
+									   microphoneIndex : int, 
+									   videoByte : int, 
+									   videoQuality : int, 
+									   keyFrameInterval : int, 
+									   fps : int,
+									   audioQuality : int,
+									   audioCodec : String,
+									   audioRate : int,
+									   audioSilenceLevel : int): void {
+				
+				debug("video:" + videoQuality + 
+					" audio:" + audioQuality + 
+					" videoByte:" + videoByte + 
+					" videoQuality:" + videoQuality + 
+					" keyFrameInterval:" + keyFrameInterval + 
+					" audioQuality:" +  audioQuality + 
+					" audioCodec:" + audioCodec + 
+					" audioRate:" + audioRate + 
+				    " audioSilenceLevel:" + audioSilenceLevel);
+				
 				if(!nc.connected){
 					Alert.show('尚未连接');
 					return;
@@ -68,35 +161,45 @@
 					Alert.show('获取摄像头失败:' + cameraName);
 					return;
 				}
+				cam.setMode(470, 330, fps);
+				cam.setQuality(videoByte*1024, videoQuality);
+				cam.setKeyFrameInterval(keyFrameInterval);
+				cam.addEventListener(StatusEvent.STATUS, cam_onStatus);
+				
 				mic = Microphone.getMicrophone(microphoneIndex);
 				if (mic == null) {
 					Alert.show('获取麦克风失败:' + microphoneIndex);
 					return;					
 				}
+				mic.encodeQuality = audioQuality;
+				mic.setSilenceLevel(audioSilenceLevel);
+				if (audioCodec == "Nellymoser") {
+					mic.codec = SoundCodec.NELLYMOSER;
+					mic.rate = audioRate;
+				}
+				else {
+					mic.codec = SoundCodec.SPEEX;
+				}
+				
+				
+				var h264Settings:H264VideoStreamSettings = new H264VideoStreamSettings();
+				h264Settings.setProfileLevel(H264Profile.BASELINE, H264Level.LEVEL_5_1);
+				h264Settings.setMode(470, 330, fps);
+				h264Settings.setQuality(videoByte*1024, videoQuality);
+				h264Settings.setKeyFrameInterval(keyFrameInterval);
 				
 				ns = new NetStream(nc);
-				cam.setMode(470, 330, 20);
-				cam.setQuality(videoQuality*1024, 0);
-				cam.addEventListener(StatusEvent.STATUS, cam_onStatus);
 				ns.attachCamera(cam);
-				
-				mic.setUseEchoSuppression(false);
-				mic.encodeQuality = audioQuality;
-				mic.codec = SoundCodec.SPEEX;
-				
 				ns.attachAudio(mic);
-					
-				var streamName: String = vparam.getStreamName();
 				ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
 				ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
-				ns.publish(streamName, "live");
+				ns.videoStreamSettings = h264Settings;
+				ns.publish(vparam.getStreamName(), "live");
+				
 				video.attachCamera(cam);
 				video.visible = true;
 				
 				vstate = 2;
-				
-				var obj:Object = {videoName : streamName};
-				so.setProperty('video', obj);
 				
 				ExternalInterface.call("room.onVideoPublish");
 			}
@@ -138,68 +241,13 @@
 				
 				vstate = 3;
 				
-				var obj:Object = {videoName : streamName};
-				so.setProperty('video', obj);
-								
 				ExternalInterface.call("room.onVideoPublish");
 			}
-			
-			private function doStop(): void{
-				if(vstate == 0) return;
-				
-				debug("doStop");
-				
-				if(ns){
-					if(vstate == 2){
-						ns.attachCamera(null);
-						ns.attachAudio(null);
-					}
-					else if(vstate == 3){ // 文件流媒体直播需要主动修改
-						so.setProperty('video', null);
-					}
-					ns.close();	
-				}
-				video.attachNetStream(null);
-				video.visible = false;
-				
-				vstate = 0;
-				ExternalInterface.call("room.onVideoUnpublish");
-			}
-			
-			//JS调用
-			public function doSendMsg(msgData :Object): void {
-				nc.call("sendMsg", null, msgData);
-			}
-			
-			public function doSendGift(propid: int, count: int, to: String): void {
-				nc.call("sendGift", null, propid, count, to);
-			}
-			
-			public function doBan(uid: String): void{
-				nc.call("ban", null, uid);
-			}
-			//
-			
-			public function initPublicBar(show:Boolean): void {
-				debug("showPublishBar:" + show);
-				if(show) {
-					this.addEventListener(MouseEvent.ROLL_OVER, function(): void{
-						panl.visible = true;
-					});
-					this.addEventListener(MouseEvent.ROLL_OUT, function(): void{
-						panl.visible = false;
-					})
-				}				
-			}
-			
+
 			////////////////// event		
 			private function doConnectSuccess(): void{
-				
-				so = SharedObject.getRemote("so", nc.uri, false);
-				so.addEventListener(SyncEvent.SYNC, so_OnSync);
-				so.connect(nc);
 				ExternalInterface.call("room.onConnectSuccess");
-				
+				nc.call("checkVideo", null);
 				/* 带宽检测
 				nc.call("checkBandwidth", null);
 				*/
@@ -220,7 +268,7 @@
 			}
 			
 			private function nc_OnStatus(evt: NetStatusEvent): void{
-				debug(evt.info.code);
+				debug(evt.info.code + " protocol:" + nc.protocol + " connectedProxyType:" + nc.connectedProxyType);
 				switch(evt.info.code){
 					case "NetConnection.Connect.Success":
 						doConnectSuccess();
@@ -245,7 +293,7 @@
 			private function ns_onStatus(evt: NetStatusEvent): void{
 				// 循环播放：如果碰到播放结束，并且不是直播时，跳回到第一帧
 				if(evt.info.code == "NetStream.Play.Stop"){
-					if(vstate != 0){
+					if(vstate == 3){
 						ns.seek(0);
 					}
 				}
@@ -253,32 +301,7 @@
 			
 			private function ns_onSyncErr(evt: AsyncErrorEvent): void {
 			}
-			
-			private function so_OnSync(evt: SyncEvent): void{
-				var hasVideoInfo: Boolean = !(so.data['video'] == null);
-				
-				debug("so data sync hasVideoInfo:" + hasVideoInfo);
-				
-				if(vstate == 0){ // 空闲中，可能自动播放，但不可能自动发布
-					if(hasVideoInfo){
-						var videoName: String = so.data['video'].videoName;
-						doView(videoName);
-					}
-				}
-				else if(vstate == 1){ // 播放中，收到停止消息后，自动停止
-					if(!hasVideoInfo){
-						doStop();
-					}
-					
-				}
-				else if(vstate == 2){ // 发布中，不会自动停的
-					
-				}
-				else if(vstate == 3){ // 发布播放中
-					
-				}
-			}
-						
+									
 			private function cam_onStatus(evt: StatusEvent): void {
 				if(evt.code == "Camera.Muted"){
 					doStop();
@@ -347,9 +370,9 @@
 				
 			}
 			
-			private function debug(msg: String):void {
+			public function debug(msg: String):void {
 				ExternalInterface.call("room.debug", msg);
-			}			
+			}		
 
 			/////////////////////////
 			
@@ -383,18 +406,28 @@
 				audioList.dataProvider = new ArrayCollection(audios);
 				audioList.selectedIndex = 0;
 				
-				audioQuality.dataProvider = new ArrayCollection([{label : '3.95KB/s', data : 0}, {label : '5.75KB/s', data : 1}, {label : '7.75KB/s', data : 2}, {label : '9.80KB/s', data : 3}, {label : '12.8KB/s', data : 4}, {label : '16.8KB/s', data : 5}, {label : '20.6KB/s', data : 6}, {label : '23.8KB/s', data : 7}, {label : '27.8KB/s', data : 8}, {label : '34.2KB/s', data : 9}, {label : '42.2KB/s', data : 10}]);
-				audioQuality.selectedIndex = 6;
-				
-//				rateList.dataProvider = new ArrayCollection([{label : '44,100 Hz', data : 44}, {label : '22,050 Hz', data : 22}, {label : '11,025 Hz', data : 11}, {label : '8,000 Hz', data : 8}, {label : '5,512 Hz', data : 5}]);
-//				rateList.selectedIndex = 3;
-				
+				audioQuality.dataProvider = new ArrayCollection([
+					{label : "自动", data : 0}
+				]);	
+				audioQuality.selectedIndex = 0;
+								
 				deviceChoosePanel.visible = true;
 			}
 			
 			protected function btnConfirm_clickHandler(event:MouseEvent):void
 			{
-				doPublish(videoList.dataProvider.getItemAt(videoList.selectedIndex).data, audioList.dataProvider.getItemAt(audioList.selectedIndex).data, parseInt(videoQuality.text), audioQuality.dataProvider.getItemAt(audioQuality.selectedIndex).data);
+				doPublish(
+					videoList.selectedItem.data, 
+					audioList.selectedItem.data, 
+					parseInt(videoByte.text),
+					parseInt(videoQuality.text),
+					parseInt(keyFrameInterval.text),
+					parseInt(fps.text),
+					audioQuality.selectedItem.data,
+					audioCodec.selectedItem.data,
+					audioRate.selectedItem.data,
+					parseInt(audioSilenceLevel.text)
+				);
 				deviceChoosePanel.visible = false;
 			}
 			
@@ -405,13 +438,27 @@
 				}
 			}
 			
-			protected function btnPlay_clickHandler(event:MouseEvent):void
-			{
-				if(vstate == 0){
-					doPublishView("intro");
+			private function changeAudioCodec(e:IndexChangeEvent) : void{
+				if (audioCodec.selectedItem.data == 'Nellymoser') {
+					audioRate.dataProvider = myAudioRate;
+					audioRate.selectedIndex = 2;
+					
+					audioQuality.dataProvider = new ArrayCollection([
+						{label : "自动", data : 0}
+					]);	
+					audioQuality.selectedIndex = 0;
+				}
+				else {
+					audioRate.dataProvider = new ArrayCollection([
+						{label : "16,000HZ", data : 0}
+					]);	
+					audioRate.selectedIndex = 0;
+					
+					audioQuality.dataProvider = myAudioQuality;
+					audioQuality.selectedIndex = 6;
 				}
 			}
-			
+						
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -423,20 +470,31 @@
 			 skinClass="spark.skins.spark.SkinnableContainerSkin">
 		<s:Button id="btnPublish" x="0" y="0" width="60" label="发布" click="btnPublish_clickHandler(event)"/>
 		<s:Button id="btnStop" x="60" width="60" label="停止" click="btnStop_clickHandler(event)"/>
-		<!--<s:Button id="btnPlay" x="120" width="60" label="播放" click="btnPlay_clickHandler(event)"/>-->
 	</s:Panel>
-	<s:Panel x="83" y="70" width="303" height="198" title="请选择合适的配置" id="deviceChoosePanel" visible="false">
-		<s:DropDownList x="16" y="40" id="videoList"></s:DropDownList>
-		<s:DropDownList x="170" y="40" id="audioList"></s:DropDownList>
-		<s:Label x="55" y="15" text="视频"/>
-		<s:Label x="211" y="16" text="音频"/>
-		<s:Button x="115" y="125" label="确定" id="deviceChooseBtn" click="btnConfirm_clickHandler(event)"/>
-		<s:Label x="16" y="92" text="质量:"/>
-		<s:TextInput id="videoQuality" x="53" y="87" width="31" borderVisible="false"
+	<s:Panel x="10" y="9" width="450" height="310" title="请选择合适的配置" id="deviceChoosePanel" visible="false">
+		<s:DropDownList id="videoList" x="61" y="40" width="126"></s:DropDownList>
+		<s:DropDownList id="audioList" x="266" y="40" width="122"></s:DropDownList>
+		<s:Label x="110" y="15" text="视频"/>
+		<s:Label x="314" y="16" text="音频"/>
+		<s:Button x="368" y="246" label="确定" id="deviceChooseBtn" click="btnConfirm_clickHandler(event)"/>
+		<s:Label x="61" y="90" text="最大带宽:"/>
+		<s:TextInput id="videoByte" x="116" y="87" width="31" borderVisible="false"
 					 fontFamily="Arial" fontStyle="normal" fontWeight="normal" text="60"
 					 textDecoration="none"/>
-		<s:Label x="91" y="92" text="KB/s"/>
-		<s:Label x="160" y="91" height="13" text="质量:"/>
-		<s:DropDownList id="audioQuality" x="192" y="84" width="90"></s:DropDownList>
+		<s:Label x="150" y="92" text="KB/s"/>
+		<s:Label x="244" y="132" height="13" text="质量:"/>
+		<s:DropDownList id="audioQuality" x="288" y="125" width="100"></s:DropDownList>
+		<s:Label x="61" y="133" text="质量(0~100):"/>
+		<s:TextInput x="139" y="129" width="37" borderVisible="false" text="0" id="videoQuality"/>
+		<s:Label x="61" y="168" text="关键帧间隔(1~48秒):"/>
+		<s:TextInput x="180" y="165" width="32" borderVisible="false" text="48" id="keyFrameInterval"/>
+		<s:Label x="244" y="90" text="编码:"/>
+		<s:DropDownList x="288" y="83" width="100" id="audioCodec" dataProvider="{myAudioCodec}" selectedIndex="0" change="changeAudioCodec(event)"></s:DropDownList>
+		<s:Label x="221" y="168" text="采样频率:"/>
+		<s:DropDownList x="288" y="164" width="100" id="audioRate" dataProvider="{myAudioRate}" selectedIndex="2"></s:DropDownList>
+		<s:Label x="221" y="205" width="52" text="静音级别(0~100):"/>
+		<s:TextInput x="288" y="212" width="50" borderVisible="false" text="10" id="audioSilenceLevel"/>
+		<s:Label x="62" y="212" text="帧速:"/>
+		<s:TextInput x="98" y="208" width="33" borderVisible="false" text="20" id="fps"/>
 	</s:Panel>
 </s:Application>

@@ -4,6 +4,15 @@ class UserController extends Controller
 	public $layout='//layouts/common';
 	public $loginUrl;
 
+	public function filters()
+	{
+        return array(
+            array(
+                'application.filters.LoginFilter + getUserInfoFromOrderId',
+            ),
+        );	
+    }
+
  	public function actions()
     { 
             return array( 
@@ -435,6 +444,29 @@ class UserController extends Controller
 
 	public function actionShowLogin($scene = null, $callback = null) {
 		$this->renderPartial('registerLogin', array('type' => 2, 'scene' => $scene, 'callback' => $callback));
+	}
+
+	public function actionGetUserInfoFromOrderId($order_id) {
+		$record = Recharge::model()->findByPk($order_id);
+		if (!$record) {
+			return ToolUtils::ajaxOut(1000, '订单不存在 order_id:' . $order_id);
+		}
+		if ($record->status == 0) {
+			return ToolUtils::ajaxOut(1001, '订单未完成支付 order_id:' . $order_id);
+		}
+
+		$uid = CUser::checkLogin();
+		if ($uid != $record->uid) {
+			return ToolUtils::ajaxOut(1003, "当前用户id($uid)与订单用户id({$record->uid})不匹配");
+		}
+
+		$user = User::model()->findByPk($record->uid);
+		if (!$user) {
+			return ToolUtils::ajaxOut(1002, '用户信息未找到 uid:' . $uid);
+		}
+
+		ToolUtils::ajaxOut(0, '', array('coin' => $user->coin));
+
 	}
 
 	//remote http call

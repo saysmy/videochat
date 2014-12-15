@@ -1,53 +1,204 @@
-define('index', ['cookie', 'layer'], function(require) {
-    $(document.body).ready(function() {
+define('index', ['cookie', 'user', 'common'], function(require, exports) {
 
-      $(".mainBig > dl:nth-child(3)").css({"margin-right":"0"});
+    var user = require('user');
+    var common = require('common');
 
-      $('#sliderPanel span').click(function() {
-          doSlide($(this).index());
-      })
+    exports.showActivity = function() {
+        var last_come_time = $.cookies.get('last_come_time');
+        $.ajax({
+            url : '/activity/home' + (last_come_time ? '/last_come_time/' + last_come_time : ''), 
+            dataType : 'json',
+            success : function(resp) {
+                if (resp.data.pic) {
+                    common.showContentWin('<a href="' + resp.data.url + '"><img src="' + resp.data.pic + '"/></a>', resp.data.picWidth, resp.data.picHeight);
+                }
+                $.cookies.set('last_come_time', resp.data.current_time, {expires : 86400 * 365});
+            }
+        })
+    }
 
-      function doSlide(index) {
-          var toIcon = $('#sliderPanel span[index='+index+']');
-          if (toIcon.hasClass('on')) {
-              return false;
-          };
-          var current = $('#sliderPanel span.on');
-          current.removeClass('on');
-          toIcon.addClass('on');
-          $('#sliderItem .sliderItem' + current.attr('index')).parent().fadeOut(200, function() {
-              $('#sliderItem .sliderItem' + index).parent().fadeIn(200);
-          })         
-      }
+    var visible_start = 0;
+    var visible_end = 2;
+    var sliding = false;
+    var marginLeft = 0;
+    curr_index = 0;
 
-      var curr_index = 0;
-      setInterval(function() {
-          curr_index ++;
-          if (curr_index >= 3) {curr_index = 0};
-          doSlide(curr_index);
-      }, 10000);
+    exports.slide = function(num) {
 
+        $('#sliderPanel li').click(function() {
+            curr_index = $(this).index();
+            doSlide($(this).index());
+        })
+        setInterval(function() {
+            curr_index ++;
+            if (curr_index >= num) {curr_index = 0};
+            doSlide(curr_index);
+        }, 10000);
 
-      var last_come_time = $.cookies.get('last_come_time');
-      $.ajax({
-          url : '/activity/home' + (last_come_time ? '/last_come_time/' + last_come_time : ''), 
-          dataType : 'json',
-          success : function(resp) {
-              if (resp.data.pic) {
-                  $.layer({
-                      type: 1,
-                      shadeClose: true,
-                      title: false,
-                      border: [0],
-                      area: [resp.data.picWidth + 'px', resp.data.picHeight + 'px'],
-                      page : {
-                          html : '<a href="' + resp.data.url + '"><img src="' + resp.data.pic + '"/></a>'
+        $('.sliderRight').click(function() {
+            if(curr_index + 1 == num) {
+                curr_index = -1;
+            }
+            doSlide(++curr_index);
+        })
+
+        $('.sliderLeft').click(function() {
+            if(curr_index == 0) {
+                curr_index = num;
+            }
+            doSlide(--curr_index);
+        })
+
+        $('.sliderReg').click(function() {
+            user.showLoginPanel();
+        })
+
+        $('.btn-start').click(function() {
+            var video_url = $('#sliderItem .sliderItem:eq(' + curr_index + ')').attr('video-url');
+            if (!video_url) {
+                return true;
+            }
+
+            common.showContentWin('<div id="video-area"></div>', 800, 480);
+
+            var flashvars={
+                f : video_url,
+                c : 0,
+                p : 1
+            };
+            var params={
+                bgcolor:'#FFF',
+                allowFullScreen:true,
+                allowScriptAccess:'always',
+                wmode:'transparent'
+            };
+
+            CKobject.embedSWF('/swf/ckplayer/ckplayer.swf','video-area','ckplayer_a1','800','480',flashvars,params);
+
+            return false;
+        })
+
+        $('.love').click(function() {
+            var rid = $(this).attr('rid');
+            var me = $(this);
+            $.ajax({
+                  url : '/room/love/rid/' + rid,
+                  dataType : 'json',
+                  success : function(resp) {
+                      if (resp.errno == -100) {
+                          user.showLoginPanel();
                       }
-                  });
-              }
-              $.cookies.set('last_come_time', resp.data.current_time, {expires : 86400 * 365});
-          }
-      })
+                      else if (resp.errno == 0){
+                          var love_num = me.text();
+                          if (resp.data.action == 'love') {
+                              me.addClass('liked');
+                              me.removeClass('like');
+                              me.text(++love_num)
+                          }
+                          else {
+                              me.addClass('like');
+                              me.removeClass('liked');
+                              me.text(--love_num);
+                          }
+                      }
+                  }
+             })
+        })
 
-    })
+    }
+
+    exports.debug = function(msg) {
+      console.log(msg);
+    }
+
+
+    function doSlide(index) {
+        if (sliding) {
+            setTimeout(function() {
+                doSlide(index)
+            }, 500);
+            return;
+        }
+        var toIcon = $('#sliderPanel li:eq(' + index + ')');
+        if (toIcon.hasClass('on')) {
+            return false;
+        };
+        var current = $('#sliderPanel li.on');
+        current.removeClass('on');
+        toIcon.addClass('on');
+        $('#sliderItem .sliderItem:eq(' + current.index() + ')').fadeOut(200, function() {
+            $('#sliderItem .sliderItem:eq(' + index + ')').fadeIn(200);
+        })
+
+        if (index < visible_start) {
+            marginLeft += (visible_start - index) * 95;
+            $('.sliderSmall ul').css('marginLeft', marginLeft + 'px');
+            visible_start = index;
+            visible_end = visible_start + 2;
+        }
+        else if (index > visible_end) {
+            marginLeft += (visible_end - index) * 95;
+            $('.sliderSmall ul').css('marginLeft', marginLeft + 'px');
+            visible_start = index - 2;
+            visible_end = index;
+        }
+
+        sliding = false;
+
+    }
+
+    var sliderItems = $('#sliderItem .sliderItem');
+    var sliderTimes = $('.sliderTime');
+    var current_time = 0;
+
+    exports.startTimer = function(time) {
+        current_time = time;
+        setInterval(syncTime, 1000);
+
+        timer();
+        setInterval(timer, 10000);
+    }
+
+    function syncTime() {
+        current_time ++;
+    }
+
+    function timer() {
+        sliderItems.each(function() {
+            var item = $(this);
+            var index = item.index();
+            var play_start_time = item.attr('play-start-time');
+            var play_end_time = item.attr('play-end-time');
+            var left = play_start_time - current_time;
+            if (left < 0) {
+                left = 0;
+            }
+
+            var day = Math.floor(left/60/60/24) + '';
+            var hour = Math.floor(left/60/60)%24 + '';
+            var min = Math.floor(left/60)%60 + '';
+
+            var timeItem = $(sliderTimes[index]);
+            timeItem.find('.days dt').text(day.length > 1 ? day.substr(0, 1) : 0); 
+            timeItem.find('.days dd').text(day.length > 1 ? day.substr(-1, 1): day);   
+
+            timeItem.find('.hours dt').text(hour.length > 1 ? hour.substr(0, 1) : 0); 
+            timeItem.find('.hours dd').text(hour.length > 1 ? hour.substr(-1, 1): hour); 
+
+            timeItem.find('.mins dt').text(min.length > 1 ? min.substr(0, 1) : 0); 
+            timeItem.find('.mins dd').text(min.length > 1 ? min.substr(-1, 1): min);  
+
+            if (current_time >= play_start_time && current_time <= play_end_time) {
+                item.find('.btn-start').attr('href', item.attr('room'));
+            }
+            else {
+                if (item.attr('detail-url')) {
+                    item.find('.btn-start').attr('href', item.attr('detail-url'));
+                }
+                else {
+                    item.find('.btn-start').attr('href', 'javascript:void(0)');
+                }
+            }
+        })
+    }
 })

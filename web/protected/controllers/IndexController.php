@@ -5,10 +5,6 @@ class IndexController extends CController
 
 	public $layout='//layouts/common';
 
-	public $loginUrl;
-
-	private $roomIds = array(5, 2, 6);
-
 	public function filters() {
 		return array(
 		    array(
@@ -21,21 +17,39 @@ class IndexController extends CController
     
 	public function actionIndex() {
 
-		$this->loginUrl =  CUser::getQQLoginUrl();
+		$rooms = Room::model()->findAll(array('condition' => 'status=0', 'order' => 'rank desc'));
 
-		$roomArr = array();
-		$rooms = Room::model()->findAllByPk($this->roomIds);
 		foreach($rooms as $room) {
-			$moderators[$room->id] = User::model()->findByPk($room->mid);
-			$roomArr[$room->id] = $room;
+			$room->moderator['age'] = $room->moderator['age'] == 0 ? '??' : $room->moderator['age'];
+			$room->moderator['weight'] = $room->moderator['weight'] == 0 ? '??' : $room->moderator['weight'];
+			$room->moderator['height'] = $room->moderator['height'] == 0 ? '??' : $room->moderator['height'];
 		}
 
+		$uid = CUser::checkLogin();
 
-		$moderators[$room->id]['age'] = $moderators[$room->id]['age'] == 0 ? '??' : $moderators[$room->id]['age'];
-		$moderators[$room->id]['weight'] = $moderators[$room->id]['weight'] == 0 ? '??' : $moderators[$room->id]['weight'];
-		$moderators[$room->id]['height'] = $moderators[$room->id]['height'] == 0 ? '??' : $moderators[$room->id]['height'];
+		$liveRecords = Room::model()->findAll(array('condition' => 'status=1', 'order' => 'rank desc'));
+		$liveRooms = array();
+		foreach($liveRecords as $item) {
+			$room = array();
+			foreach($item->attributeLabels() as $key => $t) {
+				$room[$key] = $item->$key;
+			}
+			$room['play_start_time'] = strtotime($room['play_start_time']);
+			$room['play_end_time'] = strtotime($room['play_end_time']);
+			$room['moderator'] = $item->moderator;
 
-		$this->render('indexContent', array('rooms' => $roomArr, 'moderators' => $moderators, 'roomIds' => $this->roomIds));
+			$liveRooms[] = $room;
+		}
+
+		$loveRooms = array();
+		if ($uid) {
+			$records = LoveRoom::model()->findAll('uid=' . $uid);
+			foreach($records as $record) {
+				$loveRooms[] = $record->rid;
+			}
+		}
+
+		$this->render('index', array('rooms' => $rooms, 'liveRooms' => $liveRooms, 'loveRooms' => $loveRooms));
 	}
 
 }

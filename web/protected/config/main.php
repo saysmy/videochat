@@ -17,12 +17,13 @@ $seaFiles = array(
       'registerLogin' => 'registerLogin.js?v=20141116',
       'step'     => 'step.js?v=20141116',
       'user'     => 'user.js?v=20141022',
-      'room'	 => 'room.js?v=20141115',
-      'popCheckbox' => 'popCheckbox.js?v=20141027',
-      'index'    => 'index.js?v=20141129',
-      'head'     => 'head.js?v=20141115',
-      'common'   => 'common.js?v=20141116',
+      'room'	 => 'room.js?v=20141215',
+      'popCheckbox' => 'popCheckbox.js?v=20141215',
+      'index'    => 'index.js?v=20141215',
+      'head'     => 'head.js?v=20141215',
+      'common'   => 'common.js?v=20141215',
       'cookie'   => 'jquery.cookies.js',
+      'poshytip' => 'poshytip/jquery.poshytip.min.js'
 );
 
 return array(

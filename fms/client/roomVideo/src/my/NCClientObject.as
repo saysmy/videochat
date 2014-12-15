@@ -57,6 +57,21 @@ package my
 			ExternalInterface.call("room.onBanMsg", errno, msg, data);			
 		}
 		
+		public function onPublish() : void {
+			this.app.doPlay();
+		}
+		
+		public function onUnpublish() : void {
+			this.app.doStop();	
+		}
+		
+		public function onCheckVideo(isPlaying : Boolean) : void {
+			this.app.debug('isPlaying:' + isPlaying);
+			if (isPlaying) {
+				this.app.doPlay();
+			}
+		}
+		
 		/*
 		public function onBroadcastMsg(type: String, s1: String, s2: String, s3: String, s4: String, s5: String, s6: String, s7: String): void{
 			switch(type){

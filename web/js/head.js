@@ -1,21 +1,12 @@
-define(['user', 'plupload', 'jcrop', 'common'], function(require) {
+define(['user', 'plupload', 'jcrop', 'common', 'cookie'], function(require, exports, module) {
     var user = require('user');
     var headTmpUrl = null;
     var cropSize = null;
     var common = require('common');
-    user.getUserInfo(function(resp) {
-        if (resp.errno) {return;};
-        $('.coin b').text(resp.data.coin);
-        $('.uinfo.logined img').attr('src', resp.data['head_pic_1']);
-        $('.settingLeft dt img').attr('src', resp.data['head_pic_1']);
-        $('.uinfo.logined a.nickname').text(resp.data['nickname']);
-        $('.editInner b').text(resp.data['nickname']);
-        $('.logined').show();
-        $('.unlogined').hide();
-        if (resp.data.rUrl) {
-            $('.liveRoom').attr('href', resp.data.rUrl);
-        }
-    })
+    var userInfoStartCookieKey = 'getUserInfoStart';
+
+    refreshUserInfo();
+
     $("#user-reg").click(user.showRegisterPanel);
     $("#user-login").click(user.showLoginPanel);
     //编辑昵称
@@ -205,6 +196,26 @@ define(['user', 'plupload', 'jcrop', 'common'], function(require) {
         $(".editCont").css({"display":"none"});         
     })
 
+    setTimeout(setIntervalForUpdateUserInfo, 3000);
+
+    function refreshUserInfo() {
+        user.getUserInfo(function(resp) {
+            if (resp.errno) {return;};
+            $('.coin.logined b').text(resp.data.coin);
+            $('.uinfo.logined img').attr('src', resp.data['head_pic_1']);
+            $('.settingLeft dt img').attr('src', resp.data['head_pic_1']);
+            $('.uinfo.logined a.nickname').text(resp.data['nickname']);
+            $('.editInner b').text(resp.data['nickname']);
+            $('.logined').show();
+            $('.unlogined').hide();
+            if (resp.data.rUrl) {
+                $('.liveRoom').attr('href', resp.data.rUrl);
+            }
+        });
+    }
+    exports.refreshUserInfo = refreshUserInfo;
+
+
     function jq_tabs(str) {
         $("#"+str+"Tab a").mouseover(function(){
             $("#"+str+"Tab a").removeClass("on");
@@ -223,6 +234,35 @@ define(['user', 'plupload', 'jcrop', 'common'], function(require) {
         });
         cropSize = c;
     };
+
+
+    function setIntervalForUpdateUserInfo() {
+        var info = $.cookies.get(userInfoStartCookieKey);
+        if (info) {
+            if (info.type == 1) {//充值金币同步
+                $.ajax({
+                    url : '/user/getUserInfoFromOrderId/order_id/' + info.order_id,
+                    dataType : 'json',
+                    success : function(resp) {
+                        if (resp.errno == 0) {
+                            $('.coin.logined b').text(resp.data.coin);
+                            $.cookies.del(userInfoStartCookieKey);
+                        }
+                        setTimeout(setIntervalForUpdateUserInfo, 3000);
+                    },
+                    error : function() {
+                        setTimeout(setIntervalForUpdateUserInfo, 3000);
+                    }
+                });
+            }
+            else {
+                setTimeout(setIntervalForUpdateUserInfo, 3000);
+            }
+        }
+        else {
+            setTimeout(setIntervalForUpdateUserInfo, 3000);
+        }
+    }
 
 
 

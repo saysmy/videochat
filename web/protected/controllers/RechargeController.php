@@ -102,6 +102,10 @@ class RechargeController extends CController {
 
         $user = CUser::getInfoByUid($record->uid);
 
+        if ($success) {
+            setcookie(SYNC_START_COOKIE_KEY, json_encode(array('order_id' => $record->id, 'type' => SYNC_USERINFO_RECHARGE_TYPE)), '/', DOMAIN);
+        }
+
         $this->render('return', array('alipayTradeNo' => $trade_no,
                                       'TradeNo' => $out_trade_no,
                                       'payTime' => date('Y-m-d H:i:s'),

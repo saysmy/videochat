@@ -47,4 +47,15 @@ Class ToolUtils {
         }
         return $url;
     }
+
+    static public function frequencyCheck($id, $second) {
+        $value = Yii::app()->cache->get($id);
+        if (!$value || microtime(true) - $value > $second) {
+            Yii::app()->cache->set($id, microtime(true));
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

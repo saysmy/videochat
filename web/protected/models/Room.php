@@ -5,27 +5,23 @@
  *
  * The followings are the available columns in table 'room':
  * @property string $id
- * @property string $name
  * @property string $announcement
  * @property string $logo
+ * @property string $banner
  * @property string $description
  * @property string $max_user
  * @property string $mid
- * @property string $moderator_sign
- * @property string $score
+ * @property string $moderator_desc
+ * @property string $love_num
+ * @property string $detail_url
+ * @property string $video_url
+ * @property integer $status
+ * @property string $play_start_time
+ * @property string $play_end_time
+ * @property integer $rank
  */
 class Room extends CActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Room the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -42,11 +38,13 @@ class Room extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, announcement, logo, description, moderator_sign', 'length', 'max'=>255),
-			array('max_user, mid, score', 'length', 'max'=>10),
+			array('announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'required'),
+			array('status, rank', 'numerical', 'integerOnly'=>true),
+			array('announcement, logo, banner, description, moderator_desc, detail_url, video_url', 'length', 'max'=>255),
+			array('max_user, mid, love_num', 'length', 'max'=>10),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, announcement, logo, description, max_user, mid, moderator_sign, moderator_desc, score', 'safe', 'on'=>'search'),
+			// @todo Please remove those attributes that should not be searched.
+			array('id, announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +56,7 @@ class Room extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'moderator' => array(self::BELONGS_TO, 'User', 'mid'),
 		);
 	}
 
@@ -68,42 +67,70 @@ class Room extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
 			'announcement' => 'Announcement',
 			'logo' => 'Logo',
+			'banner' => 'Banner',
 			'description' => 'Description',
 			'max_user' => 'Max User',
 			'mid' => 'Mid',
-			'moderator_sign' => 'Moderator Sign',
 			'moderator_desc' => 'Moderator Desc',
-			'score' => 'Score',
+			'love_num' => 'Love Num',
+			'detail_url' => 'Detail Url',
+			'video_url' => 'Video Url',
+			'status' => 'Status',
+			'play_start_time' => 'Play Start Time',
+			'play_end_time' => 'Play End Time',
+			'rank' => 'Rank',
 		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
 		$criteria->compare('announcement',$this->announcement,true);
 		$criteria->compare('logo',$this->logo,true);
+		$criteria->compare('banner',$this->banner,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('max_user',$this->max_user,true);
 		$criteria->compare('mid',$this->mid,true);
-		$criteria->compare('moderator_sign',$this->moderator_sign,true);
-		$criteria->compare('moderator_desc',$this->moderator_sign,true);
-		$criteria->compare('score',$this->score,true);
+		$criteria->compare('moderator_desc',$this->moderator_desc,true);
+		$criteria->compare('love_num',$this->love_num,true);
+		$criteria->compare('detail_url',$this->detail_url,true);
+		$criteria->compare('video_url',$this->video_url,true);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('play_start_time',$this->play_start_time,true);
+		$criteria->compare('play_end_time',$this->play_end_time,true);
+		$criteria->compare('rank',$this->rank);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Room the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
 	}
 }

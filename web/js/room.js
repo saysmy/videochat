@@ -1,8 +1,11 @@
-define('room',['popCheckbox', 'user'], function(require, exports, module) {
+define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, exports, module) {
 	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e8.png', data : '{笑}'}];
 	var flower = {img : '/img/face/e7.png', data : '{花}'}
 	var user = require('user');
-	require('popCheckbox');
+	var common = require('common');
+
+	common.include('/js/poshytip/tip-yellow/tip-yellow.css');
+
 	$(document).ready(function(){	
 		$(".roomChat tr:odd").css({"background":"#F4F4F4"});
 		$(".roomUserItem li:odd").css({"background":"#F4F4F4"});
@@ -31,7 +34,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 		})
 
 		$("#chooseProp").popCheckbox({width : 468, offset : [155, -25]}, prop, function(item, index) {
-			return $('<div title="' + item.price + '泡泡" style="' + (index%7 == 0 ? 'margin:10px 14px 10px 14px;' : 'margin:10px 8px;') + 'dispaly:inline-block;text-align:center;float:left;cursor:pointer;" index="' + index + '""><img src="' + item.imgPreview + '" style="width:48px;height:48px;"/><br/><div style="display:inline-block;">' + item.name + '</div></div>');
+			return $('<a class="giftItem" title="' + item.price + '泡泡" style="' + (index%7 == 0 ? 'margin:10px 14px 10px 14px;' : 'margin:10px 7px;') + 'dispaly:inline-block;text-align:center;float:left;cursor:pointer;" index="' + index + '""><img src="' + item.imgPreview + '" style="width:48px;height:48px;"/><br/><div style="display:inline-block;">' + item.name + '</div></div>').poshytip({fade: false, slide : false,followCursor: true, showTimeout : 0});
 		}, function(item) {
 			$("#chooseProp").text(item.name);
 			$("#chooseProp").attr('propId', item.id);
@@ -78,6 +81,34 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 		if(maxPropInfo) {
 			updatePropMaxinfo(maxPropInfo);
 		}
+
+		$('.love').click(function() {
+            var rid = $(this).attr('rid');
+            var me = $(this);
+            $.ajax({
+                  url : '/room/love/rid/' + rid,
+                  dataType : 'json',
+                  success : function(resp) {
+                      if (resp.errno == -100) {
+                          user.showLoginPanel();
+                      }
+                      else if (resp.errno == 0){
+                          var love_num = me.text();
+                          if (resp.data.action == 'love') {
+                              me.addClass('liked');
+                              me.removeClass('like');
+                              me.text(++love_num)
+                          }
+                          else {
+                              me.addClass('like');
+                              me.removeClass('liked');
+                              me.text(--love_num);
+                          }
+                      }
+                  }
+             })
+        })
+
 	});
 
 	var loginUserList = {};
@@ -260,7 +291,9 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 			$('#giftMsgPanel ul').append($('<li>' + msgData + '</li>'));
 		}
 		else {
-			$('#giftMsgPanel ul').append($('<li><a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '" width=48 height=48> <b>x' + msgData.loop + '</b></li>'));	
+			var time = new Date;
+			time.setTime(msgData.time * 1000);
+			$('#giftMsgPanel ul').append($('<li><span class="time">'+ time.getHours() + ':' + time.getMinutes() +'</span>&nbsp;&nbsp;<a href="javascript:room.changeReceiver(' + msgData.from + ')">' + msgData.fromNickname + '</a> 送给 <a href="javascript:room.changeReceiver(' + msgData.to + ')">' + msgData.toNickname + '</a> ' + msgData.propName + ' <img src="' + msgData.propPic + '" width=48 height=48> <b>x' + msgData.loop + '</b></li>'));	
 		}
 		$("#giftMsgPanel").scrollTop($("#giftMsgPanel")[0].scrollHeight - $("#giftMsgPanel").height());
 
@@ -299,7 +332,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 	}
 
 	exports.onChatMsg = function(errno, msg, msgData) {
-		var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言', 104 : '未登录'};
+		var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言', 104 : '未登录', 105 : '发言频率过于频繁，请稍后再试', 106 : '短时间内不能发相同内容', 107 : '悲剧～～您被管理员禁言了T.T'};
 		if (errno == 104) {
 			user.showLoginPanel();
 			return;
@@ -340,6 +373,7 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
 		if (data.showProp) {
 			updatePropMaxinfo(data);
 		};
+		head.refreshUserInfo();
 	}
 
 	function sendGiftDelay(data, loop) {
@@ -399,5 +433,3 @@ define('room',['popCheckbox', 'user'], function(require, exports, module) {
         }, interval);
     }
 })
-
-seajs.use('room', function(room) {window.room = room});

@@ -29,6 +29,10 @@ class AmfController extends Controller
 	public function actionTestSendGift($rid) {
 		$service = new ChatService;
 		$service->sendGift(1, '', 1, 1,1,1);
-		// CRoom::getSendMaxPricePropInfo($rid);
+	}
+
+	public function actionTestMsgFilter() {
+		$service = new ChatService;
+		var_export($service->msgFilter('', '', '', array('msg' => '1')));
 	}
 }

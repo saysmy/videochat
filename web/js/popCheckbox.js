@@ -1,4 +1,3 @@
-define(function(require) {
 (function($) {
 	$.fn.extend({
 		popCheckbox : function(attr, items, itemGenerator, chooseHandler) {
@@ -70,4 +69,3 @@ define(function(require) {
 
 
 })(jQuery)	
-})

@@ -9,7 +9,7 @@
       <div class="roomLeft fl">
         <div class="roomPlayer"><div id="roomPlayer"></div></div>
         <div class="roomNotice"></div>
-        <div class="roomGifts mt10" id="giftMsgPanel" style="overflow:scroll">
+        <div class="roomGifts mt5" id="giftMsgPanel" style="overflow:scroll">
           <ul>
           </ul>
         </div>
@@ -22,7 +22,7 @@
             <li>数量</li>
             <li class="giftsNum"><span style="width:60px;"><i><input id="propNum" value=1 style="border:0px;text-align:center;width:40px;padding:0px"></input></i><em></em></span></li>
             <li>&nbsp;给&nbsp;</li>
-            <li class=""><span><i id="propTo" to='<?=$mid?>' style="width:110px;overflow:hidden;text-align:center"><?=$this->moderatorUserInfo['nickname']?></i></span></li>
+            <li class=""><span><i id="propTo" to='<?=$mid?>' style="width:110px;overflow:hidden;text-align:center"><?=$this->room->moderator['nickname']?></i></span></li>
             <li class="giftsBtns"><a href="javascript:void(0)" class="btns btn-a" id="sendGiftBtn">赠送</a><a href="/recharge/center" class="btns btn-b" target="_blank">充值</a></li>
           </ul>
           <p class="clear"></p>
@@ -37,16 +37,16 @@
           <p class="clear"></p>
         </div>
         <div class="roomItem mt10" id="roomItem0" style="display:block;">
-          <div class="roomPub">【房间公告】<?=$this->room->announcement?></div>
+          <div class="roomPub" style="height:54px">【房间公告】<?=$this->room->announcement?></div>
           <div class="roomContent">
-            <div class="roomChat posR" style="height:320px;" id="publicChatPanel" style="overflow:scroll">
+            <div class="roomChat posR" style="height:350px;" id="publicChatPanel" style="overflow:scroll">
               <table width="323" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                 </tr>
               </table>
             </div>
             <div class="roomPannel"><a href="#" id="panelArrow" class="arrow_up"></a></div>
-            <div class="roomChat2" style="height:85px;" id="privateChatPanel">
+            <div class="roomChat2" style="height:75px;" id="privateChatPanel">
               <span style="color:#f00;">【千万情意，唯独为你】肥皂—中国最大的华裔美少年の社区</span>
               <ul>
               </ul>
@@ -89,3 +89,9 @@
       <p class="clear"></p>
     </div>
   </div>
+
+  <script>
+seajs.use('room', function(room) {
+    window.room = room;
+})
+  </script>

@@ -2,7 +2,7 @@
 class ChatService {
 	public function getUserInfo($sid, $uid, $rid) {
 		if(!CUser::checkLogin($uid, $sid)) {
-			return array('errno' => 100, 'msg' => 'not login');
+			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
 		}
 
 		$userInfo = CUser::getInfoByUid($uid);
@@ -118,4 +118,57 @@ class ChatService {
 		
 		return array('errno' => 0);
 	}
+
+	public function msgFilter($sid, $uid, $rid, $msg) {
+		if(!CUser::checkLogin($uid, $sid)) {
+			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
+		}
+		//禁言控制
+		$ban_key = 'ban_' . $rid . '_' . $uid;
+		if (Yii::app()->cache->get($ban_key)) {
+			return array('errno' => 502);
+		}
+
+		//发言频率控制
+		if (!ToolUtils::frequencyCheck('chat_' . $uid, 1)) {
+			return array('errno' => 500);
+		}
+
+		//2s内不能发相同内容
+		$msg_cache_key = 'chat_msg_' . $uid;
+		if (($last_msg = Yii::app()->cache->get($msg_cache_key)) && $last_msg == $msg) {
+			if (!ToolUtils::frequencyCheck('chat_' . $uid, 2)) {
+				return array('errno' => 501);
+			}
+		}
+		Yii::app()->cache->set($msg_cache_key, $msg);	
+
+		$msg = CRoom::dirtyFilter($msg);
+
+		return array('errno' => 0, 'msg' => '', 'data' => array('msg' => $msg));
+	}
+
+	public function ban($sid, $uid, $rid, $buid, $expire) {
+		if(!CUser::checkLogin($uid, $sid)) {
+			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
+		}
+
+		$userInfo = CUser::getUserInfoByUid($uid);
+		if (!$userInfo) {
+			return array('errno' => 600);
+		}
+
+		if ($userInfo['type'] != ADMIN_USER) {
+			return array('errno' => 601);
+		}
+
+		Yii::app()->cache->set('ban_' . $rid . '_' . $buid, 'true', $expire);
+
+		return array('errno' => 0);
+
+	}	
+
+
+
+
 }

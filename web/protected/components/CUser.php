@@ -2,7 +2,7 @@
 class CUser {
 	static public $errCode = 0;
 	static public $errMsg = '';
-	static public function getInfoByUid($uid) {
+	static public function getInfoByUid($uid, $rid = null) {
 		$user = new User;
 		$record = $user->find('id=' . $uid);
 		if(!$record) {
@@ -11,11 +11,13 @@ class CUser {
 			return false;
 		}
 		$ret = self::getBaseInfoByRecord($record);
-		if(Yii::app()->cache->get('ban_' . $uid)) {
-			$ret['ban'] = true;
-		}
-		else {
-			$ret['ban'] = false;
+		if ($rid) {
+			if(Yii::app()->cache->get('ban_' . $rid . '_'. $uid)) {
+				$ret['ban'] = true;
+			}
+			else {
+				$ret['ban'] = false;
+			}
 		}
 		return $ret;
 	}
