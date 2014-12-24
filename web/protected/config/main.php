@@ -17,9 +17,9 @@ $seaFiles = array(
       'registerLogin' => 'registerLogin.js?v=20141116',
       'step'     => 'step.js?v=20141116',
       'user'     => 'user.js?v=20141022',
-      'room'	 => 'room.js?v=20141215',
+      'room'	 => 'room.js?v=20141222',
       'popCheckbox' => 'popCheckbox.js?v=20141215',
-      'index'    => 'index.js?v=20141215',
+      'index'    => 'index.js?v=20141222',
       'head'     => 'head.js?v=20141215',
       'common'   => 'common.js?v=20141215',
       'cookie'   => 'jquery.cookies.js',
@@ -116,7 +116,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'cookieExpire' => '86400',
-		'fmsServer' => YII_DEBUG ? '10.211.55.4' : '211.155.86.148',
+		'fmsServer' => YII_DEBUG ? (rand()%2 ? '10.211.55.4' : '10.211.55.4') : '211.155.86.148',
 		'unLoginUid' => -1,
 	),
 );

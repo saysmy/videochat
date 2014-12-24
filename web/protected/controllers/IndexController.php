@@ -17,7 +17,7 @@ class IndexController extends CController
     
 	public function actionIndex() {
 
-		$rooms = Room::model()->findAll(array('condition' => 'status=0', 'order' => 'rank desc'));
+		$rooms = Room::model()->findAll(array('condition' => 'status!=-1', 'order' => 'rank desc'));
 
 		foreach($rooms as $room) {
 			$room->moderator['age'] = $room->moderator['age'] == 0 ? '??' : $room->moderator['age'];

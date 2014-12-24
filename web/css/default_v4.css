@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* ::http://www.ieic.cn /:: */
 /* CSS Frameworks "webmag" Created by anylee(flash8_any@163.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
 
@@ -83,15 +83,18 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 /* @index.html
 -------------------------------------------------------------- */
 .top-column1 {height:34px;background:url(bgx.jpg) 0 -50px repeat-x;}
-.topbar {padding-right:80px;}
+.topbar {padding-right:80px;position:relative;}
 .topbar ul {height:34px;}
-.topbar li {float:right;height:34px;color:#09c;}
+.smallLogo {width:74px;height:34px;left:40px;top:0;}
+.smallLogo {width:74px;height:34px;background:url(small-logo.jpg) left center no-repeat;display:block;}
+.topbar li {float:right;height:34px;color:#09c;line-height:34px;}
 .topbar li a {color:#09c;line-height:34px;}
 .topbar li a:hover {color:#f00;}
-.topbar li.uinfo {padding:4px 0;height:26px;line-height:26px;}
+.topbar li.uinfo {height:34px;line-height:34px;}
 .topbar li.uinfo img,a {vertical-align:middle;}
-.topbar li.uinfo a {line-height:26px;}
+.topbar li.uinfo a {line-height:34px;}
 .topbar li.coin {padding-left:15px;line-height:34px;background:url(i3.gif) left center no-repeat;}
+.topbar li.coin b {line-height:34px;}
 .topbar li.chong {padding:0 5px;}
 .topbar li.edit em,.topbar li.msg a,.topbar li.setting em,.topbar li.mail a {width:40px;height:34px;display:block;}
 .topbar li.edit {width:39px;cursor:pointer;position:relative;z-index:99;}
@@ -330,6 +333,10 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 .sliderInfo span a.star {width:20px;height:17px;background:url(i48.png) left center no-repeat;}
 .sliderTime {width:300px;height:190px;background:url(timeBg.jpg);top:40px;right:20px;}
 .timeInner {width:300px;height:190px;}
+.timeCont {width:300px;height:100px;}
+.timeLive {width:300px;height:100px;background:#23b6e2;}
+.timeLive {display:none;}
+.timeLive a {width:300px;height:100px;background:url(live.jpg);display:block;}
 .timeInner dl {width:74px;height:58px;display:block;position:absolute;top:14px;}
 .timeInner dl.days {left:27px;}
 .timeInner dl.hours {left:112px;}

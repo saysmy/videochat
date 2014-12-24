@@ -3,8 +3,8 @@
     <div class="sliderOuter" id="sliderOuter">
       <div class="sliderCont posR" id="sliderCont">
         <ul id="sliderItem">
-        <?php foreach($liveRooms as $room):?>
-          <li class="sliderItem" style="height:382px;background:url(<?=$room['banner']?>) center 0 no-repeat;" play-start-time="<?=$room["play_start_time"]?>" play-end-time="<?=$room["play_end_time"]?>" video-url="<?=$room["video_url"]?>" room="<?=$this->createUrl('/room/index', array('rid' => $room['id']))?>" detail-url="<?=$room['detail_url']?>">
+        <?php foreach($liveRooms as $k => $room):?>
+          <li class="sliderItem" style="<?=$k != 0 ? 'display:none;' : ''?>height:382px;background:url(<?=$room['banner']?>) center 0 no-repeat;" play-start-time="<?=$room["play_start_time"]?>" play-end-time="<?=$room["play_end_time"]?>" video-url="<?=$room["video_url"]?>" room="<?=$this->createUrl('/room/index', array('rid' => $room['id']))?>" detail-url="<?=$room['detail_url']?>">
             <div class="sliderWrap">
               <a href="javascript:void(0)" class="btn-start" target=_blank></a>
               <div class="sliderInfo posA">
@@ -14,6 +14,8 @@
               </div>
               <div class="sliderTime posA">
                 <div class="timeInner posR">
+                  <div class="timeLive" style="display:none;"><a href="<?=$this->createUrl('/room/index', array('rid' => $room['id']))?>" target=_blank></a></div>
+                  <div class="timeCont" style="display:block;">
                   <dl class="days">
                     <dt>-</dt>
                     <dd>-</dd>
@@ -26,6 +28,7 @@
                     <dt>-</dt>
                     <dd>-</dd>
                   </dl>
+                  </div>
                   <span><?=$room['moderator']['true_name']?> <i>练习生的直播倒计时</i></span>
                   <a href="javascript:void(0)" class="sliderReg">立即注册，和他一起肉身互动</a>
                 </div>

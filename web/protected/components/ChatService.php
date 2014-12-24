@@ -123,6 +123,11 @@ class ChatService {
 		if(!CUser::checkLogin($uid, $sid)) {
 			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
 		}
+
+		if ($msg == '{花}') {//送花不作控制
+			return array('errno' => 0, 'msg' => '', 'data' => array('msg' => $msg));
+		}
+
 		//禁言控制
 		$ban_key = 'ban_' . $rid . '_' . $uid;
 		if (Yii::app()->cache->get($ban_key)) {
@@ -136,10 +141,8 @@ class ChatService {
 
 		//2s内不能发相同内容
 		$msg_cache_key = 'chat_msg_' . $uid;
-		if (($last_msg = Yii::app()->cache->get($msg_cache_key)) && $last_msg == $msg) {
-			if (!ToolUtils::frequencyCheck('chat_' . $uid, 2)) {
-				return array('errno' => 501);
-			}
+		if ((!ToolUtils::frequencyCheck('chat_' . $uid . '_2', 2)) && ($last_msg = Yii::app()->cache->get($msg_cache_key)) && $last_msg == $msg) {
+			return array('errno' => 501);
 		}
 		Yii::app()->cache->set($msg_cache_key, $msg);	
 

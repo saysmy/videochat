@@ -1,6 +1,7 @@
   <!--header-->
   <div class="top-column1">
     <div class="wrap topbar">
+      <a href="/" class="smallLogo posA" style="display:none"></a>
       <ul>
         <li class="share">
           <div class="bdsharebuttonbox" data-tag="share_1">
@@ -45,7 +46,7 @@
           </div>
         </li>
        <li class="chong ml5 logined" style="display:none;"><a href="/recharge/center">充值</a></li>
-        <li class="coin ml5 logined" style="display:none;"><b>10.2</b> 泡泡</li>
+        <li class="coin ml5 logined" style="display:none;"><a><b>10.2</b> 泡泡</a></li>
         <li class="uinfo mr10 unlogined"><a href="#" id="user-reg">注册</a> | <a href="#" id="user-login">登录</a></li>
         <li class="uinfo mr10 logined" style="display:none;"><img src="/img/1_s1.jpg" width="25" height="25"> <a href="/user/center" class="nickname">妖精baby（860876）</a>&nbsp;&nbsp;<a href="/user/logout/?callback=<?=urlencode(ToolUtils::getCurrentUrl())?>">退出</a></li>
       </ul>

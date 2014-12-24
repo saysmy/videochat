@@ -7,8 +7,11 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 	common.include('/js/poshytip/tip-yellow/tip-yellow.css');
 
 	$(document).ready(function(){	
-		$(".roomChat tr:odd").css({"background":"#F4F4F4"});
-		$(".roomUserItem li:odd").css({"background":"#F4F4F4"});
+
+		$('.smallLogo').show();
+		
+		// $(".roomChat tr:odd").css({"background":"#F4F4F4"});
+		// $(".roomUserItem li:odd").css({"background":"#F4F4F4"});
 		
 		jq_tabs("room");
 		jq_tabs("roomUser");
@@ -152,7 +155,8 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 	}
 
 	exports.debug = function(msg) {
-		console.log(msg);
+		if (console)
+			console.log(msg);
 	}
 
 	exports.onLogin = function(user) {
