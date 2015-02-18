@@ -10,7 +10,7 @@
               <div class="sliderInfo posA">
                 <h1><?=$room['moderator']['true_name']?> <i><?=$room['moderator']['age']?>/<?=$room['moderator']['height']?>/<?=$room['moderator']['weight']?></i></h1>
                 <p><?=$room['moderator_desc']?></p>
-                <span><a href="javascript:void(0)" class="love <?=in_array($room['id'], $loveRooms) ? 'liked' : 'like'?>" rid="<?=$room['id']?>"><?=$room['love_num']?></a><a href="<?=$room['detail_url'] ? $room['detail_url'] : 'javascript:void(0)'?>" class="star" target=_blank></a></span>
+                <span><a href="javascript:void(0)" class="like <?=in_array($room['id'], $loveRooms) ? 'likeOn' : ''?>" rid="<?=$room['id']?>"><?=$room['love_num']?></a><a href="<?=$room['detail_url'] ? $room['detail_url'] : 'javascript:void(0)'?>" class="star" target=_blank></a></span>
               </div>
               <div class="sliderTime posA">
                 <div class="timeInner posR">
@@ -53,20 +53,60 @@
     <!--/slider end-->
  
   <div id="mainbody_new">
-    <div class="mainBig">
-      <?php foreach($rooms as $room):?>
-      <dl>
-        <dt class="new"><a target=_blank href="<?php echo $this->createUrl('/room/index', array('rid' => $room->id));?>"><img src="<?=$room->logo?>" width="345" height="185"><div class="mask"></div><div class="start"></div></a></dt>
-        <dd>
-          <div class="bigTitle posR"><a class="title" target=_blank href="<?php echo $this->createUrl('/room/index', array('rid' => $room->id));?>"><?=$room->moderator['true_name']?>&nbsp;&nbsp;(<?=$room->moderator['age']?>/<?=$room->moderator['height']?>CM/<?=$room->moderator['weight']?>KG)</a><a href="javascript:void(0)" class="love <?=in_array($room['id'], $loveRooms) ? 'liked' : 'like'?>" rid="<?=$room->id?>"><?=$room->love_num?></a><a href="<?=$room['detail_url']?>" class="star" target=_blank></a></div>
-          <p><?=$room->moderator_desc?></p>
-        </dd>
-      </dl>
-      <?php endforeach;?>
+    <div class="mainCont">
+      <div class="content fl">
+        <div class="mainBig">
+          <?php foreach($rooms as $room):?>
+          <dl>
+            <dt class="new" room="<?=$room->id?>">
+              <i class="on" style="display:none">直播</i>
+              <a target=_blank href="<?php echo $this->createUrl('/room/index', array('rid' => $room->id));?>"><img src="<?=$room->logo?>" width="345" height="185"><div class="mask"></div><div class="start"></div></a>
+            </dt>
+            <dd>
+              <div class="bigTitle posR"><a class="title" target=_blank href="<?php echo $this->createUrl('/room/index', array('rid' => $room->id));?>"><?=$room->moderator['true_name']?>&nbsp;&nbsp;(<?=$room->moderator['age']?>/<?=$room->moderator['height']?>CM/<?=$room->moderator['weight']?>KG)</a><a href="javascript:void(0)" class="like <?=in_array($room['id'], $loveRooms) ? 'likeOn' : ''?>" rid="<?=$room->id?>"><?=$room->love_num?></a><a href="<?=$room['detail_url']?>" class="star" target=_blank></a></div>
+              <p><?=$room->moderator_desc?></p>
+            </dd>
+          </dl>
+          <?php endforeach;?>
+          <p class="clear"></p>
+        </div>
+      </div>
+      <div class="sidebar fl ml30">
+        <div class="sideBox">
+          <h1>肥皂浴室 <span><b>进行中</b> / 预告</span></h1>
+          <?php foreach($multiRooms as $index => $room):?>
+          <a href="<?=$this->createUrl('/room/index', array('rid' => $room->id))?>" target=_blank>
+          <dl class="sidebar-room <?=$index == 0 ? '' : 'mt10'?>" room="<?=$room['id']?>">
+            <dt><em></em><img src="<?=$room['logo']?>"></dt>
+            <dd>
+              <span class="pnum"></span>
+              <span class="rinfo">
+                <h2><?=$room['name']?></h2>
+                <p>在麦：--</p>
+              </span>
+              <span class="rjoin">进入直播间(<?=$room['id']?>)</span>
+            </dd>
+          </dl>
+          </a>
+          <?php endforeach?>
+        </div>
+        <div class="sideBox mt10">
+          <h1>肥皂快报</h1>
+          <dl class="sidebar-hot">
+            <dt><img src="<?=$indexNews[0]['pic']?>" width="160" height="100"></dt>
+            <dd><a href="<?=$indexNews[0]['link']?>" target=_blank><?=$indexNews[0]['text']?></a></dd>
+          </dl>
+          <?php unset($indexNews[0]);?>
+          <ul class="sidebar-list mt10">
+            <?php foreach($indexNews as $indexNew):?>
+            <li><a href="<?=$indexNew['link']?>" target="_blank" data-keyfrom="kuaibao.word"><?=$indexNew['text']?></a></li>
+            <?php endforeach?>
+          </ul>
+        </div>
+      </div>
       <p class="clear"></p>
     </div>
   </div>
-
   <script>
 
   $(".mainBig > dl:nth-child(3n)").css({"margin-right":"0"});

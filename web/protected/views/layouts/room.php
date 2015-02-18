@@ -30,6 +30,11 @@ seajs.config({
   }
 })
 
+<?php global $jsDefine;?>
+<?php foreach($jsDefine as $name => $val):?>
+<?=$name?> = "<?=$val?>";
+<?php endforeach;?>
+
 </script>
 </head>
 
@@ -47,12 +52,12 @@ seajs.config({
         <dl>
           <dt><a href="javascript:void(0)"><img src="<?=$this->room->moderator['head_pic_1']?>" width="45" height="45"></a></dt>
           <dd>
-            <a href="javascript:void(0)"><?=$this->room->moderator['true_name']?>：<?=$this->room['moderator_desc']?></a>
+            <a href="javascript:void(0)"><?=json_decode($this->room->mids, true) ? $this->room->name : $this->room->moderator['true_name'] . '：' . $this->room['moderator_desc']?></a>
             <div class="vinfo">
-              <a href="javascript:void(0)" class="love <?=in_array($this->room->id, $this->loveRooms) ? 'liked' : 'like'?>" rid="<?=$this->room['id']?>"><?=$this->room['love_num']?></a>
+              <a href="javascript:void(0)" class="like <?=in_array($this->room->id, $this->loveRooms) ? 'likeOn' : ''?>" rid="<?=$this->room['id']?>"><?=$this->room['love_num']?></a>
               <a href="<?=$this->room->detail_url ? $this->room->detail_url : 'javascript:void(0)'?>" class="star"></a>
 
-              <span class="share2 ml20">
+              <span class="share2 ml20" style="vertical-align:middle">
                 <script type="text/javascript">
                 (function(){
                 var p = {

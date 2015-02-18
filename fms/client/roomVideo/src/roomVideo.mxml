@@ -9,13 +9,16 @@
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.core.FlexGlobals;
-			import spark.events.IndexChangeEvent;
 			
 			import my.*;
+			
+			import spark.events.IndexChangeEvent;
 			
 			private var nc: NetConnection;
 			private var ns: NetStream;
 			private var video: Video;
+			
+			private var ncResponder: NCResponder;
 
 			private var cam: Camera;
 			private var mic: Microphone;
@@ -56,6 +59,9 @@
 				initUI();				
 				initFuncs();
 				doConnect();
+				
+				ncResponder = new NCResponder(this);
+				
 			}
 			
 			public function doConnect(): void{
@@ -67,52 +73,63 @@
 				nc.connect(vparam.getAppURL(), vparam.sid, vparam.uid, vparam.rid);
 				debug("connect:" + vparam.getAppURL() + " sid:" + vparam.sid + " uid:" + vparam.uid + " rid:" + vparam.rid);
 			}
-			
-			public function doDisconnect(): void {
-				doStop();
-				if(nc && nc.connected){
-					nc.close();
-				}
-				nc = null;
-			}
-					
+								
 			public function doPlay() : void {
 				if (vstate != 0) return;
 				debug("doPlay");
 				
-				doView(this.vparam.getStreamName());
+				doVideoView(this.vparam.getStreamName());
+			}
+			
+			public function doStopPublish() {
+				if(vstate == 2) {
+					ns.attachCamera(null);
+					ns.attachAudio(null);
+					ns.close();
+					
+					video.attachCamera(null);
+					video.visible = false;
+					
+					vstate = 0;
+					
+					ExternalInterface.call("room.onVideoUnpublish");
+
+				}
 			}
 			
 			public function doStop(): void{
-				if(vstate == 0) return;
-				
-				debug("doStop");
-				
+				if(vstate == 0) 
+					return;
+								
 				if(ns){
-					if(vstate == 2){
-						ns.attachCamera(null);
-						ns.attachAudio(null);
-					}
 					ns.close();	
 				}
 				video.attachNetStream(null);
 				video.visible = false;
 				
 				vstate = 0;
-				ExternalInterface.call("room.onVideoUnpublish");
+				ExternalInterface.call("room.onVideoStop");
 			}
 			
 			//JS调用
 			public function doSendMsg(msgData :Object): void {
 				nc.call("sendMsg", null, msgData);
 			}
-			
+						
 			public function doSendGift(propid: int, count: int, to: String): void {
 				nc.call("sendGift", null, propid, count, to);
 			}
 			
 			public function doBan(uid: String): void{
 				nc.call("ban", null, uid);
+			}
+			
+			public function doSetAdmin(uid: String): void {
+				nc.call("setAdmin", null, uid);
+			}
+			
+			public function doTi(uid: String): void {
+				nc.call("ti", null, uid);
 			}
 			//
 			
@@ -203,47 +220,25 @@
 				
 				ExternalInterface.call("room.onVideoPublish");
 			}
+			
 			//直播
-			private function doView(streamName: String): void{
-				setTimeout(function(): void{
-					debug("doView:" + streamName);
+			private function doVideoView(streamName: String): void{
+//				setTimeout(function(): void{
+					debug("doVideoView:" + streamName);
 					ns = new NetStream(nc);
 					// 非直播时，缓冲
 					ns.bufferTime = streamName != vparam.getStreamName() ? 1 : 0;
-					ns.client = new NSClientObject();
-					ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
+					ns.addEventListener(NetStatusEvent.NET_STATUS, ns_play_onStatus);
 					ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
 					ns.play(streamName);
 					video.attachNetStream(ns);
 					video.visible = true;
 					
 					vstate = 1;
-					ExternalInterface.call("room.onVideoPublish");
-				}, 500); // 延迟1秒播放，避免看到以前的图片
+					ExternalInterface.call("room.onVideoPlay");
+//				}, 500); // 延迟1秒播放，避免看到以前的图片
 			}
-			//播放文件流媒体
-			private function doPublishView(streamName: String): void{
-				if(!nc.connected){
-					Alert.show('尚未连接');
-					return;
-				}
-				if(vstate != 0) return; // 当前正在发布和播放
-				
-				ns = new NetStream(nc);
-				// 非直播时，缓冲
-				ns.bufferTime = 1;
-				ns.client = new NSClientObject();
-				ns.addEventListener(NetStatusEvent.NET_STATUS, ns_onStatus);
-				ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, ns_onSyncErr);
-				ns.play(streamName, 0);
-				video.attachNetStream(ns);
-				video.visible = true;
-				
-				vstate = 3;
-				
-				ExternalInterface.call("room.onVideoPublish");
-			}
-
+			
 			////////////////// event		
 			private function doConnectSuccess(): void{
 				ExternalInterface.call("room.onConnectSuccess");
@@ -257,24 +252,39 @@
 				ExternalInterface.call("room.onConnectFailed");
 			}
 			
-			private function doConnectRejected(resp: Object): void{
-				var msg: String = "";
-				ExternalInterface.call("room.onConnectRejected", resp);
+			public function onConnectErrorStatus(resp: Object): void{
+				ExternalInterface.call("room.onConnectErrorStatus", resp);
 			}
 			
 			private function doConnectClosed(): void{
 				ExternalInterface.call("room.onConnectClosed");
-				doStop();
+				if (vstate == 1)
+					doStop();
+				else if(vstate == 2)
+					doStopPublish();
 			}
 			
-			private function nc_OnStatus(evt: NetStatusEvent): void{
-				debug(evt.info.code + " protocol:" + nc.protocol + " connectedProxyType:" + nc.connectedProxyType);
+			private function doConnectAppShutDown(): void {
+				ExternalInterface.call("room.onConnectAppShutDown");
+
+			}
+			
+			private function doConnectCallFailed(): void {
+				ExternalInterface.call("room.onConnectCallFailed");
+
+			}
+			
+			private function nc_OnStatus(evt: NetStatusEvent): void {
+				if (nc.connected)
+					debug(evt.info.code + " protocol:" + nc.protocol + " connectedProxyType:" + nc.connectedProxyType);
+				else
+					debug(evt.info.code);
 				switch(evt.info.code){
 					case "NetConnection.Connect.Success":
 						doConnectSuccess();
 						break;
 					case "NetConnection.Connect.Rejected":
-						doConnectRejected(evt.info.application);
+						onConnectErrorStatus(evt.info.application);
 						break;
 					case "NetConnection.Connect.Failed":
 						doConnectFailed();
@@ -283,23 +293,29 @@
 						doConnectClosed();
 						break;
 					case "NetConnection.Connect.AppShutDown":
+						doConnectAppShutDown();
+						break;
+					case "NetConnection.Call.Failed":
+						doConnectCallFailed();
 						break;
 				}
 			}
 			
 			private function nc_OnAsyncError(evt: AsyncErrorEvent): void {
+				debug("NetConnection error:" + evt.toString());
 			}
 			
 			private function ns_onStatus(evt: NetStatusEvent): void{
 				// 循环播放：如果碰到播放结束，并且不是直播时，跳回到第一帧
-				if(evt.info.code == "NetStream.Play.Stop"){
-					if(vstate == 3){
-						ns.seek(0);
-					}
-				}
+				debug("NetStream:" + evt.info.code);
+			}
+			
+			private function ns_play_onStatus(evt: NetStatusEvent) : void{
+				debug("Play NetStream:" + evt.info.code);
 			}
 			
 			private function ns_onSyncErr(evt: AsyncErrorEvent): void {
+				debug("NetStream error:" + evt.toString());
 			}
 									
 			private function cam_onStatus(evt: StatusEvent): void {
@@ -350,10 +366,11 @@
 			
 			private function initFuncs(): void{
 				ExternalInterface.addCallback("doConnect", doConnect);
-				ExternalInterface.addCallback("doDisconnect", doDisconnect);
 				ExternalInterface.addCallback("doSendMsg", doSendMsg);
 				ExternalInterface.addCallback("doSendGift", doSendGift);
 				ExternalInterface.addCallback("doBan", doBan);
+				ExternalInterface.addCallback("doTi", doTi);
+				ExternalInterface.addCallback("doSetAdmin", doSetAdmin);
 			}
 						
 			private function setSRF(event:MouseEvent):void {
@@ -433,8 +450,9 @@
 			
 			protected function btnStop_clickHandler(event:MouseEvent):void
 			{
-				if(vstate == 2 || vstate == 3){
-					doStop();
+				if(vstate == 2){
+					doStopPublish();
+					
 				}
 			}
 			

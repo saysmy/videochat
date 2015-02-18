@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* ::http://www.ieic.cn /:: */
 /* CSS Frameworks "webmag" Created by anylee(flash8_any@163.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
 
@@ -47,14 +47,15 @@ em {display:block;}
 .roomOwner dd a {height:20px;font-weight:bold;font-size:14px;color:#0178b0;line-height:20px;}
 .roomOwner .vinfo {padding:0;width:auto;height:25px;}
 .roomLeft {width:470px;}
-.roomMid {margin-left:12px;width:345px;}
-.roomRight {width:162px;}
+.roomMid {margin-left:12px;width:330px;}
+.roomRight {width:177px;}
 .roomPlayer {width:470px;height:330px;}
 .roomNotice {padding:0 10px;height:30px;line-height:30px;background:#E6E6E6;}
 .roomNotice a {color:#069;}
 .roomGifts {padding:10px;height:183px;border:#ddd 1px solid;overflow-y:scroll;}
-.roomGifts .time {color:#999;}
-/*.roomGifts a {float:left;margin:2px 8px;width:52px;height:57px;line-height:15px;border:#fff 1px solid;text-align:center;display:block;position:relative;}
+.roomGiftsArea {position:relative;padding:10px;height:183px;border:#ddd 1px solid;}
+.roomGiftList {height:183px;overflow-y:scroll;}
+.roomGifts a {float:left;margin:2px 8px;width:52px;height:57px;line-height:15px;border:#fff 1px solid;text-align:center;display:block;position:relative;}
 .roomGifts a:hover {border:#ccc 1px solid;text-decoration:none;}
 .roomGifts a.on {border:#0CF 1px solid;}
 .roomGifts a em {margin:0 auto;width:42px;height:42px;overflow:hidden;vertical-align:middle;}
@@ -73,9 +74,11 @@ em {display:block;}
 .roomGifts a em.gf012 {background-position:-84px -42px;}
 .roomGifts a em.gf013 {background-position:-126px -42px;}
 .roomGifts a em.gf014 {background-position:-168px -42px;}
-*/
-.giftItem {border:#fff 1px solid;}
-.giftItem:hover {border:#ccc 1px solid;text-decoration:none;}
+.liuguang  {width:292px;height:51px;line-height:51px;text-align:center;background:url(liuguang.gif);left:69px;top:66px;z-index:999;}
+.liuguang i {font-weight:bold;font-size:14px;color:#f00;}
+.liuguang b {font-size:18px;}
+.liuguang b .gift-num {color:#f00;font-size:18px;}
+.liuguang img {width:30px;height:30px;vertical-align:middle;}
 
 .roomAct {height:42px;}
 dl.gifts {width:110px;height:42px;}
@@ -95,7 +98,7 @@ dl.gifts dd span {padding-right:5px;height:20px;line-height:20px;background:url(
 .roomAct li.giftsBtns a {float:left;margin:0 2px;width:50px;height:28px;color:#fff;line-height:28px;text-align:center;display:block;vertical-align:middle;}
 .btn-a {background:#E42C34;}
 .btn-b {background:#B1B1B1;}
-.roomTab {width:345px;height:33px;}
+.roomTab {width:330px;height:33px;}
 .roomTab a {float:left;margin:0 2px;height:30px;font-weight:bold;font-size:14px;line-height:30px;border-bottom:#fff 3px solid;display:block;}
 .roomTab a.on {color:#0078ad;border-bottom:#4dc7f0 3px solid;text-decoration:none;}
 .roomTab a.room {padding-left:25px;width:70px;background:url(i27.gif) left center no-repeat;}
@@ -104,37 +107,54 @@ dl.gifts dd span {padding-right:5px;height:20px;line-height:20px;background:url(
 .roomTab span {float:left;margin:0 10px;height:30px;font-size:14px;color:#999;line-height:30px;display:block;}
 .roomItem {display:none;}
 .roomPub {padding:5px 0;color:#999;}
-.roomContent {width:345px;height:420px;}
+.roomContent {width:330px;height:420px;}
 .roomChat {border-top:#ddd 1px solid;border-bottom:#ddd 1px solid;overflow-y:scroll;}
 .roomChat th {padding:3px 0;width:40px;color:#999;}
 .roomChat td {padding:2px 0;}
-.roomChat td a {color:#09C;}
-.roomChat td a,img {vertical-align:middle;}
+.roomChat td span {color:#09C;cursor:pointer;position:relative;}
+.roomChat td img {vertical-align:middle;}
 .roomPannel {position:relative;}
 .roomPannel a {width:11px;height:5px;font-size:0;display:block;position:absolute;left:167px;top:-5px;z-index:99;cursor:pointer;}
 .roomPannel a.arrow_up {background:url(d2.jpg) center center no-repeat}
-.roomPannel a.arrow_down {background:url(d3.jpg) center center no-repeat;}
+.roomPannel a.arrow_down {background:url(d2_down.jpg) center center no-repeat;}
 .roomChat2 {padding:5px;background:#f4f4f4;border-top:#fff 1px solid;border-bottom:#fff 1px solid;overflow-y:scroll;}
 .roomChat2 li {padding:2px 0;}
 .roomChat2 li a {color:#09c;}
 .roomChatAct {padding:10px 0;height:25px;border-top:#DDD 1px solid;}
 .roomChatAct img,.roomChatAct input {vertical-align:middle;}
+.roomChatAct a.emotion {width:25px;height:25px;background:url(e8.png);position:absolute;top:10px;left:180px;display:block;}
 .roomChatFm {width:343px;height:26px;border:#4598da 1px solid;}
 .roomChatFm .fi-txt {float:left;width:280px;height:20px;line-height:20px;border:none;background:none;}
 .roomChatFm .btn-c {float:left;padding:0;width:53px;height:26px;color:#fff;line-height:26px;text-align:center;background:#4598da;}
 .roomUserTab {height:29px;}
-.roomUserTab a {float:left;width:80px;height:29px;background:#B1B1B1;color:#fff;line-height:29px;text-align:center;}
-.roomUserTab a.on {color:#666;background:url(bgx.jpg) 0 -180px repeat-x;text-decoration:none;}
+.roomUserTab a {float:left;width:87px;height:29px;background:#B1B1B1;color:#fff;line-height:29px;text-align:center;}
+.roomUserTab a.on {width:88px;color:#666;background:url(bgx.jpg) 0 -180px repeat-x;text-decoration:none;}
 .roomUserTab a span {color:white;}
 .roomUserTab a.on span {color:#666;}
-.roomUserItem {width:160px;height:590px;display:none;overflow-y:scroll;}
-.roomUserItem li {width:138px;height:25px;position:relative;}
-.roomUserItem li a {width:100px;height:25px;line-height:25px;overflow:hidden;}
-.roomUserItem li i {width:38px;height:25px;color:#09c;line-height:25px;display:block;position:absolute;top:0;right:0;}
+.roomUserItem {width:175px;height:590px;display:none;overflow-y:scroll;}
+.roomUserItem li {padding:5px;position:relative;}
+.roomUserItem li a {width:115px;overflow:hidden;}
+.roomUserItem li i {width:38px;color:#999;display:block;}
+.roomUserItem li em {width:14px;height:14px;background:url(vip.jpg);position:absolute;top:5px;right:10px;display:none;}
+.roomUserItem li.vip a,.roomUserItem li.vip i {color:#02a6db;}
+.roomUserItem li.vip em {display:block;}
 
 .vinfo span,.vinfo a {display:inline-block;}
-.vinfo .like {margin-right:5px;padding-left:20px;height:25px;font-size:12px;font-weight:normal;line-height:25px;background:url(i47.png) left center no-repeat;}
-.vinfo .liked {margin-right:5px;padding-left:20px;height:25px;font-size:12px;font-weight:normal;line-height:25px;background:url(i47a.png) left center no-repeat;}
+.vinfo .like {margin-right:5px;padding-left:20px;height:25px;font-size:12px;font-weight:normal;line-height:25px;background:url(i47a.png?v=2015) left center no-repeat;}
+.vinfo .likeOn,.vinfo .like:hover {background:url(i47.png?v=2015) left center no-repeat;}
 .vinfo .star {width:20px;height:17px;background:url(i49.png) left center no-repeat;}
 
-.roomOwner .share2 iframe {vertical-align:middle;}
+.memberPanel {padding:5px 0;width:180px;background:#fff url(cbg.jpg) left top repeat-y;border:#dcdcdc 1px solid;display:none;position:absolute;top:0;right:-160px;z-index:9999;}
+.memberPanel li {padding:0 10px 0 35px;}
+.memberPanel li a {line-height:25px;}
+.memberPanel h1 {padding:0;height:30px;font-size:14px;color:#23b1df;line-height:30px;border-bottom:#dcdcdc 1px solid;position:relative;}
+.memberPanel h1 a {width:14px;height:14px;background:url(vip1.jpg);display:block;position:absolute;top:8px;right:8px;}
+.memberPanel h1.vip a {background:url(vip.jpg);}
+.rname {position:relative;}
+
+.pico-1,.pico-2,.pico-3,.pico-4 {height:25px;display:block;}
+.pico-1 a,.pico-2 a,.pico-3 a,.pico-4 a {line-height:20px;}
+.pico-1 {background:url(pico-1.png) 10px center no-repeat;}
+.pico-2 {background:url(pico-2.png) 10px center no-repeat;}
+.pico-3 {background:url(pico-3.png) 10px center no-repeat;}
+.pico-4 {background:url(pico-4.png) 10px center no-repeat;}

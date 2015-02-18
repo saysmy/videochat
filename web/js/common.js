@@ -119,5 +119,5 @@ define('common', ['layer'], function(require, exports) {
         }
 
     }    
-    exports.domain = 'www.efeizao.com';
+    // exports.domain = 'www.efeizao.com';
 })

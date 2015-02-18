@@ -9,16 +9,15 @@ class IndexController extends CController
 		return array(
 		    array(
 		        'COutputCache',
-		        'duration'=>0,
-		        'varyByParam'=>array('id'),
+		        'duration' => 0,
+		        'varyByParam' => array('id'),
 		    ),
 		);
 	}
     
 	public function actionIndex() {
-
+		//所有房间
 		$rooms = Room::model()->findAll(array('condition' => 'status!=-1', 'order' => 'rank desc'));
-
 		foreach($rooms as $room) {
 			$room->moderator['age'] = $room->moderator['age'] == 0 ? '??' : $room->moderator['age'];
 			$room->moderator['weight'] = $room->moderator['weight'] == 0 ? '??' : $room->moderator['weight'];
@@ -27,11 +26,12 @@ class IndexController extends CController
 
 		$uid = CUser::checkLogin();
 
+		//首页banner房间
 		$liveRecords = Room::model()->findAll(array('condition' => 'status=1', 'order' => 'rank desc'));
 		$liveRooms = array();
 		foreach($liveRecords as $item) {
 			$room = array();
-			foreach($item->attributeLabels() as $key => $t) {
+			foreach($item->getAttributes() as $key => $t) {
 				$room[$key] = $item->$key;
 			}
 			$room['play_start_time'] = strtotime($room['play_start_time']);
@@ -49,7 +49,38 @@ class IndexController extends CController
 			}
 		}
 
-		$this->render('index', array('rooms' => $rooms, 'liveRooms' => $liveRooms, 'loveRooms' => $loveRooms));
+		//肥皂浴室 多人主播房间
+		$multiRooms = Room::model()->findAll(array('condition' => 'status=2', 'order' => 'rank desc'));
+
+		$indexNews = include(CONFIG_DIR . 'indexNews.php');
+
+		$this->render('index', array(
+				'rooms' => $rooms, 
+				'liveRooms' => $liveRooms,
+				'multiRooms' => $multiRooms,
+				'loveRooms' => $loveRooms,
+				'indexNews' => $indexNews,
+			)
+		);
+	}
+
+	public function actionGetRoomPublishInfo() {
+		$rids = Yii::app()->request->getParam('rids');
+		$roomInfo = array();
+		foreach($rids as $rid) {
+			$online_num = CRoom::getOnlineNum($rid);
+			$publish_mid = CRoom::getPublishMid($rid);
+			$nickname = null;
+			if ($publish_mid != ROOM_PUB_NOBODY_UID) {
+				$user = User::model()->find('id=' . $publish_mid);
+				if ($user) {
+					$nickname =	$user->nickname;
+				}			
+			}
+			$roomInfo[$rid] = array('online_num' => $online_num, 'nickname' => $nickname, 'publish_mid' => $publish_mid);
+		}
+
+		ToolUtils::ajaxOut(0, '', $roomInfo);
 	}
 
 }

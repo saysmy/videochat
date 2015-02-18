@@ -26,6 +26,17 @@ $seaFiles = array(
       'poshytip' => 'poshytip/jquery.poshytip.min.js'
 );
 
+global $fmsServer;
+if (YII_DEBUG) {
+    $fmsServer = include dirname(__FILE__) . '/fmsServer.dev.php';
+}
+else {
+    $fmsServer = include dirname(__FILE__) . '/fmsServer.php';
+}
+
+global $jsDefine;
+$jsDefine = include dirname(__FILE__) . '/jsDefine.php';
+
 return array(
 	'id' => 'videochat',
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
@@ -52,6 +63,7 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
+        'app',
 	),
 
 	// application components
@@ -95,20 +107,14 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning, info',
 				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
 			),
 		),
-		'clientScript' => array(
-            'scriptMap' => array(
-            	'jquery.js' => false,
-            	'jquery.min.js' => false,
-            ),
-        ),		
+		// 'clientScript' => array(
+  //           'scriptMap' => array(
+  //           	'jquery.js' => false,
+  //           	'jquery.min.js' => false,
+  //           ),
+  //       ),		
 	),
 
 	// application-level parameters that can be accessed
@@ -116,7 +122,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'cookieExpire' => '86400',
-		'fmsServer' => YII_DEBUG ? (rand()%2 ? '10.211.55.4' : '10.211.55.4') : '211.155.86.148',
+		'fmsServer' => $fmsServer['server'][rand() % count($fmsServer['server'])]['ip'],
 		'unLoginUid' => -1,
 	),
 );

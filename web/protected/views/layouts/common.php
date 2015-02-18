@@ -36,6 +36,11 @@ seajs.config({
   }
 })
 
+<?php global $jsDefine;?>
+<?php foreach($jsDefine as $name => $val):?>
+<?=$name?> = "<?=$val?>";
+<?php endforeach;?>
+
 </script>
 
 
@@ -54,11 +59,11 @@ seajs.config({
   </div>
   <div class="menuOuter">
     <div class="menuList wrap">
-      <a href="/">网站首页</a>
-      <a href="http://bbs.efeizao.com">论坛</a>
+      <a href="/">首 页</a>
+      <a href="http://bbs.<?=MAIN_DOMAIN?>" target=_blank>论 坛</a>
       <!--<a href="/rank">排行榜</a>-->
-      <a href="/recharge/center">充值中心</a>
-      <a href="/help/about">帮助中心</a>        
+      <a href="/recharge/center">充 值</a>
+      <a href="/help/about">关 于</a>        
     </div>
   </div>
 

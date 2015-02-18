@@ -3,6 +3,37 @@ define('index', ['cookie', 'user', 'common'], function(require, exports) {
     var user = require('user');
     var common = require('common');
 
+    $(".sidebar-room").hover(function(){
+        $(this).addClass("on");
+    }, function(){
+        $(this).removeClass("on");
+    });
+
+    var rids = [];
+    $('.sidebar-room').each(function() {
+        rids.push($(this).attr('room'));
+    })
+    $('.mainBig dt').each(function() {
+        rids.push($(this).attr('room'));
+    })
+    $.ajax({
+        url : '/index/getRoomPublishInfo',
+        data : {rids : rids},
+        type : 'post',
+        dataType : 'json',
+        success : function(resp) {
+            for(var rid in resp.data) {
+                $('.sidebar-room[room=' + rid + '] .pnum').text(resp.data[rid].online_num);
+                if (resp.data[rid].nickname) {
+                    $('.sidebar-room[room=' + rid + '] .rinfo p').text('在麦：' + resp.data[rid].nickname);
+                }
+                if (resp.data[rid].publish_mid != -1) {
+                    $('.mainBig dt[room=' + rid + '] .on').show();
+                }
+            }
+        }
+    })
+
     exports.showActivity = function() {
         var last_come_time = $.cookies.get('last_come_time');
         $.ajax({
@@ -81,7 +112,7 @@ define('index', ['cookie', 'user', 'common'], function(require, exports) {
             return false;
         })
 
-        $('.love').click(function() {
+        $('.like').click(function() {
             var rid = $(this).attr('rid');
             var me = $(this);
             $.ajax({
@@ -94,13 +125,11 @@ define('index', ['cookie', 'user', 'common'], function(require, exports) {
                       else if (resp.errno == 0){
                           var love_num = me.text();
                           if (resp.data.action == 'love') {
-                              me.addClass('liked');
-                              me.removeClass('like');
+                              me.addClass('likeOn');
                               me.text(++love_num)
                           }
                           else {
-                              me.addClass('like');
-                              me.removeClass('liked');
+                              me.removeClass('likeOn');
                               me.text(--love_num);
                           }
                       }

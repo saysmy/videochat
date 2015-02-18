@@ -1,13 +1,9 @@
 <?php
 
-class RoomController extends CController
+class RoomController extends MyController
 {
 
 	public $layout='//layouts/room';
-
-	public $room;
-
-	public $loveRooms;
 
 	public function filters()
 	{
@@ -34,15 +30,23 @@ class RoomController extends CController
 
 		$uid = CUser::checkLogin();
 
+		$type = UNLOGIN_USER;
+		$vipLevel = COMMON_LEVEL_USER;
+
 		$this->loveRooms = array();
 		if ($uid) {
 			$records = LoveRoom::model()->findAll('uid=' . $uid);
 			foreach($records as $record) {
 				$this->loveRooms[] = $record->rid;
 			}
+
+			$userInfo = CUser::getInfoByUid($uid, $rid);
+			$type = $userInfo['type'];
+			$vipLevel = $userInfo['vip_level'];
 		}
 
-		$this->render('roomContent', array('rid' => $rid, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
+
+		$this->render('roomContent', array('rid' => $rid, 'vipLevel' => $vipLevel ,'roomType' => $this->room->type, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'type' => $type , 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
 	}
 
 	public function actionLove($rid) {

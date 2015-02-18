@@ -1,8 +1,7 @@
 <?php
-class UserController extends Controller
+class UserController extends MyController
 {
 	public $layout='//layouts/common';
-	public $loginUrl;
 
 	public function filters()
 	{
@@ -71,6 +70,8 @@ class UserController extends Controller
 			$user->email_validated = 0;
 			$user->mobile_validated = 0;
 			$user->type = COMMON_USER;
+			$user->vip_start = DEFAULT_DATE;
+			$user->vip_end = DEFAULT_DATE;
 			$user->dead_user_status = DEAD_USER_FREE;
 			$user->coin = NEW_USER_COIN;
 			$user->source = SOURCE_FROM_QQ;
@@ -181,9 +182,11 @@ class UserController extends Controller
 		$user->email_validated = 0;
 		$user->mobile_validated = 0;
 		$user->type = COMMON_USER;
+		$user->vip_start = DEFAULT_DATE;
+		$user->vip_end = DEFAULT_DATE;
 		$user->dead_user_status = DEAD_USER_FREE;
 		$user->coin = NEW_USER_COIN;
-		$user->last_login_time = Date('Y-m-d H:i:s', time(0));
+		$user->last_login_time = DEFAULT_DATE;
 		$user->register_time = Date('Y-m-d H:i:s');
 
 		if ($user->save()) {
@@ -225,20 +228,6 @@ class UserController extends Controller
 		setcookie('shared_session', session_id(), $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', MAIN_DOMAIN);
 		return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));			
 
-	}
-
-	public function actionCenter($page = 1) {
-		$this->loginUrl = CUser::getQQLoginUrl();
-		$limit = 10;
-		if (!CUser::checkLogin()) {
-			$userInfo = null;
-		}
-		else {
-			$userInfo = CUser::getInfoByUid($_SESSION['uid']);
-			$userInfo['consume'] = Consume::model()->recently(($page - 1)*$limit, $limit)->findAll('uid=:uid', array(':uid' => $_SESSION['uid']));
-			$userInfo['consume_total'] = Consume::model()->count('uid=:uid', array(':uid' => $_SESSION['uid']));
-		}
-		$this->render('ucenter', array('userInfo' => $userInfo));
 	}
 
 	public function actionLogout($callback = '/') {

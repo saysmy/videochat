@@ -1,5 +1,5 @@
   <script>
-  var app = {rid : <?=$rid?>, sid : "<?=$sid?>", uid : <?=$uid?>, appname : "<?=$appname?>", sip : "<?=$sip?>", mid : <?=$mid?>}
+  var app = {rid : <?=$rid?>, sid : "<?=$sid?>", uid : <?=$uid?>, type : <?=$type?>, appname : "<?=$appname?>", sip : "<?=$sip?>", mid : <?=$mid?>, roomType : <?=$roomType?>, vipLevel : <?=$vipLevel?>};
   var prop = <?php echo json_encode($prop);?>;
   var maxPropInfo = <?php echo json_encode($maxPropInfo);?>;
   </script>
@@ -9,8 +9,11 @@
       <div class="roomLeft fl">
         <div class="roomPlayer"><div id="roomPlayer"></div></div>
         <div class="roomNotice"></div>
-        <div class="roomGifts mt5" id="giftMsgPanel" style="overflow:scroll">
-          <ul>
+        <div class="roomGiftsArea mt5">
+          <div class="liuguang posA" style="display:none">
+            <i class="rname"></i> 送 <img src=""> <b><span class="gift-num"></span>个</b>
+          </div>
+          <ul class="roomGiftList" id="giftMsgPanel">
           </ul>
         </div>
         <div class="roomAct posR mt10">
@@ -40,7 +43,7 @@
           <div class="roomPub" style="height:54px">【房间公告】<?=$this->room->announcement?></div>
           <div class="roomContent">
             <div class="roomChat posR" style="height:350px;" id="publicChatPanel" style="overflow:scroll">
-              <table width="323" cellpadding="0" cellspacing="0" border="0">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                 </tr>
               </table>
@@ -89,6 +92,18 @@
       <p class="clear"></p>
     </div>
   </div>
+
+
+<div class="memberPanel" id="memberPanel" style="display:none">
+  <ul>
+    <li><h1 class="vip"><span class="nickname"></span><a href="javascript:void(0)"></a></h1></li>
+    <li class="pico-1 ban"><a href="javascript:void(0)">禁言10分钟</a></li>
+    <li class="pico-2 private"><a href="javascript:void(0)">悄悄私聊</a></li>
+    <li class="pico-3 admin"><a href="javascript:void(0)">设为管理</a></li>
+    <li class="pico-4 ti"><a href="javascript:void(0)">踢出房间</a></li>
+  </ul>
+</div>
+
 
   <script>
 seajs.use('room', function(room) {

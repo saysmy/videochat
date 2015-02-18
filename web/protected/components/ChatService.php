@@ -5,12 +5,11 @@ class ChatService {
 			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
 		}
 
-		$userInfo = CUser::getInfoByUid($uid);
+		$userInfo = CUser::getInfoByUid($uid, $rid);
 		if($userInfo === false) {
 			return array('errno' => 101, 'msg' => 'getUserInfo error:' . CUser::getError());
 		}
 		$userInfo['headPic'] = $userInfo['head_pic_1'];
-		$userInfo['role'] = $userInfo['type'];
 		$userInfo['loginMsg'] = '';
 		$userInfo['logoutMsg'] = '';
 		$userInfo['allowIn'] = true;
@@ -31,9 +30,12 @@ class ChatService {
 			return array('errno' => 300, 'msg' => 'room not exits rid:' . $rid);
 		}
 		$ret = array();
-		foreach($room->attributeLabels() as $col => $v) {
+		foreach($room->getAttributes() as $col => $v) {
 			$ret[$col] = $room->$col;
 		}
+
+		$ret['mids'] = ($mids = json_decode($ret['mids'], true)) ? $mids : array();
+
 		return array('errno' => 0, 'msg' => '', 'data' => $ret);
 	}
 
@@ -84,7 +86,7 @@ class ChatService {
 
 	public function dispatchDeadUser($rid) {
 		Yii::app()->db->createCommand("begin")->execute(); 
-		$users = Yii::app()->db->createCommand('select * from user where type=' . DEAD_USER . ' and dead_user_status=' . DEAD_USER_FREE . ' limit ' . rand(40, 50) . ' for update')->queryAll();
+		$users = Yii::app()->db->createCommand('select * from user where type=' . DEAD_USER . ' order by rand() limit ' . rand(40, 50))->queryAll();
 		if (!$users) {
 			Yii::app()->db->createCommand("commit")->execute();
 			return array('errno' => 0, 'msg' => '', 'data' => array());
@@ -151,17 +153,20 @@ class ChatService {
 		return array('errno' => 0, 'msg' => '', 'data' => array('msg' => $msg));
 	}
 
-	public function ban($sid, $uid, $rid, $buid, $expire) {
+	public function ban($sid, $uid, $rid, $buid, $expire = 600) {
+
+		Yii::log('ban sid:' . $sid . ' uid:' . $uid . ' buid:' . $buid . ' expire:' .$expire, CLogger::LEVEL_INFO, 'chatService');
+
 		if(!CUser::checkLogin($uid, $sid)) {
 			return array('errno' => NOT_LOGIN_ERR, 'msg' => 'not login');
 		}
 
-		$userInfo = CUser::getUserInfoByUid($uid);
+		$userInfo = CUser::getInfoByUid($uid, $rid);
 		if (!$userInfo) {
 			return array('errno' => 600);
 		}
 
-		if ($userInfo['type'] != ADMIN_USER) {
+		if ($userInfo['type'] != ADMIN_USER && $userInfo['type'] != MODERATOR_USER && $userInfo['type'] != ROOM_OWN_USER) {
 			return array('errno' => 601);
 		}
 
@@ -169,7 +174,91 @@ class ChatService {
 
 		return array('errno' => 0);
 
-	}	
+	}
+
+	//提升为管理员
+	public function setAdmin($auid, $uid, $sid, $rid) {
+		if (!CUser::checkLogin($uid, $sid)) {
+			return array('errno' => 800, 'msg' => 'not login');
+		}
+		$user = CUser::getInfoByUid($uid);
+		if (!$user) {
+			return array('errno' => 801, 'msg' => 'get userInfo error');
+		}
+
+		if (!CRoom::addAdmin($rid, $auid)) {
+			return array('errno' => 802, 'msg' => 'db set admin error');
+		}
+
+		return array('errno' => 0);
+
+	}
+
+	public function getSource($rid) {
+		$serverIp = Yii::app()->request->userHostAddress;
+
+		Yii::log('getSource requrest ip:' . $serverIp, CLogger::LEVEL_INFO, 'ChatService');
+
+		$matchedServer = null;
+
+		global $fmsServer;
+		foreach($fmsServer['server'] as $server) {
+			if ($server['local_ip'] == $serverIp) {
+				$matchedServer = $server;
+				break;
+			}
+		}
+
+		if (!$matchedServer) {
+			Yii::log('getSource miss server ip:' . $serverIp, CLogger::LEVEL_ERROR, 'ChatService');
+			return;
+		}
+
+		return array('errno' => 0, 'data' => array('sip' => $fmsServer['source'], 'cidPrefix' => $matchedServer['key']));
+	}
+
+	public function connectReport($rid, $uid, $total) {
+		CRoom::setOnlineNum($total, $rid);
+	}
+
+	public function disconnectReport($rid, $uid, $total) {
+		CRoom::setOnlineNum($total, $rid);
+	}
+
+	public function reportPublishStart($mid, $rid) {
+
+		Yii::log('reportPublishStart mid:' . $mid . ' rid:' . $rid, CLogger::LEVEL_INFO, 'ChatService');
+
+		CRoom::setPublishMid($mid, $rid);
+		$history = new PublishHistory;
+		$history->mid = $mid;
+		$history->rid = $rid;
+		$history->start_time = date('Y-m-d H:i:s');
+		$history->end_time = ROOM_PUB_DEFAULT_DATE;
+		if (!$history->save()) {
+			Yii::log('PublishHistory save error:' . json_encode($history->getErrors()), CLogger::LEVEL_ERROR, 'ChatService');
+			return array('errno' => 700);
+		}
+
+		return array('errno' => 0, 'data' => array('table_id' => $history->id));
+
+	}
+
+	public function reportPublishEnd($mid, $rid, $table_id) {
+
+		Yii::log('reportPublishEnd mid:' . $mid . ' rid:' . $rid . ' table_id:' . $table_id, CLogger::LEVEL_INFO, 'ChatService');
+
+		CRoom::setPublishMid(ROOM_PUB_NOBODY_UID, $rid);
+		$history = PublishHistory::model()->findByPk($table_id);
+		if (!$history) {
+			Yii::log('PublishHistory get empty rid:' . $rid . ' mid:' . $mid , CLogger::LEVEL_ERROR, 'ChatService');
+			return;
+		}
+		$history->end_time = date('Y-m-d H:i:s');
+		if (!$history->save()) {
+			Yii::log('PublishHistory update error:' . json_encode($history->getErrors()), CLogger::LEVEL_ERROR, 'ChatService');
+		}
+	}
 
 
 

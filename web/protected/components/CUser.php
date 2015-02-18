@@ -4,13 +4,19 @@ class CUser {
 	static public $errMsg = '';
 	static public function getInfoByUid($uid, $rid = null) {
 		$user = new User;
-		$record = $user->find('id=' . $uid);
+		$record = $user->findByPk($uid);
 		if(!$record) {
 			self::$errCode = 100;
 			self::$errMsg = 'usr not found uid' . $uid;
 			return false;
 		}
-		$ret = self::getBaseInfoByRecord($record);
+		$ret = $record->getAttributes();
+		if (strtotime($ret['vip_start']) <= time() && strtotime($ret['vip_end']) >= time()) {
+			$ret['vip_level'] = VIP_LEVEL_USER;
+		}
+		else {
+			$ret['vip_level'] = COMMON_LEVEL_USER;
+		}
 		if ($rid) {
 			if(Yii::app()->cache->get('ban_' . $rid . '_'. $uid)) {
 				$ret['ban'] = true;
@@ -18,6 +24,29 @@ class CUser {
 			else {
 				$ret['ban'] = false;
 			}
+
+			$ret['type'] = COMMON_USER;
+
+			$room = Room::model()->findByPk($rid);
+			if ($room) {
+				$admins = json_decode($room->admin, true);
+				if ($admins && in_array($uid, $admins)) {
+					$ret['type'] = ADMIN_USER;
+				}
+
+				$mids = json_decode($room->mids, true);
+				if ($mids && in_array($uid, $mids)) {
+					$ret['type'] = MODERATOR_USER;
+				}
+				
+				if ($room->mid == $uid) {
+					$ret['type'] = ROOM_OWN_USER;
+				}
+			}
+			else {
+				Yii::log('get room error rid:' . $rid, CLogger::LEVEL_ERROR);
+			}
+
 		}
 		return $ret;
 	}
@@ -45,14 +74,6 @@ class CUser {
 
 	static public function getQQLoginUrl($callback = '') {
 		return 'http://' . DOMAIN . '/user/qqLogin/?callback=' . urlencode($callback);
-	}
-
-	static private function getBaseInfoByRecord($record) {
-		$ret = array();
-		foreach($record->attributeLabels() as $col => $v) {
-			$ret[$col] = $record->$col;
-		}
-		return $ret;
 	}
 
 	static private function getError() {

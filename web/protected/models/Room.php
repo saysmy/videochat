@@ -40,7 +40,7 @@ class Room extends CActiveRecord
 		return array(
 			array('announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'required'),
 			array('status, rank', 'numerical', 'integerOnly'=>true),
-			array('announcement, logo, banner, description, moderator_desc, detail_url, video_url', 'length', 'max'=>255),
+			array('announcement, logo, banner, description, moderator_desc, detail_url, video_url, admin', 'length', 'max'=>255),
 			array('max_user, mid, love_num', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -68,11 +68,13 @@ class Room extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'announcement' => 'Announcement',
+			'name' => 'Name',
 			'logo' => 'Logo',
 			'banner' => 'Banner',
 			'description' => 'Description',
 			'max_user' => 'Max User',
 			'mid' => 'Mid',
+			'mids' => 'Mids',
 			'moderator_desc' => 'Moderator Desc',
 			'love_num' => 'Love Num',
 			'detail_url' => 'Detail Url',

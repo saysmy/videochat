@@ -61,9 +61,6 @@ class User extends CActiveRecord
 			array('coin', 'numerical'),
 			array('username, password, nickname, head_pic_1, email, qq_openid, qq_accesstoken', 'length', 'max'=>255),
 			array('mobile', 'length', 'max'=>11),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, username, password, nickname, true_name, sex, height, weight, age, head_pic_1, email, email_validated, mobile, mobile_validated, qq_openid, qq_accesstoken, qq_accessexpire, coin, type, dead_user_status, source, register_time, last_login_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -107,44 +104,5 @@ class User extends CActiveRecord
 			'register_time' => 'Register Time',
 			'last_login_time' => 'Last Login Time',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('nickname',$this->nickname,true);
-		$criteria->compare('true_name',$this->nickname,true);
-		$criteria->compare('sex',$this->sex);
-		$criteria->compare('height',$this->height,true);
-		$criteria->compare('weight',$this->weight,true);
-		$criteria->compare('age',$this->age,true);
-		$criteria->compare('head_pic_1',$this->head_pic_1,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('email_validated',$this->email_validated);
-		$criteria->compare('mobile',$this->mobile,true);
-		$criteria->compare('mobile_validated',$this->mobile_validated);
-		$criteria->compare('qq_openid',$this->qq_openid,true);
-		$criteria->compare('qq_accesstoken',$this->qq_accesstoken,true);
-		$criteria->compare('qq_accessexpire',$this->qq_accessexpire,true);
-		$criteria->compare('coin',$this->coin,true);
-		$criteria->compare('type',$this->type);
-		$criteria->compare('source',$this->source);
-		$criteria->compare('register_time',$this->register_time,true);
-		$criteria->compare('last_login_time',$this->last_login_time,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 }
