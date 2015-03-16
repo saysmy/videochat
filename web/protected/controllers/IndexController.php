@@ -83,4 +83,20 @@ class IndexController extends CController
 		ToolUtils::ajaxOut(0, '', $roomInfo);
 	}
 
+	public function actionOnlineRoomRedirect() {
+		//所有房间
+		$onlineRooms = array();
+		$rooms = Room::model()->findAll(array('condition' => 'status!=-1'));
+		foreach($rooms as $room) {
+			if (CRoom::isPlaying($room->id)) {
+				$onlineRooms[] = $room->id;
+			}
+		}
+		if ($onlineRooms) {
+			header('Location:http://' . DOMAIN . $this->createUrl('/room/index', array('rid' => $onlineRooms[rand(0, count($onlineRooms) - 1)])));
+		}
+		else {
+			header('Location:/');
+		}
+	}
 }

@@ -4,6 +4,7 @@
     define('DOMAIN', 'www.efeizao.com');
     define('MAIN_DOMAIN', 'efeizao.com');
     define('DEFAULT_HEAD_PIC', 'http://www.efeizao.com/img/default.jpg');
+    define('PROJECT_LIB', dirname(__FILE__) . '/../../../lib/');
     define('ALIPAY_LIB_PATH', dirname(__FILE__) . '/../../../lib/alipay/');
     define('ALIPAY_RETURN_URL', 'http://www.efeizao.com/recharge/alipayReturn');
     define('ALIPAY_NOTIRY_URL', 'http://www.efeizao.com/recharge/alipayNotify');
@@ -32,8 +33,14 @@
 
     define('SOURCE_FROM_SELF', 1);
     define('SOURCE_FROM_QQ', 2);
+    define('SOURCE_FROM_APP', 3);
+    define('SOURCE_FROM_APP_QQ', 4);
 
     define('QQ_LOGIN_PRE', 'QQLogin_');
+    define('MOBILE_USERNAME_PRE', 'FZMobile_');
+
+    define('MALE_USER', 1);
+    define('FEMALE_USER', 2);
 
     define('PAY_TYPE_ALI', 1);
     define('PAY_NUMBER_BASE', 1000000000);
@@ -44,9 +51,11 @@
 
     define('MEDIA_SITE_DOMAIN', 'www.eestarmedia.com');
 
-    define('NEW_USER_COIN', 5);
+    define('NEW_USER_COIN', 0);
 
     define('NOT_LOGIN_ERR', -100);
+    define('FREQUENCY_ERR', -200);
+    define('SYSTEM_ERR', -300);
 
     define('SYNC_START_COOKIE_KEY', 'getUserInfoStart');
     define('SYNC_USERINFO_RECHARGE_TYPE', 1);

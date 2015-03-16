@@ -43,6 +43,16 @@ class Oauth{
 		$this->callback_argv = $t;
 	}
 
+    public function setOpenId($openId) {
+        $this->recorder->write("openid", $openId);
+        $this->keysArr['openid'] = $openId;
+    }
+
+    public function setAccessToken($accessToken) {
+        $this->recorder->write("access_token", $accessToken);
+        $this->keysArr['access_token'] = $accessToken;
+    }
+
     public function get_login_url(){
         $appid = $this->recorder->readInc("appid");
         $callback = $this->callback ? $this->callback : $this->recorder->readInc("callback");
@@ -74,9 +84,10 @@ class Oauth{
         $state = $this->recorder->read("state");
         
         //--------验证state防止CSRF攻击
-        if($_GET['state'] != $state){
-            $this->error->showError("30001");
-        }
+        // 没啥意义
+        // if($_GET['state'] != $state){
+        //     $this->error->showError("30001");
+        // }
 
         //-------请求参数列表
         $keysArr = array(

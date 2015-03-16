@@ -185,6 +185,10 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 		addPublicRoomMsg('视频连接已断开', ROOM_TIP_MSG);
 	}
 
+	exports.onConnectFailed = function() {
+		addPublicRoomMsg('视频连接已失败', ROOM_TIP_MSG);
+	}
+
 	exports.onConnectAppShutDown = function() {
 		addPublicRoomMsg('视频服务已关闭', ROOM_TIP_MSG);
 	}

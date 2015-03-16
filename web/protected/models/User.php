@@ -54,9 +54,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'qqLogin'),
+			array('username, nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'qqLogin'),
 			array('username, password, height, weight, age', 'required', 'on' => 'register'),
-            array('username', 'unique', 'message' => '用户名已存在'),
+			array('username, mobile, nickname', 'required', 'on' => 'mobileRegister'),
+            array('username, nickname', 'unique', 'message' => '{attribute}已存在'),
+            array('mobile', 'unique', 'message' => '手机号已存在', 'on' => 'mobileRegister'),
+
+            array('nickname, sex, weight, height, age', 'required', 'on' => 'appUpdate'),
+
 			array('sex, email_validated, mobile_validated, type, dead_user_status, source, height, weight, age, qq_accessexpire', 'numerical', 'integerOnly'=>true),
 			array('coin', 'numerical'),
 			array('username, password, nickname, head_pic_1, email, qq_openid, qq_accesstoken', 'length', 'max'=>255),
@@ -82,9 +87,9 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
+			'username' => '用户名',
 			'password' => 'Password',
-			'nickname' => 'Nickname',
+			'nickname' => '昵称',
 			'true_name' => 'Truename',
 			'sex' => 'Sex',
 			'height' => 'Height',

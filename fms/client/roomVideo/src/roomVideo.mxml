@@ -81,7 +81,7 @@
 				doVideoView(this.vparam.getStreamName());
 			}
 			
-			public function doStopPublish() {
+			public function doStopPublish() : void {
 				if(vstate == 2) {
 					ns.attachCamera(null);
 					ns.attachAudio(null);

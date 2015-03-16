@@ -29,7 +29,7 @@ class UserController extends MyController
 
 	public function actionQQLogin($callback) {
 
-		include dirname(__FILE__) . '/../../../lib/QQConnectAPI/qqConnectAPI.php';
+		include PROJECT_LIB . 'QQConnectAPI/qqConnectAPI.php';
 
 		$qc = new QC();
 
@@ -52,57 +52,35 @@ class UserController extends MyController
 		$new = false;
 		$user = User::model()->find('qq_openid=:open_id', array(':open_id' => $open_id));
 		if($user === null) {//新用户
-			$new = true;
-			$user = new User();
 			$userInfo = $qc->get_user_info();
-			$user->username = QQ_LOGIN_PRE . $open_id;
-			$user->nickname = $userInfo['nickname'] ? $userInfo['nickname'] : 'QQ用户';
-			$user->sex = $userInfo['gender'] == '女' ? 2 : 1;
-			$user->head_pic_1 = $userInfo['figureurl_qq_1'];
-			//以下为默认值
-			$user->true_name = '';
-			$user->password = '';
-			$user->height = 0;
-			$user->weight = 0;
-			$user->age = 0;
-			$user->email = '';
-			$user->mobile = '';
-			$user->email_validated = 0;
-			$user->mobile_validated = 0;
-			$user->type = COMMON_USER;
-			$user->vip_start = DEFAULT_DATE;
-			$user->vip_end = DEFAULT_DATE;
-			$user->dead_user_status = DEAD_USER_FREE;
-			$user->coin = NEW_USER_COIN;
-			$user->source = SOURCE_FROM_QQ;
-			$user->register_time = Date('Y-m-d H:i:s');
-		}
-		$user->qq_openid = $open_id;
-		$user->qq_accesstoken = $access_token['access_token'];
-		$user->qq_accessexpire = $access_token['expires_in'] + time();
+			if (!($user = CUser::qqUserRegister($userInfo, $open_id, $access_token['access_token'], $access_token['expires_in'], SOURCE_FROM_QQ))) {
+				throw new Exception(CUser::getError(), 100);
+			}
 
-		$user->last_login_time = Date('Y-m-d H:i:s');
-		$user->setScenario('qqLogin');
-		if($user->save()) {
-			if ($new) {//新用户更新昵称防止重复
-				$user->nickname = $user->nickname . $user->id;
-				$user->save();
-			}
-			$_SESSION['uid'] = $user->id;
-			$_SESSION['nickname'] = $user->nickname;
-			$_SESSION['sex'] = $user->sex;
-			setcookie('uid', $user->id, 0, '/', DOMAIN);
-			setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
-			if ($redirect_url) {
-				header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $user->id)));
-			}
-			else {
-				$this->renderPartial('redirect');
-			}
 		}
 		else {
-			$this->renderPartial('error', array('code' => 100, 'msg' => json_encode($user->getErrors())));
+			$user->qq_accesstoken = $access_token['access_token'];
+			$user->qq_accessexpire = $access_token['expires_in'] + time();
+
+			$user->last_login_time = Date('Y-m-d H:i:s');
+			$user->setScenario('qqLogin');
+			if (!$user->save(true, array('qq_accesstoken', 'qq_accessexpire', 'last_login_time'))) {
+				throw new Exception(json_encode($user->getErrors()), 101);
+			}
 		}
+
+		$_SESSION['uid'] = $user->id;
+		$_SESSION['nickname'] = $user->nickname;
+		$_SESSION['sex'] = $user->sex;
+		setcookie('uid', $user->id, 0, '/', DOMAIN);
+		setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
+		if ($redirect_url) {
+			header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $user->id)));
+		}
+		else {
+			$this->renderPartial('redirect');
+		}
+
 	}
 
 	public function actionGetUserInfo() {
@@ -144,7 +122,7 @@ class UserController extends MyController
 		$_SESSION['privKey'] = $privKey;
 		$_SESSION['pubKey'] = $pubKey['key'];
 
-			return ToolUtils::ajaxOut(0, '', array('key' => $pubKey['key'], 'session_id' => session_id()));
+		return ToolUtils::ajaxOut(0, '', array('key' => $pubKey['key'], 'session_id' => session_id()));
 	}
 
 	public function actionRegister($session_id = '') {
@@ -435,6 +413,7 @@ class UserController extends MyController
 		$this->renderPartial('registerLogin', array('type' => 2, 'scene' => $scene, 'callback' => $callback));
 	}
 
+	//用户充值后页面同步金币
 	public function actionGetUserInfoFromOrderId($order_id) {
 		$record = Recharge::model()->findByPk($order_id);
 		if (!$record) {

@@ -36,6 +36,10 @@ class CRoom {
         return (int)$mid;
     }
 
+    static public function isPlaying($rid) {
+        return self::getPublishMid($rid) != ROOM_PUB_NOBODY_UID;
+    }
+
     static public function dirtyFilter($msg) {
 
         $dirtyWords = require(CONFIG_DIR . 'dirtyWords.php');

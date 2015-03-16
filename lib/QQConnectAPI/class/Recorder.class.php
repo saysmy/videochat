@@ -24,7 +24,7 @@ class Recorder{
         if(empty($_SESSION['QC_userData'])){
             self::$data = array();
         }else{
-            self::$data = $_SESSION['QC_userData'];
+            // self::$data = $_SESSION['QC_userData'];
         }
     }
 
@@ -53,6 +53,6 @@ class Recorder{
     }
 
     function __destruct(){
-        $_SESSION['QC_userData'] = self::$data;
+        // $_SESSION['QC_userData'] = self::$data;
     }
 }

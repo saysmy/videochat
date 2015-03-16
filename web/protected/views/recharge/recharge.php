@@ -9,7 +9,7 @@
           $('input[name=amount][value=other]')[0].checked = true;
       })
 
-      $('#do-recharge').click(function() {
+      $('#do-recharge').submit(function() {
           if (!logined) {
               seajs.use('user', function(r) {
                 r.showLoginPanel();
@@ -33,7 +33,7 @@
           $("#overlay-mask").fadeIn();
           $("#overlay-pay").fadeIn();
 
-          $(this).attr('href', '/recharge/alipay/money/' + money);
+          $(this).attr('action', '/recharge/alipay/money/' + money);
           return true;
       })
 
@@ -207,7 +207,7 @@
               <p class="clear"></p>
             </ul>
           </div>
-          <div class="payBtn ptb10"><a href="#" target=_blank id="do-recharge"><input type="submit" class="btns btn-1" value="立即支付" id="btnPay"></a></div>
+          <div class="payBtn ptb10"><form action="" target=_blank id="do-recharge"><input type="submit" class="btns btn-1" value="立即支付" id="btnPay"></form></div>
         </div>
       </div>
       <p class="clear"></p>
