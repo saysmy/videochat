@@ -457,7 +457,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 
 	function removeUser(user) {
 		if (user.uid != UNLOGIN_UID) {
-			addPublicRoomMsg(user.nickname + "退出聊天室", ROOM_TIP_MSG);
+			//addPublicRoomMsg(user.nickname + "退出聊天室", ROOM_TIP_MSG);
 			loginUserList[user.uid].dom.remove();
 			delete loginUserList[user.uid];
 		}

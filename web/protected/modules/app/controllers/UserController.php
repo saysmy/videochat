@@ -4,7 +4,7 @@ class UserController extends CController {
     public function filters() {
         return array(
             array(
-                'application.filters.LoginFilter + updateInfo',
+                'application.filters.LoginFilter + updateInfo + getInfo',
             ),
         );  
     }
@@ -162,7 +162,10 @@ class UserController extends CController {
         ToolUtils::ajaxOut(0);
     }
 
-    public function actionGetInfo($uid) {
+    public function actionGetInfo() {
+        
+        $uid = CUser::checkLogin();
+
         $userInfo = User::model()->findByPk($uid);
         if (!$userInfo) {
             return ToolUtils::ajaxOut(700);
