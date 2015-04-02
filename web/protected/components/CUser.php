@@ -120,8 +120,12 @@ class CUser {
 
 		$allUsers = User::model()->findAll('nickname like :nickname', array(':nickname' => $nickname . "%"));
 		if ($allUsers) {
-			$max = 0;
+			$num = 0;
 			foreach($allUsers as $tmpUser) {
+				if ($tmpUser->nickname == $nickname) {
+					$num = 1;
+					continue;
+				}
 				if (!preg_match('/\(.*?\)$/i', $tmpUser->nickname, $matches)) {
 					continue;
 				}
@@ -129,12 +133,14 @@ class CUser {
 					continue;
 				}
 
-				$max = max($max, (int)$matches[1]);
+				if($num <= (int)$matches[1]) {
+					$num = (int)$matches[1] + 1;
+				}
 			}
 
-			$max ++;
-
-			$nickname .= '(' . $max . ')';
+			if ($num) {
+				$nickname .= '(' . $num . ')';
+			}
 		}
 
 		$user = new User('qqLogin');
