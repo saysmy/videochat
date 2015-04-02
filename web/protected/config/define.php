@@ -63,6 +63,7 @@
     define('ROOM_PUB_NOBODY_UID', -1);
     define('ROOM_PUB_DEFAULT_DATE', '1970-01-01 08:00:00');
     define('DEFAULT_DATE', '1970-01-01 08:00:00');
+    define('DEFAULT_BIRTHDAY', '1990-01-01');
 
     define('COMMON_LEVEL_USER', 0);
     define('VIP_LEVEL_USER', 1);

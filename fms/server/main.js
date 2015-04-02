@@ -80,6 +80,9 @@ Client.prototype.sendMsg = function(msgData){
 
 			msgData.msg = resp.data.msg;
 			application.source.sendMsg(msgData, client.id);
+
+			application.service.saveMsg(msgData.msg, client.data.uid, msgData.to, application.rid, msgData.private, client.data.sid);
+
 		}
 
 	}

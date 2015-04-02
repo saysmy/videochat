@@ -16,6 +16,7 @@ class IndexController extends CController
 	}
     
 	public function actionIndex() {
+
 		//所有房间
 		$rooms = Room::model()->findAll(array('condition' => 'status!=-1', 'order' => 'rank desc'));
 		foreach($rooms as $room) {

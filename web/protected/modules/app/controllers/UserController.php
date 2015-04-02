@@ -38,12 +38,12 @@ class UserController extends CController {
         $form = new LoginForm;
         $form->attributes = $_POST;
         if (!openssl_private_decrypt(base64_decode($form->password), $password, Yii::app()->session->get('privKey'))) {
-            return ToolUtils::ajaxOut(202);
+            return ToolUtils::ajaxOut(202, '解密失败');
         }
         $form->password = $password;
 
         if (!$form->validate()) {
-            return ToolUtils::ajaxOut(200, '', $form->getErrors());
+            return ToolUtils::ajaxOut(200, '参数错误', $form->getErrors());
         }
 
         $userIdentity = new UserIdentity($form->username, $form->password);
@@ -108,10 +108,10 @@ class UserController extends CController {
         }
 
         $vcode = '1234';
-        // $vcode .= rand(0, 10);
-        // $vcode .= rand(0, 10);
-        // $vcode .= rand(0, 10);
-        // $vcode .= rand(0, 10);
+        // $vcode .= rand(0, 9);
+        // $vcode .= rand(0, 9);
+        // $vcode .= rand(0, 9);
+        // $vcode .= rand(0, 9);
 
         // if (!ToolUtils::sendSms($mobile, $vcode)) {
         //      return ToolUtils::ajaxOut(401, '发送短信失败');           
@@ -127,7 +127,7 @@ class UserController extends CController {
 
         $mobile = Yii::app()->session->get('mobile');
         if (!$mobile) {
-            return ToolUtils::ajaxOut(501);
+            return ToolUtils::ajaxOut(501, '手机号信息丢失');
         }
 
         if ($vcode == Yii::app()->session->get('mobileVCode_' . $mobile)) {
@@ -137,7 +137,7 @@ class UserController extends CController {
             return ToolUtils::ajaxOut(0);
         }
         else {
-            return ToolUtils::ajaxOut(500);
+            return ToolUtils::ajaxOut(500, '手机验证码错误');
         }
     }
 
@@ -148,19 +148,25 @@ class UserController extends CController {
 
         $mobile = Yii::app()->session->get('mobile');
         if (!$mobile) {
-            return ToolUtils::ajaxOut(600);
+            return ToolUtils::ajaxOut(600, '手机号信息丢失');
         }
 
         if (!Yii::app()->session->get('mobileChecked')) {
-            return ToolUtils::ajaxOut(603);
+            return ToolUtils::ajaxOut(603, '手机未验证');
         }
 
         if (!openssl_private_decrypt(base64_decode($password), $password, Yii::app()->session->get('privKey'))) {
-            return ToolUtils::ajaxOut(601);
+            return ToolUtils::ajaxOut(601, '解密失败');
         }
 
         if (!($uid = CUser::mobileRegister($mobile, $nickname, $sex, $password, $error))) {
-            return ToolUtils::ajaxOut(602, '注册失败', $error);
+            if (isset($error['mobile'])) {//优先提示手机号码相关错误
+                return ToolUtils::ajaxOut(602, $error['mobile'], $error);
+            }
+            else {
+                return ToolUtils::ajaxOut(602, current(current($error)), $error);
+            }
+            
         }
 
         Yii::app()->session->add('uid', $user->id);
@@ -181,13 +187,14 @@ class UserController extends CController {
 
         $userInfo = User::model()->findByPk($uid);
         if (!$userInfo) {
-            return ToolUtils::ajaxOut(700);
+            return ToolUtils::ajaxOut(700, '用户不存在');
         }
         $data = array(
             'id' => (int)$userInfo->id,
             'nickname' => $userInfo->nickname,
             'head_pic' => $userInfo->head_pic_1,
             'sex' => (int)$userInfo->sex,
+            'birthday' => date('Y-m-d', strtotime($userInfo->birthday)),
             'coin' => (float)$userInfo->coin,
             'love_num' => (int)LoveRoom::model()->count('uid=' . $uid),
             'follow_num' => 0,
@@ -209,25 +216,21 @@ class UserController extends CController {
 
         $nickname = Yii::app()->request->getParam('nickname');
         $sex = Yii::app()->request->getParam('sex');
-        $height = Yii::app()->request->getParam('height');
-        $weight = Yii::app()->request->getParam('weight');
-        $age = Yii::app()->request->getParam('age');
+        $birthday = Yii::app()->request->getParam('birthday');
         $desc = Yii::app()->request->getParam('desc');
 
         $user = User::model()->findByPk($uid);
         if (!$user) {
-            return ToolUtils::ajaxOut(801);
+            return ToolUtils::ajaxOut(801, '用户不存在');
         }
         $user->nickname = $nickname;
         $user->sex = $sex;
-        $user->weight = $weight;
-        $user->height = $height;
-        $user->age = $age;
+        $user->birthday = $birthday;
 
         $user->setScenario('appUpdate');
 
-        if (!$user->save(true, array('nickname', 'sex', 'weight', 'height', 'age'))) {
-            return ToolUtils::ajaxOut(800, '', $user->getErrors());
+        if (!$user->save(true, array('nickname', 'sex', 'birthday'))) {
+            return ToolUtils::ajaxOut(800, current(current($user->getErrors())), $user->getErrors());
         }
 
         ToolUtils::ajaxOut(0);

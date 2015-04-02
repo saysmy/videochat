@@ -3,6 +3,7 @@
 class TestCommand extends CConsoleCommand
 {
     public function run() {
-        ToolUtils::sendSms('18001668775', '2223');
+        $users = User::model()->findAll('nickname like :nickname', array(':nickname' => "wheelswang%"));
+        echo count($users);
     }
 }   

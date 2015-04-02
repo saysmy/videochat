@@ -269,7 +269,7 @@ Client.prototype.sendMsg = function(msgData, cid) {
         userBroadcast('onChatMsg', 0, '', ret);
     }
     else {
-        userCall(this, "onChatMsg", 0, '', ret, cid);
+        // userCall(this, "onChatMsg", 0, '', ret, cid);
 
         userBroadcast('onChatMsg', 0, '', ret, userInfo.cid);
     }

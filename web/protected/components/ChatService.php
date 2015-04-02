@@ -146,11 +146,30 @@ class ChatService {
 		if ((!ToolUtils::frequencyCheck('chat_' . $uid . '_2', 2)) && ($last_msg = Yii::app()->cache->get($msg_cache_key)) && $last_msg == $msg) {
 			return array('errno' => 501);
 		}
-		Yii::app()->cache->set($msg_cache_key, $msg);	
+		Yii::app()->cache->set($msg_cache_key, $msg);			
 
 		$msg = CRoom::dirtyFilter($msg);
 
 		return array('errno' => 0, 'msg' => '', 'data' => array('msg' => $msg));
+	}
+
+	public function saveMsg($msg, $fromUid, $toUid, $rid, $private, $sid) {
+
+		if(!CUser::checkLogin($fromUid, $sid)) {
+			Yii::log('saveMsg checkLogin error uid:' . $fromUid . ' sid:' . $sid, CLogger::LEVEL_ERROR, 'chatService');
+			return;
+		}
+
+		$msgBackup = new MsgBackup;
+		$msgBackup->fromUid = $fromUid;
+		$msgBackup->toUid = $toUid;
+		$msgBackup->rid = $rid;
+		$msgBackup->msg = $msg;
+		$msgBackup->private = $private ? 1 : 0;
+		$msgBackup->add_time = date('Y-m-d H:i:s');
+		if (!$msgBackup->save()) {
+			Yii::log('save msg_backup error:' . json_encode($msgBackup->getErrors()), CLogger::LEVEL_ERROR, 'chatService');
+		}
 	}
 
 	public function ban($sid, $uid, $rid, $buid, $expire = 600) {

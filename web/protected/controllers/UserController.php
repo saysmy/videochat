@@ -53,29 +53,28 @@ class UserController extends MyController
 		$user = User::model()->find('qq_openid=:open_id', array(':open_id' => $open_id));
 		if($user === null) {//新用户
 			$userInfo = $qc->get_user_info();
-			if (!($user = CUser::qqUserRegister($userInfo, $open_id, $access_token['access_token'], $access_token['expires_in'], SOURCE_FROM_QQ))) {
-				throw new Exception(CUser::getError(), 100);
+			if (!($uid = CUser::qqUserRegister($userInfo, $open_id, $access_token['access_token'], $access_token['expires_in'], SOURCE_FROM_QQ))) {
+				throw new CHttpException(200, CUser::getError(), 100);
 			}
 
 		}
 		else {
+			$uid = $user->id;
 			$user->qq_accesstoken = $access_token['access_token'];
 			$user->qq_accessexpire = $access_token['expires_in'] + time();
 
 			$user->last_login_time = Date('Y-m-d H:i:s');
 			$user->setScenario('qqLogin');
 			if (!$user->save(true, array('qq_accesstoken', 'qq_accessexpire', 'last_login_time'))) {
-				throw new Exception(json_encode($user->getErrors()), 101);
+				throw new CHttpException(200, json_encode($user->getErrors()), 101);
 			}
 		}
 
-		$_SESSION['uid'] = $user->id;
-		$_SESSION['nickname'] = $user->nickname;
-		$_SESSION['sex'] = $user->sex;
-		setcookie('uid', $user->id, 0, '/', DOMAIN);
+		$_SESSION['uid'] = $uid;
+		setcookie('uid', $uid, 0, '/', DOMAIN);
 		setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
 		if ($redirect_url) {
-			header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $user->id)));
+			header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $uid)));
 		}
 		else {
 			$this->renderPartial('redirect');
@@ -140,43 +139,14 @@ class UserController extends MyController
 		 	return ToolUtils::ajaxOut(300, '', $form->getErrors());			
 		}
 
-		$user = new User('register');
-		$user->username = $form->username;
-		$user->password = $form->password;
-		$user->age = $form->age;
-		$user->height = $form->height;
-		$user->weight = $form->weight;
-		//以下为默认值
-		$user->nickname = $form->username;
-		$user->true_name = '';
-		$user->sex = 0;
-		$user->head_pic_1 = DEFAULT_HEAD_PIC;
-		$user->email = '';
-		$user->mobile = '';
-		$user->qq_openid = '';
-		$user->qq_accesstoken = '';
-		$user->qq_accessexpire = 0;
-		$user->source = SOURCE_FROM_SELF;
-		$user->email_validated = 0;
-		$user->mobile_validated = 0;
-		$user->type = COMMON_USER;
-		$user->vip_start = DEFAULT_DATE;
-		$user->vip_end = DEFAULT_DATE;
-		$user->dead_user_status = DEAD_USER_FREE;
-		$user->coin = NEW_USER_COIN;
-		$user->last_login_time = DEFAULT_DATE;
-		$user->register_time = Date('Y-m-d H:i:s');
-
-		if ($user->save()) {
-			$_SESSION['uid'] = $user->id;
-			$_SESSION['nickname'] = $user->username;
-			$_SESSION['sex'] = $user->sex;
-			setcookie('uid', $user->id, 0, '/', DOMAIN);
+		if ($uid = CUser::register($form->username, $form->password, $form->age, $form->height, $form->weight, $error)) {
+			$_SESSION['uid'] = $uid;
+			setcookie('uid', $uid, 0, '/', DOMAIN);
 			setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
-			return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));	
+			return ToolUtils::ajaxOut(0, '', array('uid' => $uid, 'session_id' => session_id()));	
 		}
 		else {
-			return ToolUtils::ajaxOut(301, '', $user->getErrors());
+			return ToolUtils::ajaxOut(301, '', $error);
 		}
 	}
 
@@ -200,8 +170,6 @@ class UserController extends MyController
 		$user = $userIdentity->getUser();
 
 		$_SESSION['uid'] = $user->id;
-		$_SESSION['nickname'] = $user->username;
-		$_SESSION['sex'] = $user->sex;
 		setcookie('uid', $user->id, $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', DOMAIN);
 		setcookie('shared_session', session_id(), $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', MAIN_DOMAIN);
 		return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));			
