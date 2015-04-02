@@ -53,6 +53,7 @@ class RoomController extends CController {
         $gifts = Property::model()->findAll();
         $ret['id'] = (int)$room->id;
         $ret['love'] = (int)$room->love_num;
+        $ret['loved'] = false;
         $ret['gifts'] = array();
         foreach($gifts as $gift) {
             $giftArr = $gift->getAttributes();
@@ -61,6 +62,14 @@ class RoomController extends CController {
             $giftArr['img'] = 'http://' . DOMAIN . $giftArr['img'];
             $giftArr['imgPreview'] = 'http://' . DOMAIN . $giftArr['imgPreview'];
             $ret['gifts'][] = $giftArr;
+        }
+
+        $uid = CUser::checkLogin();
+        if ($uid) {
+            if (LoveRoom::model()->findAll('uid=' . $uid . ' and rid=' . $rid)) {
+                $ret['loved'] = true;
+            }
+
         }
 
         ToolUtils::ajaxOut(0, '', $ret);    

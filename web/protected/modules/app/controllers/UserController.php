@@ -53,7 +53,7 @@ class UserController extends CController {
         $user = $userIdentity->getUser();
 
         Yii::app()->session->add('uid', $user->id);
-        Yii::app()->session->add('nickname', $user->nickname);
+        // Yii::app()->session->add('nickname', $user->nickname);
 
         setcookie('uid', $user->id, $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', DOMAIN);
         return ToolUtils::ajaxOut(0, '', array('uid' => $user->id));          
@@ -63,6 +63,7 @@ class UserController extends CController {
         $accessToken = Yii::app()->request->getParam('accessToken');
         $openId = Yii::app()->request->getParam('openId');
         $expiredIn = Yii::app()->request->getParam('expiredIn');
+        $expiredIn = strtotime($expiredIn) - time();
 
         include PROJECT_LIB . 'QQConnectAPI/qqConnectAPI.php';
 
@@ -88,11 +89,11 @@ class UserController extends CController {
 
 
         Yii::app()->session->add('uid', $user->id);
-        Yii::app()->session->add('nickname', $user->nickname);
+        // Yii::app()->session->add('nickname', $user->nickname);
 
         setcookie('uid', $user->id, 0, '/', DOMAIN);
 
-        ToolUtils::ajax(0);
+        ToolUtils::ajaxOut(0);
     }
 
     public function actionGetMobileVCode($mobile) {
@@ -102,17 +103,20 @@ class UserController extends CController {
             return ToolUtils::ajaxOut(400, '手机号码格式不正确');
         }
         //频次控制
-        if (!ToolUtils::frequencyCheck('getMobileVCode_' . $mobile, 0.1)) {
+        if (!ToolUtils::frequencyCheck('getMobileVCode_' . $mobile, 60)) {
             return ToolUtils::ajaxOut(FREQUENCY_ERR, '操作过于频繁');
         }
 
-        $vcode = '';
-        $vcode .= rand(0, 10);
-        $vcode .= rand(0, 10);
-        $vcode .= rand(0, 10);
-        $vcode .= rand(0, 10);
-        $vcode .= rand(0, 10);
-        $vcode .= rand(0, 10);
+        $vcode = '1234';
+        // $vcode .= rand(0, 10);
+        // $vcode .= rand(0, 10);
+        // $vcode .= rand(0, 10);
+        // $vcode .= rand(0, 10);
+
+        // if (!ToolUtils::sendSms($mobile, $vcode)) {
+        //      return ToolUtils::ajaxOut(401, '发送短信失败');           
+        // }
+
         Yii::app()->session->add('mobileVCode_' . $mobile, $vcode);
         Yii::app()->session->add('mobile', $mobile);
 
@@ -127,6 +131,9 @@ class UserController extends CController {
         }
 
         if ($vcode == Yii::app()->session->get('mobileVCode_' . $mobile)) {
+
+            Yii::app()->session->add('mobileChecked', true);
+
             return ToolUtils::ajaxOut(0);
         }
         else {
@@ -144,13 +151,19 @@ class UserController extends CController {
             return ToolUtils::ajaxOut(600);
         }
 
+        if (!Yii::app()->session->get('mobileChecked')) {
+            return ToolUtils::ajaxOut(603);
+        }
+
         if (!openssl_private_decrypt(base64_decode($password), $password, Yii::app()->session->get('privKey'))) {
             return ToolUtils::ajaxOut(601);
         }
 
-        if (!CUser::mobileRegister($mobile, $nickname, $sex, $password, $error)) {
+        if (!($uid = CUser::mobileRegister($mobile, $nickname, $sex, $password, $error))) {
             return ToolUtils::ajaxOut(602, '注册失败', $error);
         }
+
+        Yii::app()->session->add('uid', $user->id);
 
         ToolUtils::ajaxOut(0);
     }
@@ -173,6 +186,7 @@ class UserController extends CController {
         $data = array(
             'id' => (int)$userInfo->id,
             'nickname' => $userInfo->nickname,
+            'head_pic' => $userInfo->head_pic_1,
             'sex' => (int)$userInfo->sex,
             'coin' => (float)$userInfo->coin,
             'love_num' => (int)LoveRoom::model()->count('uid=' . $uid),

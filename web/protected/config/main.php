@@ -13,7 +13,7 @@ $seaFiles = array(
       'layer' => 'layer/layer.min.js',
       'plupload' => 'plupload/plupload.full.min.js',
       'jcrop'    => 'jquery.Jcrop.min.js',
-      'validate' => 'jquery.validate.min.js',
+      'validate' => 'jquery.validate.min.js?v=20150327',
       'registerLogin' => 'registerLogin.js?v=20141116',
       'step'     => 'step.js?v=20141116',
       'user'     => 'user.js?v=20141022',

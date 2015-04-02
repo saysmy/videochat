@@ -58,4 +58,20 @@ Class ToolUtils {
             return false;
         }
     }
+
+    static public function sendSms($to, $text) {
+        $text .= iconv('UTF-8', 'GBK', '(注册短信验证码，请勿泄露)');
+        $ch = curl_init();
+        $url = str_replace(array('_TO_', '_CONTENT_'), array($to, urlencode($text)), SMS_URL);
+        $result = trim(file_get_contents($url));
+        if ($result === '0' || $result > 0) {
+            return true;
+        }
+
+        Yii::log('sendSms error:' . $result, CLogger::LEVEL_ERROR);
+    }
 }
+
+
+
+

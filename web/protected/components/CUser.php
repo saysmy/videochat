@@ -131,8 +131,8 @@ class CUser {
 		$user->head_pic_1 = DEFAULT_HEAD_PIC;
 		$user->qq_openid = '';
 		$user->qq_accesstoken = '';
-		$user->qq_accessexpire = '';
-		$user->last_login_time = '';
+		$user->qq_accessexpire = 0;
+		$user->last_login_time = DEFAULT_DATE;
 		$user->true_name = '';
 		$user->height = 0;
 		$user->weight = 0;
@@ -153,7 +153,7 @@ class CUser {
 
 		$error = $user->getErrors();
 
-		return false;
+		return $user->id;
 	}	
 
 	static public function getError() {

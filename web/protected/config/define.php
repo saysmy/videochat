@@ -72,6 +72,8 @@
 
     define('VIP_MONTH_PRICE', 29.9);
 
+    define('SMS_URL', 'http://sdk.zhongguowuxian.com:98/ws/BatchSend.aspx?CorpID=GZLKJ003202&Pwd=fz@668&Mobile=_TO_&Content=_CONTENT_');
+
 
 
 
