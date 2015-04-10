@@ -9,7 +9,6 @@ class UserController extends CController {
         );  
     }
 
-
     public function actionGetPublicKey() {
 
         if (Yii::app()->session->get('pubKey')) {
@@ -73,7 +72,7 @@ class UserController extends CController {
             $qc->setOpenId($openId);
             $qc->setAccessToken($accessToken);
             $userInfo = $qc->get_user_info();            
-            if (!($user = CUser::qqUserRegister($userInfo, $open_id, $accessToken, $expiredIn, SOURCE_FROM_APP_QQ))) {
+            if (!($uid = CUser::qqUserRegister($userInfo, $openId, $accessToken, $expiredIn, SOURCE_FROM_APP_QQ))) {
                 throw new Exception(CUser::getError(), 300);
             }
         }
@@ -85,13 +84,13 @@ class UserController extends CController {
             if (!$user->save(true, array('qq_accesstoken', 'qq_accessexpire', 'last_login_time'))) {
                 throw new Exception(json_encode($user->getErrors()), 301);
             }
+            $uid = $user->id;
         }
 
 
-        Yii::app()->session->add('uid', $user->id);
-        // Yii::app()->session->add('nickname', $user->nickname);
+        Yii::app()->session->add('uid', $uid);
 
-        setcookie('uid', $user->id, 0, '/', DOMAIN);
+        setcookie('uid', $uid, 0, '/', DOMAIN);
 
         ToolUtils::ajaxOut(0);
     }
