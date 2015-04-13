@@ -9,6 +9,7 @@ class UserController extends CController {
         );  
     }
 
+
     public function actionGetPublicKey() {
 
         if (Yii::app()->session->get('pubKey')) {
