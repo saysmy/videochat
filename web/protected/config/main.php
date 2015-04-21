@@ -57,7 +57,7 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
-		'gii'=>array(
+		'gii' => array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'letmego',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
@@ -66,14 +66,12 @@ return array(
 
         'app',
 
+        'admin',
+
     ),
 
 	// application components
 	'components'=>array(
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
-		),
 		'cache' => array(
 			'class' => 'system.caching.CMemCache',
 			'servers' => array(
