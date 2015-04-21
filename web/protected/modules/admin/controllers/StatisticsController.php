@@ -7,13 +7,19 @@ class StatisticsController extends CController {
         $this->render('moderator');
     }
 
-    public function actionGetModeratorPublishList($moderatorTrueName = '') {
+    public function actionGetModeratorPublishList($moderatorTrueName = '', $date = '') {
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         $trueName = trim($moderatorTrueName);
         $publishList = array();
+        $timestamp = strtotime($date);
+        $date = date('Y-m-d', $timestamp);
+        $nextDate = date('Y-m-d', $timestamp + 86400);
         if ($trueName) {
             $user = User::model()->find('true_name=:true_name', array(':true_name' => $trueName));
             if ($user) {
-                $publishList = PublishHistory::model()->findAll('mid=' . $user->id);
+                $publishList = PublishHistory::model()->findAll('mid=' . $user->id . ' and start_time > "' . $date . '" and start_time < "' . $nextDate . '"');
             }
         }
 
@@ -25,13 +31,19 @@ class StatisticsController extends CController {
         echo json_encode($out);
     }
 
-    public function actionGetModeratorGiftList($moderatorTrueName = '') {
+    public function actionGetModeratorGiftList($moderatorTrueName = '', $date = '') {
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         $trueName = trim($moderatorTrueName);
         $consumeList = array();
+        $timestamp = strtotime($date);
+        $date = date('Y-m-d', $timestamp);
+        $nextDate = date('Y-m-d', $timestamp + 86400);
         if ($trueName) {
             $user = User::model()->find('true_name=:true_name', array(':true_name' => $trueName));
             if ($user) {
-                $consumeList = Consume::model()->findAll('mid=' . $user->id);
+                $consumeList = Consume::model()->findAll('mid=' . $user->id . ' and time >"' . $date . '" and time < "' . $nextDate . '"');
             }
         }
         $userList = array();

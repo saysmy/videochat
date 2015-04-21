@@ -1,6 +1,8 @@
 <form id="ff">
 <br/>
-<label>主播姓名：</label><input id="true_name" class="easyui-textbox" type="text" name="true_name" data-options="required:true"></input>
+<label>主播姓名：</label>
+<input id="true_name" class="easyui-textbox" type="text" name="true_name" data-options="required:true"></input>
+<input class="easyui-datebox" required id="date"></input>
 &nbsp;&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton" onclick="query()">查询</a>
 <br/>
 </form>
@@ -39,11 +41,13 @@ function query() {
         return;
     }
     $('#publistListTable').datagrid('load', {
-        moderatorTrueName : $('#true_name').val()
+        moderatorTrueName : $('#true_name').val(),
+        date : $('#date').datebox("getValue")
     })
 
     $('#giftListTable').datagrid('load', {
-        moderatorTrueName : $('#true_name').val()
+        moderatorTrueName : $('#true_name').val(),
+        date : $('#date').datebox("getValue")
     })
 }
 </script>
