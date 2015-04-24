@@ -3,11 +3,17 @@ class UserController extends CController {
 
     public $layout = 'common';
 
+    public $subTitle = '';
+
     public function actionLogin() {
+
+        $this->subTitle = '登陆';
+
         $this->render('login');
     }
 
     public function actionCheckPassword() {
+        
         $password = trim(Yii::app()->request->getParam('password'));
 
         if (Yii::app()->getController()->getModule()->password != $password) {

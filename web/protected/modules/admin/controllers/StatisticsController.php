@@ -3,52 +3,61 @@ class StatisticsController extends CController {
 
     public $layout = 'common';
 
+    public $subTitle = '主播统计';
+
     public function actionModerator() {
-        $this->render('moderator');
+
+        $rooms = Room::model()->findAll('mid > 0');
+        $users = array();
+        foreach($rooms as $room) {
+            $users[$room->moderator->id] = $room->moderator->true_name;
+        }
+
+        $this->render('moderator', array('users' => $users));
     }
 
-    public function actionGetModeratorPublishList($moderatorTrueName = '', $date = '') {
-        if (!$date) {
-            $date = date('Y-m-d');
+    public function actionGetModeratorPublishList($mid, $startTime, $endTime) {
+        $startTime = date('Y-m-d H:i:s', strtotime($startTime));
+        $endTime = date('Y-m-d H:i:s', strtotime($endTime) + 86400 - 1);
+
+        if ($mid) {
+            $publishList = PublishHistory::model()->findAll('mid=:mid and start_time>=:start_time and start_time<=:end_time', array('mid' => $mid, 'start_time' => $startTime, 'end_time' => $endTime));
         }
-        $trueName = trim($moderatorTrueName);
-        $publishList = array();
-        $timestamp = strtotime($date);
-        $date = date('Y-m-d', $timestamp);
-        $nextDate = date('Y-m-d', $timestamp + 86400);
-        if ($trueName) {
-            $user = User::model()->find('true_name=:true_name', array(':true_name' => $trueName));
-            if ($user) {
-                $publishList = PublishHistory::model()->findAll('mid=' . $user->id . ' and start_time > "' . $date . '" and start_time < "' . $nextDate . '"');
-            }
+        else {
+            $publishList = PublishHistory::model()->findAll('start_time>=:start_time and start_time<=:end_time', array('start_time' => $startTime, 'end_time' => $endTime));
         }
+        
 
         $out = array();
         foreach($publishList as $publish) {
-            $out[] = array('mid' => $publish->mid, 'rid' => $publish->rid, 'startTime' => $publish->start_time, 'endTime' => $publish->end_time);
+            $out[] = array(
+                'mid' => $publish->mid, 
+                'trueName' => @$publish->moderator->true_name,
+                'rid' => $publish->rid, 
+                'startTime' => $publish->start_time, 
+                'endTime' => $publish->end_time
+            );
         }
 
         echo json_encode($out);
     }
 
-    public function actionGetModeratorGiftList($moderatorTrueName = '', $date = '') {
-        if (!$date) {
-            $date = date('Y-m-d');
+    public function actionGetModeratorGiftList($mid, $startTime, $endTime) {
+        $startTime = date('Y-m-d H:i:s', strtotime($startTime));
+        $endTime = date('Y-m-d H:i:s', strtotime($endTime) + 86400 - 1);
+
+        if ($mid) {
+            $consumeList = Consume::model()->findAll('mid=:mid and time>=:start_time and time<=:end_time', array('mid' => $mid, 'start_time' => $startTime, 'end_time' => $endTime));
         }
-        $trueName = trim($moderatorTrueName);
-        $consumeList = array();
-        $timestamp = strtotime($date);
-        $date = date('Y-m-d', $timestamp);
-        $nextDate = date('Y-m-d', $timestamp + 86400);
-        if ($trueName) {
-            $user = User::model()->find('true_name=:true_name', array(':true_name' => $trueName));
-            if ($user) {
-                $consumeList = Consume::model()->findAll('mid=' . $user->id . ' and time >"' . $date . '" and time < "' . $nextDate . '"');
-            }
+        else {
+            $consumeList = Consume::model()->findAll('time>=:start_time and time<=:end_time', array('start_time' => $startTime, 'end_time' => $endTime));
+
         }
+
         $userList = array();
 
         $out = array();
+        $sum = 0;
         foreach($consumeList as $consume) {
             if (!isset($userList[$consume->uid])) {
                 $userList[$consume->uid] = User::model()->findByPk($consume->uid);
@@ -56,13 +65,16 @@ class StatisticsController extends CController {
             $user = $userList[$consume->uid];
             $out[] = array(
                 'mid' => $consume->mid,
+                'trueName' => @$consume->moderator->true_name,
                 'senderNickname' => @$user->nickname,
                 'giftName' => @$consume->property->name,
                 'giftNum' => $consume->pnum,
                 'giftCost' => $consume->cost,
                 'sendTime' => $consume->time,
             );
+            $sum += $consume->cost;
         }
+        $out[] = array('mid' => '总计', 'giftCost' => $sum);
         echo json_encode($out);
 
     }
