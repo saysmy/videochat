@@ -1,7 +1,7 @@
 define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, exports, module) {
 	var faces = [];
 	for (var i = 1; i <= 31; i ++) {
-		faces.push({img : '/img/face/emoji_' + i, data : '{#' + i + '#}'});
+		faces.push({img : '/img/face/emoji_' + i + '.png', data : '{#' + i + '#}'});
 	}
 	
 	var flower = {img : '/img/face/e7.png', data : '{花}'}
