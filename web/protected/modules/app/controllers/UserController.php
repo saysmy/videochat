@@ -37,6 +37,11 @@ class UserController extends CController {
     public function actionLogin() {
         $form = new LoginForm;
         $form->attributes = $_POST;
+
+        if (Yii::app()->session->get('privKey')) {
+            return ToolUtils::ajaxOut(203, '密钥失效，请重新申请');
+        }
+
         if (!openssl_private_decrypt(base64_decode($form->password), $password, Yii::app()->session->get('privKey'))) {
             return ToolUtils::ajaxOut(202, '解密失败');
         }
@@ -155,6 +160,10 @@ class UserController extends CController {
             return ToolUtils::ajaxOut(603, '手机未验证');
         }
 
+        if (!Yii::app()->session->get('privKey')) {
+            return ToolUtils::ajaxOut(604, '密钥失效，请重新申请');
+        }
+
         if (!openssl_private_decrypt(base64_decode($password), $password, Yii::app()->session->get('privKey'))) {
             return ToolUtils::ajaxOut(601, '解密失败');
         }
@@ -250,6 +259,10 @@ class UserController extends CController {
 
         if (!Yii::app()->session->get('mobileChecked')) {
             return ToolUtils::ajaxOut(901, '手机未验证');
+        }
+
+        if (!Yii::app()->session->get('privKey')) {
+            return ToolUtils::ajaxOut(905, '密钥失效，请重新申请');
         }
 
         if (!openssl_private_decrypt(base64_decode($newPassword), $newPassword, Yii::app()->session->get('privKey'))) {

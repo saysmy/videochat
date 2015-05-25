@@ -3,9 +3,11 @@
 class TestCommand extends CConsoleCommand
 {
     public function run() {
-        $test = New Test();
-        $test->id = 1;
-        $test->save();
-        var_export($test->getErrors());
+        $results = Yii::app()->db->createCommand("Select CONCAT( 'drop table ', table_name ) as c FROM information_schema.tables Where table_name LIKE 'thinkox_%';")->queryAll();
+        foreach($results as $result) {
+            $sql = $result['c'];
+            Yii::app()->db->createCommand($sql)->execute();
+        }
+
     }
 }   
