@@ -24,7 +24,7 @@ class UserIdentity extends CUserIdentity
 
 	public function authenticate() {
 		if ($this->username && $this->password) {
-			if (!($this->_user = User::model()->find('username=:username and password=:password', array(':username' => $this->username, ':password' => $this->password)))) {
+			if (!($this->_user = User::model()->find('(username=:username or mobile=:mobile) and password=:password', array(':username' => $this->username, ':password' => $this->password, ':mobile' => $this->username)))) {
 				return false;
 			}		
 		}

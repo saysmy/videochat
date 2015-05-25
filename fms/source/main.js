@@ -5,6 +5,7 @@ load("netservices.asc");
 
 application.loginUsers = {};
 application.unLoginUsers = {};
+application.loginUsersClients = {};
 
 application.onAppStart = function() {
 
@@ -154,7 +155,7 @@ Client.prototype.userConnect = function(sid, uid, rid, cid) {
     // 重复登录问题 接收本次连接 断开上一次的连接
     if(application.loginUsers[uid]){
         mytrace('replogin uid:' + uid);
-        application.loginUsers[uid].client.call('userConnectResp', null, 100, '', {}, application.loginUsers[uid].cid);
+        application.loginUsersClients[uid].client.call('userConnectResp', null, 100, '', {}, application.loginUsers[uid].cid);
         delete application.loginUsers[uid];
     }
 
@@ -172,7 +173,6 @@ Client.prototype.userConnect = function(sid, uid, rid, cid) {
         userInfo.sid = sid;
         userInfo.uid = userInfo.id;
         userInfo.cid = cid;
-        userInfo.client = client;
 
         mytrace("uid:" + userInfo.id + " nickname:" + userInfo.nickname + " sex:" + userInfo.sex + " type:" + userInfo.type + " headPic:" + userInfo.headPic + " logoutMsg:" + userInfo.logoutMsg);
         // 普通用户
@@ -202,6 +202,7 @@ Client.prototype.userDisconnect = function(cid) {
         if (application.loginUsers[uid].cid == cid) {
             userInfo = application.loginUsers[uid];
             delete application.loginUsers[uid];
+            delete application.loginUsersClients[uid];
             break;
         }
     }
@@ -269,8 +270,6 @@ Client.prototype.sendMsg = function(msgData, cid) {
         userBroadcast('onChatMsg', 0, '', ret);
     }
     else {
-        // userCall(this, "onChatMsg", 0, '', ret, cid);
-
         userBroadcast('onChatMsg', 0, '', ret, userInfo.cid);
     }
 
@@ -420,6 +419,7 @@ function doLoginOK(userInfo, client){
     // 更新用户昵称映射表
     if (userInfo.uid != UNLOGIN_UID) {
         application.loginUsers[userInfo.uid] = userInfo;
+        application.loginUsersClients[userInfo.uid] = client;
     }
     else {
         application.unLoginUsers[userInfo.cid] = userInfo;

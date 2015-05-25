@@ -1,5 +1,5 @@
 <?php
-class ActivityController extends Controller {
+class ActivityController extends CController {
 
     public function actionHome($last_come_time = 0) {
         if (time() < strtotime('2014-11-30') && $last_come_time == 0) {

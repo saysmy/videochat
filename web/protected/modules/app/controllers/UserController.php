@@ -171,6 +171,9 @@ class UserController extends CController {
 
         Yii::app()->session->add('uid', $user->id);
 
+        //移除本次验证码认证状态
+        Yii::app()->session->remove('mobileChecked');
+
         ToolUtils::ajaxOut(0);
     }
 
@@ -235,6 +238,39 @@ class UserController extends CController {
 
         ToolUtils::ajaxOut(0);
     }
+
+    public function actionModifyPassword() {
+
+        $newPassword = trim(Yii::app()->request->getParam('newPassword'));
+
+        $mobile = Yii::app()->session->get('mobile');
+        if (!$mobile) {
+            return ToolUtils::ajaxOut(900, '手机号信息丢失');
+        }
+
+        if (!Yii::app()->session->get('mobileChecked')) {
+            return ToolUtils::ajaxOut(901, '手机未验证');
+        }
+
+        if (!openssl_private_decrypt(base64_decode($newPassword), $newPassword, Yii::app()->session->get('privKey'))) {
+            return ToolUtils::ajaxOut(902, '解密失败');
+        }
+
+        $user = User::model()->find('mobile=:mobile', array(':mobile' => $mobile));
+        if (!$user) {
+            return ToolUtils::ajaxOut(903, '手机号未注册');
+        }
+
+        $user->password = $newPassword;
+        if (!$user->save(true, array('password'))) {
+            return ToolUtils::ajaxOut(904, current(current($user->getErrors())));
+        }
+
+        ToolUtils::ajaxOut(0);
+
+    }
+
+    
 }
 
 

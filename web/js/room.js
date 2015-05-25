@@ -1,5 +1,9 @@
 define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, exports, module) {
-	var faces = [{img : '/img/face/5.png', data : '{猪}'},{img : '/img/face/8.png', data : '{西瓜}'},{img : '/img/face/e1.png', data : '{爱}'},{img : '/img/face/e3.png', data : '{蛋糕}'},{img : '/img/face/e4.png', data : '{色}'},{img : '/img/face/e6.png', data : '{屎}'},{img : '/img/face/e8.png', data : '{笑}'}];
+	var faces = [];
+	for (var i = 1; i <= 31; i ++) {
+		faces.push({img : '/img/face/emoji_' + i, data : '{#' + i + '#}'});
+	}
+	
 	var flower = {img : '/img/face/e7.png', data : '{花}'}
 	var user = require('user');
 	var common = require('common');
@@ -115,7 +119,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 			};
 			is_flower_loading = true;
 			var me = this;
-			_loading_circle(12, 45000, 'flower-loading', function() {
+			_loading_circle(12, 60000, 'flower-loading', function() {
 				is_flower_loading = false;
 				$(me).css('cursor', 'pointer');
 			});
@@ -240,7 +244,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 
 
 	exports.onChatMsg = function(errno, msg, msgData) {
-		var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言', 104 : '未登录', 105 : '发言频率过于频繁，请稍后再试', 106 : '短时间内不能发相同内容', 107 : '悲剧～～您被管理员禁言了T.T'};
+		var errors = {100 : '该用户不再聊天室', 103 : '您已被禁言', 104 : '未登录', 105 : '发言频率过于频繁，请稍后再试', 106 : '短时间内不能发相同内容', 107 : '悲剧～～您被管理员禁言了T.T', 108 : '送花过于频繁'};
 		if (errno == 104) {
 			user.showLoginPanel();
 			return;
@@ -574,7 +578,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 		}
 		var num = parseInt($("#propNum").val());
 		if (!num) {return};
-		swfobject.getObjectById("roomPlayer").doSendGift($("#chooseProp").attr('propId'), num, $("#propTo").attr("to"));
+		swfobject.getObjectById("roomPlayer").doSendGift($("#chooseProp").attr('propId'), num, parseInt($("#propTo").attr("to")));
 	}
 
 
@@ -599,7 +603,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 
 	function fillFace(msg) {
 		for (var i = faces.length - 1; i >= 0; i--) {
-			msg = msg.replace(new RegExp(faces[i].data, 'g'), '<img src="' + faces[i].img + '">');
+			msg = msg.replace(new RegExp(faces[i].data, 'g'), '<img src="' + faces[i].img + '" width=24 height=24`>');
 		};
 		msg = msg.replace(flower.data, '<img src="' + flower.img + '">');
 		return msg;

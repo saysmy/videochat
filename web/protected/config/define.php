@@ -73,7 +73,10 @@
 
     define('VIP_MONTH_PRICE', 29.9);
 
+    //短信接口url
     define('SMS_URL', 'http://sdk.zhongguowuxian.com:98/ws/BatchSend.aspx?CorpID=GZLKJ003202&Pwd=fz@668&Mobile=_TO_&Content=_CONTENT_');
+    //送花冷却时间
+    define('ROOM_FLOWER_TIME', 60);
 
 
 

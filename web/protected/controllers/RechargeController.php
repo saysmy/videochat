@@ -30,8 +30,6 @@ class RechargeController extends CController {
         $pay_number = $recharge->id;
         $pay_number = PAY_NUMBER_BASE + $pay_number;
 
-        $alipay_config = Yii::app()->params['alipayConfig'];
-
         require_once(ALIPAY_LIB_PATH . "alipay_submit.class.php");
         $parameter = array(
                 "service" => "create_direct_pay_by_user",

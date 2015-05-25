@@ -1,5 +1,5 @@
 <?php
-class RecruitmentController extends Controller {
+class RecruitmentController extends CController {
 
     public $layout='//layouts/common';
 

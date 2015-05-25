@@ -13,6 +13,13 @@ class ChatService {
 		$userInfo['loginMsg'] = '';
 		$userInfo['logoutMsg'] = '';
 		$userInfo['allowIn'] = true;
+		
+		$userInfo['id'] = (int)$userInfo['id'];
+		$userInfo['coin'] = (double)$userInfo['coin'];
+		$userInfo['height'] = (int)$userInfo['height'];
+		$userInfo['age'] = (int)$userInfo['age'];
+		$userInfo['weight'] = (int)$userInfo['weight'];
+		$userInfo['sex'] = (int)$userInfo['sex'];
 
 		$room = Room::model()->findByPk($rid);
 		if(!$room) {
@@ -92,10 +99,15 @@ class ChatService {
 			return array('errno' => 0, 'msg' => '', 'data' => array());
 		}
 		foreach ($users as &$user) {
-			$user_ids[] = $user['id'];
-			$user['uid'] = $user['id'];
+			$user_ids[] = (int)$user['id'];
+			$user['uid'] =(int)$user['id'];
 			$user['headPic'] = $user['head_pic_1'];
-			$user['role'] = $user['type'];
+			$user['type'] = (int)$user['type'];
+			$user['coin'] = (double)$user['coin'];
+			$user['height'] = (int)$user['height'];
+			$user['age'] = (int)$user['age'];
+			$user['weight'] = (int)$user['weight'];
+			$user['sex'] = (int)$user['sex'];
 			$user['loginMsg'] = '';
 			$user['logoutMsg'] = '';
 			$user['allowIn'] = true;
@@ -127,6 +139,15 @@ class ChatService {
 		}
 
 		if ($msg == '{花}') {//送花不作控制
+			if (!ToolUtils::frequencyCheck('flower_' . $uid, ROOM_FLOWER_TIME)) {
+				return array('errno' => 503);
+			}
+			$room = Room::model()->findByPk($rid);
+			$room->flower_number += 1;
+			if (!$room->update(array('flower_number'))) {
+				Yii::log('update flower_number error', CLogger::LEVEL_ERROR, 'chatService');
+			}
+
 			return array('errno' => 0, 'msg' => '', 'data' => array('msg' => $msg));
 		}
 

@@ -7,8 +7,12 @@
  * @property integer $id
  * @property string $text
  */
-class Test extends CActiveRecord
+class Test extends MyCActiveRecord
 {
+     protected $defaultColumnValues = array(
+        "text" => "aaaa",
+     );
+    
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -36,8 +40,8 @@ class Test extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, text', 'required'),
-			array('id', 'numerical', 'max'=>1),
-			array('id, text', 'unique'),
+			// array('id', 'numerical', 'max'=>1),
+			// array('id, text', 'unique'),
 			// array('text', 'ext.CMobileValidator'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

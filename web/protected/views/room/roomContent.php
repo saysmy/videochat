@@ -62,7 +62,7 @@
                 </select>
             说：
               <input type="checkbox" id="privateMsg"> 私聊
-              &nbsp;&nbsp;<a href="#" id="face"><img src="/img/face/e8.png" width="24" height="24"></a>
+              &nbsp;&nbsp;<a href="#" id="face"><img src="/img/face/emoji_1.png" width="24" height="24"></a>
               <div style="display:inline-block;position:relative;style:height:25px;width:25px"><a href="javascript:void(0)" id="flower" style=""><img src="/css/i33.jpg" width="25" height="25"></a><div style="height:25px;width:25px;position:absolute;top:0px;cursor:pointer;background-image:url(/css/i33.jpg)" id="flower-loading"></div></div>
             </div>
             <div class="roomChatFm">

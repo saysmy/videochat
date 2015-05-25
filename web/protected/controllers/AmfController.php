@@ -3,7 +3,7 @@
 ini_set('include_path', ini_get('include_path') . ':' .dirname(__FILE__) . '/../../../lib/');
 include 'Zend/Amf/Server.php';
 
-class AmfController extends Controller
+class AmfController extends CController
 {
 	public function actionIndex() {
 		$server = new Zend_Amf_Server();

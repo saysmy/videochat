@@ -76,6 +76,10 @@ Client.prototype.sendMsg = function(msgData){
 			client.call('onChatMsg', null, 107, 'send msg not allow uid:' + client.data.uid, {private : true});
 			return;			
 		}
+		else if (resp.errno == 503) {//送花过于频繁
+			client.call('onChatMsg', null, 108, 'send msg not allow uid:' + client.data.uid, {private : true});
+			return;
+		}
 		else if (resp.errno == 0) {
 
 			msgData.msg = resp.data.msg;

@@ -17,8 +17,8 @@ define(['rsa', 'common'], function(require) {
             };
             var button = this;
             common.buttonTextLoading(button, '修改中');
-            common.getPublicKey(function(key) {
-                rsa.setPublicKey(key);
+            common.getPublicKey(function(keyData) {
+                rsa.setPublicKey(keyData.key);
                 $.ajax({
                     url : '/user/updatePassword',
                     type : 'post',

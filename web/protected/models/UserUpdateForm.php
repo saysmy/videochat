@@ -8,9 +8,10 @@ class UserUpdateForm extends CFormModel {
     public function rules() {
         return array(
             array('nickname', 'required', 'message' => '{attribute}不能为空', 'on' => 'nickname'),
+            array('nickname', 'length', 'max' => 255, 'message' => '昵称超长', 'on' => 'nickname'),
+            
             array('password, newPassword, newPasswordRepeat', 'required', 'message' => '{attribute}不能为空', 'on' => 'password'),
-            array('nickname', 'length', 'max' => 255, 'message' => '昵称超长'),
-            array('newPasswordRepeat', 'compare', 'compareAttribute' => 'newPassword', 'operator' => '==', 'message' => '两次密码不匹配'),
+            array('newPasswordRepeat', 'compare', 'compareAttribute' => 'newPassword', 'operator' => '==', 'message' => '两次密码不匹配', 'on' => 'password'),
         );
     }
 

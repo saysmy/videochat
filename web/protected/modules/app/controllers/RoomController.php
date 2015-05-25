@@ -4,7 +4,7 @@ class RoomController extends CController {
     public function filters() {
         return array(
             array(
-                'application.filters.LoginFilter + love',
+                'application.filters.LoginFilter + love + userReport',
             ),
         );  
     }
@@ -74,9 +74,41 @@ class RoomController extends CController {
 
         $ret['moderator_desc'] = $room->moderator_desc;
         $ret['logo'] = $room->logo;
-        $ret['moderator'] = array('weight' => (int)$room->moderator->weight, 'height' => (int)$room->moderator->height, 'age' => (int)$room->moderator->age, 'true_name' => $room->moderator->true_name, 'nickname' => $room->moderator->nickname);
+        $ret['isPlaying'] = CRoom::isPlaying($room->id);
+        $ret['moderator'] = array('weight' => (int)$room->moderator->weight, 'height' => (int)$room->moderator->height, 'age' => (int)$room->moderator->age, 'true_name' => $room->moderator->true_name, 'nickname' => $room->moderator->nickname, 'id' => (int)$room->moderator->id);
+        
+        //消费排行
+        $ret['consumeRankList'] = Yii::app()->db->createCommand('select sum(cost) as acost, user.nickname, user.id, user.head_pic_1, user.vip_start, user.vip_end from consume inner join user on user.id = consume.uid  where consume.mid=' . $room->mid . ' group by consume.uid order by acost desc')->query()->readAll();
+        foreach($ret['consumeRankList'] as &$item) {
+            if (strtotime($item['vip_start']) <= time() && strtotime($item['vip_end']) >= time()) {
+                $item['isVip'] = true;
+            }
+            else {
+                $item['isVip'] = false;
+            }
+        }
 
         ToolUtils::ajaxOut(0, '', $ret);    
+    }
+
+    //举报
+    public function actionUserReport($rid, $type) {
+        $uid = CUser::checkLogin();
+
+        if (!ToolUtils::frequencyCheck('room_user_report_' . $uid, 60)) {
+            return ToolUtils::ajaxOut(301, '操作过于频繁');
+        }
+
+        $report = new RoomReport;
+        $report->uid = $uid;
+        $report->rid = $rid;
+        $report->type = $type;
+        $report->add_time = date("Y-m-d H:i:s");
+        if (!$report->save()) {
+            return ToolUtils::ajaxOut(300, current(current($report->getErrors())));
+        }
+
+        ToolUtils::ajaxOut(0);
     }
 
 }

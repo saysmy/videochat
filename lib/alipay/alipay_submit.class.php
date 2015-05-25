@@ -145,6 +145,38 @@ class AlipaySubmit {
 		return $sResult;
 	}
 	
+    /**
+     * 解析远程模拟提交后返回的信息
+     * @param $str_text 要解析的字符串
+     * @return 解析结果
+     */
+    function parseResponse($str_text) {
+        //以“&”字符切割字符串
+        $para_split = explode('&',$str_text);
+        //把切割后的字符串数组变成变量与数值组合的数组
+        foreach ($para_split as $item) {
+            //获得第一个=字符的位置
+            $nPos = strpos($item,'=');
+            //获得字符串长度
+            $nLen = strlen($item);
+            //获得变量名
+            $key = substr($item,0,$nPos);
+            //获得数值
+            $value = substr($item,$nPos+1,$nLen-$nPos-1);
+            //放入数组中
+            $para_text[$key] = $value;
+        }
+        
+        if( ! empty ($para_text['res_data'])) {            
+            //token从res_data中解析出来（也就是说res_data中已经包含token的内容）
+            $doc = new DOMDocument();
+            $doc->loadXML($para_text['res_data']);
+            $para_text['request_token'] = $doc->getElementsByTagName( "request_token" )->item(0)->nodeValue;
+        }
+        
+        return $para_text;
+    }
+
 	/**
      * 用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数
 	 * 注意：该功能PHP5环境及以上支持，因此必须服务器、本地电脑中装有支持DOMDocument、SSL的PHP配置环境。建议本地调试时使用PHP开发软件
