@@ -20,8 +20,25 @@
  * @property string $play_end_time
  * @property integer $rank
  */
-class Room extends CActiveRecord
+class Room extends MyCActiveRecord
 {
+
+	protected $defaultColumnValues = array(
+		'name' => '',
+		'banner' => '',
+		'max_user' => 0,
+		'mids' => '',
+		'love_num' => 0,
+		'detail_url' => '',
+		'video_url' => '',
+		'status' => 0,
+		'play_start_time' => '0000-00-00 00:00:00',
+		'play_end_time' => '0000-00-00 00:00:00',
+		'admin' => '',
+		'type' => 0,
+		'flower_number' => 0,
+	);
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,7 +55,10 @@ class Room extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'required'),
+
+			array('announcement,logo,description,mid,moderator_desc,rank', 'required' ,'on' => 'adminAdd'),
+
+			// array('announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'required'),
 			array('status, rank', 'numerical', 'integerOnly'=>true),
 			array('announcement, logo, banner, description, moderator_desc, detail_url, video_url, admin', 'length', 'max'=>255),
 			array('max_user, mid, love_num', 'length', 'max'=>10),

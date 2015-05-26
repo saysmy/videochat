@@ -38,7 +38,7 @@ class UserController extends CController {
         $form = new LoginForm;
         $form->attributes = $_POST;
 
-        if (Yii::app()->session->get('privKey')) {
+        if (!Yii::app()->session->get('privKey')) {
             return ToolUtils::ajaxOut(203, '密钥失效，请重新申请');
         }
 

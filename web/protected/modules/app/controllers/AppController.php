@@ -1,14 +1,6 @@
 <?php
 class AppController extends CController {
 
-    public function filters() {
-        return array(
-            array(
-                'application.filters.LoginFilter',
-            ),
-        );  
-    }
-
     public function actionGetLastestVersion($platform) {
         if ($platform == 'android') {
             return ToolUtils::ajaxOut(0, '', array(

@@ -56,11 +56,15 @@ class User extends CActiveRecord
 		return array(
 			array('username, nickname, sex, head_pic_1, qq_openid, qq_accesstoken, qq_accessexpire', 'required', 'on' => 'qqLogin'),
 			array('username, password, height, weight, age', 'required', 'on' => 'register'),
+
 			array('username, mobile, nickname', 'required', 'on' => 'mobileRegister'),
-            array('username, nickname', 'unique', 'message' => '{attribute}已存在'),
             array('mobile', 'unique', 'message' => '手机号已存在', 'on' => 'mobileRegister'),
 
+			array('true_name, height, weight, age', 'required', 'on' => 'adminModeratorUpdate'),
+
             array('nickname, sex, birthday', 'required', 'on' => 'appUpdate', 'message' => '{attribute}不能为空'),
+
+            array('username, nickname', 'unique', 'message' => '{attribute}已存在'),
 
 			array('sex, email_validated, mobile_validated, type, dead_user_status, source, height, weight, age, qq_accessexpire', 'numerical', 'integerOnly'=>true),
 			array('coin', 'numerical'),

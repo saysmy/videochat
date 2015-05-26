@@ -24,4 +24,8 @@ class MyCActiveRecord extends CActiveRecord {
 
     }
 
+    public function getSingleErrorMsg() {
+        return current(current($this->getErrors()));
+    }
+
 }

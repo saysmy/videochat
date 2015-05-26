@@ -74,6 +74,7 @@ class RoomController extends CController {
 
         $ret['moderator_desc'] = $room->moderator_desc;
         $ret['logo'] = $room->logo;
+        $ret['flowerNumber'] = (int)$room->flower_number;
         $ret['isPlaying'] = CRoom::isPlaying($room->id);
         $ret['moderator'] = array('weight' => (int)$room->moderator->weight, 'height' => (int)$room->moderator->height, 'age' => (int)$room->moderator->age, 'true_name' => $room->moderator->true_name, 'nickname' => $room->moderator->nickname, 'id' => (int)$room->moderator->id);
         
