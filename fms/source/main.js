@@ -254,28 +254,41 @@ Client.prototype.sendMsg = function(msgData, cid) {
         return;
     }
 
-    var userInfo = {};
+    var ret = {
+        "from" : clientUserInfo.uid, 
+        "fromNickname" : clientUserInfo.nickname, 
+        "fromHeadPic" : clientUserInfo.headPic, 
+        "to" : msgData.to, 
+        "toNickname" : "", 
+        "toHeadPic" : "", 
+        "msg" : msgData.msg, 
+        "private" : msgData.private, 
+        "timestamp" : (new Date).getTime()
+    };
 
+
+    var toUserInfo = {};
     if (msgData.to != 0) {
-        userInfo = application.loginUsers[msgData.to];
-        if(!userInfo){
+        toUserInfo = application.loginUsers[msgData.to];
+        if(!toUserInfo){
             mytrace('sendMsg target uid:' + msgData.to + ' userInfo not found');
             userCall(this, "onChatMsg", 100, 'user not in room uid:' + msgData.to, {}, cid);
             return;
         }
+        ret.toNickname = toUserInfo.nickname;
+        ret.toHeadPic = toUserInfo.headPic;
     }
-    else {
-        userBroadcast("onChatMsg", 0, '', {"from" : clientUserInfo.uid, "fromNickname" : clientUserInfo.nickname, "fromHeadPic" : clientUserInfo.headPic, "to" : msgData.to, "toNickname" : '', "toHeadPic" : '', "msg" : msgData.msg, private : false, "timestamp" : (new Date).getTime()});
+    
+    if (msgData.to == 0 || !msgData.private) {
+        userBroadcast("onChatMsg", 0, '', ret);
         return;
-    };
-
-    var ret = {"from" : clientUserInfo.uid, "fromNickname" : clientUserInfo.nickname, "fromHeadPic" : clientUserInfo.headPic, "to" : userInfo.uid, "toNickname" : userInfo.nickname, "toHeadPic" : userInfo.headPic, "msg" : msgData.msg, private : msgData.private, "timestamp" : (new Date).getTime()};
-
-    if (!msgData.private) {
-        userBroadcast('onChatMsg', 0, '', ret);
     }
     else {
-        userBroadcast('onChatMsg', 0, '', ret, userInfo.cid);
+        if (toUserInfo.cid){//非僵尸用户
+            userBroadcast('onChatMsg', 0, '', ret, toUserInfo.cid);
+        }
+        //回显给发送者
+        userCall(application.loginUsersClients[clientUserInfo.uid],'onChatMsg', 0, '', ret, cid);
     }
 
 }
@@ -354,7 +367,7 @@ Client.prototype.ti = function(tuid, cid) {
     }
 
     if (!(user.type == ROOM_MODERATOR_USER || user.type == ROOM_ADMIN_USER || user.type == ROOM_OWN_USER)) {
-        userCall(user.client, 'onTi', 100, 'privilige not enough', {}, cid);
+        userCall(application.loginUsersClients[user.uid], 'onTi', 100, 'privilige not enough', {}, cid);
         return;
     }
 
@@ -371,7 +384,7 @@ Client.prototype.ti = function(tuid, cid) {
 
     mytrace('tuid not found');
 
-    userCall(user.client, 'onTi', 101, 'user not in room', {}, cid);
+    userCall(application.loginUsersClients[user.uid], 'onTi', 101, 'user not in room', {}, cid);
 }
 
 Client.prototype.setAdmin = function(auid, cid) {
@@ -385,18 +398,18 @@ Client.prototype.setAdmin = function(auid, cid) {
     }
 
     if (!(user.type == ROOM_MODERATOR_USER || user.type == ROOM_OWN_USER)) {
-        userCall(user.client, 'onSetAdmin', 200, 'privilige not enough', {}, cid);
+        userCall(application.loginUsersClients[user.uid], 'onSetAdmin', 200, 'privilige not enough', {}, cid);
         return;
     }
 
     var newAdminUser = getUserInfoByUid(auid);
     if (!newAdminUser) {
-        userCall(user.client, 'onSetAdmin', 201, 'user not in room', {}, cid);
+        userCall(application.loginUsersClients[user.uid], 'onSetAdmin', 201, 'user not in room', {}, cid);
         return;
     }
 
     if (newAdminUser.type != COMMON_USER) {//普通用户
-        userCall(user.client, 'onSetAdmin', 203, 'already admin level', {}, cid);
+        userCall(application.loginUsersClients[user.uid], 'onSetAdmin', 203, 'already admin level', {}, cid);
         return;
     }
 
@@ -406,7 +419,7 @@ Client.prototype.setAdmin = function(auid, cid) {
             userBroadcast('onSetAdmin', 0, '', {auid : newAdminUser.uid, aNickname : newAdminUser.nickname});
         }
         else {
-            userCall(user.client, 'onSetAdmin', 202, resp.errno + '|' + resp.msg, {}, cid);
+            userCall(application.loginUsersClients[user.uid], 'onSetAdmin', 202, resp.errno + '|' + resp.msg, {}, cid);
         }
     }
 
@@ -415,7 +428,7 @@ Client.prototype.setAdmin = function(auid, cid) {
 
 
 function doLoginOK(userInfo, client){
-    mytrace('doLoginOK uid:' + jsonToString(userInfo));
+    mytrace('doLoginOK uid:' + userInfo.uid);
 
     userBroadcast("onLogin", 0, '', userInfo);
 
@@ -504,5 +517,10 @@ function userBroadcast(cmd, errno, msg, data, cid) {
 }
 
 function userCall(client, cmd, errno, msg, data, cid) {
-    client.call('userCall', null, cmd, errno, msg, data, cid);
+    if (client) { //加一层保护，放心一点
+        client.call('userCall', null, cmd, errno, msg, data, cid);
+    }
+    else {
+        mytrace('userCall client NULL!!');
+    }
 }
