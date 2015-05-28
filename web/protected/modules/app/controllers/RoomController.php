@@ -112,4 +112,9 @@ class RoomController extends CController {
         ToolUtils::ajaxOut(0);
     }
 
+    //获取ip
+    public function actionGetVideoAddress() {
+        return ToolUtils::ajaxOut(0, '', array('ip' => Yii::app()->params['fmsServer']));
+    }
+
 }

@@ -113,7 +113,7 @@ class UserController extends CController {
         }
 
         $vcode = '1234';
-        // $vcode .= rand(0, 9);
+        // $vcode = rand(0, 9);
         // $vcode .= rand(0, 9);
         // $vcode .= rand(0, 9);
         // $vcode .= rand(0, 9);
@@ -178,7 +178,7 @@ class UserController extends CController {
             
         }
 
-        Yii::app()->session->add('uid', $user->id);
+        Yii::app()->session->add('uid', $uid);
 
         //移除本次验证码认证状态
         Yii::app()->session->remove('mobileChecked');
