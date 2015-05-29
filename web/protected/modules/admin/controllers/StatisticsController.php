@@ -1,10 +1,6 @@
 <?php
 class StatisticsController extends CController {
 
-    public $layout = 'common';
-
-    public $subTitle = '主播统计';
-
     public function actionModerator() {
 
         $rooms = Room::model()->findAll('mid > 0');
@@ -13,7 +9,7 @@ class StatisticsController extends CController {
             $users[$room->moderator->id] = $room->moderator->true_name;
         }
 
-        $this->render('moderator', array('users' => $users));
+        $this->renderPartial('moderator', array('users' => $users));
     }
 
     public function actionGetModeratorPublishList($mid, $startTime, $endTime) {

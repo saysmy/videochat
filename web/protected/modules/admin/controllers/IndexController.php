@@ -13,21 +13,12 @@ class IndexController extends CController {
         echo json_encode(array(
                 array(
                     'id' => '1', 'text' => '主播管理', 'children' => array(
-                        array('id' => '2','text' => '新增主播', 'name' => 'addModerator'),
-                        array('id' => '3', 'text' => '已通过主播', 'name' => 'moderatorList'),
-                    )
+                        array('id' => '2','text' => '新增主播', 'url' => '/moderator/addHome'),
+                        array('id' => '3', 'text' => '已通过主播', 'url' => '/moderator/list'),
+                    ),
                 ),
+                array('id' => '4', 'text' => '主播统计', 'name' => 'moderatorStatistics', 'url' => '/statistics/moderator')
             )
         );
     }
-
-    public function actionGetPageContent($name) {
-        if ($name == 'addModerator' || $name == 'moderatorList') {
-            $this->renderPartial($name, array('sociaties' => Sociaty::model()->findAll()));
-        }
-        else {
-            $this->renderPartial($name);
-        }
-    }
-
 }

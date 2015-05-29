@@ -5,6 +5,7 @@ $env = 'release';
 if (apache_getenv('ENV') == 'dev' || apache_getenv('ENV') == 'beta') {
     defined('YII_DEBUG') or define('YII_DEBUG',true);
     $env = apache_getenv('ENV');
+    ini_set('display_errors', 'On');
 }
 
 $yii=dirname(__FILE__).'/../../PHPLIB/yii-1.1.16/framework/yii.php';

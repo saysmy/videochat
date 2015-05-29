@@ -55,12 +55,12 @@ function query() {
     }
 
     $('#publistListTable').datagrid({
-        url:'getModeratorPublishList?r=' + Math.random() + '&mid=' + $('#mid').combobox('getValue') + '&startTime=' + encodeURIComponent($('#startTime').datebox("getValue")) + '&endTime=' + encodeURIComponent($('#endTime').datebox("getValue"))
+        url:'/statistics/getModeratorPublishList?rr=' + Math.random() + '&mid=' + $('#mid').combobox('getValue') + '&startTime=' + encodeURIComponent($('#startTime').datebox("getValue")) + '&endTime=' + encodeURIComponent($('#endTime').datebox("getValue"))
     });
 
 
     $('#giftListTable').datagrid({
-        url:'getModeratorGiftList?r=' + Math.random() + '&mid=' + $('#mid').combobox('getValue') + '&startTime=' + encodeURIComponent($('#startTime').datebox("getValue")) + '&endTime=' + encodeURIComponent($('#endTime').datebox("getValue"))
+        url:'/statistics/getModeratorGiftList?rr=' + Math.random() + '&mid=' + $('#mid').combobox('getValue') + '&startTime=' + encodeURIComponent($('#startTime').datebox("getValue")) + '&endTime=' + encodeURIComponent($('#endTime').datebox("getValue"))
     });
 }
 </script>

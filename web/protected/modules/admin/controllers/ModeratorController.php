@@ -1,6 +1,14 @@
 <?php
 class ModeratorController extends CController {
 
+    public function actionAddHome() {
+        $this->renderPartial('addHome', array('sociaties' => Sociaty::model()->findAll()));
+    }
+
+    public function actionList() {
+        $this->renderPartial('list', array('sociaties' => Sociaty::model()->findAll()));
+    }
+
     public function actionAdd() {
 
         $mid = Yii::app()->request->getParam('mid');

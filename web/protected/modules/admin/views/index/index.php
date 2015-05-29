@@ -17,16 +17,16 @@
 <script>
 $("#tree").tree({
     onClick : function(node) {
-        if (!node.name) {
+        if (!node.url) {
             return;
         }
         
-        loadData(node.name, node.text);
+        loadData(node.url, node.text);
     }
 })
 
-function loadData(name, text) {
-    $.get('/index/getPageContent', { name : name }, function(data) {
+function loadData(url, text) {
+    $.get(url, {}, function(data) {
         $('#tabs').tabs('update', {
             tab : $('#tabs').tabs('getTab', 0),
             options : {
