@@ -4,7 +4,7 @@ class UserController extends CController {
     public function filters() {
         return array(
             array(
-                'application.filters.LoginFilter + updateInfo + getInfo',
+                'application.filters.LoginFilter + updateInfo + getInfo + loveList',
             ),
         );  
     }
@@ -283,6 +283,45 @@ class UserController extends CController {
 
     }
 
+
+    //关注列表
+    public function actionLoveList() {
+
+        $uid = CUser::checkLogin();
+
+        $lists = Yii::app()->db->createCommand('select u.vip_start,u.vip_end,r.id,r.mid,r.love_num,r.logo,u.true_name from love_room t inner join room r on t.rid=r.id inner join user u on r.mid=u.id where t.uid=' . $uid)->queryAll();
+        $data = array();
+        foreach($lists as $list) {
+            $t = $list;
+            $t['isPlaying'] = CRoom::isPlaying($list['id']);
+            $t['isVip'] = CUser::isVip($list['vip_start'], $list['vip_end']);
+            unset($t['vip_start']);
+            unset($t['vip_end']);
+            $data[] = $t;
+        }
+
+        ToolUtils::ajaxOut(0, '', $data);
+    }
+
+    //粉丝列表
+    public function actionFollowList($page, $limit) {
+
+        $uid = CUser::checkLogin();
+
+        $lists = Yii::app()->db->createCommand('select u.id,u.nickname,u.head_pic_1,u.vip_start,u.vip_end from user u inner join room r on u.id=r.mid inner join love_room l on r.id=l.rid where r.mid=' . $uid . ' limit ' . ($page * $limit) . ',' . $limit)->queryAll();
+
+        $data = array();
+        foreach($lists as $list) {
+            $t = $list;
+            $t['isVip'] = CUser::isVip($list['vip_start'], $list['vip_end']);
+            unset($t['vip_start']);
+            unset($t['vip_end']);
+            $data[] = $t;
+        }
+
+        ToolUtils::ajaxOut(0, '', $data);
+
+    }
     
 }
 

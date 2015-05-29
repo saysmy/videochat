@@ -215,6 +215,15 @@ class CUser {
 		$error = $user->getErrors();
 
 		return $user->id;
+	}
+
+	static public function isVip($vip_start, $vip_end) {
+	    if (strtotime($vip_start) <= time() && strtotime($vip_end) >= time()) {
+	        return true;
+	    }
+	    else {
+	        return false;
+	    }		
 	}	
 
 	static public function getError() {

@@ -81,12 +81,7 @@ class RoomController extends CController {
         //消费排行
         $ret['consumeRankList'] = Yii::app()->db->createCommand('select sum(cost) as acost, user.nickname, user.id, user.head_pic_1, user.vip_start, user.vip_end from consume inner join user on user.id = consume.uid  where consume.mid=' . $room->mid . ' group by consume.uid order by acost desc')->query()->readAll();
         foreach($ret['consumeRankList'] as &$item) {
-            if (strtotime($item['vip_start']) <= time() && strtotime($item['vip_end']) >= time()) {
-                $item['isVip'] = true;
-            }
-            else {
-                $item['isVip'] = false;
-            }
+            $item['isVip'] = CUser::isVip($item['vip_start'], $item['vip_end']);
         }
 
         ToolUtils::ajaxOut(0, '', $ret);    
@@ -112,9 +107,6 @@ class RoomController extends CController {
         ToolUtils::ajaxOut(0);
     }
 
-    //获取ip
-    public function actionGetVideoAddress() {
-        return ToolUtils::ajaxOut(0, '', array('ip' => Yii::app()->params['fmsServer']));
-    }
+
 
 }
