@@ -57,6 +57,7 @@ class Room extends MyCActiveRecord
 		return array(
 
 			array('announcement,logo,description,mid,moderator_desc,rank', 'required' ,'on' => 'adminAdd'),
+			array('announcement,logo,moderator_desc,rank', 'required', 'on' => 'adminUpdate'),
 
 			// array('announcement, logo, banner, description, max_user, mid, moderator_desc, love_num, detail_url, video_url, status, play_start_time, play_end_time, rank', 'required'),
 			array('status, rank', 'numerical', 'integerOnly'=>true),
@@ -154,5 +155,9 @@ class Room extends MyCActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getModeratorAddition() {
+		return ModeratorAddition::model()->find('mid=' . $this->mid);
 	}
 }

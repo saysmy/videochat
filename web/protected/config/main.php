@@ -27,16 +27,15 @@ $seaFiles = array(
       'poshytip' => 'poshytip/jquery.poshytip.min.js'
 );
 
+global $env;
 global $fmsServer;
-if (YII_DEBUG) {
-    $fmsServer = include dirname(__FILE__) . '/fmsServer.dev.php';
-}
-else {
-    $fmsServer = include dirname(__FILE__) . '/fmsServer.php';
-}
+$fmsServer = include dirname(__FILE__) . '/fmsServer.' . $env . '.php';
 
 global $jsDefine;
 $jsDefine = include dirname(__FILE__) . '/jsDefine.php';
+
+session_set_cookie_params(SESSION_EXPIRE_TIME);
+ini_set('session.gc_maxlifetime', SESSION_EXPIRE_TIME);
 
 return array(
 	'id' => 'videochat',
@@ -52,7 +51,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-        'application.widgets.*'
+        'application.widgets.*',
 	),
 
 	'modules'=>array(
@@ -67,7 +66,10 @@ return array(
 
         'app',
 
-        'admin',
+        'admin' => array(
+            'domain' => 'admin.' . MAIN_DOMAIN,
+            'defaultController' => 'index',
+        ),
 
     ),
 
@@ -92,6 +94,8 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                'http://admin.' . MAIN_DOMAIN . '<p:.*>' => '/admin<p>',
+                'http://www.' . MAIN_DOMAIN . '/admin*' => '/error/error',
             	'room/<rid:\d+>' => 'room/index',
             ),
         ),
@@ -116,7 +120,6 @@ return array(
   //       ),		
 	),
 
-	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page

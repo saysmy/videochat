@@ -14,7 +14,7 @@ class IndexController extends CController {
                 array(
                     'id' => '1', 'text' => '主播管理', 'children' => array(
                         array('id' => '2','text' => '新增主播', 'name' => 'addModerator'),
-                        // array('id' => '3', 'text' => '查看主播',),
+                        array('id' => '3', 'text' => '已通过主播', 'name' => 'moderatorList'),
                     )
                 ),
             )
@@ -22,7 +22,12 @@ class IndexController extends CController {
     }
 
     public function actionGetPageContent($name) {
-        $this->renderPartial($name);
+        if ($name == 'addModerator' || $name == 'moderatorList') {
+            $this->renderPartial($name, array('sociaties' => Sociaty::model()->findAll()));
+        }
+        else {
+            $this->renderPartial($name);
+        }
     }
 
 }

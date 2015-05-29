@@ -4,10 +4,16 @@ class AdminModule extends CWebModule {
 
     public $password = 'letmego';
 
+    public $domain = '';
+
     private $_assetsUrl;
 
     public function init() {
         parent::init();
+
+        session_set_cookie_params(0);
+        ini_set('session.gc_maxlifetime', 1440);
+
         Yii::setPathOfAlias('admin',dirname(__FILE__));
         Yii::app()->setComponents(array(
             'errorHandler'=>array(

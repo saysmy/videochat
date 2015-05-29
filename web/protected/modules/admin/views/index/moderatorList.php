@@ -1,9 +1,40 @@
+<br/>
+<div style="font-size:14px;">
+主播昵称/ID:&nbsp;&nbsp;&nbsp;<input class="easyui-textbox" name="idOrNickname" style="margin-left:10px" id="idOrNickname"/>
+<a class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="margin-left:10px" onclick="searchM();">搜索</a>
+</div>
+<br/>
+<br/>
+<table class="easyui-datagrid" style="width:840px;"
+            data-options="singleSelect:true,url:'/moderator/getModerators',method:'get',pagination:true,
+                pageSize:20" id="dg">
+    <thead>
+    <tr>
+        <th data-options="field:'id',width:60">房间号</th>
+        <th data-options="field:'mid',width:60">主播ID</th>
+        <th data-options="field:'nicknameLink',width:120">昵称</th>
+        <th data-options="field:'mobile',width:80">手机</th>
+        <th data-options="field:'height_weight_age',width:120">身高/体重/年龄</th>
+        <th data-options="field:'logoImage',width:80">照片</th>
+        <th data-options="field:'moderator_desc',width:300">主播介绍</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="win" class="easyui-window" title="查看照片" style="width:370px;height:225px"
+        data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,draggable:false,resizable:false,">
+    <center><img src="" width=345 height=184/></center>
+</div>
+
+<div id="detailWin" class="easyui-window" title="主播详情" style="width:800px;height:630px"
+        data-options="modal:true,closed:true,collapsible:false,minimizable:false,maximizable:false,draggable:false,resizable:false,">
 
 <form id="ff" method="post" enctype="multipart/form-data" style="font-size:14px">
+    <input type="hidden" name="rid"/>
     <table style="font-size:14px" cellspacing="12">
         <tr>
-            <td width=80>主播ID:</td>
-            <td><input class="easyui-textbox" type="text" name="mid" data-options="required:true" id="mid"/></td>
+            <td width=80>主播昵称:</td>
+            <td><input class="easyui-textbox" type="text" name="nickname" data-options="required:true"/></td>
         </tr>
         <tr>
             <td colspan=2>
@@ -44,9 +75,13 @@
         <tr>
             <td>主播照片:</td>
             <td>
-                <input class="easyui-filebox" name="logo" data-options="prompt:'选择图片',required:true" style="width:200px">
+                <input class="easyui-filebox" name="logo" data-options="prompt:'选择图片'" style="width:200px">
                 <span>（尺寸：236×130）</span>
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img height=80 width=150 src="" id="logoImage"/></td>
         </tr>
         <tr>
             <td>主播介绍:</td>
@@ -55,10 +90,6 @@
         <tr>
             <td>房间公告:</td>
             <td><input class="easyui-textbox" type="text" name="announcement" data-options="multiline:true,required:true" style="height:60px;width:200px"/></td>
-        </tr>
-         <tr>
-            <td>房间描述:</td>
-            <td><input class="easyui-textbox" type="text" name="description" data-options="multiline:true,required:true" style="height:60px;width:200px" value="【千万情意，唯独为你】肥皂—中国最大的华裔美少年の社区"/></td>
         </tr>
         <tr>
             <td>房间排序值:</td>
@@ -100,37 +131,73 @@
     </table>
 </form>
 
-<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="add();" style="margin-left:12px">提交</a>
+<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" style="width:80px;margin-left:18px" onclick="modifyM()">确认修改</a>
+
+</div>
+
 
 <script>
 
-function add() {
-    if ($("#ff").form('validate')) {
-        $.get('/moderator/getInfo', { mid : $('#mid').val() }, function(resp) {
+$('#dg').datagrid({loadFilter:loadFilter});
+
+function loadFilter(data) {
+    rows = data.rows;
+    for (var i in data.rows) {
+        data.rows[i].height_weight_age = data.rows[i].height + '/' + data.rows[i].weight + '/' + data.rows[i].age;
+        data.rows[i].nicknameLink = '<a href="javascript:void(0)" onclick="viewDetail(' + i + ')">' + data.rows[i].nickname+ '</a>';
+        data.rows[i].logoImage = '<img src="' + data.rows[i].logo + '" width=30 height=16 onclick="viewImg(' + i + ');" style="cursor:pointer"/>';
+    }
+    return data;
+}
+
+function viewDetail(i) {
+    row = rows[i];
+    $("#detailWin").window('open');
+    $("#ff").form('load', {
+        rid : row.id,
+        nickname : row.nickname,
+        age : row.age,
+        height : row.height,
+        weight : row.weight,
+        moderator_desc : row.moderator_desc,
+        announcement : row.announcement,
+        rank : row.rank,
+        true_name : row.true_name,
+        salary_per_hour : row.salary_per_hour,
+        alipay_account : row.alipay_account,
+        sociaty_id : row.sociaty_id,
+        mobile : row.mobile,
+        qq : row.qq
+    });
+    $("#logoImage").attr('src', row.logo);
+}
+
+function viewImg(i) {
+    $("#win img").attr('src', rows[i].logo);
+    $("#win").window('open');
+}
+
+function searchM() {
+    $("#dg").datagrid('load', {
+        mid : $("#idOrNickname").val()
+    });
+}
+
+function modifyM() {
+    $("#ff").form('submit', {
+        url : '/moderator/modify',
+        success : function(resp) {
             var ret = eval('(' + resp + ')');
             if (ret.errno) {
                 alert(ret.msg);
                 return;
             }
-            if (confirm("确定添加主播：" + ret.data.nickname)) {
-                $("#ff").form('submit', {
-                    url : '/moderator/add',
-                    success:function(data) {
-                        data = eval('(' + data + ')');
-                        if (data.errno != 0) {
-                            alert(data.msg);
-                        }
-                        else {
-                            alert('新增成功');
-                            $("#ff").form('reset');
-                        }
-                    }
-                })
-            }
-        })
-    }
+            alert('修改成功')
+        }
+    })
 }
 
 </script>
+
 
 

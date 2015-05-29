@@ -3,6 +3,7 @@
     define('CONFIG_DIR', dirname(__FILE__) . '/');
     define('DOMAIN', 'www.efeizao.com');
     define('MAIN_DOMAIN', 'efeizao.com');
+    define('INDEX_URL', 'http://www.efeizao.com/');
     define('DEFAULT_HEAD_PIC', 'http://www.efeizao.com/img/default.jpg');
     define('PROJECT_LIB', dirname(__FILE__) . '/../../../lib/');
     define('ALIPAY_LIB_PATH', dirname(__FILE__) . '/../../../lib/alipay/');
@@ -20,7 +21,10 @@
     }
     define('ALIPAY_CERT', ALIPAY_LIB_PATH . 'cacert.pem');
     define('RECHARGE_SHOW_URL', 'http://www.efeizao.com/recharge/show');
-    
+
+    //session的cookie 设置为7天
+    define('SESSION_EXPIRE_TIME', 7*86400);
+
     define('UNLOGIN_USER', -1);
     define('COMMON_USER', 1);
     define('MODERATOR_USER', 2);
@@ -70,6 +74,13 @@
 
     define('COMMON_ROOM', 0);//普通房间
     define('MULTI_MODERATOR_ROOM', 1);//多主播房间
+
+    //废弃房间
+    define('ROOM_STATUS_INVALID', -1);
+    //普通房间
+    define('ROOM_STATUS_COMMON', 0);
+    //首页banner上的房间
+    define('ROOM_STATUS_BANNER', 1);
 
     define('VIP_MONTH_PRICE', 29.9);
 

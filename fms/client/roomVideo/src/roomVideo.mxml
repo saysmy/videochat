@@ -18,8 +18,6 @@
 			private var ns: NetStream;
 			private var video: Video;
 			
-			private var ncResponder: NCResponder;
-
 			private var cam: Camera;
 			private var mic: Microphone;
 			
@@ -51,17 +49,12 @@
 				{label : 'Speex', data : 'Speex'}
 			]);
 			
-			private function initApp(): void{
-
-				FlexGlobals.topLevelApplication.addEventListener(MouseEvent.ROLL_OUT, setSRF);
-				
+			private function initApp(): void{				
 				vparam = readParameters();
 				initUI();				
 				initFuncs();
 				doConnect();
-				
-				ncResponder = new NCResponder(this);
-				
+								
 			}
 			
 			public function doConnect(): void{
@@ -302,11 +295,10 @@
 			}
 			
 			private function nc_OnAsyncError(evt: AsyncErrorEvent): void {
-				debug("NetConnection error:" + evt.toString());
+				debug("NetConnection AsyncErrorEvent:" + evt.toString());
 			}
 			
 			private function ns_onStatus(evt: NetStatusEvent): void{
-				// 循环播放：如果碰到播放结束，并且不是直播时，跳回到第一帧
 				debug("NetStream:" + evt.info.code);
 			}
 			
@@ -319,6 +311,7 @@
 			}
 									
 			private function cam_onStatus(evt: StatusEvent): void {
+				debug("cam_onStatus:" + evt.code);
 				if(evt.code == "Camera.Muted"){
 					doStop();
 				}
@@ -373,20 +366,6 @@
 				ExternalInterface.addCallback("doSetAdmin", doSetAdmin);
 			}
 						
-			private function setSRF(event:MouseEvent):void {
-				if(Capabilities.hasIME){
-					try{
-						if(!IME.enabled){
-							IME.enabled=true;
-						}
-						IME.conversionMode = IMEConversionMode.CHINESE;
-					}
-					catch(error:Error){
-					}
-				}
-				
-			}
-			
 			public function debug(msg: String):void {
 				ExternalInterface.call("room.debug", msg);
 			}		

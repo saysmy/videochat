@@ -1,30 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "moderator_addition".
+ * This is the model class for table "sociaty".
  *
- * The followings are the available columns in table 'moderator_addition':
- * @property string $id
- * @property string $mid
- * @property string $qq
- * @property string $mobile
- * @property double $salary_per_hour
- * @property string $alipay_account
- * @property integer $sociaty_id
- * @property string $add_time
+ * The followings are the available columns in table 'sociaty':
+ * @property integer $id
+ * @property string $name
  */
-class ModeratorAddition extends MyCActiveRecord
+class Sociaty extends CActiveRecord
 {
-
-	protected $defaultColumnValues = array(
-	);
-
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'moderator_addition';
+		return 'sociaty';
 	}
 
 	/**
@@ -35,15 +25,11 @@ class ModeratorAddition extends MyCActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('mid, salary_per_hour, alipay_account, sociaty_id, add_time', 'required', 'on' => 'adminAdd'),
-			array('salary_per_hour, alipay_account, sociaty_id', 'required', 'on' => 'adminUpdate'),
-			array('sociaty_id', 'numerical', 'integerOnly'=>true),
-			array('salary_per_hour', 'numerical'),
-			array('mid', 'length', 'max'=>10),
-			array('qq, mobile, alipay_account', 'length', 'max'=>255),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, mid, qq, mobile, salary_per_hour, alipay_account, sociaty_id, add_time', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,13 +51,7 @@ class ModeratorAddition extends MyCActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'mid' => 'Mid',
-			'qq' => 'Qq',
-			'mobile' => 'Mobile',
-			'salary_per_hour' => 'Salary Per Hour',
-			'alipay_account' => 'Alipay Account',
-			'sociaty_id' => 'Sociaty',
-			'add_time' => 'Add Time',
+			'name' => 'Name',
 		);
 	}
 
@@ -93,14 +73,8 @@ class ModeratorAddition extends MyCActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('mid',$this->mid,true);
-		$criteria->compare('qq',$this->qq,true);
-		$criteria->compare('mobile',$this->mobile,true);
-		$criteria->compare('salary_per_hour',$this->salary_per_hour);
-		$criteria->compare('alipay_account',$this->alipay_account,true);
-		$criteria->compare('sociaty_id',$this->sociaty_id);
-		$criteria->compare('add_time',$this->add_time,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -111,7 +85,7 @@ class ModeratorAddition extends MyCActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return ModeratorAddition the static model class
+	 * @return Sociaty the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

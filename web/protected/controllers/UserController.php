@@ -71,8 +71,8 @@ class UserController extends MyController
 		}
 
 		$_SESSION['uid'] = $uid;
-		setcookie('uid', $uid, 0, '/', DOMAIN);
-		setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
+		setcookie('uid', $uid, time() + SESSION_EXPIRE_TIME, '/', DOMAIN);
+		setcookie('shared_session', session_id(), time() + SESSION_EXPIRE_TIME, '/', MAIN_DOMAIN);
 		if ($redirect_url) {
 			header('Location:' . ToolUtils::appendArgv($redirect_url, array('session' => session_id(), 'uid' => $uid)));
 		}
@@ -141,8 +141,8 @@ class UserController extends MyController
 
 		if ($uid = CUser::register($form->username, $form->password, $form->age, $form->height, $form->weight, $error)) {
 			$_SESSION['uid'] = $uid;
-			setcookie('uid', $uid, 0, '/', DOMAIN);
-			setcookie('shared_session', session_id(), 0, '/', MAIN_DOMAIN);
+			setcookie('uid', $uid, time() + SESSION_EXPIRE_TIME, '/', DOMAIN);
+			setcookie('shared_session', session_id(), time() + SESSION_EXPIRE_TIME, '/', MAIN_DOMAIN);
 			return ToolUtils::ajaxOut(0, '', array('uid' => $uid, 'session_id' => session_id()));	
 		}
 		else {
@@ -170,8 +170,8 @@ class UserController extends MyController
 		$user = $userIdentity->getUser();
 
 		$_SESSION['uid'] = $user->id;
-		setcookie('uid', $user->id, $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', DOMAIN);
-		setcookie('shared_session', session_id(), $form->remember ? (time() + Yii::app()->params['cookieExpire']) : 0, '/', MAIN_DOMAIN);
+		setcookie('uid', $user->id, $form->remember ? (time() + SESSION_EXPIRE_TIME) : 0, '/', DOMAIN);
+		setcookie('shared_session', session_id(), $form->remember ? (time() + SESSION_EXPIRE_TIME) : 0, '/', MAIN_DOMAIN);
 		return ToolUtils::ajaxOut(0, '', array('uid' => $user->id, 'session_id' => session_id()));			
 
 	}

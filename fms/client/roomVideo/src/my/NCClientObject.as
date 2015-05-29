@@ -14,21 +14,7 @@ package my
 			this.app = app;
 		}
 		
-		public function onMetaData(obj: Object): void{}
-		public function onTimeCoordInfo(obj: Object): void{}
-		
-		public function onBWCheck(... rest):Number { 
-			return 0; 
-		} 
-		
-		public function onBWDone(... rest):void { 
-			var p_bw: Number = 0; 
-			if (rest.length > 0) p_bw = rest[0]; 
-			this.app.debug('bandwitdh=' + p_bw + 'Kbps');
-		} 
-		
 		// events
-		
 		public function onInitRoom(errno : int, msg : String, userList: Object): void {
 			ExternalInterface.call("room.onInitRoom", userList);
 		}

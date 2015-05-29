@@ -26,7 +26,7 @@
  * @property string $register_time
  * @property string $last_login_time
  */
-class User extends CActiveRecord
+class User extends MyCActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -61,6 +61,7 @@ class User extends CActiveRecord
             array('mobile', 'unique', 'message' => '手机号已存在', 'on' => 'mobileRegister'),
 
 			array('true_name, height, weight, age', 'required', 'on' => 'adminModeratorUpdate'),
+			array('nickname, true_name, height, weight, age', 'required', 'on' => 'adminModeratorUpdate2'),
 
             array('nickname, sex, birthday', 'required', 'on' => 'appUpdate', 'message' => '{attribute}不能为空'),
 
