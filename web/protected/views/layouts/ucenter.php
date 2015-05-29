@@ -23,7 +23,8 @@
             <dt><a href="javascript:void(0)"><img src="<?=$this->userInfo['head_pic_1']?$this->userInfo['head_pic_1']:'/img/1_s1.jpg'?>" width="45" height="45"></a></dt>
             <dd>
               <b><?=$this->userInfo['nickname']?></b>
-              <span class="vip"><em class="<?=$this->userInfo['vip_level'] == VIP_LEVEL_USER ? 'on' : ''?>"></em></span>
+              <span class="vip" style="display:inline-block;vertical-align:middle"><em class="<?=$this->userInfo['vip_level'] == VIP_LEVEL_USER ? 'on' : ''?>"></em></span>
+              <div style="color:#666">账户ID:<?=$this->userInfo['id']?></div>
               <?php if($this->userInfo['age']):?>
               <!--<span>(<?=$this->userInfo['age']?>/<?=$this->userInfo['height']?>/<?=$this->userInfo['weight']?>)</span>-->
               <?php endif?>

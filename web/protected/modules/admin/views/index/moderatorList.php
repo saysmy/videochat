@@ -75,7 +75,7 @@
         <tr>
             <td>主播照片:</td>
             <td>
-                <input class="easyui-filebox" name="logo" data-options="prompt:'选择图片'" style="width:200px">
+                <input class="easyui-filebox" name="logo" data-options="prompt:'选择图片'" style="width:200px" id="logo">
                 <span>（尺寸：236×130）</span>
             </td>
         </tr>
@@ -169,6 +169,7 @@ function viewDetail(i) {
         mobile : row.mobile,
         qq : row.qq
     });
+    $("#logo").textbox('reset');
     $("#logoImage").attr('src', row.logo);
 }
 
