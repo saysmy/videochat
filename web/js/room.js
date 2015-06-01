@@ -407,7 +407,7 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 			loginUserList[user.uid] = user;
 		}
 		else {//未登录
-			user.nickname = '匿名用户';
+			user.nickname = '游客';
 			unLoginUserList[user.cid] = user;
 		}
 		var style = '';

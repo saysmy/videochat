@@ -81,6 +81,7 @@ class RoomController extends CController {
         //消费排行
         $ret['consumeRankList'] = Yii::app()->db->createCommand('select sum(cost) as acost, user.nickname, user.id, user.head_pic_1, user.vip_start, user.vip_end from consume inner join user on user.id = consume.uid  where consume.mid=' . $room->mid . ' group by consume.uid order by acost desc')->query()->readAll();
         foreach($ret['consumeRankList'] as &$item) {
+            $item['acost'] = round($item['acost'], 2);
             $item['isVip'] = CUser::isVip($item['vip_start'], $item['vip_end']);
         }
 

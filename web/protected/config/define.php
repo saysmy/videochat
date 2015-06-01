@@ -3,6 +3,7 @@
     define('CONFIG_DIR', dirname(__FILE__) . '/');
     define('DOMAIN', 'www.efeizao.com');
     define('MAIN_DOMAIN', 'efeizao.com');
+    define('RTMP_DOMAIN', 'rtmp.efeizao.com');
     define('INDEX_URL', 'http://www.efeizao.com/');
     define('DEFAULT_HEAD_PIC', 'http://www.efeizao.com/img/default.jpg');
     define('PROJECT_LIB', dirname(__FILE__) . '/../../../lib/');
@@ -46,7 +47,15 @@
     define('MALE_USER', 1);
     define('FEMALE_USER', 2);
 
+    //PC支付宝
     define('PAY_TYPE_ALI', 1);
+    //android内嵌M页支付宝支付
+    define('PAY_TYPE_ALI_ANDROID', 2);
+    //ios内嵌M页支付宝支付
+    define('PAY_TYPE_ALI_IOS', 3);
+    //WebApp支付宝支付
+    define('PAY_TYPE_ALI_WEB_APP', 4);
+
     define('PAY_NUMBER_BASE', 1000000000);
     define('RECHARGE_INIT', 0);
     define('RECHARGE_COMPLETE', 1);

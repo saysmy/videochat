@@ -3,6 +3,9 @@
 include(dirname(__FILE__) . '/config/define.php');
 
 class AppModule extends CWebModule {
+
+    private $_assetsUrl;
+
     public function init() {
         parent::init();
         Yii::setPathOfAlias('app',dirname(__FILE__));
@@ -13,6 +16,12 @@ class AppModule extends CWebModule {
             ),
         ), false);
 
+    }
+
+    public function getAssetsUrl() {
+        if($this->_assetsUrl===null)
+            $this->_assetsUrl=Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('app.assets'));
+        return $this->_assetsUrl;
     }
 
 }
