@@ -6,6 +6,9 @@ while read line
 do
     TODO=`echo $line | awk {'print $1'}`
     CPTO=`echo $line | awk {'print $2'}`
+    if [ CPTO="" ];then
+        CPTO=$TODO
+    fi
     while read line
     do
 	    ADDR=`echo $line | awk {'print $1'}`

@@ -6,7 +6,7 @@ upload
 runtime
 fms/test
 web/img/roomlogo/
-tools/send_shell/fileList
 tools/send_shell/fmsServerIpList
 tools/send_shell/webBetaIpList
 tools/send_shell/webReleaseIpList
+tools/send_shell/fileList
