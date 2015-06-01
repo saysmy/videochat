@@ -1,0 +1,93 @@
+﻿@charset "utf-8";
+/* ::http://www.ieic.cn /:: */
+/* CSS Frameworks "webmag" Created by mazalee(22906672@qq.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
+
+/* --------------------------------------------------------------
+
+ 项目名称：CHICYSTYLE
+ URL:http://www.CHICYSTYLE.com
+ * Design by mazalee
+ * 建立时间2015.02.10
+ * 版权所有(c)2011
+
+-------------------------------------------------------------- */
+
+/******************************/
+/*           一般样式          */
+/******************************/
+/* 主体样式 
+---------------------------------------------------------------*/
+html {font-size:15px; /* 30x÷(640÷320)=15 */}
+body,div,span,h1,h2,h3,h4,h5,h6,dl,dd,dt,ul,li,img,p,b,textarea,input,select,form,a,table,tr,th,td,fieldset,legend {margin:0;padding:0;list-style:none;font-family:"\5fae\8f6f\96c5\9ed1","Microsoft YaHei","Arial";font-size:1rem;color:#666;line-height:1.4rem;z-index:inherit;}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 19.5px!important; /* 30px÷(640÷480)=22.5 */
+    }
+}
+@media only screen and (min-width: 561px){
+    html {
+        font-size: 22.7px!important; /* 30px÷(640÷560)=26.3 */
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 30px!important; /* 30px÷(640÷640)=30 */
+    }
+}
+@media only screen and (min-width: 981px){
+    html {
+        font-size: 39.8px!important; /* 30px÷(640÷980)=45.9 */
+    }
+}
+@media only screen and (min-width: 1081px){
+    html {
+        font-size: 39.8px!important; /* 30px÷(640÷1080)=50.6 */
+    }
+}
+/*
+设计稿基于640切图，640设计稿使用26px字体，以26px作为基准设置不同宽度的页面字体值。
+*/
+body {background:#fff url("") center top no-repeat;}
+
+/* 连接样式-顺序是(连接伪类):link,:visited,(动态伪类):hover,:focus,:active
+---------------------------------------------------------------*/
+a {color:#333;text-decoration:none;}
+a:hover {color:#000;text-decoration:underline;}
+
+b,i,em {font-style:normal;}
+b {color:#C00;}
+em {display:block;}
+
+.btns {border:none;cursor:pointer;}
+
+/******************************/
+/*           页面结构          */
+/******************************/
+/* 布局
+---------------------------------------------------------------*/
+#container {background:#f7f8fd url(bg.jpg) 0 0 repeat-x;}
+#header {width:100%;height:2.66rem;background:#0090d1;position:fixed;top:0;left:0;z-index:999;}
+#header a {display:block;position:absolute;}
+.top-back {width:1.46rem;height:1.46rem;background:url(ico-goback.png);background-size:1.46rem 1.46rem;top:0.6rem;left:1rem;}
+.top-title {height:1.46rem;color:#fff;line-height:1.46rem;top:0.6rem;left:3rem;}
+
+/******************************/
+/*           页面列表          */
+/******************************/
+/* @default
+-------------------------------------------------------------- */
+.blank {height:2.66rem;}
+.btns {cursor:pointer;border:none;}
+.wrap {margin:0 auto;padding:2rem 0;width:90%;}
+.recharge-account {height:8.33rem;background:#00a0e9;position:relative;}
+.recharge-account h1 {width:80%;font-size:1.1rem;color:#fff;position:absolute;top:1.33rem;left:1.33rem;}
+.recharge-account .num {padding-right:1.5rem;font-size:2.5rem;color:#fff;background:url(ico-coin.png) right bottom no-repeat;background-size:1.33rem 1.06rem;top:4rem;left:1.33rem;}
+.recharge-money h2 {font-size:1.1rem;color:#666;line-height:1.1rem;}
+.recharge-money ul {margin-top:1rem;}
+.recharge-money li {float:left;margin-bottom:1.2rem;width:50%;height:2.33rem;}
+.recharge-money li a {width:93%;height:2.33rem;font-size:0.8rem;line-height:2.33rem;text-align:center;background:#fff;border:#ccc 1px solid;display:block;box-shadow:rgba(0,0,0,0.1) 2px 2px 2px;border-radius:0.2rem;}
+.recharge-money li a:hover,.recharge-money li.check a {color:#00a0e9;border:#00a0e9 1px solid;text-decoration:none;background:#fff url(check.png) right bottom no-repeat;background-size:1.2rem 1.2rem;}
+.recharge-money li.odd a {float:right;}
+.btn-pay {margin:0 auto;width:12.66rem;height:2.5rem;background:#00a0e9;border-radius:.33rem;display:block;}
+.btn-pay span {margin:0 auto;padding-left:1.5rem;width:40%;height:2.5rem;color:#fff;line-height:2.5rem;background:url(ico-alipay.png) left center no-repeat;background-size:1.06rem 1.33rem;display:block;}
+.btn-pay:hover {text-decoration:none;}
