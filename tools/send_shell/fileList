@@ -1,5 +1,2 @@
-/var/www/videochat/web/css/default_v4.css /var/www/videochat/web/css/default_v4.css
-/var/www/videochat/web/css/main.jpg /var/www/videochat/web/css/main.jpg
-/var/www/videochat/web/css/mac-ico-1.png /var/www/videochat/web/css/mac-ico-1.png
-/var/www/videochat/web/css/mac-ico-2.png /var/www/videochat/web/css/mac-ico-2.png
-/var/www/videochat/web/protected/views/layouts/common.php /var/www/videochat/web/protected/views/layouts/common.php
+/var/www/videochat/web/js/room.js
+/var/www/videochat/web/protected/config/main.php
