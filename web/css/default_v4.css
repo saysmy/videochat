@@ -1,11 +1,8 @@
 @charset "utf-8";
-/* ::http://www.ieic.cn /:: */
-/* CSS Frameworks "webmag" Created by anylee(flash8_any@163.com) 2009.09.25 Update in 2010.02.02 9:35,Version 1.2 */
-
 /* --------------------------------------------------------------
 
  项目名称：TopStage
- URL:http://www.ieic.cn
+ URL:http://www.efeizao.com
  * Design by anylee
  * 建立时间2014.6.26
  * 版权所有(c)2011
@@ -138,8 +135,8 @@ select {padding:5px;border:#e0e0e0 1px solid;}
 
 .top-column2 {height:90px;}
 .logo {width:305px;height:80px;background:url(main.jpg);display:block;top:5px;left:0;}
-.topTime {width:180px;height:40px;background:url(main.jpg) 0 -80px;top:25px;right:10px;}
-.topJoin {width:144px;height:40px;background:url(main.jpg) -190px -80px;top:25px;right:240px;}
+.topTime {width:170px;height:36px;background:url(mac-ico-1.png) no-repeat;*background:url(main.jpg) 0 -80px;-webkit-background-size:170px 36px;top:27px;right:10px;}
+.topJoin {width:130px;height:36px;background:url(mac-ico-2.png) no-repeat;*background:url(main.jpg) -190px -80px;-webkit-background-size:130px 36px;top:27px;right:240px;}
 .menuOuter {height:40px;background:#23B6E2;border-top:#23b6e2 2px solid;border-bottom:#5ca7dc 2px solid;}
 .menuList a {float:left;padding:0 20px;height:40px;font-size:16px;color:#fff;line-height:40px;display:block;}
 .menuList a.cur,.menuList a:hover {font-weight:bold;background:#86CEE6;text-decoration:none;}
