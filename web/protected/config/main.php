@@ -17,7 +17,7 @@ $seaFiles = array(
       'registerLogin' => 'registerLogin.js?v=20141116',
       'step'     => 'step.js?v=20141116',
       'user'     => 'user.js?v=20141022',
-      'room'	 => 'room.js?v=20150601',
+      'room'	 => 'room.js?v=2015060102',
       'popCheckbox' => 'popCheckbox.js?v=20141215',
       'index'    => 'index.js?v=20141222',
       'head'     => 'head.js?v=20141215',

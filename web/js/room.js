@@ -78,7 +78,11 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 		});
 
 		$('#flower').click(function() {
-			swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : '{花}', "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
+			var msgData = {"msg" : '{花}', "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked};
+			if (msgData.to == 0) {
+				msgData.private = false;
+			}
+			swfobject.getObjectById("roomPlayer").doSendMsg(msgData);
 			return false;
 		})
 
@@ -567,7 +571,11 @@ define('room',['popCheckbox', 'user', 'poshytip', 'common'], function(require, e
 			addPrivateRoomMsg("每次发送文本不能超过50个字符", ROOM_TIP_MSG);
 			return;
 		}
-		swfobject.getObjectById("roomPlayer").doSendMsg({"msg" : msg, "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked});
+		var msgData = {"msg" : msg, "to" : $("#msgReceiver").val(), "private" : $("#privateMsg")[0].checked};
+		if (msgData.to == 0) {
+			msgData.private = false;
+		}
+		swfobject.getObjectById("roomPlayer").doSendMsg(msgData);
 		$("#msgArea").val('');
 	}
 
