@@ -4,7 +4,7 @@ class UserController extends CController {
     public function filters() {
         return array(
             array(
-                'application.filters.LoginFilter + updateInfo + getInfo + loveList',
+                'application.filters.LoginFilter + updateInfo + getInfo + loveList + followList',
             ),
         );  
     }
@@ -295,6 +295,8 @@ class UserController extends CController {
             $t = $list;
             $t['isPlaying'] = CRoom::isPlaying($list['id']);
             $t['isVip'] = CUser::isVip($list['vip_start'], $list['vip_end']);
+            $t['follow_num'] = $t['love_num'];
+            unset($t['love_num']);
             unset($t['vip_start']);
             unset($t['vip_end']);
             $data[] = $t;
@@ -308,7 +310,12 @@ class UserController extends CController {
 
         $uid = CUser::checkLogin();
 
-        $lists = Yii::app()->db->createCommand('select u.id,u.nickname,u.head_pic_1,u.vip_start,u.vip_end from user u inner join room r on u.id=r.mid inner join love_room l on r.id=l.rid where r.mid=' . $uid . ' limit ' . ($page * $limit) . ',' . $limit)->queryAll();
+        $room = Room::model()->find('mid=' . $uid);
+        if (!$room) {
+            return ToolUtils::ajaxOut(0);
+        }
+
+        $lists = Yii::app()->db->createCommand('select u.id,u.nickname,u.head_pic_1,u.vip_start,u.vip_end,u.sex,u.age from love_room l inner join user u on l.uid=u.id where l.rid=' . $room->id . ' limit ' . ($page * $limit) . ',' . $limit)->queryAll();
 
         $data = array();
         foreach($lists as $list) {
