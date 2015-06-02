@@ -2,7 +2,7 @@
 
 class AdminModule extends CWebModule {
 
-    public $password = 'letmego';
+    public $password = 'Feizao001';
 
     public $domain = '';
 
@@ -13,6 +13,7 @@ class AdminModule extends CWebModule {
 
         session_set_cookie_params(0);
         ini_set('session.gc_maxlifetime', 1440);
+        session_save_path('');//默认位置
 
         Yii::setPathOfAlias('admin',dirname(__FILE__));
         Yii::app()->setComponents(array(
