@@ -46,7 +46,7 @@ class RoomController extends MyController
 		}
 
 
-		$this->render('roomContent', array('rid' => $rid, 'vipLevel' => $vipLevel ,'roomType' => $this->room->type, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'type' => $type , 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => Yii::app()->params['fmsServer'], 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
+		$this->render('roomContent', array('rid' => $rid, 'vipLevel' => $vipLevel ,'roomType' => $this->room->type, 'sid' => session_id(), 'uid' => CUser::checkLogin() ? $_COOKIE['uid'] : Yii::app()->params['unLoginUid'], 'type' => $type , 'mid' => $this->room['mid'], 'appname' => 'videochat/room_' . $rid, 'sip' => RTMP_DOMAIN, 'prop' => $prop, 'maxPropInfo' => $maxPropInfo));
 	}
 
 	public function actionLove($rid) {
