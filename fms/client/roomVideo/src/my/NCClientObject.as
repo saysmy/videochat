@@ -14,6 +14,8 @@ package my
 			this.app = app;
 		}
 		
+		public function onBWDone ():void{}
+		
 		// events
 		public function onInitRoom(errno : int, msg : String, userList: Object): void {
 			ExternalInterface.call("room.onInitRoom", userList);
