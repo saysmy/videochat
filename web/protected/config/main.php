@@ -19,7 +19,7 @@ $seaFiles = array(
       'user'     => 'user.js?v=20141022',
       'room'	 => 'room.js?v=2015060102',
       'popCheckbox' => 'popCheckbox.js?v=20141215',
-      'index'    => 'index.js?v=20141222',
+      'index'    => 'index.js?v=20150602',
       'head'     => 'head.js?v=20141215',
       'common'   => 'common.js?v=20141215',
       'password' => 'password.js?v=20150508',
@@ -34,8 +34,9 @@ $fmsServer = include dirname(__FILE__) . '/fmsServer.' . $env . '.php';
 global $jsDefine;
 $jsDefine = include dirname(__FILE__) . '/jsDefine.php';
 
-session_set_cookie_params(SESSION_EXPIRE_TIME);
+session_set_cookie_params(SESSION_COOKIE_EXPIRE_TIME);
 ini_set('session.gc_maxlifetime', SESSION_EXPIRE_TIME);
+session_save_path(dirname(__FILE__).'/../sessions');
 
 return array(
 	'id' => 'videochat',
@@ -111,12 +112,13 @@ return array(
 				),
 			),
 		),
-		// 'clientScript' => array(
-  //           'scriptMap' => array(
-  //           	'jquery.js' => false,
-  //           	'jquery.min.js' => false,
-  //           ),
-  //       ),		
+
+//       'clientScript' => array(
+//           'scriptMap' => array(
+//           	'jquery.js' => false,
+//           	'jquery.min.js' => false,
+//           ),
+//       ),		
 	),
 
 	// using Yii::app()->params['paramName']

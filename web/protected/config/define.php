@@ -8,6 +8,7 @@
     define('DEFAULT_HEAD_PIC', 'http://www.efeizao.com/img/default.jpg');
     define('PROJECT_LIB', dirname(__FILE__) . '/../../../lib/');
     define('ALIPAY_LIB_PATH', dirname(__FILE__) . '/../../../lib/alipay/');
+    define('PHPLIB_PATH', dirname(__FILE__) . '/../../../../PHPLIB/');
     define('ALIPAY_RETURN_URL', 'http://www.efeizao.com/recharge/alipayReturn');
     define('ALIPAY_NOTIRY_URL', 'http://www.efeizao.com/recharge/alipayNotify');
     if (YII_DEBUG) {
@@ -23,8 +24,10 @@
     define('ALIPAY_CERT', ALIPAY_LIB_PATH . 'cacert.pem');
     define('RECHARGE_SHOW_URL', 'http://www.efeizao.com/recharge/show');
 
-    //session的cookie 设置为7天
+    //session过期 设置为7天
     define('SESSION_EXPIRE_TIME', 7*86400);
+    //session的cookie设置为一年
+    define('SESSION_COOKIE_EXPIRE_TIME', 365*86400);
 
     define('UNLOGIN_USER', -1);
     define('COMMON_USER', 1);
